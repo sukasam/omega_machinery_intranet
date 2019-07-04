@@ -4,36 +4,45 @@
 	include ("../../include/function.php");
 	include ("config.php");
 
-	if ($_POST["mode"] <> "") {  
-		$param = "";
-		if ($_POST[$FR_field] <> "") { $param .=  "&" . $FR_field . "=" . $_POST[$FR_field]; } 
-		if ($_POST["page"] <> "") { $param .=  "&page=" . $_POST["page"]; } 
-		if ($_POST["mode"] <> "") { $param .=  "&mode=" . $_POST["mode"]; } 
-		if ($_POST["user_id"] <> "") { $param .=  "&user_id=" . $_POST["user_id"]; } 
-		if ($_POST["group_id"] == "") {$_POST["group_id"] = 0;} 
-		
-		$param = substr ($param,1);
+	$a_param = array('page','orderby','sortby','keyword','pagesize','group_id');
+	$param = get_param($a_param,$a_not_exists);
 
-		if ($_POST[option] == "Add") { 
-			include "../include/m_add.php";
+	if($_POST[Submit] == "Submit"){
+			header ("location:index.php?" . $param); 
+		}
+
+	//if ($_REQUEST[mode] <> "") { 
+		$param = "";
+		$a_not_exists = array();
+		$param = get_param($a_param,$a_not_exists);
+		
+		if ($_REQUEST[option] == "Add") { 
+			//include "../include/m_add.php";
+			// filedlist(group_id,module_id,read_p,add_p,update_p,delete_p)
+			$sql = "insert into s_user_p (group_id,module_id,read_p,add_p,update_p,delete_p) values ";
+			$sql.= "('$_POST[group_id]','$_POST[module_id]','$_POST[read_p]','$_POST[add_p]','$_POST[update_p]','$_POST[delete_p]')";
+			@mysqli_query($conn,$sql);
 			header ("location:?" . $param); 
 		}
-		if ($_POST[option] == "Edit" ) { 
-			include ("../include/m_update.php");
+		if ($_REQUEST[option] == "Edit" ) { 
+			//include ("../include/m_update.php");
+			$sql = "update s_user_p  set group_id = '$_POST[group_id]',module_id = '$_POST[module_id]',read_p = '$_POST[read_p]',add_p = '$_POST[add_p]',update_p = '$_POST[update_p]',delete_p = '$_POST[delete_p]', update_date = '".date("Y-m-d H:i:s")."', update_by= '".$_SESSION["login_id"]."' where user_p_id = '$_REQUEST[user_p_id]' ";
+			@mysqli_query($conn,$sql);
 			header ("location:?" . $param); 
 		}
-	}
+//	}
 	
 	if($_GET["action"] == "delete"){
-		$sql = "delete from $tbl_name where $PK_field = '".$_GET[$PK_field]."'";
+		$sql = "delete from s_user_p where user_p_id = '$_GET[user_p_id]'";
 		@mysqli_query($conn,$sql);
+		header ("location:?" . $param); 
 	}
 	
 	if ($_GET[mode] == "add") { 
 		 Check_Permission($conn,$check_module,$_SESSION["login_id"],"add");
 	}
 	if ($_GET[mode] == "update") { 
-		// Check_Permission($conn,$check_module,$_SESSION["login_id"],"update");
+		 Check_Permission($conn,$check_module,$_SESSION["login_id"],"update");
 		 $_SESSION[s_user_id] = $_GET[user_id];
 		/*$sql = "select * from $tbl_name where $PK_field = '" . $_GET[$PK_field] ."'";
 		$query = @mysqli_query($conn,$sql);
@@ -64,6 +73,7 @@ function confirmDelete(delUrl,text) {
     document.location = delUrl;
   }
 }
+
 </script>
 </HEAD>
 <?php  include ("../../include/function_script.php"); ?>
@@ -89,65 +99,61 @@ function confirmDelete(delUrl,text) {
 </DIV></DIV><!-- End .content-box-header -->
 <DIV class=content-box-content>
 <DIV id=tab1 class="tab-content default-tab">
-  <form action="update.php" method="post" enctype="multipart/form-data" name="form1" id="form1"  >
+  <form action="" method="post" enctype="multipart/form-data" name="form1" id="form1"  >
     <div class="formArea">
       <fieldset>
-      <legend><?php  echo ucfirst ($page_name); ?> form </legend>
+      <legend><?php  echo ucfirst ($page_name); ?> </legend>
         <table width="100%" cellspacing="0" cellpadding="0" border="0">
           <tr>
           <td height="54"><table width="100%" border="0" cellspacing="0" class="formFields">
               <tr >
-                <td class="name" style="color:#0C0">
-   
-                    User &gt;
+                <td width="199" class="name" style="color:#0C0;">Group &gt;
                     <?php  
-							$sql = "select * from s_user where user_id = '$_GET[user_id]' ";
+							$sql = "select * from $tbl_name where $PK_field = '".$_GET[$PK_field]."' ";
 							$rec = @mysqli_fetch_array(@mysqli_query($conn,$sql));
-							echo $rec[username];
+							echo $rec[group_name];
 						?>
-                        
                 </td>
                 <td colspan="6">&nbsp;</td>
               </tr>
-              <tr>
-                <td height="26" class="text">Module</td>
-                <td class="text"><div align="center">Read</div></td>
-                <td class="text"><div align="center">Add</div></td>
-                <td class="text"><div align="center">Update</div></td>
-                <td class="text"><div align="center">Delete</div></td>
-                <td><div align="center"></div></td>
-                <td><div align="center"></div></td>
+              <tr >
+                <td height="26" class="name">Module</td>
+                <td width="43"><div align="center">Read</div></td>
+                <td width="35"><div align="center">Add</div></td>
+                <td width="56"><div align="center">Update</div></td>
+                <td width="50"><div align="center">Delete</div></td>
+                <td width="82"><div align="center"></div></td>
+                <td width="131"><div align="center"></div></td>
               </tr>
               <?php 
-	$counter = 0;
-	$sql = "select * from s_user_p,s_module where user_id = '$_SESSION[s_user_id]' and s_module.module_id = s_user_p.module_id  order by $PK_field desc ";
+					$i =0;
+	$sql = "select *,s_module.module_id as module_id from $tbl_name left join s_user_p on $tbl_name.$PK_field = s_user_p.$PK_field  inner join s_module on s_module.module_id = s_user_p.module_id where user_id = '0' and $tbl_name.$PK_field = '".$_GET[$PK_field]."' ";
 		$query = @mysqli_query($conn,$sql);
 		while($rec = @mysqli_fetch_array($query)){
-?>
+			$i++;
+	?>
               <tr <?php  if ($counter++%2) { ?>class="oddrowbg" <?php  } else { ?> class="evenrowbg"<?php  } ?>>
-                <td height="26" ><?php  echo $rec[module_name]; ?></td>
+                <td height="26" class="name">&nbsp;&nbsp; <?php  echo $rec[module_name];?></td>
                 <td><div align="center">
-                    <input type="checkbox" name="checkbox" value="checkbox" <?php  if($rec[read_p] == 1) echo "checked"; ?>>
-                </div></td>
-                <td><div align="center">
-                    <input type="checkbox" name="checkbox2" value="checkbox" <?php  if($rec[add_p] == 1) echo "checked"; ?>>
-                </div></td>
-                <td><div align="center">
-                    <input type="checkbox" name="checkbox3" value="checkbox" <?php  if($rec[update_p] == 1) echo "checked"; ?>>
-                </div></td>
-                <td><div align="center">
-                    <input type="checkbox" name="checkbox4" value="checkbox" <?php  if($rec[delete_p] == 1) echo "checked"; ?>>
-                </div></td>
-                <td><div align="center"><a href="?action=Edit&user_id=<?php  echo $_GET[user_id];?>&mode=<?php  echo $_GET[mode]?>&<?php  echo "$PK_field=".$rec[$PK_field];?>">Edit</a></div></td>
-                <td><div align="center"><a href="javascript:confirmDelete('update.php?action=delete&user_id=<?php  echo $_GET[user_id];?>&mode=<?php  echo $_GET[mode]?>&<?php  echo "$PK_field=".$rec[$PK_field];?>','Module <?php  echo $rec[module_name];?>')">Delete</a></div></td>
+                    <?php  if($rec[read_p] == 1) $image = 1; else $image = 0;?>
+                    <img src="../images/check<?php  echo $image?>.gif" border="0"> </div></td>
+                <td valign="middle"><div align="center">
+                    <?php  if($rec[add_p] == 1) $image = 1; else $image = 0;?>
+                    <img src="../images/check<?php  echo $image?>.gif" border="0"> </div></td>
+                <td valign="middle"><div align="center">
+                    <?php  if($rec[update_p] == 1) $image = 1; else $image = 0;?>
+                    <img src="../images/check<?php  echo $image?>.gif" border="0"> </div></td>
+                <td valign="middle"><div align="center">
+                    <?php  if($rec[delete_p] == 1) $image = 1; else $image = 0;?>
+                    <img src="../images/check<?php  echo $image?>.gif" border="0"> </div></td>
+                <td><div align="center"><a href="?action=Edit&mode=<?php  echo $_GET[mode]?>&<?php  echo "$PK_field=".$rec[$PK_field];?>&user_p_id=<?php  echo $rec[user_p_id];?>&module_id=<?php  echo $rec[module_id];?>&<?php  echo $param;?>">Edit</a></div></td>
+                <td><div align="center"> <a href="permission.php?action=delete&mode=<?php  echo $_GET[mode]?>&<?php  echo "$PK_field=".$rec[$PK_field];?>&user_p_id=<?php  echo $rec[user_p_id];?>&module_id=<?php  echo $rec[module_id];?>&<?php  echo $param;?>" onClick="return confirm('คุณต้องการลบ module <?php  echo $rec[module_name]; ?>')">Delete</a></div></td>
               </tr>
-              <?php 
-			} // end while
-?>
+              <?php  } // end while?>
               <tr >
                 <td height="26" class="name"><?php 
 					  	if($_GET["action"] == "Edit"){
-							$sql = "select * from s_user_p  where $PK_field = '".$_GET[$PK_field]."' ";
+							$sql = "select * from s_user_p  where user_p_id = '$_GET[user_p_id]'  ";
 							$query = @mysqli_query($conn,$sql);
 							$rec = @mysqli_fetch_array($query);
 							$module_id = $rec[module_id];
@@ -156,18 +162,23 @@ function confirmDelete(delUrl,text) {
 							$update_p = $rec[update_p];
 							$delete_p = $rec[delete_p];
 						}
+							
+							$sql = "select * from s_module ";
+							if($_GET["action"] == "Edit")
+								$sql .= "where module_id = '$_GET[module_id]' ";
+							$sql .= "order by module_id desc";
+							$query = @mysqli_query($conn,$sql);
 					  ?>
                     <select name="module_id">
+                      <?php  if($_GET["action"] <> "Edit") { ?>
                       <option>Select One</option>
-                      <?php 
-								$sql = "select * from s_module order by module_id desc";
-								$query = @mysqli_query($conn,$sql);
+                      <?php  } 
 								while($rec = @mysqli_fetch_array($query)){
 							?>
                       <option value="<?php  echo $rec[module_id];?>" <?php  if($module_id == $rec[module_id]) echo "selected";?>><?php  echo $rec[module_name];?></option>
-                      <?php  } ?>
+                      <?php  } // end while ?>
                     </select>
-                </td>
+                  <a href="javascript:;" onClick="select_all();">Select All</a></td>
                 <td><div align="center">
                     <input name="read_p" type="checkbox" id="read_p" value="1" <?php  if($read_p == "1") echo "checked"; ?>>
                 </div></td>
@@ -192,11 +203,13 @@ function confirmDelete(delUrl,text) {
           </tr>
         </table>
         </fieldset>
-    </div>
-    <div class="formArea">
-      <?php  foreach ($_GET as $key => $value) { ?>
-<input name="<?php  echo $key;?>" type="hidden" id="<?php  echo $key;?>" value="<?php  echo $value;?>">
-      <?php  } ?>
+    </div><br>
+    <div class="formArea"><?php  
+			$a_not_exists = array();
+			post_param($a_param,$a_not_exists); 
+			?>
+      <input name="mode" type="hidden" id="mode" value="<?php  echo $_REQUEST[mode];?>">
+      <input name="<?php  echo $PK_field;?>" type="hidden" id="<?php  echo $PK_field;?>" value="<?php  echo $_REQUEST[$PK_field];?>">
     </div>
   </form>
 </DIV>

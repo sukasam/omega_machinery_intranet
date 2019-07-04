@@ -10,7 +10,7 @@
 
 
 
-	if ($_POST[mode] <> "") { 
+	if ($_POST["mode"] <> "") { 
 
 		$param = "";
 
@@ -20,11 +20,11 @@
 
 
 
-		if ($_POST[mode] == "add") { 
+		if ($_POST["mode"] == "add") { 
 
 				include "../include/m_add.php";
 
-				$id=mysql_insert_id();
+				$id=mysqli_insert_id($conn);
 
 				$sql="update $tbl_name set rank ='$id' where $PK_field='$id' ";
 
@@ -34,7 +34,7 @@
 
 		}
 
-		if ($_POST[mode] == "update" ) { 
+		if ($_POST["mode"] == "update" ) { 
 
 			
 

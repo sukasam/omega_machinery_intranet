@@ -5,14 +5,14 @@
 	include("../fckeditor/fckeditor.php");
 	include ("config.php");
 
-	if ($_POST[mode] <> "") { 
+	if ($_POST["mode"] <> "") { 
 		$param = "";
 		$a_not_exists = array();
 		$param = get_param($a_param,$a_not_exists);
 		$_POST[descriptions]=addslashes($_POST[descriptions]);
 
 		
-		if ($_POST[mode] == "update" ) { 
+		if ($_POST["mode"] == "update" ) { 
 			include ("../include/m_update.php");	
 			header ("location:index.php?" . $param); 
 		}

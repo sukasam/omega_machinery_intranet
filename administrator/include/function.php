@@ -1114,11 +1114,11 @@ function check_username($conn,$name){
 		}
 		$sql = "insert into s_user (username , password , create_date , create_by) values ('$username','$password','".date("Y-m-d H:i:s")."' , '".$_SESSION[login_name]."')";
 		@mysqli_query($conn,$sql);
-		$user_id = mysql_insert_id();
+		$user_id = mysqli_insert_id($conn);
 		
 		$sql = "insert into person (name_th , researcher , user_id , create_date , create_by) values ('$name' , '1' , '$user_id' , '".date("Y-m-d H:i:s")."' , '".$_SESSION[login_name]."')";
 		@mysqli_query($conn,$sql);
-		$return_id = mysql_insert_id();
+		$return_id = mysqli_insert_id($conn);
 	}
 	return $return_id;
 }

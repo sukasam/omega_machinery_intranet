@@ -4,7 +4,7 @@
 	include ("../../include/function.php");
 	include ("config.php");
 
-	if ($_POST[mode] <> "") { 
+	if ($_POST["mode"] <> "") { 
 		$param = "";
 		$a_not_exists = array();
 		$param = get_param($a_param,$a_not_exists);
@@ -27,7 +27,7 @@
 		$_POST['cprice4'] = preg_replace("/,/","",$_POST['cprice4']);
 		$_POST['cprice5'] = preg_replace("/,/","",$_POST['cprice5']);
 
-		if ($_POST[mode] == "update" ) {
+		if ($_POST["mode"] == "update" ) {
 			
 			$_POST['detail_recom'] = nl2br($_POST['detail_recom']);
 			$_POST['detail_recom2'] = nl2br($_POST['detail_recom2']);

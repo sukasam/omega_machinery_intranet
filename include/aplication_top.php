@@ -24,9 +24,9 @@ if($_COOKIE['setunicode'] != 1){
 $listsmenu = explode('/',$_SERVER['SCRIPT_FILENAME']);
 $lmenu = strtolower($listsmenu[count($listsmenu)-1]);
 
-if($_SESSION['lang'] == "thai"){
-	@mysqli_query($conn,"SET NAMES tis620");	
-}else{
-	@mysqli_query($conn,"SET NAMES utf8");	
-}
+//if($_SESSION['lang'] == "thai"){
+//	@mysqli_query($conn,"SET NAMES tis620");	
+//}else{
+//	@mysqli_query($conn,"SET NAMES utf8");	
+//}
 ?>

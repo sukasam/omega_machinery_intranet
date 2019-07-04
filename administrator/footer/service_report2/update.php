@@ -4,7 +4,7 @@
 	include ("../../include/function.php");
 	include ("config.php");
 
-	if ($_POST[mode] <> "") { 
+	if ($_POST["mode"] <> "") { 
 		$param = "";
 		$a_not_exists = array();
 		$param = get_param($a_param,$a_not_exists);
@@ -33,7 +33,7 @@
 		$a_sdate=explode("/",$_POST['ref_date']);
 		$_POST['ref_date']=$a_sdate[2]."-".$a_sdate[1]."-".$a_sdate[0];
 
-		if ($_POST[mode] == "add") { 
+		if ($_POST["mode"] == "add") { 
 		
 			$_POST['detail_recom'] = nl2br($_POST['detail_recom']);
 			$_POST['detail_calpr'] = nl2br($_POST['detail_calpr']);
@@ -62,12 +62,12 @@
 
 			include "../include/m_add.php";
 			
-			$id = mysql_insert_id();
+			$id = mysqli_insert_id($conn);
 			
 			foreach($codes as $a => $b){
 				//$BX_NAME[$a]
 				@mysqli_query($conn,"INSERT INTO `s_service_report2sub` (`r_id`, `sr_id`, `codes`, `lists`, `units`, `prices`, `amounts`, `opens`, `remains`) VALUES (NULL, '".$id."', '".$codes[$a]."', '".$lists[$a]."', '".$units[$a]."', '".$prices[$a]."', '".$amounts[$a]."', '".$opens[$a]."', '".$remains[$a]."');");
-				$idsp = mysql_insert_id();
+				$idsp = mysqli_insert_id($conn);
 				@mysqli_query($conn,"UPDATE `s_group_sparpart` SET `group_stock` = `group_stock` - '".$opens[$a]."' WHERE `group_id` = '".$lists[$a]."';");
 				@mysqli_query($conn,"UPDATE `s_service_report2sub` SET `amounts` = `amounts` - '".$opens[$a]."' WHERE `r_id` = '".$idsp."';");
 			}
@@ -83,7 +83,7 @@
 			
 			header ("location:index.php?" . $param); 
 		}
-		if ($_POST[mode] == "update" ) {
+		if ($_POST["mode"] == "update" ) {
 			
 			$_POST['detail_recom'] = nl2br($_POST['detail_recom']);
 			$_POST['detail_calpr'] = nl2br($_POST['detail_calpr']);

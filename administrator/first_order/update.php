@@ -7,7 +7,7 @@
  	
   $vowels = array(",");
 
-	if ($_POST[mode] <> "") { 
+	if ($_POST["mode"] <> "") { 
 		$param = "";
 		$a_not_exists = array();
 		$param = get_param($a_param,$a_not_exists);
@@ -44,13 +44,13 @@
 		$_POST["money_garuntree"] = str_replace($vowels,"",$_POST["money_garuntree"]);
 		$_POST["money_setup"] = str_replace($vowels,"",$_POST["money_setup"]);
 
-		if ($_POST[mode] == "add") { 
+		if ($_POST["mode"] == "add") { 
 		
 				$_POST['fs_id'] = get_snfirstorders($conn,$_POST['fs_id']);
 				$_POST['status_use'] = 1;
 				
 				include "../include/m_add.php";
-				$id = mysql_insert_id();
+				$id = mysqli_insert_id($conn);
 				
 				include_once("../mpdf54/mpdf.php");
 				include_once("form_firstorder.php");
@@ -62,7 +62,7 @@
 				
 			header ("location:index.php?" . $param); 
 		}
-		if ($_POST[mode] == "update" ) { 
+		if ($_POST["mode"] == "update" ) { 
 				include ("../include/m_update.php");
 				$id = $_REQUEST[$PK_field];			
 				
@@ -143,6 +143,23 @@ function check(frm){
 function chksign(vals){
 	//alert(vals);	
 }
+
+$(function(){
+
+ $("#cd_province").change(function(){
+	var cd_province = $("#cd_province").val();
+	$.ajax({
+		type: "GET",
+		url: 'call_return.php?action=amphur&cd_province='+cd_province,
+		success: function(data){
+			//console.log(data);
+			$("#cd_amphur").html(data);
+		}
+	});
+	 
+  });
+
+});
 
 </script>
 </HEAD>
@@ -230,6 +247,18 @@ function chksign(vals){
 					while($row_province = @mysqli_fetch_array($quprovince)){
 					  ?>
 					  	<option value="<?php  echo $row_province['province_id'];?>" <?php  if($cd_province == $row_province['province_id']){echo 'selected';}?>><?php  echo $row_province['province_name'];?></option>
+					  <?php 	
+					}
+				?>
+            </select>
+           &nbsp;&nbsp;
+           <strong>อำเภอ :</strong> 
+           <select name="cd_amphur" id="cd_amphur" class="inputselect">
+                <?php 
+                	$quamphur = @mysqli_query($conn,"SELECT * FROM s_amphur WHERE province_id ='".$cd_province."' ORDER BY amphur_name ASC");
+					while($row_amphur = @mysqli_fetch_array($quamphur)){
+					  ?>
+					  	<option value="<?php  echo $row_amphur['amphur_id'];?>" <?php  if($cd_amphur == $row_amphur['amphur_id']){echo 'selected';}?>><?php  echo $row_amphur['amphur_name'];?></option>
 					  <?php 	
 					}
 				?>
@@ -639,14 +668,14 @@ Vat 7%</strong></td>
               </tr>
             </table></td>
             <td style="border:0;padding:0;width:40%;vertical-align:top;padding-left:5px;font-size:12px;border:1px solid #000000;padding-top:10px;"><p><strong>
-             เลขที่สัญญา : <input type="text" name="r_id" value="<?php  echo $r_id;?>" id="r_id" class="inpfoder" ><!--<input type="text" name="r_id" value="<?php  if($r_id == ""){echo check_contactfo($conn);}else{echo $r_id;};?>" id="r_id" class="inpfoder" >--><br><br>
+             เลขที่สัญญา : <input type="text" name="r_id" value="<?php  echo $r_id;?>" id="r_id" class="inpfoder" >&nbsp;&nbsp;อายุสัญญาเช่า : <input type="text" name="r_idrent" value="<?php  echo $r_idrent;?>" id="r_idrent" class="inpfoder" style="text-align:center;width:15%;"> เดือน<br><br>
               การรับประกันเครื่อง/อะใหล่ : <input type="text" name="garun_id" value="<?php  echo $garun_id;?>" id="garun_id" class="inpfoder" style="width: 40px;text-align: center;"> เดือน
               <br><br>
               วันเริ่ม : </strong>
-              <input type="text" name="date_quf" readonly value="<?php  if($date_quf==""){echo date("d/m/Y");}else{ echo $date_quf;}?>" class="inpfoder" style="width: 60px;"/>
+              <input type="text" name="date_quf" readonly value="<?php  if($date_quf==""){echo date("d/m/Y");}else{ echo $date_quf;}?>" class="inpfoder" style="width: 70px;"/>
               <script language="JavaScript">new tcal ({'formname': 'form1','controlname': 'date_quf'});</script> 
               <strong>&nbsp;สิ้นสุด : </strong>
-              <input type="text" name="date_qut" readonly value="<?php  if($date_qut==""){echo date("d/m/Y");}else{ echo $date_qut;}?>" class="inpfoder" style="width: 60px;"/>
+              <input type="text" name="date_qut" readonly value="<?php  if($date_qut==""){echo date("d/m/Y");}else{ echo $date_qut;}?>" class="inpfoder" style="width: 70px;"/>
               <script language="JavaScript">new tcal ({'formname': 'form1','controlname': 'date_qut'});</script><br>
               <div id="cssign"><strong>ผู้มีอำนาจเซ็นสัญญา</strong>
               <input type="text" name="cs_sign" value="<?php  echo $cs_sign;?>" id="cs_sign" class="inpfoder" style="width:50%;">
@@ -683,7 +712,20 @@ Vat 7%</strong></td>
 				?>
         </select>
       </strong></td>
-      <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:10px;">&nbsp;</td>
+      <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:10px;">
+      	<strong>โซน/ภาค </strong>
+      	<select name="service_zone" id="service_zone" class="inputselect" style="width:50%;">
+         	<option value="">กรุณาเลือกโซน/ภาค</option>
+          <?php 
+                	$quservicezone = @mysqli_query($conn,"SELECT * FROM s_group_zone ORDER BY group_name ASC");
+					while($row_servicezone = @mysqli_fetch_array($quservicezone)){
+					  ?>
+          <option value="<?php  echo $row_servicezone['group_id'];?>" <?php  if($service_zone == $row_servicezone['group_id']){echo 'selected';}?>><?php  echo $row_servicezone['group_name'];?></option>
+          <?php 	
+					}
+				?>
+        </select>
+      </td>
     </tr>
   </table>
   <br>

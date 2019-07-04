@@ -4,19 +4,19 @@
 	include ("../../include/function.php");
 	include ("config.php");
 
-	if ($_POST[mode] <> "") { 
+	if ($_POST["mode"] <> "") { 
 		$param = "";
 		$a_not_exists = array();
 		$param = get_param($a_param,$a_not_exists);
 
-		if ($_POST[mode] == "add") { 
+		if ($_POST["mode"] == "add") { 
 			$sql = "select * from $tbl_name where username = '$_POST[username]' ";
 			$query = @mysqli_query($conn,$sql);
 			
 			if(@mysqli_num_rows($query) == 0) {
 				
 				include "../include/m_add.php";
-				$id=@mysql_insert_id();
+				$id=@mysqli_insert_id($conn);
 				
 				if ($_FILES['ufimages']['name'] != "") { 
 				$mname="";
@@ -46,7 +46,7 @@
 			}
 		}
 //-------------------------------------------------------------------------------------------------------------------------------------
-		if ($_POST[mode] == "update" ) { 	
+		if ($_POST["mode"] == "update" ) { 	
 			$sql = "select * from s_user where username = '$_POST[username]' and user_id <> '$_POST[$PK_field]' ";
 			$query = @mysqli_query($conn,$sql);
 			if (@mysqli_num_rows($query) == 0) { //====> Username Avalible 

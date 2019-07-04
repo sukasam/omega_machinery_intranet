@@ -4,7 +4,7 @@
 	include ("../../include/function.php");
 	include ("config.php");
 
-	if ($_POST[mode] <> "") { 
+	if ($_POST["mode"] <> "") { 
 		
 		$param = "";
 		$a_not_exists = array();
@@ -40,13 +40,13 @@
 		$_POST["cprice7"] = preg_replace("/,/","",$_POST["cprice7"]);*/
 
 		
-		if ($_POST[mode] == "add") { 
+		if ($_POST["mode"] == "add") { 
 		
 				/*$_POST['fs_id'] = get_snprojectorders($conn,$_POST['fs_id']);
 				$_POST['status_use'] = 1;
 				
 				include "../include/m_add.php";
-				$id = mysql_insert_id();
+				$id = mysqli_insert_id($conn);
 			
 				for($i=0;$i<=count($_POST['cpro']);$i++){
 					if($_POST['cpro'][$i] != ""){
@@ -69,7 +69,7 @@
 				
 			header ("location:update.php?mode=update&fo_id=".$_POST['fo_id']."&page=".$_POST['page']); 
 		}
-		if ($_POST[mode] == "update" ) { 
+		if ($_POST["mode"] == "update" ) { 
 			
 				$fo_id = $_POST['fo_id'];
 			

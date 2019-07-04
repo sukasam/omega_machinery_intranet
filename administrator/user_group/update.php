@@ -7,14 +7,14 @@
 	$param = "";
 	$a_not_exists = array();
 	$param = get_param($a_param,$a_not_exists);
-	if ($_POST[mode] <> "") { 
+	if ($_POST["mode"] <> "") { 
 
-		if ($_POST[mode] == "update") { 
+		if ($_POST["mode"] == "update") { 
 			$param = get_return_param();
 		
-			$sql = "delete from $tbl_name where user_id = '$_POST[user_id]' ";
+			$sql = "delete from $tbl_name where user_id = '$_POST["user_id"]' ";
 			@mysqli_query($conn,$sql);
-			$sql = "delete from s_user_p where user_id = '$_POST[user_id]' and module_id = '0' ";
+			$sql = "delete from s_user_p where user_id = '$_POST["user_id"]' and module_id = '0' ";
 			@mysqli_query($conn,$sql);
 			
 			if(count($_POST[group_id]) > 0){
@@ -24,7 +24,7 @@
 					//echo $sql;
 					
 						$sql = "insert into s_user_p (user_id,group_id) values ";
-						$sql.= "('$_POST[user_id]','$_POST[group_id]')";
+						$sql.= "('$_POST["user_id"]','$_POST[group_id]')";
 						@mysqli_query($conn,$sql);
 				} // end foreach
 			}// end if(count($_POST[group_id]) > 0)

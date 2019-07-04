@@ -6,14 +6,14 @@
 	
 	if($_GET[$PK_field] != $_SESSION["login_id"]){header("Location:?mode=update&user_id=".$_SESSION["login_id"]."&page=1&mid=15");}
 
-	if ($_POST[mode] <> "") { 
+	if ($_POST["mode"] <> "") { 
 		$param = "";
 		$a_not_exists = array();
 		$param = get_param($a_param,$a_not_exists);
 
-		if ($_POST[mode] == "add") {}
+		if ($_POST["mode"] == "add") {}
 //-------------------------------------------------------------------------------------------------------------------------------------
-		if ($_POST[mode] == "update" ) { 	
+		if ($_POST["mode"] == "update" ) { 	
 			$sql = "select * from s_user where username = '$_POST[username]' and user_id <> '$_POST[$PK_field]' ";
 			$query = @mysqli_query($conn,$sql);
 			if (@mysqli_num_rows($query) == 0) { //====> Username Avalible 

@@ -79,7 +79,7 @@ function check(frm){
 <DIV class=content-box><!-- Start Content Box -->
 <DIV class=content-box-header align="right">
 
-<H3 align="left"><?php  echo $check_module; ?></H3>
+<H3 align="left"><?php  echo $page_name; ?></H3>
 <DIV class=clear>
   
 </DIV></DIV><!-- End .content-box-header -->
@@ -92,18 +92,14 @@ function check(frm){
         <table width="100%" cellspacing="0" cellpadding="0" border="0">
           <tr>
             <td><table class="formFields" cellspacing="0" width="100%">
+              <!--<tr >
+                <td nowrap class="name">รหัสสินค้า</td>
+                <td><input name="group_zone_id" type="text" id="group_zone_id"  value="<?php  echo $group_zone_id; ?>" size="60"></td>
+              </tr>-->
               <tr >
-                <td nowrap class="name">รหัสกลุ่ม</td>
-                <td><input name="group_type_id" type="text" id="group_type_id"  value="<?php  echo $group_type_id; ?>" size="60"></td>
-              </tr>
-              <tr >
-                <td nowrap class="name">ชื่้อกลุ่ม</td>
+                <td nowrap class="name">ชื่อโซน/ภาค/เขต</td>
                 <td><input name="group_name" type="text" id="group_name"  value="<?php  echo $group_name; ?>" size="60"></td>
               </tr>
-              <?php  if ($_GET[mode] == "add") { ?>
-              <?php  } ?>
-              <?php  if ($_GET[mode] == "update") { ?>
-              <?php  } ?>
           </table></td>
           </tr>
         </table>

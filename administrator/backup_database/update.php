@@ -13,16 +13,16 @@
 	
 	header ("location:index.php?" . $param); 
 
-	/*if ($_POST[mode] <> "") { 
+	/*if ($_POST["mode"] <> "") { 
 		$param = "";
 		$a_not_exists = array();
 		$param = get_param($a_param,$a_not_exists);
 
-		if ($_POST[mode] == "add") { 
+		if ($_POST["mode"] == "add") { 
 				include "../include/m_add.php";
 			header ("location:index.php?" . $param); 
 		}
-		if ($_POST[mode] == "update" ) { 
+		if ($_POST["mode"] == "update" ) { 
 			include ("../include/m_update.php");
 			header ("location:index.php?" . $param); 
 		}

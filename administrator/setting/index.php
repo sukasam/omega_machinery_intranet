@@ -61,7 +61,9 @@
         <td><div align="center"><a href="../group_project/"><img src="../images/menu/mn_serting10.png" width="65" height="65" border="0" alt=""><br>
               <br>
         <strong>รายการสินค้าโปรเจ็ค</strong></a></div></td>
-        <td><div align="center"></div></td>
+        <td><div align="center"><a href="../group_zone/"><img src="../images/menu/mn_serting10.png" width="65" height="65" border="0" alt=""><br>
+              <br>
+        <strong>โซน/ภาค/เขต ช่างบริการ</strong></a></div></td>
         <td><div align="center"></div></td>
       </tr>
       <tr>
