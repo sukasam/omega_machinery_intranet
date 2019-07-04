@@ -1074,7 +1074,7 @@ function check9(frm){
                         <td><table class="formFields" cellspacing="0" width="100%">
                           <tr>
                             <td width="10%" nowrap class="name">เริ่มวันที่
-                               <input type="text" name="date_fm" readonly value="<?php  if($_GET['df'] != ""){list ($s_year, $s_month, $s_day) = split ("-", $_GET['df']);echo $s_day."/".$s_month."/".$s_year;}else{echo date("d/m/Y");}?>" class="inpfoder"/><script language="JavaScript">new tcal ({'formname': 'form1','controlname': 'date_fm'});</script>
+                               <input type="text" name="date_fm" readonly value="<?php  if($_GET['df'] != ""){list ($s_year, $s_month, $s_day) = explode ("-", $_GET['df']);echo $s_day."/".$s_month."/".$s_year;}else{echo date("d/m/Y");}?>" class="inpfoder"/><script language="JavaScript">new tcal ({'formname': 'form1','controlname': 'date_fm'});</script>
                                &nbsp;&nbsp; ถึงวันที่ 
                               <input type="text" name="date_to" readonly value="<?php  echo date("d/m/Y");?>" class="inpfoder"/><script language="JavaScript">new tcal ({'formname': 'form1','controlname': 'date_to'});</script></td>
                             <td width="90%"><span class="name">
@@ -1130,9 +1130,9 @@ function check9(frm){
 			            <td><?php  
 							if($_GET['poi'] == 0){
 										$daterriod4 = " AND `date_forder`  between '".$_GET['df']."' and '".$_GET['dt']."'"; 
-										list ($s_year, $s_month, $s_day) = split ("-", $_GET['df']);
+										list ($s_year, $s_month, $s_day) = explode ("-", $_GET['df']);
 										$datefm = $s_day."/".$s_month."/".$s_year;
-										list ($s_year, $s_month, $s_day) = split ("-", $_GET['dt']);
+										list ($s_year, $s_month, $s_day) = explode ("-", $_GET['dt']);
 										$dateft = $s_day."/".$s_month."/".$s_year;
 									}
 									$sql1 = "SELECT * FROM s_first_order AS fr WHERE 1 ".$daterriod4." ORDER BY fr.cd_name ASC";
@@ -1201,9 +1201,9 @@ function check9(frm){
 			            <td><?php  
 									if($_GET['poi'] == 0){
 										$daterriod4 = " AND `date_forder`  between '".$_GET['df']."' and '".$_GET['dt']."'"; 
-										list ($s_year, $s_month, $s_day) = split ("-", $_GET['df']);
+										list ($s_year, $s_month, $s_day) = explode ("-", $_GET['df']);
 										$datefm = $s_day."/".$s_month."/".$s_year;
-										list ($s_year, $s_month, $s_day) = split ("-", $_GET['dt']);
+										list ($s_year, $s_month, $s_day) = explode ("-", $_GET['dt']);
 										$dateft = $s_day."/".$s_month."/".$s_year;
 									}
 									$sql1 = "SELECT * FROM s_first_order AS fr WHERE fr.cg_type = '".$roecus['group_id']."' ".$daterriod4." ORDER BY fr.cd_name ASC";
@@ -1282,9 +1282,9 @@ function check9(frm){
                         <td><?php  
 									if($_GET['poi'] == 0){
 										$daterriod4 = " AND `date_forder`  between '".$_GET['df']."' and '".$_GET['dt']."'"; 
-										list ($s_year, $s_month, $s_day) = split ("-", $_GET['df']);
+										list ($s_year, $s_month, $s_day) = explode ("-", $_GET['df']);
 										$datefm = $s_day."/".$s_month."/".$s_year;
-										list ($s_year, $s_month, $s_day) = split ("-", $_GET['dt']);
+										list ($s_year, $s_month, $s_day) = explode ("-", $_GET['dt']);
 										$dateft = $s_day."/".$s_month."/".$s_year;
 									}
 									$sql1 = "SELECT * FROM s_first_order AS fr WHERE (fr.pro_pod1 LIKE '%".$roepod['group_name']."%' OR fr.pro_pod2 LIKE '%".$roepod['group_name']."%' OR fr.pro_pod3 LIKE '%".$roepod['group_name']."%' OR fr.pro_pod4 LIKE '%".$roepod['group_name']."%' OR fr.pro_pod5 LIKE '%".$roepod['group_name']."%' OR fr.pro_pod6 LIKE '%".$roepod['group_name']."%' OR fr.pro_pod7 LIKE '%".$roepod['group_name']."%')  ".$daterriod4." ORDER BY fr.cd_name ASC";
@@ -1357,9 +1357,9 @@ function check9(frm){
                         <td><?php  
 									if($_GET['poi'] == 0){
 										$daterriod4 = " AND `date_forder`  between '".$_GET['df']."' and '".$_GET['dt']."'"; 
-										list ($s_year, $s_month, $s_day) = split ("-", $_GET['df']);
+										list ($s_year, $s_month, $s_day) = explode ("-", $_GET['df']);
 										$datefm = $s_day."/".$s_month."/".$s_year;
-										list ($s_year, $s_month, $s_day) = split ("-", $_GET['dt']);
+										list ($s_year, $s_month, $s_day) = explode ("-", $_GET['dt']);
 										$dateft = $s_day."/".$s_month."/".$s_year;
 									}
 									$sql1 = "SELECT * FROM s_first_order AS fr WHERE fr.ctype = '".$roetypecus['group_id']."' ".$daterriod4." ORDER BY fr.cd_name ASC";
@@ -1432,9 +1432,9 @@ function check9(frm){
                         <td><?php  
 									if($_GET['poi'] == 0){
 										$daterriod4 = " AND `date_forder`  between '".$_GET['df']."' and '".$_GET['dt']."'"; 
-										list ($s_year, $s_month, $s_day) = split ("-", $_GET['df']);
+										list ($s_year, $s_month, $s_day) = explode ("-", $_GET['df']);
 										$datefm = $s_day."/".$s_month."/".$s_year;
-										list ($s_year, $s_month, $s_day) = split ("-", $_GET['dt']);
+										list ($s_year, $s_month, $s_day) = explode ("-", $_GET['dt']);
 										$dateft = $s_day."/".$s_month."/".$s_year;
 									}
 									$sql1 = "SELECT * FROM s_first_order AS fr WHERE fr.cs_sell = '".$roesale['group_id']."' ".$daterriod4." ORDER BY fr.cd_name ASC";
@@ -1463,6 +1463,7 @@ function check9(frm){
 
 	}
 ?>
+
 
 <!-- End .content-box -->
 <!-- End .content-box -->

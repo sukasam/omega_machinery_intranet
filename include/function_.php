@@ -156,9 +156,9 @@ function Show_Text ($label,$value) {
 //------------------------------------------------------------------------------------------------------
 
 function format_date_en ($value,$type) { 
-	list ($s_date,$s_time)  = split (" ", $value);
-	list ($s_year, $s_month, $s_day) = split ("-", $s_date);
-	list ($s_hour, $s_minute, $s_second) = split (":", $s_time);
+	list ($s_date,$s_time)  = explode (" ", $value);
+	list ($s_year, $s_month, $s_day) = explode ("-", $s_date);
+	list ($s_hour, $s_minute, $s_second) = explode (":", $s_time);
 	$s_month +=0;
 	$s_day += 0;
 	if ($s_day == "0") return "";
@@ -238,13 +238,13 @@ function format_month_th ($value) {
 
 function format_date_th ($value,$type) { 
 	if (strlen ($value) > 10) { 
-			list ($s_date,$s_time)  = split (" ", $value);
-			list ($s_year, $s_month, $s_day) = split ("-", $s_date);
-			list ($s_hour, $s_minute, $s_second) = split (":", $s_time);
+			list ($s_date,$s_time)  = explode (" ", $value);
+			list ($s_year, $s_month, $s_day) = explode ("-", $s_date);
+			list ($s_hour, $s_minute, $s_second) = explode (":", $s_time);
 	}
 	else 
 	{
-			list ($s_year, $s_month, $s_day) = split ("-", $value);
+			list ($s_year, $s_month, $s_day) = explode ("-", $value);
 	}
 	$s_month +=0;
 	$s_day += 0;
@@ -334,7 +334,7 @@ function NumToThai($value)
   $NumToThai = ""; 
   $Pos    = 0; 
 
- list ($Number, $Satang)  = split ("[.]", $value);
+ list ($Number, $Satang)  = explode ("[.]", $value);
   // Process 
   while ($Number > 0 ) 
   { 
@@ -500,7 +500,7 @@ function Show_Data($conn,$tbl_name, $key, $value, $fieldname)
 {
 	$sql = "select * from $tbl_name where $key like '" . $value . "'";
 	$query = @mysqli_query($conn,$sql);
-	$fields = split (":", $fieldname);
+	$fields = explode (":", $fieldname);
 	$msg = "";
 	if ($rec = @mysqli_fetch_array ($query)) { 
 		foreach ($fields as $key => $value ) { 
@@ -1502,7 +1502,7 @@ function check_servicereport(){
 }
 
 function format_date ($value) {
-	list ($s_year, $s_month, $s_day) = split ("-", $value);
+	list ($s_year, $s_month, $s_day) = explode ("-", $value);
 	$year=$s_year+543;
 	return $s_day.'-'.$s_month.'-'.$year;
 }

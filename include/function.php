@@ -272,6 +272,9 @@ function format_date_th ($value,$type) {
 		case "6" :  // 4 ก.พ. 51
 			$msg =  $s_day . " " .  $month_brief_th[$s_month]   . " " .  substr($s_year,-2)  ;
 			break;
+		case "7" :  // 4 ก.พ. 51
+			$msg =  $s_day . "/" .  $month_brief_th[$s_month]   . "/" .  $s_year  ;
+			break;
 		}
 	return ($msg);
 
@@ -1527,6 +1530,11 @@ function province_name($conn,$value) {
 	return $row_provunce['province_name'];
 }
 
+function amphur_name($conn,$value) {
+	$row_amphur = @mysqli_fetch_array(@mysqli_query($conn,"SELECT * FROM s_amphur WHERE amphur_id = '".$value."'"));
+	return $row_amphur['amphur_name'];
+}
+
 function custype_name($conn,$value) {
 	$row_cusg = @mysqli_fetch_array(@mysqli_query($conn,"SELECT * FROM s_group_custommer WHERE group_id = '".$value."'"));
 	return $row_cusg['group_name'];
@@ -2055,6 +2063,11 @@ function get_srreport($conn,$fo_id){
 function get_foid($conn,$fo_id){
 	$row_close = @mysqli_fetch_array(@mysqli_query($conn,"SELECT * FROM s_first_order WHERE fo_id = '".$fo_id."'"));
 	return $row_close['fs_id'];
+}
+
+function get_zone($conn,$group_id){
+	$row_zone = @mysqli_fetch_array(@mysqli_query($conn,"SELECT * FROM s_group_zone WHERE group_id = '".$group_id."'"));
+	return $row_zone['group_name'];
 }
 ?>
 
