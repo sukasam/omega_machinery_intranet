@@ -4,7 +4,7 @@
 	include ("../../include/function.php");
 	include ("config.php");
 	
-	if($_GET[$PK_field] != $_SESSION['login_id']){header("Location:?mode=update&user_id=".$_SESSION['login_id']."&page=1&mid=15");}
+	if($_GET[$PK_field] != $_SESSION["login_id"]){header("Location:?mode=update&user_id=".$_SESSION["login_id"]."&page=1&mid=15");}
 
 	if ($_POST[mode] <> "") { 
 		$param = "";
@@ -15,9 +15,9 @@
 //-------------------------------------------------------------------------------------------------------------------------------------
 		if ($_POST[mode] == "update" ) { 	
 			$sql = "select * from s_user where username = '$_POST[username]' and user_id <> '$_POST[$PK_field]' ";
-			$query = @mysql_query ($sql);
-			if (@mysql_num_rows($query) == 0) { //====> Username Avalible 
-					$rec = @mysql_fetch_array ($query);		
+			$query = @mysqli_query($conn,$sql);
+			if (@mysqli_num_rows($query) == 0) { //====> Username Avalible 
+					$rec = @mysqli_fetch_array ($query);		
 										
 					if($_POST[new_p]<>""){$_POST[password]=$_POST[new_p];}
 					
@@ -40,7 +40,7 @@
 								uploadfile($path,$filename,$_FILES['ufimages']['tmp_name'],$width, $quality);
 						} // end foreach				
 						$sql = "update $tbl_name set u_images = '$filename' where $PK_field = '".$_POST[$PK_field]."' ";
-						@mysql_query($sql);				
+						@mysqli_query($conn,$sql);				
 					} // end if ($_FILES[ufimages][name] != "")
 
 					
@@ -54,14 +54,14 @@
 }
 //-------------------------------------------------------------------------------------------------------------------------------------
 	if ( ($_GET[mode] == "add") && (count($_POST) == 0)) { 
-		 Check_Permission ($check_module,$_SESSION[login_id],"add");
+		 Check_Permission($conn,$check_module,$_SESSION["login_id"],"add");
 	}
 //-------------------------------------------------------------------------------------------------------------------------------------
 	if ( ($_GET[mode] == "update") && (count($_POST) == 0) ) { 
-		 Check_Permission ($check_module,$_SESSION[login_id],"update");
+		 Check_Permission($conn,$check_module,$_SESSION["login_id"],"update");
 		$sql = "select * from $tbl_name where $PK_field = '" . $_GET[$PK_field] ."'";
-		$query = @mysql_query ($sql);
-		while ($rec = @mysql_fetch_array ($query)) { 
+		$query = @mysqli_query($conn,$sql);
+		while ($rec = @mysqli_fetch_array ($query)) { 
 			$$PK_field = $rec[$PK_field];
 			foreach ($fieldlist as $key => $value) { 
 				$$value = $rec[$value];
@@ -76,10 +76,10 @@
 			if(file_exists("../../upload/catalog/".$_GET['del_id']))
 			@unlink("../../upload/catalog/".$_GET['del_id']);		
 		}	
-			$sql = "update $tbl_name set u_images =' ' where $PK_field = '$_GET[$PK_field]' ";
-			@mysql_query($sql);	
+			$sql = "update $tbl_name set u_images =' ' where $PK_field = '".$_GET[$PK_field]."' ";
+			@mysqli_query($conn,$sql);	
 			 
-			 header ("location:update.php?mode=update&user_id=".$_SESSION['login_id']."&page=1&mid=15"); 
+			 header ("location:update.php?mode=update&user_id=".$_SESSION["login_id"]."&page=1&mid=15"); 
 	}
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">

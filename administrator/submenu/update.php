@@ -28,7 +28,7 @@
 
 				$sql="update $tbl_name set rank ='$id' where $PK_field='$id' ";
 
-				@mysql_query($sql);
+				@mysqli_query($conn,$sql);
 
 			header ("location:index.php?" . $param); 
 
@@ -50,19 +50,19 @@
 
 	if ($_GET[mode] == "add") { 
 
-		 Check_Permission ($check_module,$_SESSION[login_id],"add");
+		 Check_Permission($conn,$check_module,$_SESSION["login_id"],"add");
 
 	}
 
 	if ($_GET[mode] == "update") { 
 
-		 Check_Permission ($check_module,$_SESSION[login_id],"update");
+		 Check_Permission($conn,$check_module,$_SESSION["login_id"],"update");
 
 		$sql = "select * from $tbl_name where $PK_field = '" . $_GET[$PK_field] ."'";
 
-		$query = @mysql_query ($sql);
+		$query = @mysqli_query($conn,$sql);
 
-		while ($rec = @mysql_fetch_array ($query)) { 
+		while ($rec = @mysqli_fetch_array ($query)) { 
 
 			$$PK_field = $rec[$PK_field];
 
@@ -214,9 +214,9 @@ function check(frm){
 
 				$sqlcatemenu = "select * from tb_menu_cate";
 
-				$querycatemenu = @mysql_query($sqlcatemenu)or die(mysql_error());
+				$querycatemenu = @mysqli_query($conn,$sqlcatemenu)or die(mysql_error());
 
-				while($rscatemenu = @mysql_fetch_array($querycatemenu)){?>
+				while($rscatemenu = @mysqli_fetch_array($querycatemenu)){?>
 
                 <option value="<?php =$rscatemenu['menucate_id']?>" <?php  if($rscatemenu['menucate_id']==$_REQUEST['menucate_id']){echo "selected";}?>><?php =$rscatemenu['menucate_name']?></option>
 

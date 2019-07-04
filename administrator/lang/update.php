@@ -31,7 +31,7 @@
 						uploadfile($path,$filename,$_FILES['fimages']['tmp_name'],$width, $quality);
 				} // end foreach				
 					$sql = "update $tbl_name set lang_images = '$filename' where $PK_field = '$id' ";
-					@mysql_query($sql);				
+					@mysqli_query($conn,$sql);				
 				} // end if ($_FILES[fimages][name] != "")	
 				
 			header ("location:index.php?" . $param); 
@@ -60,7 +60,7 @@
 						uploadfile($path,$filename,$_FILES['fimages']['tmp_name'],$width, $quality);
 				} // end foreach		
 				$sql = "update $tbl_name set lang_images = '$filename' where $PK_field = '$id' ";
-				@mysql_query($sql);				
+				@mysqli_query($conn,$sql);				
 			} // end if ($_FILES[fimages][name] != "")
 			
 			header ("location:index.php?" . $param); 
@@ -69,14 +69,14 @@
 }
 //-------------------------------------------------------------------------------------------------------------------------------------
 	if ( ($_GET[mode] == "add") && (count($_POST) == 0)) { 
-		 Check_Permission ($check_module,$_SESSION[login_id],"add");
+		 Check_Permission($conn,$check_module,$_SESSION["login_id"],"add");
 	}
 //-------------------------------------------------------------------------------------------------------------------------------------
 	if ( ($_GET[mode] == "update") && (count($_POST) == 0) ) { 
-		 Check_Permission ($check_module,$_SESSION[login_id],"update");
+		 Check_Permission($conn,$check_module,$_SESSION["login_id"],"update");
 		$sql = "select * from $tbl_name where $PK_field = '" . $_GET[$PK_field] ."'";
-		$query = @mysql_query ($sql);
-		while ($rec = @mysql_fetch_array ($query)) { 
+		$query = @mysqli_query($conn,$sql);
+		while ($rec = @mysqli_fetch_array ($query)) { 
 			$$PK_field = $rec[$PK_field];
 			foreach ($fieldlist as $key => $value) { 
 				$$value = $rec[$value];
