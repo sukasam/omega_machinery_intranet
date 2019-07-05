@@ -255,6 +255,8 @@
 	<div class="bbtxt9">'.$_POST['job_last'].'</div>
 	<div class="bbtxt91">'.format_date($_POST['sr_stime']).'</div>
 	
+	
+	
 	<div class="bx01">'.$finfos['loc_name'].'</div>
 	<div class="bx02">'.$_POST['loc_pro'].'</div>
 	<div class="bx03">'.$_POST['loc_seal'].'</div>
@@ -262,9 +264,15 @@
 	<div class="bx05">'.$_POST['loc_clean'].'</div>
 	<div class="bx06">'.$tecinfos['group_name'].'</div>
 	<div class="bx07">'.$tecinfos['group_tel'].'</div>';
+
+	
 	
 	if($finfos['garun_id']){
 	$form.= '<div class="bs01">การรับประกัน: '.$finfos['garun_id'].' เดือน&nbsp; เริ่ม: '.format_date($finfos['date_quf']).'&nbsp;สิ้นสุด: '.format_date($finfos['date_qut']).'</div>';
+	}
+
+	if($finfos['r_idrent']){
+	$form.= '<div class="bs01">อายุสัญญาเช่า: '.$finfos['r_idrent'].' เดือน</div>';
 	}
 	
 	
