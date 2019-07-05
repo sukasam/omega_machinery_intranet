@@ -94,8 +94,12 @@ function check_select(frm){
 <UL class=shortcut-buttons-set>
   <LI><A class=shortcut-button href="update.php?mode=add<?php  if ($param <> "") echo "&".$param; ?>"><SPAN><IMG  alt=icon src="../images/pencil_48.png"><BR>
     เพิ่ม</SPAN></A></LI>
-  <LI><A class=shortcut-button href="../first_order/index.php"><SPAN><IMG  alt=icon src="../images/icons/icon-48-category.png"><BR>
-    First Order</SPAN></A></LI>
+    <LI><A class=shortcut-button href="../first_order/index.php"><SPAN><IMG  alt=icon src="../images/icons/icon-48-module.png"><BR>
+    Frist Order</SPAN></A></LI>
+  <LI><A class=shortcut-button href="../first_order2/index.php"><SPAN><IMG  alt=icon src="../images/icons/icon-48-section.png"><BR>
+    Service Order</SPAN></A></LI>
+    <LI><A class=shortcut-button href="../project_order/index.php"><SPAN><IMG  alt=icon src="../images/icons/icon-48-module.png"><BR>
+    Project Order</SPAN></A></LI>
     <?php  
 	if ($FR_module <> "") { 
 	$param2 = get_return_param();
@@ -161,12 +165,12 @@ function check_select(frm){
 				   	$sql = " select *,$tbl_name.create_date as c_date from $tbl_name  where 1 AND separate = 1 ";
 					if ($_GET[$PK_field] <> "") $sql .= " and ($PK_field  = '" . $_GET[$PK_field] . " ' ) ";					
 					if ($_GET[$FR_field] <> "") $sql .= " and ($FR_field  = '" . $_GET[$FR_field] . " ' ) ";					
- 					if ($_GET[keyword] <> "") { 
-						$sql .= "and ( " .  $PK_field  . " like '%$_GET[keyword]%' ";
+ 					if ($_GET["keyword"] <> "") { 
+						$sql .= "and ( " .  $PK_field  . " like '%".$_GET["keyword"]."%' ";
 						if (count ($search_key) > 0) { 
 							$search_text = " and ( " ;
 							foreach ($search_key as $key=>$value) { 
-									$subtext .= "or " . $value  . " like '%" . $_GET[keyword] . "%'";
+									$subtext .= "or " . $value  . " like '%" . $_GET["keyword"] . "%'";
 							}	
 						}
 						$sql .=  $subtext . " ) ";

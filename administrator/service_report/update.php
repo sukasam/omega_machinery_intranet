@@ -29,6 +29,8 @@
 			
 			$_POST['job_last'] = get_lastservice_s($conn,$_POST['cus_id'],"");
 			
+			$_POST['approve'] = 0;
+			
 			foreach ($_POST['ckf_list2'] as $value) {
 				$checklist .= $value.',';
 			}
@@ -346,7 +348,7 @@ function check(frm){
           <tr>
             <td><strong>จังหวัด :</strong> <span id="cusprovince"><?php  echo province_name($conn,$finfo['cd_province']);?></span></td>
             <td>
-            <strong>การรับประกัน:</strong> <?php if($finfo['garun_id']){echo $finfo['garun_id'];}else{echo '0';}?> <strong>เดือน &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  เริ่ม:</strong> <?php echo $sr_date_quf;?>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong> สิ้นสุด: </strong><?php echo $sr_date_qut;?>
+            <strong>การรับประกัน:</strong><span id="garunM"><?php if($finfo['garun_id']){echo $finfo['garun_id'];}else{echo '0';}?></span> <strong>เดือน &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  เริ่ม:</strong> <span id="garunF"><?php echo $sr_date_quf;?></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong> สิ้นสุด: </strong><span id="garunT"><?php echo $sr_date_qut;?></span>
             </td>
           </tr>
           <tr>

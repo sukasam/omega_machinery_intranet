@@ -114,12 +114,12 @@
         <?php  if($_REQUEST['sh10'] == 1){?><th width="10%"><div align="center">รายชื่อช่าง</div></th><?php  }?>
       </tr>
       <?php  
-		echo $sql = "SELECT fr.*,sv.loc_contact,sv.sr_ctype,sv.sr_ctype2 FROM s_first_order as fr, s_service_report as sv WHERE sv.cus_id = fr.fo_id ".$condition." ".$daterriod." ORDER BY fr.cd_name ASC";
+		$sql = "SELECT fr.*,sv.loc_contact,sv.sr_ctype,sv.sr_ctype2 FROM s_first_order as fr, s_service_report as sv WHERE sv.cus_id = fr.fo_id ".$condition." ".$daterriod." ORDER BY fr.cd_name ASC";
 	  	$qu_fr = @mysqli_query($conn,$sql);
 		$sum = 0;
 		$sums = 0;
+		$sumMachin = 0;
 		while($row_fr = @mysqli_fetch_array($qu_fr)){
-			
 			?>
 			<tr>
               <?php  if($_REQUEST['sh1'] == 1){?><td><?php  
@@ -137,27 +137,37 @@
               <?php  if($_REQUEST['sh5'] == 1 || $_REQUEST['sh6'] == 1){?><td style="padding:0;">
               	<table width="92%" border="0" cellpadding="0" cellspacing="0" class="tbreport" style="margin-bottom:5px;">
                 <?php  
-					if($row_fr['cpro1'] != ""){
+					$getMachin = findWord(get_proname($conn,$row_fr['cpro1']),'เครื่อง');
+					if($row_fr['cpro1'] != "" && $getMachin == 'yes'){
 						?>
 						<tr>
-                          <?php  if($_REQUEST['sh5'] == 1){?><td style="border:0;padding-bottom:0;" width="31%"><?php  echo  get_proname($conn,$row_fr['cpro1']);?></td><?php  }?>
+                          <?php  if($_REQUEST['sh5'] == 1){?><td style="border:0;padding-bottom:0;" width="31%"><?php   
+							if($getMachin === 'yes'){
+								$sumMachin += $row_fr['camount1'];
+							}
+							echo  get_proname($conn,$row_fr['cpro1']);?></td><?php  }?>
                           <?php  if($_REQUEST['sh6'] == 1){?><td style="border:0;padding-bottom:0;" width="33%"><?php  echo $row_fr['pro_pod1']." / ".$row_fr['pro_sn1'];?></td><?php  }?>
                         </tr>
 						<?php 	
 					}
 				?>
                 <?php  
-					if($row_fr['cpro2'] != ""){
+					$getMachin = findWord(get_proname($conn,$row_fr['cpro2']),'เครื่อง');
+					if($row_fr['cpro2'] != "" && $getMachin == 'yes'){
 						?>
 						<tr>
-                          <?php  if($_REQUEST['sh5'] == 1){?><td style="border:0;padding-bottom:0;padding-top:0;"><?php  echo get_proname($conn,$row_fr['cpro2']);?></td><?php  }?>
+                          <?php  if($_REQUEST['sh5'] == 1){?><td style="border:0;padding-bottom:0;padding-top:0;"><?php  
+							if($getMachin === 'yes'){
+								$sumMachin += $row_fr['camount2'];
+							}
+						  echo get_proname($conn,$row_fr['cpro2']);?></td><?php  }?>
                           <?php  if($_REQUEST['sh6'] == 1){?><td style="border:0;padding-bottom:0;padding-top:0;"><?php  echo $row_fr['pro_pod2']." / ".$row_fr['pro_sn2'];?></td><?php  }?>
                         </tr>
 						<?php 	
 					}
 				?>
                 <?php  
-					if($row_fr['cpro3'] != ""){
+					/*if($row_fr['cpro3'] != ""){
 						?>
 						<tr>
                           <?php  if($_REQUEST['sh5'] == 1){?><td style="border:0;padding-bottom:0;padding-top:0;"><?php  echo get_proname($conn,$row_fr['cpro3']);?></td><?php  }?>
@@ -204,7 +214,7 @@
                           <?php  if($_REQUEST['sh6'] == 1){?><td style="border:0;padding-bottom:0;padding-top:0;"><?php  echo $row_fr['pro_pod7']." / ".$row_fr['pro_sn7'];?></td><?php  }?>
                         </tr>
 						<?php 	
-					}
+					}*/
 				?>
               </table></td><?php  }?>
               <?php  if($_REQUEST['sh7'] == 1){?><td style="padding:0;"><div align="center"><?php echo format_date($row_fr['cs_setting']);?></div>
@@ -222,7 +232,9 @@
 		
 	  ?>
       <tr>
-			  <td colspan="9" align="right"><strong>ให้บริการตามรายชื่อช่างทั้งหมด</strong>&nbsp;&nbsp;&nbsp;<strong><?php  echo $sums;?>&nbsp;&nbsp;รายการ</strong>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+			  <td colspan="9" align="right"><strong>รวมยอดจำนวนลูกค้าทั้งสิ้น</strong>&nbsp;&nbsp;&nbsp;<strong><?php  echo $sums;?>&nbsp;&nbsp;ราย</strong>&nbsp;&nbsp;&nbsp;&nbsp;<br />
+			  <strong>รวมยอดจำนวนเครื่องทั้งสิ้น</strong>&nbsp;&nbsp;&nbsp;<strong><?php  echo $sumMachin;?>&nbsp;&nbsp;เครื่อง</strong>&nbsp;&nbsp;&nbsp;&nbsp;
+			  </td>
 	  </tr>
     </table>
 
