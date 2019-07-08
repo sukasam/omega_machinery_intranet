@@ -2078,5 +2078,15 @@ function findWord($string,$findWord){
 		return 'no';
 	}
 }
+
+function get_sparpart_id($conn,$gid) {
+	$row_dea = @mysqli_fetch_array(@mysqli_query($conn,"SELECT * FROM  s_group_sparpart WHERE group_id = '".$gid."'"));
+	return $row_dea['group_spar_id'];		
+}
+
+function getStockSpar($conn,$gid){
+	$row_dea = @mysqli_fetch_array(@mysqli_query($conn,"SELECT * FROM  s_group_sparpart WHERE group_id = '".$gid."'"));
+	return $row_dea['group_stock'];	
+}
 ?>
 

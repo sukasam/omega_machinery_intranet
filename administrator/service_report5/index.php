@@ -4,7 +4,7 @@
 	include ("../../include/function.php");
 	include ("config.php");
 	Check_Permission($conn,$check_module,$_SESSION["login_id"],"read");
-	if ($_GET["page"] == ""){$_REQUEST['page'] = 1;	}
+	if ($_GET["page"] == ""){$_REQUEST["page"] = 1;	}
 	$param = get_param($a_param,$a_not_exists);
 	
 	if($_GET["action"] == "delete"){
@@ -12,6 +12,16 @@
 		if ($code == "1") {
 			$sql = "delete from $tbl_name  where $PK_field = '".$_GET[$PK_field]."'";
 			@mysqli_query($conn,$sql);			
+			
+			$sql2 = "select * from s_service_report5sub where sr_id = '".$_GET[$PK_field]."'";
+			$quPro = @mysqli_query($conn,$sql2);
+			while($rowPro = mysqli_fetch_array($quPro)){
+				@mysqli_query($conn,"UPDATE `s_group_sparpart` SET `group_stock` = `group_stock`-'".$rowPro['remains']."' WHERE `group_id` = '".$rowPro['lists']."';");
+			}
+			
+			$sql = "delete from s_service_report5sub  where sr_id = '".$_GET[$PK_field]."'";
+			@mysqli_query($conn,$sql);	
+			
 			header ("location:index.php");
 		} 
 	}
@@ -21,16 +31,16 @@
 		if ($_GET["s"] == 0) $status = 1;
 		if ($_GET["s"] == 1) $status = 0;
 		Check_Permission($conn,$check_module,$_SESSION["login_id"],"update");
-		$sql_status = "update $tbl_name set st_setting = '$status' where $PK_field = '".$_GET["b"]."'";
+		$sql_status = "update $tbl_name set st_setting = '".$status."' where $PK_field = '".$_GET["b"]."'";
 		@mysqli_query($conn,$sql_status);
-		if($_GET["page"] != ""){$conpage = "page=".$_GET["page"];}
+		if($_GET['page'] != ""){$conpage = "page=".$_GET['page'];}
 		header ("location:?".$conpage); 
 	}
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <HTML xmlns="http://www.w3.org/1999/xhtml">
 <HEAD>
-<TITLE><?php  echo $s_title;?></TITLE>
+<TITLE><?php   echo $s_title;?></TITLE>
 <META content="text/html; charset=utf-8" http-equiv=Content-Type>
 <LINK rel=stylesheet type=text/css href="../css/reset.css" media=screen>
 <LINK rel=stylesheet type=text/css href="../css/style.css" media=screen>
@@ -69,7 +79,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 <NOSCRIPT>
 </NOSCRIPT>
 <?php  include('../top.php');?>
-<P id=page-intro><?php  echo $page_name; ?></P>
+<P id=page-intro><?php   echo $page_name; ?></P>
 
 <UL class=shortcut-buttons-set>
   <!--<LI><A class=shortcut-button href="update.php?mode=add<?php  if ($param <> "") echo "&".$param; ?>"><SPAN><IMG  alt=icon src="../images/pencil_48.png"><BR>
@@ -90,7 +100,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 	if ($FR_module <> "") { 
 	$param2 = get_return_param();
 	?>
-  <LI><A class=shortcut-button href="../<?php  echo $FR_module; ?>/?<?php  if($param2 <> "") echo $param2;?>"><SPAN><IMG  alt=icon src="../images/btn_back.gif"><BR>
+  <LI><A class=shortcut-button href="../<?php   echo $FR_module; ?>/?<?php  if($param2 <> "") echo $param2;?>"><SPAN><IMG  alt=icon src="../images/btn_back.gif"><BR>
   กลับ</SPAN></A></LI>
   <?php  }?> 
 </UL>
@@ -100,16 +110,16 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 <DIV class=content-box><!-- Start Content Box -->
 <DIV class=content-box-header align="right" style="padding-right:15px;">
 
-<H3 align="left"><?php  echo $check_module; ?></H3>
+<H3 align="left"><?php   echo $check_module; ?></H3>
 <div style="float:right;padding-top:5px;">
 	<form name="form1" method="get" action="index.php">
-    <input name="keyword" type="text" id="keyword" value="<?php  echo $keyword;?>">
+    <input name="keyword" type="text" id="keyword" value="<?php   echo $keyword;?>">
     <input name="Action" type="submit" id="Action" value="ค้นหา">
     <?php 
 			$a_not_exists = array('keyword');
 			$param2 = get_param($a_param,$a_not_exists);
 			  ?>
-    <a href="index.php?<?php  echo $param2;?>">แสดงทั้งหมด</a>
+    <a href="index.php?<?php   echo $param2;?>">แสดงทั้งหมด</a>
     <?php  
 			/*$a_not_exists = array();
 			post_param($a_param,$a_not_exists);*/
@@ -119,9 +129,9 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 <div style="float:right;margin-right:20px;padding-top:5px;">  
 	<label><strong>สถานะการยืนยัน : </strong></label>
     <select name="catalog_master" id="catalog_master" style="height:24px;" onChange="MM_jumpMenu('parent',this,0)">
-		<option value="index.php?app_id=0" <?php  if($_GET['app_id'] == 0){echo "selected";}?>>รอการอนุมัติ</option>
-		 <option value="index.php?app_id=1" <?php  if($_GET['app_id'] == 1){echo "selected";}?>>อนุมัติ</option>
-         <option value="index.php?app_id=2" <?php  if($_GET['app_id'] == 2){echo "selected";}?>>ไม่อนุมัติ</option>
+		<option value="index.php?app_id=0" <?php   if($_GET['app_id'] == 0){echo "selected";}?>>รอการอนุมัติ</option>
+		 <option value="index.php?app_id=1" <?php   if($_GET['app_id'] == 1){echo "selected";}?>>อนุมัติ</option>
+         <option value="index.php?app_id=2" <?php   if($_GET['app_id'] == 2){echo "selected";}?>>ไม่อนุมัติ</option>
   	</select>
     </div>
 <DIV class=clear>
@@ -172,7 +182,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 					} 
 					
 					if ($_GET['app_id'] <> "") { 
-						$sql .= " and ( approve = '".$_GET["app_id"]."' ";
+						$sql .= " and ( approve = '$_GET[app_id]' ";
 						$sql .=  $subtext . " ) ";
 					}else{
 						$sql .= " and ( approve = '0' ";
@@ -192,29 +202,29 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 					$counter++;
 				   ?>
         <TR>
-          <TD style="vertical-align:middle;"><INPUT type=checkbox name="del[]" value="<?php  echo $rec[$PK_field]; ?>" ></TD>
-          <TD style="vertical-align:middle;"><span class="text"><?php  echo sprintf("%04d",$counter); ?></span></TD>
-          <TD style="vertical-align:middle;"><?php  $chaf = preg_replace("/\//","-",$rec["sv_id"]); ?><div align="center"><span class="text"><a href="../../upload/return/<?php  echo $chaf;?>.pdf" target="_blank"><?php  echo $rec["sv_id"] ; ?></a></span></div></TD>
-          <TD style="vertical-align:middle;"><span class="text"><?php  echo get_customername($conn,$rec["cus_id"]); ?></span></TD>
-          <TD style="vertical-align:middle;"><span class="text"><?php  echo get_localsettingname($conn,$rec["cus_id"]); ?></span></TD>
-          <TD style="vertical-align:middle;"><?php  echo get_technician_name($conn,$rec["loc_contact"]);?></TD>
-          <TD style="vertical-align:middle"><?php  if($rec["approve"] == 1){?>
+          <TD style="vertical-align:middle;"><INPUT type=checkbox name="del[]" value="<?php   echo $rec[$PK_field]; ?>" ></TD>
+          <TD style="vertical-align:middle;"><span class="text"><?php   echo sprintf("%04d",$counter); ?></span></TD>
+          <TD style="vertical-align:middle;"><?php   $chaf = preg_replace("/\//","-",$rec["sv_id"]); ?><div align="center"><span class="text"><a href="../../upload/return/<?php   echo $chaf;?>.pdf" target="_blank"><?php   echo $rec["sv_id"] ; ?></a></span></div></TD>
+          <TD style="vertical-align:middle;"><span class="text"><?php   echo get_customername($conn,$rec["cus_id"]); ?></span></TD>
+          <TD style="vertical-align:middle;"><span class="text"><?php   echo get_localsettingname($conn,$rec["cus_id"]); ?></span></TD>
+          <TD style="vertical-align:middle;"><?php   echo get_technician_name($conn,$rec["loc_contact"]);?></TD>
+          <TD style="vertical-align:middle"><?php   if($rec["approve"] == 1){?>
             <IMG src="../images/icons/yes_approve.png" height="28" title="อนุมัติ">
-            <?php  }else if($rec["approve"] == 2){?>
+            <?php   }else if($rec["approve"] == 2){?>
             <IMG src="../images/icons/no_approve.png" height="28" title="ไม่อนุมัติ">
-            <?php  }else{?>
+            <?php   }else{?>
             <IMG src="../images/icons/wait_approve.png" height="28" title="รออนุมัติ">
-            <?php  }?></TD>
+            <?php   }?></TD>
           <TD style="vertical-align:middle"><div align="center">
             <?php  if($rec["st_setting"]==0) {?>
-            <a href="../service_report3/?b=<?php  echo $rec[$PK_field]; ?>&s=<?php  echo $rec["st_setting"]; ?>&page=<?php  echo $_GET["page"]; ?>&<?php  echo $FK_field; ?>=<?php  echo $_REQUEST["$FK_field"];?>"><img src="../icons/status_on.gif" width="10" height="10"></a>
+            <a href="../service_report5/?b=<?php   echo $rec[$PK_field]; ?>&s=<?php   echo $rec["st_setting"]; ?>&page=<?php   echo $_GET['page']; ?>&<?php   echo $FK_field; ?>=<?php   echo $_REQUEST["$FK_field"];?>"><img src="../icons/status_on.gif" width="10" height="10"></a>
             <?php  } else{?>
-            <a href="../service_report3/?b=<?php  echo $rec[$PK_field]; ?>&s=<?php  echo $rec["st_setting"]; ?>&page=<?php  echo $_GET["page"]; ?>&<?php  echo $FK_field; ?>=<?php  echo $_REQUEST["$FK_field"];?>"><img src="../icons/status_off.gif" width="10" height="10"></a>
+            <a href="../service_report5/?b=<?php   echo $rec[$PK_field]; ?>&s=<?php   echo $rec["st_setting"]; ?>&page=<?php   echo $_GET['page']; ?>&<?php   echo $FK_field; ?>=<?php   echo $_REQUEST["$FK_field"];?>"><img src="../icons/status_off.gif" width="10" height="10"></a>
             <?php  }?>
           </div></TD>
           <TD style="vertical-align:middle;"><!-- Icons -->
-            <div align="center"><A title=Edit href="update.php?mode=update&<?php  echo $PK_field; ?>=<?php  echo $rec["$PK_field"]; if($param <> "") {?>&<?php  echo $param; }?>"><IMG src="../images/icons/paper_content_pencil_48.png" alt=Edit width="25" height="25" title="แก้ไขรายงานแจ้งซ่อม"></A><a href="../../upload/return/<?php  echo $chaf;?>.pdf" target="_blank"><img src="../images/icon2/backup.png" width="25" height="25" title="ดาวน์โหลดรายงานช่างซ่ิอม" style="margin-left:10px;"></a></div></TD>
-          <TD style="vertical-align:middle;"><div align="center"><A title=Delete  href="#"><IMG alt=Delete src="../images/cross.png" onClick="confirmDelete('?action=delete&<?php  echo $PK_field; ?>=<?php  echo $rec[$PK_field];?>','Group  <?php  echo $rec[$PK_field];?> : <?php  echo $rec["group_name"];?>')"></A></div></TD>
+            <div align="center"><A title=Edit href="update.php?mode=update&<?php   echo $PK_field; ?>=<?php   echo $rec[$PK_field]; if($param <> "") {?>&<?php   echo $param; }?>"><IMG src="../images/icons/paper_content_pencil_48.png" alt=Edit width="25" height="25" title="แก้ไขรายงานแจ้งซ่อม"></A><a href="../../upload/return/<?php   echo $chaf;?>.pdf" target="_blank"><img src="../images/icon2/backup.png" width="25" height="25" title="ดาวน์โหลดรายงานช่างซ่ิอม" style="margin-left:10px;"></a></div></TD>
+          <TD style="vertical-align:middle;"><div align="center"><A title=Delete  href="#"><IMG alt=Delete src="../images/cross.png" onClick="confirmDelete('?action=delete&<?php   echo $PK_field; ?>=<?php   echo $rec[$PK_field];?>','Group  <?php   echo $rec[$PK_field];?> : <?php   echo $rec["group_name"];?>')"></A></div></TD>
           </TR>  
 		<?php  }?>
       </TBODY>

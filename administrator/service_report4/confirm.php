@@ -26,7 +26,7 @@ include ("config.php");
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <HTML xmlns="http://www.w3.org/1999/xhtml">
 <HEAD>
-<TITLE><?php  echo $s_title;?></TITLE>
+<TITLE><?php   echo $s_title;?></TITLE>
 <META content="text/html; charset=utf-8" http-equiv=Content-Type>
 <LINK rel=stylesheet type=text/css href="../css/reset.css" media=screen>
 <LINK rel=stylesheet type=text/css href="../css/style.css" media=screen>
@@ -56,7 +56,7 @@ include ("config.php");
 <DIV class=content-box><!-- Start Content Box -->
 <DIV class=content-box-header align="right">
 
-<H3 align="left"><?php  echo $page_name; ?></H3>
+<H3 align="left"><?php   echo $page_name; ?></H3>
 <DIV class=clear>
   
 </DIV></DIV><!-- End .content-box-header -->
@@ -68,14 +68,14 @@ include ("config.php");
       <?php  
 					$msg = "";
 				  foreach ($_POST[del] as $key =>$value) { ?>
-      <li> <?php  echo Show_data($tbl_name,$PK_field, $value, $field_confirm_showname) ; ?>
+      <li> <?php   echo Show_data($tbl_name,$PK_field, $value, $field_confirm_showname) ; ?>
         <?php  $msg .= $value . " " ;
                      }
 				  ?>
       </li>
     </ul>
     <?php  $msg = trim ($msg); ?>
-    <input name="msg" type="hidden" id="msg" value="<?php  echo $msg; ?>">
+    <input name="msg" type="hidden" id="msg" value="<?php   echo $msg; ?>">
     <p>
       <input name="confirm" type="checkbox" id="confirm" value="yes" >
      ยืนยันการลบ.

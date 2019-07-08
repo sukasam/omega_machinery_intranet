@@ -1,10 +1,10 @@
-<?php 
+<?php  
 	include_once("../../include/aplication_top.php");
 	header("Content-type: text/html; charset=utf8");
 	header("Cache-Control: no-cache, must-revalidate");
 	@mysqli_query($conn,"SET NAMES  UTF8");
 	
-	if($_GET["action"] == 'getprodetail'){
+	if($_GET['action'] == 'getprodetail'){
 		
 			$pid = $_GET['pid'];
 			$fid = $_GET['fid'];
@@ -16,7 +16,7 @@
 			echo '<input type="text" name="loc_pro" value="'.get_proname($conn,$prolistname[$pid]).'" id="loc_pro" class="inpfoder" style="width:50%;">|<input type="text" name="loc_seal" value="'.$prolistpod[$pid].'" id="loc_seal" class="inpfoder" style="width:20%;">|<input type="text" name="loc_sn" value="'.$prolistsn[$pid].'" id="loc_sn" class="inpfoder" style="width:20%;">';
 	}
 	
-		if($_GET["action"] == 'getcusfirsh'){
+		if($_GET['action'] == 'getcusfirsh'){
 		$fpid = $_GET['pid'];
 		$rowcus  = @mysqli_fetch_array(@mysqli_query($conn,"SELECT * FROM s_first_order WHERE fo_id  = '".$fpid."'"));
 		
@@ -42,39 +42,39 @@
 		echo $displ;
 	}
 	
-	if($_GET["action"] == 'getcus'){
+	if($_GET['action'] == 'getcus'){
 		$cd_name = $_REQUEST['pval'];
 		if($cd_name != ""){
 			$consd = "AND cd_name LIKE '%".$cd_name."%'";
 		}
-		$qu_cus = @mysqli_query($conn,"SELECT fo_id,cd_name,loc_name FROM s_first_order WHERE 1 ".$consd." AND (status_use = '3'  OR status_use = '0') ORDER BY cd_name ASC");
+		$qu_cus = mysqli_query($conn,"SELECT fo_id,cd_name,loc_name FROM s_first_order WHERE 1 ".$consd." AND (status_use = '3'  OR status_use = '0') ORDER BY cd_name ASC");
 		while($row_cusx = @mysqli_fetch_array($qu_cus)){
 			?>
 			 <tr>
-				<td><A href="javascript:void(0);" onclick="get_customer('<?php  echo $row_cusx['fo_id'];?>','<?php  echo $row_cusx['cd_name'];?>');"><?php  echo $row_cusx['cd_name'];?> (<?php  echo $row_cusx['loc_name']?>)</A></td>
+				<td><A href="javascript:void(0);" onclick="get_customer('<?php   echo $row_cusx['fo_id'];?>','<?php   echo $row_cusx['cd_name'];?>');"><?php   echo $row_cusx['cd_name'];?> (<?php   echo $row_cusx['loc_name']?>)</A></td>
 			  </tr>
-			<?php 	
+			<?php  	
 		}
 		//echo "SELECT cd_name FROM s_first_order ".$consd." ORDER BY cd_name ASC";
 	}
 	
-	if($_GET["action"] == 'getsparpart'){
+	if($_GET['action'] == 'getsparpart'){
 		$cd_name = $_REQUEST['pval'];
 		if($cd_name != ""){
 			$consd = "WHERE (group_spar_id LIKE '%".$cd_name."%' OR group_name LIKE '%".$cd_name."%')";
 		}
-		$qu_cus = @mysqli_query($conn,"SELECT * FROM s_group_sparpart ".$consd." ORDER BY group_spar_id ASC");
+		$qu_cus = mysqli_query($conn,"SELECT * FROM s_group_sparpart ".$consd." ORDER BY group_spar_id ASC");
 		while($row_cusx = @mysqli_fetch_array($qu_cus)){
 			?>
 			 <tr>
-				<td><A href="javascript:void(0);" onclick="get_sparactive('<?php  echo $row_cusx['group_id'];?>','codes<?php  echo $_REQUEST['resdata']?>','listss<?php  echo $_REQUEST['resdata']?>','units<?php  echo $_REQUEST['resdata']?>','prices<?php  echo $_REQUEST['resdata']?>','amounts<?php  echo $_REQUEST['resdata']?>','<?php  echo $_REQUEST['resdata']?>');"><?php  echo $row_cusx['group_spar_id'].'&nbsp;&nbsp;'.$row_cusx['group_name'];?></A></td>
+				<td><A href="javascript:void(0);" onclick="get_sparactive('<?php   echo $row_cusx['group_id'];?>','codes<?php   echo $_REQUEST['resdata']?>','listss<?php   echo $_REQUEST['resdata']?>','units<?php   echo $_REQUEST['resdata']?>','prices<?php   echo $_REQUEST['resdata']?>','amounts<?php   echo $_REQUEST['resdata']?>','<?php   echo $_REQUEST['resdata']?>');"><?php   echo $row_cusx['group_spar_id'].'&nbsp;&nbsp;'.$row_cusx['group_name'];?></A></td>
 			  </tr>
-			<?php 	
+			<?php  	
 		}
 		//echo "SELECT cd_name FROM s_first_order ".$consd." ORDER BY cd_name ASC";
 	}
 	
-	if($_GET["action"] == 'getsparactive'){
+	if($_GET['action'] == 'getsparactive'){
 		$sparval = $_REQUEST['spid'];
 		$ressdata = $_REQUEST['resdata'];
 		$qu_spare = @mysqli_query($conn,"SELECT * FROM s_group_sparpart  WHERE  group_id = '".$sparval."'");
@@ -95,7 +95,7 @@
 		echo $res_spares;
 	}
 	
-	if($_GET["action"] == 'getspare'){
+	if($_GET['action'] == 'getspare'){
 		$sparval = $_REQUEST['sval'];
 		$qu_spare = @mysqli_query($conn,"SELECT * FROM s_group_sparpart  WHERE  group_id = '".$sparval."'");
 		$row_spare = @mysqli_fetch_array($qu_spare);
