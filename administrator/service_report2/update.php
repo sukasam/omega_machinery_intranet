@@ -504,6 +504,7 @@ function check(frm){
         <!--<td width="9%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;text-align:center;"><strong>จำนวนคงเหลือ</strong></td>-->
         </tr>
         <?php   
+		if($_GET['mode'] == "update"){
 		 $qu = @mysqli_query($conn,"SELECT * FROM s_service_report2sub WHERE sr_id = '".$sr_id."' ORDER BY r_id ASC");
 		 while($row_sub = @mysqli_fetch_array($qu)){
 			 $brid[] = $row_sub['r_id'];
@@ -515,6 +516,7 @@ function check(frm){
 			 $bopens[] = $row_sub['opens'];
 			 $bremains[] = $row_sub['remains'];
 	     }
+		}
 		 for($i=1;$i<=10;$i++){
 		?>
         
