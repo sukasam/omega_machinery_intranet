@@ -156,7 +156,6 @@ $(function(){
 			$("#cd_amphur").html(data);
 		}
 	});
-	 
   });
 
 });
