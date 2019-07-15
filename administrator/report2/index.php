@@ -130,6 +130,12 @@ function check_select(frm){
       <LI><A class=shortcut-button href="../report2/?mid=16&act=12"><SPAN><IMG  alt=icon src="../images/icons/icon-48-category.png"><BR>
       <strong>ตารางคุมสัญญา บริการ</strong><br>
       </SPAN></A></LI>
+      <LI><A class=shortcut-button href="../report2/?mid=16&act=15"><SPAN><IMG  alt=icon src="../images/icons/icon-48-category.png"><BR>
+      <strong>ตามใบเบิก
+</strong>
+      <br>
+      <br>
+      </SPAN></A></LI>
       <LI><A class=shortcut-button href="../report2/?mid=16&act=13"><SPAN><IMG  alt=icon src="../images/icons/icon-48-category.png"><BR>
       <strong>ตามใบยืม
 </strong>
@@ -138,12 +144,6 @@ function check_select(frm){
       </SPAN></A></LI>
       <LI><A class=shortcut-button href="../report2/?mid=16&act=16"><SPAN><IMG  alt=icon src="../images/icons/icon-48-category.png"><BR>
       <strong>ตามใบคืน
-</strong>
-      <br>
-      <br>
-      </SPAN></A></LI>
-      <LI><A class=shortcut-button href="../report2/?mid=16&act=15"><SPAN><IMG  alt=icon src="../images/icons/icon-48-category.png"><BR>
-      <strong>ตามใบเบิก
 </strong>
       <br>
       <br>
@@ -1409,6 +1409,20 @@ S/N
                     <table width="100%" cellspacing="0" cellpadding="0" border="0">
                       <tr>
                         <td><table class="formFields" cellspacing="0" width="100%">
+                         <tr >
+                            <td nowrap class="name">เลือกรหัส | ชื่ออะไหล่</td>
+                            <td><select name="cpro" id="cpro_ecip">
+                            	<option value="">กรุณาเลือก</option>
+                              <?php 
+                                  $qupro1 = @mysqli_query($conn,"SELECT * FROM s_group_sparpart ORDER BY group_name ASC");
+                                  while($row_qupro1 = @mysqli_fetch_array($qupro1)){
+                                    ?>
+                                      <option value="<?php  echo $row_qupro1['group_id'];?>"><?php  echo $row_qupro1['group_spar_id']." | ".$row_qupro1['group_name'];?></option>
+                                    <?php 	
+                                  }
+                              ?>
+                          </select>                              <a href="javascript:void(0);" onClick="windowOpener('400', '500', '', 'search2.php?protype=cpro_ecip');"><img src="../images/icon2/mark_f2.png" width="25" height="25" border="0" alt="" style="vertical-align:middle;padding-left:5px;"></a></td>
+                          </tr>
                           <tr >
                             <td nowrap class="name">ประเภทบริการ</td>
                             <td><select name="sr_ctype" id="sr_ctype">
@@ -1463,9 +1477,9 @@ S/N
                             <td><input name="opentake" type="radio" id="radio3" value="2" checked>
                               ไม่กำหนด
                               <input name="opentake" type="radio" id="radio3" value="0">
-                              ใบเปิดใบเบิก
+                              ใบเปิดใบยืม
                               <input type="radio" name="opentake" id="radio4" value="1">
-                              ใบปิดใบเบิก</td>
+                              ใบปิดใบยืม</td>
                           </tr>
                           <tr>
                             <td nowrap class="name">&nbsp;</td>
@@ -1485,7 +1499,10 @@ S/N
                           </tr>
                           <tr>
                             <td nowrap class="name">รายการแสดง</td>
-                            <td><input name="sh1" type="checkbox" id="sh1" value="1" checked>
+                            <td>
+                             <input name="sh10" type="checkbox" id="sh10" value="1" checked>
+                              เลขที่ใบยืม
+                             <input name="sh1" type="checkbox" id="sh1" value="1" checked>
                               ชื่อลูกค้า / บริษัท + เบอร์โทร
                               <input name="sh2" type="checkbox" id="sh12" value="1" checked>
                               ชื่อร้าน / สถานที่ติดตั้ง
@@ -1504,10 +1521,6 @@ S/N
                               วันที่คืน
                               <input name="sh9" type="checkbox" id="sh29" value="1" checked>
                               ผู้เบิก</td>
-                          </tr>
-                          <tr>
-                            <td nowrap class="name">&nbsp;</td>
-                            <td>&nbsp;</td>
                           </tr>
                         </table></td>
                       </tr>
@@ -1543,6 +1556,20 @@ S/N
                     <table width="100%" cellspacing="0" cellpadding="0" border="0">
                       <tr>
                         <td><table class="formFields" cellspacing="0" width="100%">
+                         <tr >
+                            <td nowrap class="name">เลือกรหัส | ชื่ออะไหล่</td>
+                            <td><select name="cpro" id="cpro_ecip">
+                            	<option value="">กรุณาเลือก</option>
+                              <?php 
+                                  $qupro1 = @mysqli_query($conn,"SELECT * FROM s_group_sparpart ORDER BY group_name ASC");
+                                  while($row_qupro1 = @mysqli_fetch_array($qupro1)){
+                                    ?>
+                                      <option value="<?php  echo $row_qupro1['group_id'];?>"><?php  echo $row_qupro1['group_spar_id']." | ".$row_qupro1['group_name'];?></option>
+                                    <?php 	
+                                  }
+                              ?>
+                          </select>                              <a href="javascript:void(0);" onClick="windowOpener('400', '500', '', 'search2.php?protype=cpro_ecip');"><img src="../images/icon2/mark_f2.png" width="25" height="25" border="0" alt="" style="vertical-align:middle;padding-left:5px;"></a></td>
+                          </tr>
                           <tr >
                             <td nowrap class="name">ประเภทบริการ</td>
                             <td><select name="sr_ctype" id="sr_ctype">
@@ -1641,10 +1668,7 @@ S/N
                               <input name="sh9" type="checkbox" id="sh29" value="1" checked>
                               ผู้เบิก</td>
                           </tr>
-                          <tr>
-                            <td nowrap class="name">&nbsp;</td>
-                            <td>&nbsp;</td>
-                          </tr>
+
                         </table></td>
                       </tr>
                     </table>
@@ -1679,6 +1703,20 @@ S/N
                     <table width="100%" cellspacing="0" cellpadding="0" border="0">
                       <tr>
                         <td><table class="formFields" cellspacing="0" width="100%">
+                         <tr >
+                            <td nowrap class="name">เลือกรหัส | ชื่ออะไหล่</td>
+                            <td><select name="cpro" id="cpro_ecip">
+                            	<option value="">กรุณาเลือก</option>
+                              <?php 
+                                  $qupro1 = @mysqli_query($conn,"SELECT * FROM s_group_sparpart ORDER BY group_name ASC");
+                                  while($row_qupro1 = @mysqli_fetch_array($qupro1)){
+                                    ?>
+                                      <option value="<?php  echo $row_qupro1['group_id'];?>"><?php  echo $row_qupro1['group_spar_id']." | ".$row_qupro1['group_name'];?></option>
+                                    <?php 	
+                                  }
+                              ?>
+                          </select>                              <a href="javascript:void(0);" onClick="windowOpener('400', '500', '', 'search2.php?protype=cpro_ecip');"><img src="../images/icon2/mark_f2.png" width="25" height="25" border="0" alt="" style="vertical-align:middle;padding-left:5px;"></a></td>
+                          </tr>
                           <tr >
                             <td nowrap class="name">ประเภทบริการ</td>
                             <td><select name="sr_ctype" id="sr_ctype">
@@ -1747,7 +1785,10 @@ S/N
                           </tr>
                           <tr>
                             <td nowrap class="name">รายการแสดง</td>
-                            <td><input name="sh1" type="checkbox" id="sh1" value="1" checked>
+                            <td>
+                             <input name="sh9" type="checkbox" id="sh9" value="1" checked>
+                              เลขที่ใบติดตั้ง
+                             <input name="sh1" type="checkbox" id="sh1" value="1" checked>
                               ชื่อลูกค้า / บริษัท + เบอร์โทร
                               <input name="sh2" type="checkbox" id="sh12" value="1" checked>
                               ชื่อร้าน / สถานที่ติดตั้ง
@@ -1767,6 +1808,10 @@ S/N
                           </tr>
                         </table></td>
                       </tr>
+                      <tr>
+                            <td nowrap class="name">&nbsp;</td>
+                            <td>&nbsp;</td>
+                          </tr>
                     </table>
                     </fieldset>
                 </div><br>
@@ -1800,6 +1845,20 @@ S/N
                     <table width="100%" cellspacing="0" cellpadding="0" border="0">
                       <tr>
                         <td><table class="formFields" cellspacing="0" width="100%">
+                         <tr >
+                            <td nowrap class="name">เลือกรหัส | ชื่ออะไหล่</td>
+                            <td><select name="cpro" id="cpro_ecip">
+                            	<option value="">กรุณาเลือก</option>
+                              <?php 
+                                  $qupro1 = @mysqli_query($conn,"SELECT * FROM s_group_sparpart ORDER BY group_name ASC");
+                                  while($row_qupro1 = @mysqli_fetch_array($qupro1)){
+                                    ?>
+                                      <option value="<?php  echo $row_qupro1['group_id'];?>"><?php  echo $row_qupro1['group_spar_id']." | ".$row_qupro1['group_name'];?></option>
+                                    <?php 	
+                                  }
+                              ?>
+                          </select>                              <a href="javascript:void(0);" onClick="windowOpener('400', '500', '', 'search2.php?protype=cpro_ecip');"><img src="../images/icon2/mark_f2.png" width="25" height="25" border="0" alt="" style="vertical-align:middle;padding-left:5px;"></a></td>
+                          </tr>
                           <tr >
                             <td nowrap class="name">ประเภทบริการ</td>
                             <td><select name="sr_ctype" id="sr_ctype">
@@ -1854,9 +1913,9 @@ S/N
                             <td><input name="opentake" type="radio" id="radio3" value="2" checked>
                               ไม่กำหนด
                               <input name="opentake" type="radio" id="radio3" value="0">
-                              ใบเปิดใบเบิก
+                              ใบเปิดใบคืน
                               <input type="radio" name="opentake" id="radio4" value="1">
-                              ใบปิดใบเบิก</td>
+                              ใบปิดใบคืน</td>
                           </tr>
                           <tr>
                             <td nowrap class="name">&nbsp;</td>
@@ -1876,7 +1935,10 @@ S/N
                           </tr>
                           <tr>
                             <td nowrap class="name">รายการแสดง</td>
-                            <td><input name="sh1" type="checkbox" id="sh1" value="1" checked>
+                            <td>
+                             <input name="sh10" type="checkbox" id="sh10" value="1" checked>
+                              เลขที่ใบยืม
+                              <input name="sh1" type="checkbox" id="sh1" value="1" checked>
                               ชื่อลูกค้า / บริษัท + เบอร์โทร
                               <input name="sh2" type="checkbox" id="sh12" value="1" checked>
                               ชื่อร้าน / สถานที่ติดตั้ง
@@ -1898,10 +1960,7 @@ S/N
                               <input name="sh9" type="checkbox" id="sh29" value="1" checked>
                               ผู้เบิก</td>
                           </tr>
-                          <tr>
-                            <td nowrap class="name">&nbsp;</td>
-                            <td>&nbsp;</td>
-                          </tr>
+                          
                         </table></td>
                       </tr>
                     </table>
