@@ -45,7 +45,8 @@
 		$_POST["money_setup"] = str_replace($vowels,"",$_POST["money_setup"]);
 
 		if ($_POST["mode"] == "add") { 
-		
+			    
+			    $_POST['st_setting'] = 0;
 				$_POST['fs_id'] = get_snfirstorders($conn,$_POST['fs_id']);
 				$_POST['status_use'] = 1;
 				
