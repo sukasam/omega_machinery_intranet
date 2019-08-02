@@ -2093,5 +2093,22 @@ function getStockSpar($conn,$gid){
 	$row_dea = @mysqli_fetch_array(@mysqli_query($conn,"SELECT * FROM  s_group_sparpart WHERE group_id = '".$gid."'"));
 	return $row_dea['group_stock'];	
 }
+
+function check_servicerepair($conn){
+	
+	$thdate = substr(date("Y")+543,2);
+	$concheck = "RO ".$thdate.date("/m/");
+	
+	$qu_forder = @mysqli_query($conn,"SELECT * FROM s_service_report6 WHERE sv_id like '%".$concheck."%' ORDER BY sv_id DESC");
+	$num_oder = @mysqli_num_rows($qu_forder);
+	$row_forder = @mysqli_fetch_array($qu_forder);
+	
+	if($row_forder['sv_id'] == ""){
+		return "RO ".$thdate.date("/m/")."001";
+	}else{
+		$num_odersum = $num_oder+1;
+		return "RO ".$thdate.date("/m/").sprintf("%03d",$num_odersum);
+	}	
+}
 ?>
 

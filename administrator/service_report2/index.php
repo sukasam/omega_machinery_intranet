@@ -106,6 +106,8 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
     ใบยืมอะไหล่</SPAN></A></LI>
     <LI><A class=shortcut-button href="../service_report5/"><SPAN><IMG  alt=icon src="../images/icons/icon-48-section.png"><BR>
     ใบคืนอะไหล่</SPAN></A></LI>
+    <LI><A class=shortcut-button href="../service_report6/"><SPAN><IMG  alt=icon src="../images/icons/icon-48-section.png"><BR>
+    ใบซ่อมเครื่องเก่า</SPAN></A></LI>
     <LI><A class=shortcut-button href="../service_report4/"><SPAN><IMG  alt=icon src="../images/icons/icon-48-section.png"><BR>
     ใบรายงานติดตั้ง</SPAN></A></LI>
     <LI><A class=shortcut-button href="../service_report_approve/"><SPAN><IMG  alt=icon src="../images/icons/icon-48-user.png"><BR>
