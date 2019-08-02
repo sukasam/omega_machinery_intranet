@@ -503,22 +503,22 @@ function check(frm){
         <td width="50%">
             <strong>สรุปค่าใช้จ่าย : แผนกช่าง</strong><br><br>
         	<strong>ค่าแรง</strong> : 
-<input type="text" name="money1" value="<?php   echo $money1;?>" id="money1" class="inpfoder">
+<input type="text" name="money1" value="<?php   echo $money1;?>" id="money1" style="width:20%;" class="inpfoder">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <strong>ค่าเบี้ยเลี้ยง</strong> : 
-<input type="text" name="money4" value="<?php   echo $money4;?>" id="money4" class="inpfoder">
+<input type="text" name="money4" value="<?php   echo $money4;?>" id="money4" style="width:20%;"  class="inpfoder">
  <br><br>
 <strong>ค่าน้ำมัน</strong> : 
-<input type="text" name="money2" value="<?php   echo $money2;?>" id="money2" class="inpfoder">
+<input type="text" name="money2" value="<?php   echo $money2;?>" id="money2" style="width:20%;"  class="inpfoder">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <strong>ค่าโอที</strong> : 
-<input type="text" name="money5" value="<?php   echo $money5;?>" id="money5" class="inpfoder">
+<input type="text" name="money5" value="<?php   echo $money5;?>" id="money5" style="width:20%;"  class="inpfoder">
 <br><br>
 <strong>ค่าทางด่วน</strong> : 
-<input type="text" name="money3" value="<?php   echo $money3;?>" id="money3" class="inpfoder">
+<input type="text" name="money3" value="<?php   echo $money3;?>" id="money3" style="width:20%;"  class="inpfoder">
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <strong>ค่าใช้จ่ายอื่นๆ</strong> : 
-<input type="text" name="money6" value="<?php   echo $money6;?>" id="money6" class="inpfoder"><br><br><br>
+<input type="text" name="money6" value="<?php   echo $money6;?>" id="money6" style="width:20%;"  class="inpfoder"><br><br><br>
 <center style="font-size: 20px;">
 	<strong >รวมค่าใช้จ่าย</strong> : <?php echo number_format($totalMoneyTec,2);?>
 </center>
