@@ -114,6 +114,7 @@
 	  	$qu_fr = @mysqli_query($conn,$sql);
 		$sum = 0;
 		$totals = 0;
+		$sumTotalAll = 0;
 		while($row_fr = @mysqli_fetch_array($qu_fr)){
 						
 			?>
@@ -131,6 +132,7 @@
 				<table border="0" width="90%" cellspacing="0" cellpadding="0" class="tbreport">
 				<?php 
 				$totalamount = 0;
+				
 				while($row = @mysqli_fetch_array($qu_pfirst)){
 					if($row['codes 	'] != "" || $row['lists'] != ""){
 						$total = $row['prices']*$row['opens'];
@@ -142,7 +144,7 @@
 					  <?php  if($_REQUEST['sh8'] == 1){?><td align="right" style="border-bottom:none;" width="25%"><?php  echo number_format($total,2);?></td><?php  }?>
 					</tr>
 				<?php  
-					
+					$sumTotalAll += $total;
 					}	
 				}
 					$totals += $totalamount
@@ -163,6 +165,9 @@
 	  </tr>
       <tr>
 			  <td colspan="8" style="text-align:right;"> <strong>รวมอะไหล่ที่เบิก&nbsp;&nbsp;<?php  echo $totals;?>&nbsp;&nbsp;รายการ&nbsp;&nbsp;</strong></td>
+	  </tr>
+	  <tr>
+			  <td colspan="8" style="text-align:right;"> <strong>คิดเป็นมูลค่ารวมทั้งสิ้น&nbsp;&nbsp;<?php  echo number_format($sumTotalAll,2);?>&nbsp;&nbsp;รายการ&nbsp;&nbsp;</strong></td>
 	  </tr>
     </table>
 
