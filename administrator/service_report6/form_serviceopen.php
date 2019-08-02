@@ -147,9 +147,9 @@
 				</td>
 				<td style="border:0px;width:50%">
 					<br><br>
-					<strong>ค่าเบี้ยเลี้ยง : </strong> '.number_format($_POST['money1'],2).'<br /><br />
-					<strong>ค่าโอที : </strong> '.number_format($_POST['money2'],2).'<br /><br />
-					<strong>ค่าใช้จ่ายอื่นๆ : </strong> '.number_format($_POST['money3'],2).'<br /><br />
+					<strong>ค่าเบี้ยเลี้ยง : </strong> '.number_format($_POST['money4'],2).'<br /><br />
+					<strong>ค่าโอที : </strong> '.number_format($_POST['money5'],2).'<br /><br />
+					<strong>ค่าใช้จ่ายอื่นๆ : </strong> '.number_format($_POST['money6'],2).'<br /><br />
 				</td>
 			</tr>
 			<tr>

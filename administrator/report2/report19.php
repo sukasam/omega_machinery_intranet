@@ -7,10 +7,10 @@
 	if ($_GET["page"] == ""){$_REQUEST['page'] = 1;	}
 	$param = get_param($a_param,$a_not_exists);
 	
-	$cpro = $_REQUEST['cpro'];
-	$sr_ctype = $_REQUEST['sr_ctype'];		
-	$ctype = $_REQUEST['ctype'];
-	$cd_name = $_REQUEST['cd_name'];
+//	$cpro = $_REQUEST['cpro'];
+//	$sr_ctype = $_REQUEST['sr_ctype'];		
+//	$ctype = $_REQUEST['ctype'];
+//	$cd_name = $_REQUEST['cd_name'];
 	$loc_contact = $_REQUEST['loc_contact'];
 	$opentake = $_REQUEST['opentake'];
 	
@@ -29,29 +29,29 @@
 	
 	$condition = "";
 
-	if($cpro != ""){
-		$condition = "AND (sv2.lists = '".$cpro."')";
-	}
+//	if($cpro != ""){
+//		$condition = "AND (sv2.lists = '".$cpro."')";
+//	}
+//	
+//	if($opentake == 0){
+//		$condition .= " AND sv.st_setting = '".$opentake."'";
+//	}else if($opentake == 1){
+//		$condition .= " AND sv.st_setting = '".$opentake."'";
+//	}else{
+//		$condition .= " ";
+//	}
+//	
+//	if($sr_ctype != ""){
+//		$condition .= " AND sv.sr_ctype = '".$sr_ctype."'";
+//	}
+//	
+//	if($ctype != ""){
+//		$condition .= " AND sv.sr_ctype2 = '".$ctype."'";
+//	}
 	
-	if($opentake == 0){
-		$condition .= " AND sv.st_setting = '".$opentake."'";
-	}else if($opentake == 1){
-		$condition .= " AND sv.st_setting = '".$opentake."'";
-	}else{
-		$condition .= " ";
-	}
-	
-	if($sr_ctype != ""){
-		$condition .= " AND sv.sr_ctype = '".$sr_ctype."'";
-	}
-	
-	if($ctype != ""){
-		$condition .= " AND sv.sr_ctype2 = '".$ctype."'";
-	}
-	
-	if($cd_name != ""){
-		$condition .= " AND fr.cd_name LIKE '%".$cd_name."%'";
-	}
+//	if($cd_name != ""){
+//		$condition .= " AND fr.cd_name LIKE '%".$cd_name."%'";
+//	}
 	if($loc_contact != ""){
 		$condition .= " AND sv.loc_contact2 LIKE '%".$loc_contact."%'";
 	}

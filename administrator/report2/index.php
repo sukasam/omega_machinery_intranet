@@ -2343,6 +2343,7 @@ if($_GET['act'] == 17){
                     <table width="100%" cellspacing="0" cellpadding="0" border="0">
                       <tr>
                         <td><table class="formFields" cellspacing="0" width="100%">
+<!--
                          <tr >
                             <td nowrap class="name">เลือกรหัส | ชื่ออะไหล่</td>
                             <td><select name="cpro" id="cpro_ecip">
@@ -2357,6 +2358,8 @@ if($_GET['act'] == 17){
                               ?>
                           </select>                              <a href="javascript:void(0);" onClick="windowOpener('400', '500', '', 'search2.php?protype=cpro_ecip');"><img src="../images/icon2/mark_f2.png" width="25" height="25" border="0" alt="" style="vertical-align:middle;padding-left:5px;"></a></td>
                           </tr>
+-->
+<!--
                           <tr >
                             <td nowrap class="name">ประเภทบริการ</td>
                             <td><select name="sr_ctype" id="sr_ctype">
@@ -2392,6 +2395,7 @@ if($_GET['act'] == 17){
                             <td><input name="cd_name" type="text" id="cd_name"  value="" style="width:40%;">
                               <a href="javascript:void(0);" onClick="windowOpener('400', '500', '', 'search.php');"><img src="../images/icon2/mark_f2.png" width="25" height="25" border="0" alt="" style="vertical-align:middle;padding-left:5px;"></a></td>
                           </tr>
+-->
                           <tr>
                             <td nowrap class="name">ชื่อช่างยืม</td>
                             <td><select name="loc_contact" id="loc_contact">
@@ -2406,6 +2410,7 @@ if($_GET['act'] == 17){
                                     ?>
                             </select></td>
                           </tr>
+<!--
                           <tr>
                             <td nowrap class="name">ประเภทเอกสาร</td>
                             <td><input name="opentake" type="radio" id="radio" value="2" checked>
@@ -2415,6 +2420,7 @@ if($_GET['act'] == 17){
                               <input type="radio" name="opentake" id="radio2" value="1">
                               ใบปิดใบเบิก</td>
                           </tr>
+-->
                           <tr>
                             <td nowrap class="name">&nbsp;</td>
                             <td><span class="name">
@@ -2434,7 +2440,7 @@ if($_GET['act'] == 17){
                           <tr>
                             <td nowrap class="name">รายการแสดง</td>
                             <td><input name="sh16" type="checkbox" id="sh16" value="1" checked>
-                              เลขที่ใบเบิก
+                              เลขที่ใบซ่อมเครื่องเก่า
                               <input name="sh1" type="checkbox" id="sh1" value="1" checked>
                               ชื่อลูกค้า / บริษัท + เบอร์โทร
                               <input name="sh2" type="checkbox" id="sh12" value="1" checked>
@@ -2455,7 +2461,11 @@ if($_GET['act'] == 17){
                               <input name="sh9" type="checkbox" id="sh29" value="1" checked>
                               ผู้เบิก</td>
                           </tr>
-
+						<tr>
+							<td>
+								
+							</td>
+						</tr>
                         </table></td>
                       </tr>
                     </table>
