@@ -86,20 +86,21 @@
 	    <th colspan="4" style="text-align:left;font-size:12px;">บริษัท โอเมก้า แมชชีนเนอรี่ (1999) จำกัด<br />
 รายงานซ่อมเครื่องเก่า<br />
 ประเภทใบบริการ  : ใบงานซ่อมเครื่องเก่า</th>
-	    <th colspan="4" style="text-align:right;font-size:11px;"><?php  echo $dateshow;?></th>
+	    <th colspan="5" style="text-align:right;font-size:11px;"><?php  echo $dateshow;?></th>
       </tr>
       <tr>
         <?php  if($_REQUEST['sh16'] == 1){?><th width="5%">เลขที่ใบซ่อมเครื่อเก่า</th><?php  }?>
         <?php  if($_REQUEST['sh1'] == 1){?><th width="16%">ชื่อลูกค้า / บริษัท + เบอร์โทร</th><?php  }?>
         <?php  if($_REQUEST['sh2'] == 1){?><th width="15%">ชื่อร้าน / สถานที่ติดตั้ง</th><?php  }?>
-        <?php  if($_REQUEST['sh3'] == 1){?><th width="14%">รายละเอียดการเปลี่ยน</th><?php  }?>
+        <?php  if($_REQUEST['sh3'] == 1){?><th width="10%">รายละเอียดการเปลี่ยน</th><?php  }?>
         <?php  if($_REQUEST['sh4'] == 1 || $_REQUEST['sh5'] == 1 || $_REQUEST['sh8'] == 1){?><th width="30%"><table width="100%" border="0" cellpadding="0" cellspacing="0" class="tbreport">
           <tr>
-            <?php  if($_REQUEST['sh4'] == 1){?><td style="border-bottom:none;" width="50%"><strong>รายการอะไหล่</strong></td><?php  }?>
+            <?php  if($_REQUEST['sh4'] == 1){?><td style="border-bottom:none;" width="75%"><strong>รายการอะไหล่</strong></td><?php  }?>
             <?php  if($_REQUEST['sh5'] == 1){?><td style="border-bottom:none;" width="25%"><strong>จำนวน</strong></td><?php  }?>
-            <?php  if($_REQUEST['sh8'] == 1){?><td style="border-bottom:none;" width="25%"><strong>รวมมูลค่า</strong></td><?php  }?>
+<!--            <?php  if($_REQUEST['sh8'] == 1){?><td style="border-bottom:none;" width="25%"><strong>รวมมูลค่า</strong></td><?php  }?>-->
           </tr>
         </table></th><?php  }?>
+        <?php  if($_REQUEST['sh8'] == 1){?><th width="6%"><strong>รวมมูลค่า</strong></th><?php  }?>
         <?php  if($_REQUEST['sh6'] == 1){?><th width="6%"><strong>วันที่เบิก</strong></th><?php  }?>
         <?php  if($_REQUEST['sh7'] == 1){?><th width="6%"><strong>วันที่คืน</strong></th><?php  }?>
         <?php  if($_REQUEST['sh9'] == 1){?><th width="8%"><strong>ผุ้เบิก</strong></th><?php  }?>
@@ -115,8 +116,12 @@
 		$sum = 0;
 		$totals = 0;
 		$sumTotalAll = 0;
+		$moneyTCTota = 0;
 		while($row_fr = @mysqli_fetch_array($qu_fr)){
-						
+			
+			$moneyTC = $row_fr['money1']+$row_fr['money2']+$row_fr['money3']+$row_fr['money4']+$row_fr['money5']+$row_fr['money6'];
+			
+			
 			?>
 			<tr>
               <?php  if($_REQUEST['sh16'] == 1){?><td><?php  echo $row_fr['sv_id'];?></td><?php  }?>
@@ -132,19 +137,21 @@
 				<table border="0" width="90%" cellspacing="0" cellpadding="0" class="tbreport">
 				<?php 
 				$totalamount = 0;
-				
+				$totalTA = 0;
 				while($row = @mysqli_fetch_array($qu_pfirst)){
 					if($row['codes 	'] != "" || $row['lists'] != ""){
 						$total = $row['prices']*$row['opens'];
 						$totalamount += $row['opens'];
 					?>
 					<tr>
-					  <?php  if($_REQUEST['sh4'] == 1){?><td style="border-bottom:none;" width="50%"><?php  echo get_sparpart_name($conn,$row['lists']);?></td><?php  }?>
+					  <?php  if($_REQUEST['sh4'] == 1){?><td style="border-bottom:none;" width="50%"><?php  echo get_sparpart_id($conn,$row['lists']).' | '.get_sparpart_name($conn,$row['lists']);?></td><?php  }?>
 					  <?php  if($_REQUEST['sh5'] == 1){?><td align="center" style="border-bottom:none;" width="25%"><?php  echo $row['opens'];?></td><?php  }?>
-					  <?php  if($_REQUEST['sh8'] == 1){?><td align="right" style="border-bottom:none;" width="25%"><?php  echo number_format($total,2);?></td><?php  }?>
+<!--					  <?php  if($_REQUEST['sh8'] == 1){?><td align="right" style="border-bottom:none;" width="25%"><?php  echo number_format($total,2);?></td><?php  }?>-->
 					</tr>
 				<?php  
 					$sumTotalAll += $total;
+					$totalTA +=	$total;
+					
 					}	
 				}
 					$totals += $totalamount
@@ -152,22 +159,24 @@
 				?>
                 </table>
               </td><?php  }?>
+              <?php  if($_REQUEST['sh8'] == 1){?><td style="padding:0;"><?php  echo number_format($totalTA+$moneyTC,2);?></td><?php  }?>
               <?php  if($_REQUEST['sh6'] == 1){?><td style="padding:0;"><?php  echo format_date($row_fr['job_open']);?></td><?php  }?>
               <?php  if($_REQUEST['sh7'] == 1){?><td style="padding:0;"><?php  echo format_date($row_fr['sr_stime']);?></td><?php  }?>
               <?php  if($_REQUEST['sh9'] == 1){?><td style="padding:0;"><?php  echo get_technician_name($conn,$row_fr['loc_contact']);?></td><?php  }?>
             </tr>
 			<?php 
 			$sum += 1;
+			$moneyTCTota += $moneyTC; 
 		}
 	  ?>
       <tr>
-			  <td colspan="8" style="text-align:right;"> <strong>จำนวน<?php  if($_POST['sr_stock'] == "s_service_report6"){echo 'ใบซ่อมเครื่อเก่า';}else{echo "ใบซ่อมเครื่อเก่า";}?>ทั้งหมด&nbsp;&nbsp;<?php  echo $sum;?>&nbsp;&nbsp;รายการ&nbsp;&nbsp;</strong></td>
+			  <td colspan="9" style="text-align:right;"> <strong>จำนวน<?php  if($_POST['sr_stock'] == "s_service_report6"){echo 'ใบซ่อมเครื่อเก่า';}else{echo "ใบซ่อมเครื่อเก่า";}?>ทั้งหมด&nbsp;&nbsp;<?php  echo $sum;?>&nbsp;&nbsp;รายการ&nbsp;&nbsp;</strong></td>
 	  </tr>
       <tr>
-			  <td colspan="8" style="text-align:right;"> <strong>รวมอะไหล่ที่เบิก&nbsp;&nbsp;<?php  echo $totals;?>&nbsp;&nbsp;รายการ&nbsp;&nbsp;</strong></td>
+			  <td colspan="9" style="text-align:right;"> <strong>รวมอะไหล่ที่เบิก&nbsp;&nbsp;<?php  echo $totals;?>&nbsp;&nbsp;รายการ&nbsp;&nbsp;</strong></td>
 	  </tr>
 	  <tr>
-			  <td colspan="8" style="text-align:right;"> <strong>คิดเป็นมูลค่ารวมทั้งสิ้น&nbsp;&nbsp;<?php  echo number_format($sumTotalAll,2);?>&nbsp;&nbsp;รายการ&nbsp;&nbsp;</strong></td>
+			  <td colspan="9" style="text-align:right;"> <strong>คิดเป็นมูลค่ารวมทั้งสิ้น&nbsp;&nbsp;<?php  echo number_format($sumTotalAll+$moneyTCTota,2);?>&nbsp;&nbsp;บาท&nbsp;&nbsp;</strong></td>
 	  </tr>
     </table>
 
