@@ -20,6 +20,12 @@
 	}
 
 	$form = '<style>
+	.bgheaderios{
+		font-size:12px;
+		position:absolute;
+		margin-top:-20px;
+		padding-left:480px;
+	}
 	.bgheader{
 		font-size:12px;
 		position:absolute;
@@ -240,6 +246,7 @@
 		width:300px;
 	}
 	</style>
+	<div class="bgheaderios">FM-SV-01 Rev 00 : 01/08/62</div>
 	<div class="bgheader">'.substr($_POST['sv_id'],2).'</div>
 	<div class="bbtxt1">'.$finfos['cd_name'].'</div>
 	<div class="bbtxt2">'.$finfos['cd_address'].'&nbsp;'.province_name($conn,$finfos['cd_province']).'</div>
