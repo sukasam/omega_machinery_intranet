@@ -23,8 +23,8 @@
 	.bgheaderios{
 		font-size:12px;
 		position:absolute;
-		margin-top:-20px;
-		padding-left:480px;
+		margin-top:75px;
+		padding-left:450px;
 	}
 	.bgheader{
 		font-size:12px;
