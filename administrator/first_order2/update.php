@@ -308,9 +308,9 @@ $(function(){
 
 		success: function(data){
 
-			var res = data.split(' />');			
+			//var res = data.split(' />');			
 
-			$("#cd_amphur").html(res[1]);
+			$("#cd_amphur").html(data);
 
 		}
 
