@@ -1216,7 +1216,7 @@ $(function(){
 
 					while($row_servicetype = @mysqli_fetch_array($quservicetype)){
 
-            if($row_servicetype['group_id'] == 8 || $row_servicetype['group_id'] == 38 || $row_servicetype['group_id'] == 39 || $row_servicetype['group_id'] == 97 || $row_servicetype['group_id'] == 100 || $row_servicetype['group_id'] == 101 || $row_servicetype['group_id'] == 102){
+            if($row_servicetype['group_id'] == 8 || $row_servicetype['group_id'] == 37 || $row_servicetype['group_id'] == 38 || $row_servicetype['group_id'] == 39 || $row_servicetype['group_id'] == 97 || $row_servicetype['group_id'] == 100 || $row_servicetype['group_id'] == 101 || $row_servicetype['group_id'] == 102){
 
 					  ?>
 

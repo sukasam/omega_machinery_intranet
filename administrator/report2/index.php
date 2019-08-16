@@ -4170,7 +4170,7 @@ if($_GET['act'] == 17){
 
                                     while($row_cusftype = @mysqli_fetch_array($qu_cusftype)){
 
-                                      if($row_cusftype['group_id'] == 8 || $row_cusftype['group_id'] == 38 || $row_cusftype['group_id'] == 39 || $row_cusftype['group_id'] == 97 || $row_cusftype['group_id'] == 100 || $row_cusftype['group_id'] == 101 || $row_cusftype['group_id'] == 102){
+                                      if($row_cusftype['group_id'] == 8 || $row_cusftype['group_id'] == 37 || $row_cusftype['group_id'] == 38 || $row_cusftype['group_id'] == 39 || $row_cusftype['group_id'] == 97 || $row_cusftype['group_id'] == 100 || $row_cusftype['group_id'] == 101 || $row_cusftype['group_id'] == 102){
 
                                         ?>
 
