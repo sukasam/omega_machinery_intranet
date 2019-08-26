@@ -10,20 +10,36 @@
 	if(isset($_GET['cs_sell'])){$_REQUEST['sh1'] = 1;$_REQUEST['sh2'] = 1;$_REQUEST['sh3'] = 1;$_REQUEST['sh4'] = 1;$_REQUEST['sh5'] = 1;$_REQUEST['sh6'] = 1;$_REQUEST['sh7'] = 1;$_REQUEST['sh8'] = 1;$_REQUEST['sh9'] = 1;$_REQUEST['sh10'] = 1;}
 	
 	$cs_sell = $_REQUEST['cs_sell'];
+    $cpro = $_REQUEST['cpro'];
+	$pro_pod = $_REQUEST['pro_pod'];
 	$a_sdate=explode("/",$_REQUEST['date_fm']);
 	$date_fm=$a_sdate[2]."-".$a_sdate[1]."-".$a_sdate[0];
 	$a_sdate=explode("/",$_REQUEST['date_to']);
 	$date_to=$a_sdate[2]."-".$a_sdate[1]."-".$a_sdate[0];
 	
 	if($_REQUEST['priod'] == 0){
-		$daterriod = " AND `date_forder`  between '".$date_fm."' and '".$date_to."'"; 
+		$daterriod = " AND `date_forder` between '".$date_fm."' and '".$date_to."'"; 
 		$dateshow = "เริ่มวันที่ : ".format_date($date_fm)."&nbsp;&nbsp;ถึงวันที่ : ".format_date($date_to); 
 	}
 	else{
 		$dateshow = "วันที่ค้นหา : ".format_date(date("Y-m-d")); 
 	}
 	
-	$codi = " AND status_use = 0";
+//	if($ctype == 1){
+//		
+//	}else{
+//		$codi = " AND status_use = 0";
+//	}
+
+	$codi = " AND (status_use = 1 OR status_use = 3)";
+
+	if($cpro != ""){
+		$codi .= "AND (cpro1 = '".$cpro."' OR cpro2 = '".$cpro."' OR cpro3 = '".$cpro."' OR cpro4 = '".$cpro."' OR cpro5 = '".$cpro."' OR cpro6 = '".$cpro."' OR cpro7 = '".$cpro."')";
+	}
+
+	if($pro_pod != ""){
+		$codi .= "AND (pro_pod1 LIKE '%".$pro_pod."%' OR pro_pod2 LIKE '%".$pro_pod."%' OR pro_pod3 LIKE '%".$pro_pod."%' OR pro_pod4 LIKE '%".$pro_pod."%' OR pro_pod5 LIKE '%".$pro_pod."%' OR pro_pod6 LIKE '%".$pro_pod."%' OR pro_pod7 LIKE '%".$pro_pod."%')";
+	}
 	
 	$sql = "SELECT * FROM s_first_order WHERE cs_sell = '".$cs_sell."'".$daterriod." ".$codi." ORDER BY date_forder ASC";
 	
@@ -32,7 +48,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>เลือกตามชื่อผู้ขาย ( <?php  echo get_sale_id($conn,$cs_sell);?> )</title>
+<title>เลือกตามชื่อผู้ขาย ( <?php  echo getsalename($conn,$cs_sell);?> )</title>
 <style type="text/css">
  .tbreport{
  	font-size:10px;
@@ -55,47 +71,43 @@
 	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="tbreport">
 	  <tr>
 	    <th colspan="2" style="text-align:left;font-size:12px;">บริษัท โอเมก้า แมชชีนเนอรี่ (1999) จำกัด<br />
-        รายงานตามชื่อผู้ขาย ( <?php  echo get_sale_id($conn,$cs_sell). " : ". getsalename($conn,$cs_sell);?> )</th>
-	    <th colspan="6" style="text-align:right;font-size:11px;"><?php  echo $dateshow;?></th>
+        รายงานตามชื่อผู้ชาย ( <?php  echo getsalename($conn,$cs_sell);?> )</th>
+	    <th colspan="7" style="text-align:right;font-size:11px;"><?php  echo $dateshow;?></th>
       </tr>
       <tr>
         <?php  if($_REQUEST['sh1'] == 1){?><th width="15%">ชื่อลูกค้า / บริษัท + เบอร์โทร</th><?php  }?>
         <?php  if($_REQUEST['sh2'] == 1){?><th width="20%">ชื่อร้าน / สถานที่ติดตั้ง</th><?php  }?>
-        <?php  if($_REQUEST['sh3'] == 1){?><th width="10%">จังหวัด</th><?php  }?>
-        <?php  if($_REQUEST['sh4'] == 1){?><th width="9%">ประเภทลูกค้า</th><?php  }?>
-        <?php  if($_REQUEST['sh5'] == 1){?><th width="8%">กลุ่มลูกค้า</th><?php  }?>
-		<?php  if($_REQUEST['sh6'] == 1 || $_REQUEST['sh7'] == 1 || $_REQUEST['sh8'] == 1){?><th width="26%"><table width="100%" border="0" cellpadding="0" cellspacing="0" class="tbreport">
+        <?php  if($_REQUEST['sh3'] == 1){?><th width="8%">กลุ่มลูกค้า</th><?php  }?>
+        <?php  if($_REQUEST['sh5'] == 1 || $_REQUEST['sh6'] == 1){?><th width="18%"><table width="100%" border="0" cellpadding="0" cellspacing="0" class="tbreport">
           <tr>
-            <?php  if($_REQUEST['sh6'] == 1){?><th style="border:0;text-align:left;" >สินค้า</th><?php  }?>
-            <?php  if($_REQUEST['sh7'] == 1){?><th style="border:0;text-align:left;padding-left:70px;;" >รุ่นเครื่อง/SN</th><?php  }?>
-            <?php  if($_REQUEST['sh8'] == 1){?><th style="border:0;text-align:right;padding-right:30px;">ราคาขาย/ค่าเช่า</th><?php  }?>
+            <?php  if($_REQUEST['sh5'] == 1){?><th style="border:0;" width="50%">รุ่นเครื่อง/SN</th><?php  }?>
+            <?php  if($_REQUEST['sh6'] == 1){?><th style="border:0;" width="50%">ราคาขาย/ค่าเช่า</th><?php  }?>
           </tr>
         </table></th><?php  }?>
-        <?php  if($_REQUEST['sh9'] == 1){?><th width="8%">วันที่ติดตั้ง</th><?php  }?>
+        <?php  if($_REQUEST['sh7'] == 1){?><th width="12%">รายการของแถม</th><?php  }?>
+        <?php  if($_REQUEST['sh8'] == 1){?><th width="7%">วันที่ติดตั้ง</th><?php  }?>
+        <?php  if($_REQUEST['sh4'] == 1){?><th width="13%">การรับประกัน</th><?php  }?>
+        <?php  if($_REQUEST['sh9'] == 1){?><th width="7%">ผู้ขาย</th><?php  }?>
       </tr>
       <?php  
-		$sql = "SELECT * FROM s_first_order WHERE cs_sell = '".$cs_sell."' ".$daterriod." ORDER BY fo_id ASC";
 	  	$qu_fr = @mysqli_query($conn,$sql);
-		$sum = 0;
+		$sum = 0;	
 		while($row_fr = @mysqli_fetch_array($qu_fr)){
 			?>
 			<tr>
-             <?php  if($_REQUEST['sh1'] == 1){?><td><?php  echo $row_fr['cd_name'];?><br />
+              <?php  if($_REQUEST['sh1'] == 1){?><td><?php  echo $row_fr['cd_name'];?><br />
               <?php  echo $row_fr['cd_tel'];?></td><?php  }?>
               <?php  if($_REQUEST['sh2'] == 1){?><td><?php  echo $row_fr['loc_name'];?><br />
               <?php  echo $row_fr['loc_address'];?></td><?php  }?>
-              <?php  if($_REQUEST['sh3'] == 1){?><td><?php  echo province_name($conn,$row_fr['cd_province']);?></td><?php  }?>
-              <?php  if($_REQUEST['sh4'] == 1){?><td><?php  echo custype_name($conn,$row_fr['ctype']);?></td><?php  }?>
-              <?php  if($_REQUEST['sh5'] == 1){?><td><?php  echo get_groupcusname($conn,$row_fr['cg_type']);?></td><?php  }?>
-              <?php  if($_REQUEST['sh6'] == 1 || $_REQUEST['sh7'] == 1 || $_REQUEST['sh8'] == 1){?><td style="padding:0;">
-              	<table width="92%" border="0" cellpadding="0" cellspacing="0" class="tbreport" style="margin-bottom:5px;">
+              <?php  if($_REQUEST['sh3'] == 1){?><td><?php  echo get_groupcusname($conn,$row_fr['cg_type']);?></td><?php  }?>
+              <?php  if($_REQUEST['sh5'] == 1 || $_REQUEST['sh6'] == 1){?><td style="padding:0;">
+              	<table width="80%" border="0" cellpadding="0" cellspacing="0" class="tbreport" style="margin-bottom:5px;">
                 <?php  
 					if($row_fr['cpro1'] != ""){
 						?>
 						<tr>
-                          <?php  if($_REQUEST['sh6'] == 1){?><td style="border:0;padding-bottom:0;" width="31%"><?php  echo get_proname($conn,$row_fr['cpro1']);?></td><?php  }?>
-                          <?php  if($_REQUEST['sh7'] == 1){?><td style="border:0;padding-bottom:0;" width="33%"><?php  echo $row_fr['pro_pod1']." / ".$row_fr['pro_sn1'];?></td><?php  }?>
-                          <?php  if($_REQUEST['sh8'] == 1){?><td style="border:0;padding-bottom:0;text-align:right;"><?php  echo number_format($row_fr['cprice1']);?>&nbsp;&nbsp;&nbsp;</td><?php  }?>
+                          <?php  if($_REQUEST['sh5'] == 1){?><td style="border:0;padding-bottom:0;" width="37%"><?php  echo $row_fr['pro_pod1']." / ".$row_fr['pro_sn1'];?></td><?php  }?>
+                          <?php  if($_REQUEST['sh6'] == 1){?><td style="border:0;padding-bottom:0;text-align:right;" width="26%"><?php  echo number_format($row_fr['cprice1']);?></td><?php  }?>
                         </tr>
 						<?php 	
 					}
@@ -104,9 +116,8 @@
 					if($row_fr['cpro2'] != ""){
 						?>
 						<tr>
-                          <?php  if($_REQUEST['sh6'] == 1){?><td style="border:0;padding-bottom:0;padding-top:0;"><?php  echo get_proname($conn,$row_fr['cpro2']);?></td><?php  }?>
-                          <?php  if($_REQUEST['sh7'] == 1){?><td style="border:0;padding-bottom:0;padding-top:0;"><?php  echo $row_fr['pro_pod2']." / ".$row_fr['pro_sn2'];?></td><?php  }?>
-                          <?php  if($_REQUEST['sh8'] == 1){?><td style="border:0;padding-bottom:0;padding-top:0;text-align:right;"><?php  echo number_format($row_fr['cprice2']);?>&nbsp;&nbsp;&nbsp;</td><?php  }?>
+                          <?php  if($_REQUEST['sh5'] == 1){?><td style="border:0;padding-bottom:0;padding-top:0;" width="33%"><?php  echo $row_fr['pro_pod2']." / ".$row_fr['pro_sn2'];?></td><?php  }?>
+                          <?php  if($_REQUEST['sh6'] == 1){?><td style="border:0;padding-bottom:0;padding-top:0;text-align:right;" width="33%"><?php  echo number_format($row_fr['cprice2']);?></td><?php  }?>
                         </tr>
 						<?php 	
 					}
@@ -115,9 +126,8 @@
 					if($row_fr['cpro3'] != ""){
 						?>
 						<tr>
-                          <?php  if($_REQUEST['sh6'] == 1){?><td style="border:0;padding-bottom:0;padding-top:0;"><?php  echo get_proname($conn,$row_fr['cpro3']);?></td><?php  }?>
-                          <?php  if($_REQUEST['sh7'] == 1){?><td style="border:0;padding-bottom:0;padding-top:0;"><?php  echo $row_fr['pro_pod3']." / ".$row_fr['pro_sn3'];?></td><?php  }?>
-                          <?php  if($_REQUEST['sh8'] == 1){?><td style="border:0;padding-bottom:0;padding-top:0;text-align:right;"><?php  echo number_format($row_fr['cprice3']);?>&nbsp;&nbsp;&nbsp;</td><?php  }?>
+                          <?php  if($_REQUEST['sh5'] == 1){?><td style="border:0;padding-bottom:0;padding-top:0;" width="33%"><?php  echo $row_fr['pro_pod3']." / ".$row_fr['pro_sn3'];?></td><?php  }?>
+                          <?php  if($_REQUEST['sh6'] == 1){?><td style="border:0;padding-bottom:0;padding-top:0;text-align:right;" width="33%"><?php  echo number_format($row_fr['cprice3']);?></td><?php  }?>
                         </tr>
 						<?php 	
 					}
@@ -126,9 +136,8 @@
 					if($row_fr['cpro4'] != ""){
 						?>
 						<tr>
-                          <?php  if($_REQUEST['sh6'] == 1){?><td style="border:0;padding-bottom:0;padding-top:0;"><?php  echo get_proname($conn,$row_fr['cpro4']);?></td><?php  }?>
-                          <?php  if($_REQUEST['sh7'] == 1){?><td style="border:0;padding-bottom:0;padding-top:0;"><?php  echo $row_fr['pro_pod4']." / ".$row_fr['pro_sn4'];?></td><?php  }?>
-                          <?php  if($_REQUEST['sh8'] == 1){?><td style="border:0;padding-bottom:0;padding-top:0;text-align:right;"><?php  echo number_format($row_fr['cprice4']);?>&nbsp;&nbsp;&nbsp;</td><?php  }?>
+                          <?php  if($_REQUEST['sh5'] == 1){?><td style="border:0;padding-bottom:0;padding-top:0;" width="33%"><?php  echo $row_fr['pro_pod4']." / ".$row_fr['pro_sn4'];?></td><?php  }?>
+                          <?php  if($_REQUEST['sh6'] == 1){?><td style="border:0;padding-bottom:0;padding-top:0;text-align:right;" width="33%"><?php  echo number_format($row_fr['cprice4']);?></td><?php  }?>
                         </tr>
 						<?php 	
 					}
@@ -137,9 +146,8 @@
 					if($row_fr['cpro5'] != ""){
 						?>
 						<tr>
-                          <?php  if($_REQUEST['sh6'] == 1){?><td style="border:0;padding-bottom:0;padding-top:0;"><?php  echo get_proname($conn,$row_fr['cpro5']);?></td><?php  }?>
-                          <?php  if($_REQUEST['sh7'] == 1){?><td style="border:0;padding-bottom:0;padding-top:0;"><?php  echo $row_fr['pro_pod5']." / ".$row_fr['pro_sn5'];?></td><?php  }?>
-                          <?php  if($_REQUEST['sh8'] == 1){?><td style="border:0;padding-bottom:0;padding-top:0;text-align:right;"><?php  echo number_format($row_fr['cprice5']);?>&nbsp;&nbsp;&nbsp;</td><?php  }?>
+                          <?php  if($_REQUEST['sh5'] == 1){?><td style="border:0;padding-bottom:0;padding-top:0;" width="33%"><?php  echo $row_fr['pro_pod5']." / ".$row_fr['pro_sn5'];?></td><?php  }?>
+                          <?php  if($_REQUEST['sh6'] == 1){?><td style="border:0;padding-bottom:0;padding-top:0;text-align:right;" width="33%"><?php  echo number_format($row_fr['cprice5']);?></td><?php  }?>
                         </tr>
 						<?php 	
 					}
@@ -148,9 +156,8 @@
 					if($row_fr['cpro6'] != ""){
 						?>
 						<tr>
-                          <?php  if($_REQUEST['sh6'] == 1){?><td style="border:0;padding-bottom:0;padding-top:0;"><?php  echo get_proname($conn,$row_fr['cpro6']);?></td><?php  }?>
-                          <?php  if($_REQUEST['sh7'] == 1){?><td style="border:0;padding-bottom:0;padding-top:0;"><?php  echo $row_fr['pro_pod6']." / ".$row_fr['pro_sn6'];?></td><?php  }?>
-                          <?php  if($_REQUEST['sh8'] == 1){?><td style="border:0;padding-bottom:0;padding-top:0;text-align:right;"><?php  echo number_format($row_fr['cprice6']);?>&nbsp;&nbsp;&nbsp;</td><?php  }?>
+                          <?php  if($_REQUEST['sh5'] == 1){?><td style="border:0;padding-bottom:0;padding-top:0;" width="33%"><?php  echo $row_fr['pro_pod6']." / ".$row_fr['pro_sn6'];?></td><?php  }?>
+                          <?php  if($_REQUEST['sh6'] == 1){?><td style="border:0;padding-bottom:0;padding-top:0;text-align:right;" width="33%"><?php  echo number_format($row_fr['cprice6']);?></td><?php  }?>
                         </tr>
 						<?php 	
 					}
@@ -159,23 +166,52 @@
 					if($row_fr['cpro7'] != ""){
 						?>
 						<tr>
-                          <?php  if($_REQUEST['sh6'] == 1){?><td style="border:0;padding-bottom:0;padding-top:0;"><?php  echo get_proname($conn,$row_fr['cpro7']);?></td><?php  }?>
-                          <?php  if($_REQUEST['sh7'] == 1){?><td style="border:0;padding-bottom:0;padding-top:0;"><?php  echo $row_fr['pro_pod7']." / ".$row_fr['pro_sn7'];?></td><?php  }?>
-                          <?php  if($_REQUEST['sh8'] == 1){?><td style="border:0;padding-bottom:0;padding-top:0;text-align:right;"><?php  echo number_format($row_fr['cprice7']);?>&nbsp;&nbsp;&nbsp;</td><?php  }?>
+                          <?php  if($_REQUEST['sh5'] == 1){?><td style="border:0;padding-bottom:0;padding-top:0;" width="33%"><?php  echo $row_fr['pro_pod7']." / ".$row_fr['pro_sn7'];?></td><?php  }?>
+                          <?php  if($_REQUEST['sh6'] == 1){?><td style="border:0;padding-bottom:0;padding-top:0;text-align:right;" width="33%"><?php  echo number_format($row_fr['cprice7']);?></td><?php  }?>
                         </tr>
 						<?php 	
 					}
 				?>
               </table></td><?php  }?>
-              <?php  if($_REQUEST['sh9'] == 1){?><td><?php  echo format_date($row_fr['cs_setting']);?></td><?php  }?>
+              <?php  if($_REQUEST['sh7'] == 1){?><td>
+              	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="tbreport" style="margin-bottom:5px;">
+                <?php  if($row_fr['cs_pro1'] != ""){?>
+                  <tr>
+                    <td style="border:0;padding-bottom:0;padding-top:0;">- <?php  echo $row_fr['cs_pro1'];?></td>
+                  </tr>
+                <?php  }?>
+                <?php  if($row_fr['cs_pro2'] != ""){?>
+                  <tr>
+                    <td style="border:0;padding-bottom:0;padding-top:0;">- <?php  echo $row_fr['cs_pro2'];?></td>
+                  </tr>
+                <?php  }?>
+                <?php  if($row_fr['cs_pro3'] != ""){?>
+                  <tr>
+                    <td style="border:0;padding-bottom:0;padding-top:0;">- <?php  echo $row_fr['cs_pro3'];?></td>
+                  </tr>
+                <?php  }?>
+                <?php  if($row_fr['cs_pro4'] != ""){?>
+                  <tr>
+                    <td style="border:0;padding-bottom:0;padding-top:0;">- <?php  echo $row_fr['cs_pro4'];?></td>
+                  </tr>
+                <?php  }?>
+                <?php  if($row_fr['cs_pro5'] != ""){?>
+                  <tr>
+                    <td style="border:0;padding-bottom:0;padding-top:0;">- <?php  echo $row_fr['cs_pro5'];?></td>
+                  </tr>
+                <?php  }?>
+                </table>
+              </td><?php  }?>
+              <?php  if($_REQUEST['sh8'] == 1){?><td><?php  echo format_date($row_fr['cs_setting']);?></td><?php  }?>
+              <?php  if($_REQUEST['sh4'] == 1){?><td><?php if($row_fr['garun_id'] != ''){echo $row_fr['garun_id']."เดือน / <br/>".format_date($row_fr['date_quf'])." - ".format_date($row_fr['date_qut']);}?></td><?php  }?>
+              <?php  if($_REQUEST['sh9'] == 1){?><td><?php  echo getsalename($conn,$row_fr['cs_sell']);?></td><?php  }?>
             </tr>
-			
 			<?php 
-			$sum += 1;
+			$sum += 1;	
 		}
 	  ?>
       <tr>
-		<td colspan="7" style="text-align:right;"> <strong>ทั้งหมด&nbsp;&nbsp;<?php  echo $sum;?>&nbsp;&nbsp;รายการ&nbsp;&nbsp;</strong></td>
+		<td colspan="8" style="text-align:right;"> <strong>ทั้งหมด&nbsp;&nbsp;<?php  echo $sum;?>&nbsp;&nbsp;รายการ&nbsp;&nbsp;</strong></td>
 	  </tr>
     </table>
 
