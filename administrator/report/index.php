@@ -668,6 +668,36 @@ function check9(frm){
                             </select>
                            </td>
                           </tr>
+                           <tr >
+                            <td width="10%" nowrap class="name">รายการสินค้า</td>
+                            <td width="90%">
+                            <select name="cpro" id="cpro" class="inputselect" style="width:450px;">
+                                  <option value="">กรุณาเลือกรายการ</option>
+                                  <?php 
+                                      $qupro1 = @mysqli_query($conn,"SELECT * FROM s_group_typeproduct ORDER BY group_name ASC");
+                                      while($row_qupro1 = @@mysqli_fetch_array($qupro1)){
+                                        ?>
+                                          <option value="<?php  echo $row_qupro1['group_id'];?>" <?php  if($cpro1 == $row_qupro1['group_id']){echo 'selected';}?>><?php  echo $row_qupro1['group_name'];?></option>
+                                        <?php 	
+                                      }
+                                  ?>
+                              </select>
+                            <a href="javascript:void(0);" onClick="windowOpener('400', '500', '', 'search_pro.php?protype=cpro');"><img src="../images/icon2/mark_f2.png" width="25" height="25" border="0" alt="" style="vertical-align:middle;padding-left:5px;"></a></td>
+                          </tr>
+                          <tr >
+                            <td width="10%" nowrap class="name">รุ่นเครื่อง</td>
+                            <td width="90%"><select name="pro_pod" id="pro_pod" class="inputselect" style="width:250px;">
+                                        <option value="">กรุณาเลือกรายการ</option>
+                                      <?php 
+                                          $qupros1 = @mysqli_query($conn,"SELECT * FROM s_group_pod ORDER BY group_name ASC");
+                                          while($row_qupros1 = @@mysqli_fetch_array($qupros1)){
+                                            ?>
+                                              <option value="<?php  echo $row_qupros1['group_name'];?>"><?php  echo $row_qupros1['group_name'];?></option>
+                                            <?php 	
+                                          }
+                                      ?>
+                                  </select><a href="javascript:void(0);" onClick="windowOpener('400', '500', '', 'search_pod.php?protype=pro_pod');"><img src="../images/icon2/mark_f2.png" width="25" height="25" border="0" alt="" style="vertical-align:middle;padding-left:5px;"></a></td>
+                          </tr>
                           <tr>
                             <td nowrap class="name">&nbsp;</td>
                             <td><span class="name">
@@ -693,16 +723,16 @@ function check9(frm){
                               
                               <input name="sh3" type="checkbox" id="sh57" value="1" checked>
                               กลุ่มลูกค้า
-                              <input name="sh4" type="checkbox" id="sh11" value="1" checked>
-วันเริ่ม / สิ้นสุดสัญญา<br>
 <input name="sh5" type="checkbox" id="sh59" value="1" checked>
-                              รุ่นเครื่อง/SN/
+                              รุ่นเครื่อง/SN/<br>
                               <input name="sh6" type="checkbox" id="sh60" value="1" checked>
                               ราคาขาย/ค่าเช่า
                               <input name="sh7" type="checkbox" id="sh12" value="1" checked>
                               รายการของแถม
 <input name="sh8" type="checkbox" id="sh61" value="1" checked>
                               วันที่ติดตั้ง 
+                              <input name="sh4" type="checkbox" id="sh11" value="1" checked>
+การรับประกัน
                               <input name="sh9" type="checkbox" id="sh13" value="1" checked>
                               ผู้ขาย</td>
                           </tr>

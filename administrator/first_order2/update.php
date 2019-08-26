@@ -294,11 +294,7 @@ $(function(){
 
 	var cd_province = $("#cd_province").val();
 
-	 
-
 	$("#cd_province_val").val(cd_province);
-
-	 
 
 	$.ajax({
 
@@ -315,8 +311,6 @@ $(function(){
 		}
 
 	});
-
-	 
 
   });
 

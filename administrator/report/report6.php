@@ -10,6 +10,8 @@
 	if(isset($_GET['ctype'])){$_REQUEST['sh1'] = 1;$_REQUEST['sh2'] = 1;$_REQUEST['sh3'] = 1;$_REQUEST['sh4'] = 1;$_REQUEST['sh5'] = 1;$_REQUEST['sh6'] = 1;$_REQUEST['sh7'] = 1;$_REQUEST['sh8'] = 1;$_REQUEST['sh9'] = 1;$_REQUEST['sh10'] = 1;}
 	
 	$ctype = $_REQUEST['ctype'];
+    $cpro = $_REQUEST['cpro'];
+	$pro_pod = $_REQUEST['pro_pod'];
 	$a_sdate=explode("/",$_REQUEST['date_fm']);
 	$date_fm=$a_sdate[2]."-".$a_sdate[1]."-".$a_sdate[0];
 	$a_sdate=explode("/",$_REQUEST['date_to']);
@@ -27,6 +29,14 @@
 		$codi = " AND (status_use = 1 OR status_use = 3)";
 	}else{
 		$codi = " AND status_use = 0";
+	}
+
+	if($cpro != ""){
+		$codi .= "AND (cpro1 = '".$cpro."' OR cpro2 = '".$cpro."' OR cpro3 = '".$cpro."' OR cpro4 = '".$cpro."' OR cpro5 = '".$cpro."' OR cpro6 = '".$cpro."' OR cpro7 = '".$cpro."')";
+	}
+
+	if($pro_pod != ""){
+		$codi .= "AND (pro_pod1 LIKE '%".$pro_pod."%' OR pro_pod2 LIKE '%".$pro_pod."%' OR pro_pod3 LIKE '%".$pro_pod."%' OR pro_pod4 LIKE '%".$pro_pod."%' OR pro_pod5 LIKE '%".$pro_pod."%' OR pro_pod6 LIKE '%".$pro_pod."%' OR pro_pod7 LIKE '%".$pro_pod."%')";
 	}
 	
 	$sql = "SELECT * FROM s_first_order WHERE ctype = '".$ctype."'".$daterriod." ".$codi." ORDER BY date_forder ASC";
@@ -66,7 +76,6 @@
         <?php  if($_REQUEST['sh1'] == 1){?><th width="15%">ชื่อลูกค้า / บริษัท + เบอร์โทร</th><?php  }?>
         <?php  if($_REQUEST['sh2'] == 1){?><th width="20%">ชื่อร้าน / สถานที่ติดตั้ง</th><?php  }?>
         <?php  if($_REQUEST['sh3'] == 1){?><th width="8%">กลุ่มลูกค้า</th><?php  }?>
-        <?php  if($_REQUEST['sh4'] == 1){?><th width="13%">วันเริ่ม / สิ้นสุดสัญญา</th><?php  }?>
         <?php  if($_REQUEST['sh5'] == 1 || $_REQUEST['sh6'] == 1){?><th width="18%"><table width="100%" border="0" cellpadding="0" cellspacing="0" class="tbreport">
           <tr>
             <?php  if($_REQUEST['sh5'] == 1){?><th style="border:0;" width="50%">รุ่นเครื่อง/SN</th><?php  }?>
@@ -75,6 +84,7 @@
         </table></th><?php  }?>
         <?php  if($_REQUEST['sh7'] == 1){?><th width="12%">รายการของแถม</th><?php  }?>
         <?php  if($_REQUEST['sh8'] == 1){?><th width="7%">วันที่ติดตั้ง</th><?php  }?>
+        <?php  if($_REQUEST['sh4'] == 1){?><th width="13%">การรับประกัน</th><?php  }?>
         <?php  if($_REQUEST['sh9'] == 1){?><th width="7%">ผู้ขาย</th><?php  }?>
       </tr>
       <?php  
@@ -88,7 +98,6 @@
               <?php  if($_REQUEST['sh2'] == 1){?><td><?php  echo $row_fr['loc_name'];?><br />
               <?php  echo $row_fr['loc_address'];?></td><?php  }?>
               <?php  if($_REQUEST['sh3'] == 1){?><td><?php  echo get_groupcusname($conn,$row_fr['cg_type']);?></td><?php  }?>
-              <?php  if($_REQUEST['sh4'] == 1){?><td><?php  echo format_date($row_fr['date_quf'])." / ".format_date($row_fr['date_qut']);?></td><?php  }?>
               <?php  if($_REQUEST['sh5'] == 1 || $_REQUEST['sh6'] == 1){?><td style="padding:0;">
               	<table width="80%" border="0" cellpadding="0" cellspacing="0" class="tbreport" style="margin-bottom:5px;">
                 <?php  
@@ -192,7 +201,8 @@
                 </table>
               </td><?php  }?>
               <?php  if($_REQUEST['sh8'] == 1){?><td><?php  echo format_date($row_fr['cs_setting']);?></td><?php  }?>
-              <?php  if($_REQUEST['sh9'] == 1){?><td><?php  echo get_sale_id($conn,$row_fr['cs_sell']);?></td><?php  }?>
+              <?php  if($_REQUEST['sh4'] == 1){?><td><?php if($row_fr['garun_id'] != ''){echo $row_fr['garun_id']."เดือน / <br/>".format_date($row_fr['date_quf'])." - ".format_date($row_fr['date_qut']);}?></td><?php  }?>
+              <?php  if($_REQUEST['sh9'] == 1){?><td><?php  echo getsalename($conn,$row_fr['cs_sell']);?></td><?php  }?>
             </tr>
 			<?php 
 			$sum += 1;	
