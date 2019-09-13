@@ -2110,5 +2110,12 @@ function check_servicerepair($conn){
 		return "RO ".$thdate.date("/m/").sprintf("%03d",$num_odersum);
 	}	
 }
+
+function get_username($conn,$user_account) {
+	
+	$row_user = @mysqli_fetch_array(@mysqli_query($conn,"SELECT * FROM  s_user WHERE username = '".$user_account."'"));
+	
+	return $row_user['name'];		
+}
 ?>
 
