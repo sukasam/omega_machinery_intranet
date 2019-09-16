@@ -203,8 +203,9 @@
 			$dbservicesub = "s_service_report4sub";
 
 
-
-		$sql = "SELECT * FROM s_first_order as fr, ".$dbservice." as sv, ".$dbservicesub." as sv2 WHERE sv.cus_id = fr.fo_id AND sv.sr_id = sv2.sr_id ".$condition." ".$daterriod." GROUP by sv.sr_id ORDER BY sv.sr_id DESC";
+		$sql = "SELECT * FROM s_first_order as fr, ".$dbservice." as sv, ".$dbservicesub." as sv2 WHERE sv.cus_id = fr.fo_id ".$condition." ".$daterriod." GROUP by sv.sr_id ORDER BY sv.sr_id DESC";
+		
+		//echo $sql = "SELECT fr.cd_name,fr.cd_address,fr.loc_name, sv.* FROM ".$tableDB." as fr, ".$dbservice." as sv, ".$dbservicesub." as sv2 WHERE sv.cus_id = fr.fo_id ".$condition." ".$daterriod." GROUP by sv.sr_id ORDER BY sv.sr_id DESC";
 
 	  	$qu_fr = @mysqli_query($conn,$sql);
 
@@ -256,7 +257,7 @@
 
 				while($row = @mysqli_fetch_array($qu_pfirst)){
 
-					if($row['codes 	'] != "" || $row['lists'] != ""){
+					if($row['codes'] != "" || $row['lists'] != ""){
 
 						$total = $row['prices']*$row['opens'];
 
