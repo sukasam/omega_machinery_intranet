@@ -78,7 +78,7 @@
 <br />
 ประเภทบริการ  :
 <?php  if($_REQUEST['sr_ctype']){echo get_servicename($conn,$_REQUEST['sr_ctype']);}else{echo "ทั้งหมด";}?></th>
-	    <th colspan="3" style="text-align:right;font-size:11px;"><?php  echo $dateshow;?></th>
+	    <th colspan="3" style="text-align:right;font-size:11px;"><span style="color: black;"><strong>FM-SV-04 Rev. 00 : 01/08/62</strong></span><br/><br/><?php  echo $dateshow;?></th>
       </tr>
       <tr>
         <?php  if($_REQUEST['sh1'] == 1){?><th width="13%">ชื่อลูกค้า / บริษัท</th><?php  }?>
