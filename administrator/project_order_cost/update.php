@@ -108,7 +108,6 @@
 				
 				$numCost = mysqli_num_rows(@mysqli_query($conn,"SELECT * FROM s_project_order_cost WHERE fo_id = '".$fo_id."'"));
 				
-			
 				if($numCost == 0){
 					@mysqli_query($conn,"INSERT INTO `s_project_order_cost` (`id`, `fo_id`, `shipC1`, `shipC2`, `shipC3`, `shipC4`, `shipC5`, `shipC6`, `shipC7`, `shipC8`, `shipC9`, `shipM1`, `shipM2`, `shipM3`, `shipM4`, `shipM5`, `shipM6`, `shipM7`, `shipM8`, `shipM9`, `shipL1`, `shipL2`, `shipL3`, `shipL4`, `shipL5`, `shipL6`, `shipL7`, `shipL8`) VALUES (NULL, '".$fo_id."', '".$shipC1."', '".$shipC2."', '".$shipC3."', '".$shipC4."', '".$shipC5."', '".$shipC6."', '".$shipC7."', '".$shipC8."', '".$shipC9."', '".$shipM1."', '".$shipM2."', '".$shipM3."', '".$shipM4."', '".$shipM5."', '".$shipM6."', '".$shipM7."', '".$shipM8."', '".$shipM9."', '".$shipL1."', '".$shipL2."', '".$shipL3."', '".$shipL4."', '".$shipL5."', '".$shipL6."', '".$shipL7."', '".$shipL8."');");
 				}else{
