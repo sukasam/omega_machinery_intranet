@@ -1082,7 +1082,7 @@ function get_return_param(){
 	$param = ""; 
 	if(count($_REQUEST) > 0) {
 		foreach($_REQUEST as $key => $value){
-			if( ereg("pre_",$key) && ($value <> "") )
+			if( preg_match("/pre_/",$key) && ($value <> "") )
 				$param .= "&".str_replace("pre_","",$key)."=".$value;
 		}
 		$param = substr($param,1);
@@ -1108,11 +1108,11 @@ function check_username($conn,$name){
 			else
 				$uername = gen_random(4);
 		}
-		$sql = "insert into s_user (username , password , create_date , create_by) values ('$username','$password','".date("Y-m-d H:i:s")."' , '".$_SESSION[login_name]."')";
+		$sql = "insert into s_user (username , password , create_date , create_by) values ('$username','$password','".date("Y-m-d H:i:s")."' , '".$_SESSION['login_name']."')";
 		@mysqli_query($conn,$sql);
 		$user_id = mysql_insert_id();
 		
-		$sql = "insert into person (name_th , researcher , user_id , create_date , create_by) values ('$name' , '1' , '$user_id' , '".date("Y-m-d H:i:s")."' , '".$_SESSION[login_name]."')";
+		$sql = "insert into person (name_th , researcher , user_id , create_date , create_by) values ('$name' , '1' , '$user_id' , '".date("Y-m-d H:i:s")."' , '".$_SESSION['login_name']."')";
 		@mysqli_query($conn,$sql);
 		$return_id = mysql_insert_id();
 	}
@@ -1120,8 +1120,8 @@ function check_username($conn,$name){
 }
 
 function show_menu($menu_id,$menu_name){
-	if(ereg(",".$menu_id.",",$_SESSION[s_menu_id].",")){
-		if($menu_id == $_SESSION[s_now_menu])
+	if(preg_match("/,".$menu_id.",/",$_SESSION['s_menu_id'].",")){
+		if($menu_id == $_SESSION['s_now_menu'])
 			echo "<font color=\"#FF0000\">$menu_name</font>"; 
 		else
 			echo "<font color=\"#CC6600\">$menu_name</font>"; 
@@ -2018,7 +2018,7 @@ function backup_tables($host,$user,$pass,$name,$tables = '*'){
 				for($j=0; $j<$num_fields; $j++) 
 				{
 					$row[$j] = addslashes($row[$j]);
-					$row[$j] = ereg_replace("\n","\\n",$row[$j]);
+					$row[$j] = preg_match_replace("\n","\\n",$row[$j]);
 					if (isset($row[$j])) { $return.= '"'.$row[$j].'"' ; } else { $return.= '""'; }
 					if ($j<($num_fields-1)) { $return.= ','; }
 				}

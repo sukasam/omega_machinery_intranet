@@ -1459,6 +1459,42 @@ Vat 7%</strong></td>
       </td>
 
     </tr>
+    
+    <tr>
+
+      <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:10px;"><strong>ชื่อช่างเข้าบริการ :</strong><strong>
+      
+      <select name="technic_service" id="technic_service" class="inputselect" style="width:50%;">
+
+                    <option value="">กรุณาเลือกช่าง</option>
+
+                    <?php 
+
+                	$qutechtype = @mysqli_query($conn,"SELECT * FROM s_group_technician ORDER BY group_name ASC");
+
+					while($row_techtype = @mysqli_fetch_array($qutechtype)){
+
+					  ?>
+
+                    <option value="<?php  echo $row_techtype['group_id'];?>" <?php  if($technic_service == $row_techtype['group_id']){echo 'selected';}?>><?php  echo $row_techtype['group_name'];?></option>
+
+                    <?php 	
+
+					}
+
+				?>
+
+                  </select>
+      
+      </strong></td>
+
+      <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:10px;">&nbsp;
+
+      	
+
+      </td>
+
+    </tr>
 
   </table>
 
@@ -1476,6 +1512,7 @@ Vat 7%</strong></td>
 
                 <td style="border-bottom:1px solid #000000;padding-bottom:10px;font-size:12px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong >
 
+<!--
                   <select name="cs_company" id="cs_company" class="inputselect" style="width:50%;">
 
                     <option value="">กรุณาเลือกช่างบริการ</option>
@@ -1497,6 +1534,27 @@ Vat 7%</strong></td>
 				?>
 
                   </select>
+-->
+                
+                <select name="cs_company" id="cs_company" class="inputselect" style="width:50%;">
+
+                <?php 
+
+                	$qusaletype = @mysqli_query($conn,"SELECT * FROM s_group_sale ORDER BY group_name ASC");
+
+					while($row_saletype = @mysqli_fetch_array($qusaletype)){
+
+					  ?>
+
+					  	<option value="<?php  echo $row_saletype['group_id'];?>" <?php  if($cs_company == $row_saletype['group_id']){echo 'selected';}?>><?php  echo $row_saletype['group_name'];?></option>
+
+					  <?php 	
+
+					}
+
+				?>
+
+            </select>
 
                 </strong></td>
 
@@ -1504,7 +1562,7 @@ Vat 7%</strong></td>
 
               <tr>
 
-                <td style="padding-top:10px;padding-bottom:10px;font-size:12px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>ช่างบริการ</strong></td>
+                <td style="padding-top:10px;padding-bottom:10px;font-size:12px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>พนักงานขาย</strong></td>
 
               </tr>
 
@@ -1526,8 +1584,10 @@ Vat 7%</strong></td>
 
               <tr>
 
-                <td style="border-bottom:1px solid #000000;padding-bottom:10px;font-size:12px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong><!--<input type="text" name="cs_sell" value="<?php  echo $cs_sell;?>" id="cs_sell" class="inpfoder" style="width:50%;text-align:center;">-->
+                <td style="border-bottom:1px solid #000000;padding-bottom:10px;font-size:12px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>
+                <input type="text" name="cs_sell" value="<?php  echo $cs_sell;?>" id="cs_sell" class="inpfoder" style="width:50%;text-align:center;">
 
+<!--
                 <select name="cs_sell" id="cs_sell" class="inputselect" style="width:50%;">
 
                 <?php 
@@ -1546,13 +1606,15 @@ Vat 7%</strong></td>
 
 				?>
 
-            </select></strong></td>
+            </select>
+-->
+              </strong></td>
 
               </tr>
 
               <tr>
 
-                <td style="padding-top:10px;padding-bottom:10px;font-size:12px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>พนักงานขาย</strong></td>
+                <td style="padding-top:10px;padding-bottom:10px;font-size:12px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>Sale Manager / ตรวจสอบการขาย</strong></td>
 
               </tr>
 
@@ -1578,7 +1640,7 @@ Vat 7%</strong></td>
 
               <tr>
 
-                <td style="padding-top:10px;padding-bottom:10px;font-size:12px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>ผู้อนุมัติการขาย</strong></td>
+                <td style="padding-top:10px;padding-bottom:10px;font-size:12px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>GM / ผู้อนุมัติการขาย</strong></td>
 
               </tr>
 
