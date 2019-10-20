@@ -10,6 +10,7 @@
 	if($_GET["action"] == "delete"){
 		$code = Check_Permission($conn,$check_module,$_SESSION["login_id"],"delete");		
 		if ($code == "1") {
+			
 			$sql = "delete from $tbl_name  where $PK_field = '".$_GET[$PK_field]."'";
 			@mysqli_query($conn,$sql);	
 			

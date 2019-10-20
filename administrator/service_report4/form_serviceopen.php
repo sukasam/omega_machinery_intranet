@@ -267,10 +267,10 @@
         </td>
 
       </tr>
-    </table>'.$_POST['filenames'];
+    </table><br>';
+
+if($_POST['filenames'] != ""){
+	$form .= '<p style="text-align:center;"><img src="../../upload/install/'.$_POST['filenames'].'" width="500" border="0" /></p>';
+}
+
 ?>
-
-
-	
-
-	

@@ -55,7 +55,6 @@
 	$condition = "";
 
 
-
 	if($cpro != ""){
 
 		$condition = "AND (sv2.lists = '".$cpro."')";
@@ -203,7 +202,7 @@
 			$dbservicesub = "s_service_report4sub";
 
 
-		$sql = "SELECT * FROM s_first_order as fr, ".$dbservice." as sv, ".$dbservicesub." as sv2 WHERE sv.cus_id = fr.fo_id ".$condition." ".$daterriod." GROUP by sv.sr_id ORDER BY sv.sr_id DESC";
+		$sql = "SELECT fr.*,sv.*,sv2.r_id,sv2.codes,sv2.lists,sv2.units,sv2.prices,sv2.amounts,sv2.opens,sv2.remains FROM s_first_order as fr, ".$dbservice." as sv, ".$dbservicesub." as sv2 WHERE sv.cus_id = fr.fo_id ".$condition." ".$daterriod." GROUP by sv.sr_id ORDER BY sv.sr_id DESC";
 		
 		//echo $sql = "SELECT fr.cd_name,fr.cd_address,fr.loc_name, sv.* FROM ".$tableDB." as fr, ".$dbservice." as sv, ".$dbservicesub." as sv2 WHERE sv.cus_id = fr.fo_id ".$condition." ".$daterriod." GROUP by sv.sr_id ORDER BY sv.sr_id DESC";
 
@@ -271,7 +270,7 @@
 
 					  <?php  if($_REQUEST['sh5'] == 1){?><td align="center" style="border-bottom:none;width: 25%;"><?php  echo $row['opens'];?></td><?php  }?>
 
-					  <?php  if($_REQUEST['sh6'] == 1){?><td align="right" style="border-bottom:none;width: 25%;padding-right: 20px;"><?php  echo number_format($total,2);?></td><?php  }?>
+					  <?php  if($_REQUEST['sh6'] == 1){?><td align="right" style="border-bottom:none;width: 25%;padding-right: 20px;"><?php  echo number_format($total,2);?></td><?php }?>
 
 					</tr>
 
@@ -306,7 +305,7 @@
                 <table border="0" width="100%" cellspacing="0" cellpadding="0" class="tbreport">
 
 				<?php  
-
+				//echo "SELECT * FROM  s_service_report4 WHERE sr_id = '".$row_fr['sv.sr_id']."'";
 				$qu_pfirsttotal = @mysqli_query($conn,"SELECT * FROM  s_service_report4 WHERE sr_id = '".$row_fr['sr_id']."'");
 
 				?>
@@ -318,10 +317,6 @@
 				$totalOther = 0;
 
 				$rowOtherTotal = @mysqli_fetch_array($qu_pfirsttotal);
-
-									
-
-				
 
 				$totalOther = $rowOtherTotal['mn_1']+$rowOtherTotal['mn_2']+$rowOtherTotal['mn_3']+$rowOtherTotal['mn_4']+$rowOtherTotal['mn_5'];
 
