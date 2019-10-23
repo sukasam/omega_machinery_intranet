@@ -3,23 +3,30 @@
 	include ("../../include/connect.php");
 	include ("../../include/function.php");
 	include ("config.php");
-	
-	if($_GET[$PK_field] != $_SESSION["login_id"]){header("Location:?mode=update&user_id=".$_SESSION["login_id"]."&page=1&mid=15");}
 
-	if ($_POST["mode"] <> "") { 
+	if($_GET[$PK_field] != $_SESSION['login_id']){header("Location:?mode=update&user_id=".$_SESSION['login_id']);}
+
+	if ($_POST['mode'] <> "") { 
+//		var_dump($_POST);
+//		exit();
 		$param = "";
 		$a_not_exists = array();
 		$param = get_param($a_param,$a_not_exists);
 
-		if ($_POST["mode"] == "add") {}
-//-------------------------------------------------------------------------------------------------------------------------------------
-		if ($_POST["mode"] == "update" ) { 	
-			$sql = "select * from s_user where username = '$_POST[username]' and user_id <> '$_POST[$PK_field]' ";
+		if ($_POST['mode'] == "add") { 
+			include "../include/m_add.php";
+			header ("location:index.php?" . $param); 
+		}
+		if ($_POST['mode'] == "update" ) { 
+			
+			$sql = "select * from s_user where username = '".$_POST['username']."' and user_id <> '".$_POST[$PK_field]."' ";
 			$query = @mysqli_query($conn,$sql);
 			if (@mysqli_num_rows($query) == 0) { //====> Username Avalible 
-					$rec = @mysqli_fetch_array ($query);		
+					$rec = @mysqli_fetch_array($query);		
 										
-					if($_POST[new_p]<>""){$_POST[password]=$_POST[new_p];}
+					if($_POST['new_p']<>""){$_POST['password']=$_POST['new_p'];}
+				
+					$_POST['admin_flag'] = 0;
 					
 					include "../include/m_update.php";
 					
@@ -44,42 +51,26 @@
 					} // end if ($_FILES[ufimages][name] != "")
 
 					
-					header ("location:update.php?mode=update&user_id=".$_POST[$PK_field]."&page=1&mid=15"); 
+					header ("location:index.php?" . $param); 
 			}else{
 					$msg_user=1;
 			}
 			
-			
+		}
 	}
-}
-//-------------------------------------------------------------------------------------------------------------------------------------
-	if ( ($_GET[mode] == "add") && (count($_POST) == 0)) { 
-		 Check_Permission($conn,$check_module,$_SESSION["login_id"],"add");
+	if ($_GET['mode'] == "add") { 
+		 Check_Permission($conn,$check_module,$_SESSION['login_id'],"add");
 	}
-//-------------------------------------------------------------------------------------------------------------------------------------
-	if ( ($_GET[mode] == "update") && (count($_POST) == 0) ) { 
-		 Check_Permission($conn,$check_module,$_SESSION["login_id"],"update");
+	if ($_GET['mode'] == "update") { 
+		 Check_Permission($conn,$check_module,$_SESSION['login_id'],"update");
 		$sql = "select * from $tbl_name where $PK_field = '" . $_GET[$PK_field] ."'";
 		$query = @mysqli_query($conn,$sql);
-		while ($rec = @mysqli_fetch_array ($query)) { 
+		while ($rec = @mysqli_fetch_array($query)) { 
 			$$PK_field = $rec[$PK_field];
 			foreach ($fieldlist as $key => $value) { 
 				$$value = $rec[$value];
 			}
 		}
-	}
-	
-	//--------------------------------------------------------------------------------
-	if($_GET['del_id'] <> ""){	
-		$a_size = array('100');	
-		foreach($a_size as $key => $value) {	
-			if(file_exists("../../upload/catalog/".$_GET['del_id']))
-			@unlink("../../upload/catalog/".$_GET['del_id']);		
-		}	
-			$sql = "update $tbl_name set u_images =' ' where $PK_field = '".$_GET[$PK_field]."' ";
-			@mysqli_query($conn,$sql);	
-			 
-			 header ("location:update.php?mode=update&user_id=".$_SESSION["login_id"]."&page=1&mid=15"); 
 	}
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
@@ -87,9 +78,9 @@
 <HEAD>
 <TITLE><?php  echo $s_title;?></TITLE>
 <META content="text/html; charset=utf-8" http-equiv=Content-Type>
-<LINK rel=stylesheet type=text/css href="../css/reset.css" media=screen>
-<LINK rel=stylesheet type=text/css href="../css/style.css" media=screen>
-<LINK rel=stylesheet type=text/css href="../css/invalid.css" media=screen>
+<LINK rel="stylesheet" type=text/css href="../css/reset.css" media=screen>
+<LINK rel="stylesheet" type=text/css href="../css/style.css" media=screen>
+<LINK rel="stylesheet" type=text/css href="../css/invalid.css" media=screen>
 <SCRIPT type=text/javascript src="../js/jquery-1.3.2.min.js"></SCRIPT>
 <SCRIPT type=text/javascript src="../js/simpla.jquery.configuration.js"></SCRIPT>
 <SCRIPT type=text/javascript src="../js/facebox.js"></SCRIPT>
@@ -121,6 +112,7 @@ function check(frm){
 		}
 }	
 </script>
+</script>
 </HEAD>
 <?php  include ("../../include/function_script.php"); ?>
 <BODY>
@@ -131,25 +123,25 @@ function check(frm){
 </NOSCRIPT>
 <?php  include('../top.php');?>
 <P id=page-intro><?php  if ($mode == "add") { ?>Enter new information<?php  } else { ?>แก้ไข	[<?php  echo $page_name; ?>]<?php  } ?>	</P>
-<!--<UL class=shortcut-buttons-set>
+<UL class=shortcut-buttons-set>
   <LI><A class=shortcut-button href="javascript:history.back()"><SPAN><IMG  alt=icon src="../images/btn_back.gif"><BR>
   กลับ</SPAN></A></LI>
-</UL>-->
+</UL>
 <!-- End .clear -->
 <DIV class=clear></DIV><!-- End .clear -->
 <DIV class=content-box><!-- Start Content Box -->
 <DIV class=content-box-header align="right">
 
-<H3 align="left"><?php  echo $page_name; ?></H3>
+<H3 align="left"><?php  echo $check_module; ?></H3>
 <DIV class=clear>
   
 </DIV></DIV><!-- End .content-box-header -->
 <DIV class=content-box-content>
 <DIV id=tab1 class="tab-content default-tab">
-  <form action="update.php" method="post"  name="form1" id="form1"   onSubmit="return check(this)" enctype="multipart/form-data">
+  <form action="update.php" method="post"  name="form1" id="form1" onSubmit="return check(this)" enctype="multipart/form-data">
     <div class="formArea">
       <fieldset>
-        <legend><?php  echo $page_name; ?></legend>
+      <legend><?php  echo $page_name; ?> </legend>
         <table width="100%" cellspacing="0" cellpadding="0" border="0">
           <tr>
             <td><table class="formFields" cellspacing="0" width="100%">
@@ -161,13 +153,13 @@ function check(frm){
                 <td class="name">ชื่อเข้าใช้งาน <span class="required">*</span></td>
                 <td><input name="username" type="text" id="username"  value="<?php  echo $username; ?>"  style="width:200px;"></td>
               </tr>
-              <?php  if ($_REQUEST[mode] == "add") { ?>
+              <?php  if ($_REQUEST['mode'] == "add") { ?>
               <tr >
                 <td class="name">รหัสผ่าน <span class="required">*</span></td>
                 <td><input name="password" type="password" id="password" value="<?php  echo $password;?>"  style="width:200px;"></td>
               </tr>
               <?php  } ?>
-              <?php  if ($_REQUEST[mode] == "update") { ?>
+              <?php  if ($_REQUEST['mode'] == "update") { ?>
               <tr >
                 <td class="name">รหัสผ่านเดิม</td>
                 <td>*****
@@ -184,33 +176,49 @@ function check(frm){
                 <td><input name="ufimages" type="file" id="ufimages">
                   <br>
 					<?php 
-					  if(file_exists("../../upload/user/".$u_images)){?>
-                  <img src="../../upload/user/<?php  echo $u_images?>" width="155">[ <a href="?mode=<?php  echo $_GET[mode]?>&<?php  echo $PK_field?>=<?php  echo $$PK_field;?>&<?php  echo $FR_field?>=<?php  echo $$FR_field;?>&del_id=<?php  echo $u_images;?>&page=<?php  echo $page;?>">Delete</a>]
+					  if($u_images != ''){?>
+                  <img src="../../upload/user/<?php  echo $u_images?>" width="155">
+<!--                  [ <a href="?mode=<?php  echo $_GET['mode']?>&<?php  echo $PK_field?>=<?php  echo $$PK_field;?>&<?php  echo $FR_field?>=<?php  echo $$FR_field;?>&del_id=<?php  echo $u_images;?>&page=<?php  echo $page;?>">Delete</a>]-->
                   <?php  }?>
                   <input name="u_images" type="hidden" value="<?php  echo $u_images; ?>">
                   </td>
               </tr>
-              <!--
-              <tr >
-                <td class="name">Super admin</td>
-                <td><input name="admin_flag" type="checkbox" id="admin_flag" value="1" <?php  if($admin_flag == 1) echo "checked";?>></td>
+              <tr>
+              	<td>
+              		ลายเซ็นดิจิทัล
+              	</td>
+              	<td>
+              		<?php 
+					if(file_exists('../../upload/user/signature/'.base64_encode($_SESSION['login_id']).'.png')){
+						//echo "Have";
+						?>
+					<img src="../../upload/user/signature/<?php echo base64_encode($_SESSION['login_id']).".png";?>" width="250" style="border: 1px solid;"><br><br>
+					<a href="signature.php" target="_blank">[เปลี่ยนลายเซ็น]</a>
+						<?php
+					}else{
+						//echo "Not Have";
+						?>
+						<a href="signature.php" target="_blank"><u>เพิ่มลายเซ็น</u></a>
+						<?php
+					}
+					?>
+              		
+              	</td>
               </tr>
-              -->
-              <tr >
-                <td class="name">&nbsp;</td>
-                <td><input type="submit" name="Submit" value="Submit" class=button>
-                  <input type="reset" name="Submit" value="Reset" class=button>
-                  <?php  
+          </table></td>
+          </tr>
+        </table>
+        </fieldset>
+    </div><br>
+    <div class="formArea">
+      <input type="submit" name="Submit" value="Submit" class="button">
+      <input type="reset" name="Submit" value="Reset" class="button">
+      <?php  
 			$a_not_exists = array();
 			post_param($a_param,$a_not_exists); 
 			?>
-                  <input name="mode" type="hidden" id="mode" value="<?php  echo $_REQUEST[mode];?>">
-                  <input name="<?php  echo $PK_field;?>" type="hidden" id="<?php  echo $PK_field;?>" value="<?php  echo $_REQUEST[$PK_field];?>"></td>
-              </tr>
-            </table></td>
-          </tr>
-        </table>
-      </fieldset>
+      <input name="mode" type="hidden" id="mode" value="<?php  echo $_GET['mode'];?>">
+      <input name="<?php  echo $PK_field;?>" type="hidden" id="<?php  echo $PK_field;?>" value="<?php  echo $_GET[$PK_field];?>">
     </div>
   </form>
 </DIV>

@@ -2129,5 +2129,26 @@ function userGroup($conn,$user_id){
 	
 	return $row_user_group['group_name'];	
 }
+
+function getpod_id($conn,$value) {
+	$row_protype = @mysqli_fetch_array(@mysqli_query($conn,"SELECT * FROM s_group_pod WHERE group_name like '%".$value."%'"));
+	return $row_protype['group_id'];
+}
+
+function get_firstorder_qr($conn,$sn) {
+	
+	//AND `status_use` != '2' ดาวแดง
+	
+	$row_first_order = @mysqli_fetch_array(@mysqli_query($conn,"SELECT *  FROM `s_first_order` WHERE 1 AND (`pro_sn1` LIKE '".$sn."' OR `pro_sn1` LIKE '".$sn."' OR `pro_sn2` LIKE '".$sn."' OR `pro_sn3` LIKE '".$sn."' OR `pro_sn4` LIKE '".$sn."' OR `pro_sn5` LIKE '".$sn."' OR `pro_sn6` LIKE '".$sn."' OR `pro_sn7` LIKE '".$sn."') AND `status_use` != '2' ORDER BY `fo_id`  DESC"));
+	
+	return $row_first_order;
+}
+
+function chkSeries($conn,$sn) {
+	
+	$qu_prosn = @mysqli_query($conn,"SELECT *  FROM `s_first_order` WHERE 1 AND (`pro_sn1` LIKE '".$sn."' OR `pro_sn1` LIKE '".$sn."' OR `pro_sn2` LIKE '".$sn."' OR `pro_sn3` LIKE '".$sn."' OR `pro_sn4` LIKE '".$sn."' OR `pro_sn5` LIKE '".$sn."' OR `pro_sn6` LIKE '".$sn."' OR `pro_sn7` LIKE '".$sn."') AND `status_use` != '2' ORDER BY `fo_id`  DESC");
+	$row_prosn = @mysqli_num_rows($qu_prosn);
+	return $row_prosn;
+}
 ?>
 

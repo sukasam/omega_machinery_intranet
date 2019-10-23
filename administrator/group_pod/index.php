@@ -3,14 +3,14 @@
 	include ("../../include/connect.php");
 	include ("../../include/function.php");
 	include ("config.php");
-	Check_Permission($conn,$check_module,$_SESSION["login_id"],"read");
-	if ($_GET["page"] == ""){$_REQUEST['page'] = 1;	}
+	Check_Permission($conn,$check_module,$_SESSION['login_id'],"read");
+	if ($_GET['page'] == ""){$_REQUEST['page'] = 1;	}
 	$param = get_param($a_param,$a_not_exists);
 	
-	if($_GET["action"] == "delete"){
+	if($_GET['action'] == "delete"){
 		$code = Check_Permission($conn,$check_module,$_SESSION["login_id"],"delete");		
 		if ($code == "1") {
-			$sql = "delete from $tbl_name  where $PK_field = '".$_GET[$PK_field]."'";
+			$sql = "delete from $tbl_name  where $PK_field = '$_GET[$PK_field]'";
 			@mysqli_query($conn,$sql);			
 			header ("location:index.php");
 		} 
@@ -21,9 +21,9 @@
 <HEAD>
 <TITLE><?php  echo $s_title;?></TITLE>
 <META content="text/html; charset=utf-8" http-equiv=Content-Type>
-<LINK rel=stylesheet type=text/css href="../css/reset.css" media=screen>
-<LINK rel=stylesheet type=text/css href="../css/style.css" media=screen>
-<LINK rel=stylesheet type=text/css href="../css/invalid.css" media=screen>
+<LINK rel="stylesheet" type=text/css href="../css/reset.css" media=screen>
+<LINK rel="stylesheet" type=text/css href="../css/style.css" media=screen>
+<LINK rel="stylesheet" type=text/css href="../css/invalid.css" media=screen>
 <SCRIPT type=text/javascript src="../js/jquery-1.3.2.min.js"></SCRIPT>
 <SCRIPT type=text/javascript src="../js/simpla.jquery.configuration.js"></SCRIPT>
 <SCRIPT type=text/javascript src="../js/facebox.js"></SCRIPT>
@@ -94,7 +94,7 @@ function check_select(frm){
     <TABLE>
       <THEAD>
         <TR>
-          <TH width="3%"><INPUT class=check-all type=checkbox name="ca" value="true" onClick="chkAll(this.form, 'del[]', this.checked)"></TH>
+<!--          <TH width="3%"><INPUT class=check-all type=checkbox name="ca" value="true" onClick="chkAll(this.form, 'del[]', this.checked)"></TH>-->
           <TH width="9%" <?php  Show_Sort_bg ("user_id", $orderby) ?>> <?php 
 		$a_not_exists = array('orderby','sortby');
 		$param2 = get_param($a_param,$a_not_exists);
@@ -112,6 +112,7 @@ function check_select(frm){
   &nbsp;</TH>
           <TH width="18%" <?php  Show_Sort_bg ("group_name", $orderby) ?>> <?php   Show_Sort_new ("group_name", "S/N", $orderby, $sortby,$page,$param2);?>
             &nbsp;</TH>-->
+          <TH width="5%"><a>ซีรีย์</a></TH>
           <TH width="5%"><a>แก้ไข</a></TH>
           <TH width="4%"><a>ลบ</a></TH>
         </TR>
@@ -126,29 +127,33 @@ function check_select(frm){
 				   	$sql = " select *,$tbl_name.create_date as c_date from $tbl_name  where 1 ";
 					if ($_GET[$PK_field] <> "") $sql .= " and ($PK_field  = '" . $_GET[$PK_field] . " ' ) ";					
 					if ($_GET[$FR_field] <> "") $sql .= " and ($FR_field  = '" . $_GET[$FR_field] . " ' ) ";					
- 					if ($_GET["keyword"] <> "") { 
-						$sql .= "and ( " .  $PK_field  . " like '%".$_GET["keyword"]."%' ";
+ 					if ($_GET['keyword'] <> "") { 
+						$sql .= "and ( " .  $PK_field  . " like '%".$_GET['keyword']."%' ";
 						if (count ($search_key) > 0) { 
 							$search_text = " and ( " ;
 							foreach ($search_key as $key=>$value) { 
-									$subtext .= "or " . $value  . " like '%" . $_GET["keyword"] . "%'";
+									$subtext .= "or " . $value  . " like '%" . $_GET['keyword'] . "%'";
 							}	
 						}
 						$sql .=  $subtext . " ) ";
 					} 
+		  			
+		  			
+					$sql .= " GROUP BY group_name";
+		  	
 					if ($orderby <> "") $sql .= " order by " . $orderby;
 					if ($sortby <> "") $sql .= " " . $sortby;
 					include ("../include/page_init.php");
 					//echo $sql;
 					$query = @mysqli_query($conn,$sql);
-					if($_GET["page"] == "") $_GET["page"] = 1;
-					$counter = ($_GET["page"]-1)*$pagesize;
+					if($_GET['page'] == "") $_GET['page'] = 1;
+					$counter = ($_GET['page']-1)*$pagesize;
 					
-					while ($rec = @mysqli_fetch_array ($query)) { 
+					while ($rec = @mysqli_fetch_array($query)) { 
 					$counter++;
 				   ?>
         <TR>
-          <TD><INPUT type=checkbox name="del[]" value="<?php  echo $rec[$PK_field]; ?>" ></TD>
+<!--          <TD><INPUT type=checkbox name="del[]" value="<?php  echo $rec[$PK_field]; ?>" ></TD>-->
           <TD><span class="text"><?php  echo sprintf("%04d",$counter); ?></span></TD>
           <!--<TD><span class="text"><?php  echo $rec["group_spro_id"] ; ?></span></TD>-->
           <TD><span class="text"><?php  echo $rec["group_name"] ; ?></span></TD>
@@ -156,7 +161,9 @@ function check_select(frm){
           <!--<TD><span class="text"><?php  echo $rec["group_pro_pod"] ; ?></span></TD>
           <TD><span class="text"><?php  echo $rec["group_pro_sn"] ; ?></span></TD>-->
           <TD><!-- Icons -->
-            <A title=Edit href="update.php?mode=update&<?php  echo $PK_field; ?>=<?php  echo $rec["$PK_field"]; if($param <> "") {?>&<?php  echo $param; }?>"><IMG alt=Edit src="../images/pencil.png"></A> <A title=Delete  href="#"></A></TD>
+            <A title='Series' href="../group_sn/index.php?pod=<?php  echo $rec[$PK_field];?>"><IMG alt=Edit src="../images/icon2/addedit.png" width="25"></A></TD>
+          <TD><!-- Icons -->
+            <A title=Edit href="update.php?mode=update&<?php  echo $PK_field; ?>=<?php  echo $rec[$PK_field]; if($param <> "") {?>&<?php  echo $param; }?>"><IMG alt=Edit src="../images/pencil.png"></A> <A title=Delete  href="#"></A></TD>
           <TD><A title=Delete  href="#"><IMG alt=Delete src="../images/cross.png" onClick="confirmDelete('?action=delete&<?php  echo $PK_field; ?>=<?php  echo $rec[$PK_field];?>','Group  <?php  echo $rec[$PK_field];?> : <?php  echo $rec["group_name"];?>')"></A></TD>
         </TR>  
 		<?php  }?>
@@ -164,6 +171,7 @@ function check_select(frm){
     </TABLE>
     <br><br>
     <DIV class="bulk-actions align-left">
+<!--
             <SELECT name="choose_action" id="choose_action">
               <OPTION selected value="">กรุณาเลือก...</OPTION>
               <OPTION value="del">ลบ</OPTION>
@@ -173,6 +181,7 @@ function check_select(frm){
 				post_param($a_param,$a_not_exists); 
 			?>
             <input class=button name="Action2" type="submit" id="Action2" value="ตกลง">
+-->
           </DIV> <DIV class=pagination> <?php  include("../include/page_show.php");?> </DIV>
   </form>  
 </DIV><!-- End #tab1 -->

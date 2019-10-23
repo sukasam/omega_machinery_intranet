@@ -7,19 +7,19 @@ include ("config.php");
 	//$del = $_POST['del'];
 	Check_Permission($conn,$check_module,$_SESSION["login_id"],"delete");
 	$param = get_param($a_param,$a_not_exists);
-	if (!isset ($_POST[del])) header ("location:index.php?$param"); 
+	if (!isset ($_POST['del'])) header ("location:index.php?".$param); 
 	if ($_POST[Action] == "OK") { 
 		if ($_POST[confirm] == "yes") { 
-			$msg = explode(" ", $_POST[msg]);
+			$msg = explode(" ", $_POST['msg']);
 			foreach ($msg as $key=>$value) { 
 				$sql_su = "delete from $tbl_name where " . $PK_field . " = '$value'";
 				@mysqli_query($conn,$sql_su);				
 			} 
-			header ("location:index.php?$param"); 	
+			header ("location:index.php?".$param); 	
 		}
 		else
 		{
-			header ("location:index.php?$param"); 	
+			header ("location:index.php?".$param); 	
 		}
 	}
 ?>
@@ -28,9 +28,9 @@ include ("config.php");
 <HEAD>
 <TITLE><?php  echo $s_title;?></TITLE>
 <META content="text/html; charset=utf-8" http-equiv=Content-Type>
-<LINK rel=stylesheet type=text/css href="../css/reset.css" media=screen>
-<LINK rel=stylesheet type=text/css href="../css/style.css" media=screen>
-<LINK rel=stylesheet type=text/css href="../css/invalid.css" media=screen>
+<LINK rel="stylesheet" type=text/css href="../css/reset.css" media=screen>
+<LINK rel="stylesheet" type=text/css href="../css/style.css" media=screen>
+<LINK rel="stylesheet" type=text/css href="../css/invalid.css" media=screen>
 <SCRIPT type=text/javascript src="../js/jquery-1.3.2.min.js"></SCRIPT>
 <SCRIPT type=text/javascript src="../js/simpla.jquery.configuration.js"></SCRIPT>
 <SCRIPT type=text/javascript src="../js/facebox.js"></SCRIPT>
@@ -67,7 +67,7 @@ include ("config.php");
     <ul>
       <?php  
 					$msg = "";
-				  foreach ($_POST[del] as $key =>$value) { ?>
+				  foreach ($_POST['del'] as $key =>$value) { ?>
       <li> <?php  echo Show_data($tbl_name,$PK_field, $value, $field_confirm_showname) ; ?>
         <?php  $msg .= $value . " " ;
                      }
