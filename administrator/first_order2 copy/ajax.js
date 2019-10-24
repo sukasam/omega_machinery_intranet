@@ -61,11 +61,11 @@ function calprice(prval,pid,param1){
    xmlHttp.send(null);
 }
 
-function get_cus(pval,keys){
+function get_podkey(pval,keys,keys2,keys3){
 	//alert(keys);
 	var xmlHttp;
    xmlHttp=GetXmlHttpObject(); //Check Support Brownser
-   URL = pathLocal+'ajax_return.php?action=getcus&pval='+pval+'&keys='+keys;
+   URL = pathLocal+'ajax_return.php?action=getpodkey&pval='+pval+'&keys='+keys+'&keys2='+keys2+'&keys3='+keys3;
    if (xmlHttp==null){
       alert ("Browser does not support HTTP Request");
       return;
@@ -81,11 +81,11 @@ function get_cus(pval,keys){
    xmlHttp.send(null);
 }
 
-function get_podkey(pval,keys){
+function get_snkey(pval,keys,pod){
 	//alert(keys);
 	var xmlHttp;
    xmlHttp=GetXmlHttpObject(); //Check Support Brownser
-   URL = pathLocal+'ajax_return.php?action=getpodkey&pval='+pval+'&keys='+keys;
+   URL = pathLocal+'ajax_return.php?action=getsnkey&pval='+pval+'&keys='+keys+'&pod='+pod;
    if (xmlHttp==null){
       alert ("Browser does not support HTTP Request");
       return;
