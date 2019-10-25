@@ -139,7 +139,7 @@ function check_select(frm){
 					} 
 		  			
 		  			
-					$sql .= " GROUP BY group_name";
+					//$sql .= " GROUP BY group_name";
 		  	
 					if ($orderby <> "") $sql .= " order by " . $orderby;
 					if ($sortby <> "") $sql .= " " . $sortby;
