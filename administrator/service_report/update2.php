@@ -67,7 +67,56 @@
 						 
 			include ("../include/m_update.php");
 			
-			$id = $_REQUEST[$PK_field];			
+			$id = $_REQUEST[$PK_field];	
+			
+			if($_REQUEST['taget'] == "service"){
+				
+				@mysqli_query($conn,"UPDATE `s_service_report` SET `latitude` = '".$_SESSION["LATITUDE"]."', `longitude` = '".$_SESSION["LONGITUDE"]."' WHERE `sr_id` = ".$id.";");
+				
+				$checkSImg = '';
+				$numImg = 1;
+				
+				for($i=0;$i<count($_FILES["fileSUpload"]["name"]);$i++){
+					
+					if(trim($_FILES["fileSUpload"]["tmp_name"][$i]) != ""){
+						
+						@unlink("../../upload/service_images/".$listSImg[$i]);
+						
+						$mname="";
+						$mname=gen_random_num(3);
+						$filename = "";
+						$name_data = explode(".",$_FILES['fileSUpload']['name'][$i]);
+						$type = $name_data[1];
+						$new_images = $numImg.date('YmdHis').$mname.".".$type;
+						
+						$images = $_FILES["fileSUpload"]["tmp_name"][$i];
+						
+						$checkSImg .= $new_images.',';
+						
+						//copy($_FILES["fileSUpload"]["tmp_name"][$i],"../../upload/service_images/".$_FILES["fileSUpload"]["name"][$i]);
+						$width = 400; //*** Fix Width & Heigh (Autu caculate) ***//
+						$size=GetimageSize($images);
+						$height=round($width*$size[1]/$size[0]);
+						$images_orig = ImageCreateFromJPEG($images);
+						$photoX = ImagesX($images_orig);
+						$photoY = ImagesY($images_orig);
+						$images_fin = ImageCreateTrueColor($width, $height);
+						ImageCopyResampled($images_fin, $images_orig, 0, 0, 0, 0, $width+1, $height+1, $photoX, $photoY);
+						ImageJPEG($images_fin,"../../upload/service_images/".$new_images);
+						ImageDestroy($images_orig);
+						ImageDestroy($images_fin);
+					}
+					
+					$numImg++;
+				}
+				
+				$service_image = substr($checkSImg,0,-1);
+				
+				if($service_image){
+					@mysqli_query($conn,"UPDATE `s_service_report` SET `service_image` = '".$service_image."' WHERE `sr_id` = ".$id.";");
+				}
+
+			}
 				
 			include_once("../mpdf54/mpdf.php");
 			include_once("form_serviceclose.php");
@@ -77,8 +126,11 @@
 			$chaf = preg_replace("/\//","-",$_POST['sv_id']); 
 			$mpdf->Output('../../upload/service_report_close/'.$chaf.'.pdf','F');
 			
-			
-			header ("location:index.php?" . $param); 
+			if($_REQUEST['taget'] == "service"){
+				header ("location:service.php?cus_id=".$_POST['cus_id']); 
+			}else{
+				header ("location:index.php?" . $param); 
+			}
 		}
 		
 	}
@@ -431,6 +483,7 @@ function check(frm){
 	      <strong> ถัง </strong></td>
 	    </tr>
 	  </table>
+<!--
 	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tb3">
   <tr>
     <td width="48%"><table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -511,6 +564,187 @@ function check(frm){
      </table></td>
   </tr>
 </table>
+-->
+	
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tb3 tblistChk">
+	<tr>
+		<td colspan="2"><p style="text-align: center;"><strong>รายการตรวจเช็ค</strong></p></td>
+	</tr>
+	<tr>
+		<td>
+			<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tblistChk">
+			  <tr>
+				<td width="50%"><strong>ระบบไฟฟ้า</strong></td>
+			  </tr>
+			  <tr>
+				<td style="vertical-align:top;"><input type="checkbox" name="ckl_list2[]" value="1" id="checkbox" <?php  if(@in_array('1', $ckl_list )){echo 'checked="checked"';}?>>
+				  ตรวจเช็คชุดควบคุม</td>
+			  </tr>
+
+			  <tr>
+				<td ><input type="checkbox" name="ckl_list2[]" value="2" id="checkbox2" <?php  if(@in_array('2', $ckl_list )){echo 'checked="checked"';}?>>
+				  ตรวจเช็ค/ขัน Terminal</td>
+			  </tr>
+
+			  <tr>
+				<td ><input type="checkbox" name="ckl_list2[]" value="3" id="checkbox3" <?php  if(@in_array('3', $ckl_list )){echo 'checked="checked"';}?>>
+				  วัดแรงดันไฟฟ้า และกระแสไฟฟ้า</td>
+			  </tr>
+
+			  <tr>
+				<td ><input type="checkbox" name="ckl_list2[]" value="4" id="checkbox4" <?php  if(@in_array('4', $ckl_list )){echo 'checked="checked"';}?>>
+				  ตรวจเช็ค Heater</td>
+			  </tr>
+
+			  <tr>
+				<td ><input type="checkbox" name="ckl_list2[]" value="5" id="checkbox5" <?php  if(@in_array('5', $ckl_list )){echo 'checked="checked"';}?>>
+				  ตรวจเช็คมอเตอร์</td>
+			  </tr>
+    		</table>
+		</td>
+		<td>
+			<table>
+				<tr>
+					<td width="50%"><strong>ระบบประปา</strong></td>
+				  </tr>
+
+				  <tr>
+				  <td ><input type="checkbox" name="ckw_list2[]" value="1" id="checkbox6" <?php  if(@in_array('1', $ckw_list )){echo 'checked="checked"';}?>>
+					  ตรวจเช็คน้ำรั่ว/ซึมภายนอก</td>
+				  </tr>
+
+				  <tr>
+					<td ><input type="checkbox" name="ckw_list2[]" value="2" id="checkbox7" <?php  if(@in_array('2', $ckw_list )){echo 'checked="checked"';}?>>
+					  ถอดล้างตะแกรงกรองเศษอาหาร</td>
+				  </tr>
+
+				  <tr>
+					<td ><input type="checkbox" name="ckw_list2[]" value="3" id="checkbox8" <?php  if(@in_array('3', $ckw_list )){echo 'checked="checked"';}?>>
+					  ถอดล้างสแตนเนอร์ Solinoid Value</td>
+				  </tr>
+
+				  <tr>
+					<td ><input type="checkbox" name="ckw_list2[]" value="4" id="checkbox9" <?php  if(@in_array('4', $ckw_list )){echo 'checked="checked"';}?>>
+					  ถอดล้างแขนฉีด/หัวฉีดน้ำ</td>
+				  </tr>
+
+				  <tr>
+					<td ><input type="checkbox" name="ckw_list2[]" value="5" id="checkbox10" <?php  if(@in_array('5', $ckw_list )){echo 'checked="checked"';}?>>
+					  ทำความสะอาดภายใน/ภายนอก</td>
+				  </tr>
+			</table>
+		</td>
+	</tr>
+  <tr>
+    <td width="50%" style="vertical-align:top;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+      <tr>
+        <td><strong>รายละเอียดการบริการและการแจ้งซ่อม</strong></td>
+      </tr>
+      <tr>
+        <td><div class="setting" id="slapp" style="height: auto;">
+          <div class="sc_wrap">
+            <ul>
+              <?php  
+					 	$qu_fix = @mysqli_query($conn,"SELECT * FROM s_group_fix ORDER BY group_name ASC");
+						$numfix = @mysqli_num_rows($qu_fix);
+						$nd = 1;
+						while($row_fix = @mysqli_fetch_array($qu_fix)){
+							?>
+              <li>
+                <input type="checkbox" name="ckf_list2[]" onClick="CountChecks('listone',5,this,<?php  echo $numfix;?>)" value="<?php  echo $row_fix['group_id'];?>" id="checkbox<?php  echo $nd;?>" <?php  if(@in_array( $row_fix['group_id'] , $ckf_list )){echo 'checked="checked"';}?>>
+                <label for="checkbox<?php  echo $nd;?>" style="font-weight:normal;"><?php  echo $row_fix['group_name'];?></label>
+              </li>
+              <?php 	
+						$nd++;}
+					 ?>
+            </ul>
+            <div class="clear"></div>
+          </div>
+        </div></td>
+      </tr>
+    </table></td>
+     <td width="50%" style="vertical-align:top;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
+       <tr>
+         <td style="text-align:center;"><strong>รายละเอียดการให้บริการ / ข้อเสนอแนะ</strong></td>
+       </tr>
+       <tr>
+         <td style="text-align:left;"><span style="font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:5px;">
+           <textarea name="detail_recom2" class="inpfoder" id="detail_recom2" style="width:50%;height:180px;"><?php  echo strip_tags($detail_recom2);?></textarea>
+         </span></td>
+       </tr>
+       <?php
+		 if($_GET['taget'] == 'service'){
+			 $srImg = getServiceImg($conn,$_GET['sr_id']);
+			 $sImg = explode(',',$srImg);
+			 $svImgArray = array();
+			 $svImgesArray = array();
+			 for($v=0;$v<count($sImg);$v++){
+				 $svImgArray[] = substr($sImg[$v],0,1);
+				 $svImgesArray[] = $sImg[$v];
+			 }
+			 
+			?>
+			<tr>
+				<td style="text-align:left;">
+				    <center><strong>รูปภาพเข้าให้บริการ</strong></center><br>
+					<table>
+						<tr>
+							<td colspan="2"><strong>ภาพก่อนบริการ</strong></td>
+						</tr>
+						<tr>
+							<td>1.</td>
+							<td><input type="file" name="fileSUpload[]"></td>
+							<td style="text-align: right;"><?php if(in_array('1',$svImgArray)){
+								 $key = array_search('1', $svImgArray);
+								?><a href="../../upload/service_images/<?php echo $svImgesArray[$key];?>" target="_blank"><img src="../images/icon2/mediamanager.png" width="25"></a><?php }?></td>
+						</tr>
+						<tr>
+							<td>2.</td>
+							<td><input type="file" name="fileSUpload[]"></td>
+							<td style="text-align: right;"><?php if(in_array('2',$svImgArray)){
+								$key = array_search('2', $svImgArray);
+								?><a href="../../upload/service_images/<?php echo $svImgesArray[$key];?>" target="_blank"><img src="../images/icon2/mediamanager.png" width="25"></a><?php }?></td>
+						</tr>
+						<tr>
+							<td>3.</td>
+							<td><input type="file" name="fileSUpload[]"></td>
+							<td style="text-align: right;"><?php if(in_array('3',$svImgArray)){
+								$key = array_search('3', $svImgArray);
+								?><a href="../../upload/service_images/<?php echo $svImgesArray[$key];?>" target="_blank"><img src="../images/icon2/mediamanager.png" width="25"></a><?php }?></td>
+						</tr>
+						<tr>
+							<td colspan="2"><strong>ภาพหลังบริการ</strong></td>
+						</tr>
+						<tr>
+							<td>4.</td>
+							<td><input type="file" name="fileSUpload[]"></td>
+							<td style="text-align: right;"><?php if(in_array('4',$svImgArray)){
+								$key = array_search('4', $svImgArray);
+								?><a href="../../upload/service_images/<?php echo $svImgesArray[$key];?>" target="_blank"><img src="../images/icon2/mediamanager.png" width="25"></a><?php }?></td>
+						</tr>
+						<tr>
+							<td>5.</td>
+							<td><input type="file" name="fileSUpload[]"></td>
+							<td style="text-align: right;"><?php if(in_array('5',$svImgArray)){
+								$key = array_search('5', $svImgArray);
+								?><a href="../../upload/service_images/<?php echo $svImgesArray[$key];?>" target="_blank"><img src="../images/icon2/mediamanager.png" width="25"></a><?php }?></td>
+						</tr>
+						<tr>
+							<td>6.</td>
+							<td><input type="file" name="fileSUpload[]"></td>
+							<td style="text-align: right;"><?php if(in_array('6',$svImgArray)){
+								$key = array_search('6', $svImgArray);
+								?><a href="../../upload/service_images/<?php echo $svImgesArray[$key];?>" target="_blank"><img src="../images/icon2/mediamanager.png" width="25"></a><?php }?></td>
+						</tr>
+					</table>
+				</td>
+			 </tr>
+			<?php 
+		 }
+	   ?>
+     </table></td>
+  </tr>
+</table>
 
 	<?php  
 		
@@ -568,7 +802,34 @@ function check(frm){
         </table></td>
         <td width="33%" style="border:1px solid #000000;font-size:11px;font-family:Verdana, Geneva, sans-serif;text-align:center;padding-top:10px;padding-bottom:10px;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
-            <td style="border-bottom:1px solid #000000;padding-bottom:10px;font-size:11px;font-family:Verdana, Geneva, sans-serif;text-align:center;">&nbsp;</td>
+            <td style="border-bottom:1px solid #000000;padding-bottom:10px;font-size:11px;font-family:Verdana, Geneva, sans-serif;text-align:center;">
+            	<?php
+				
+				$chkHCustomerAP = checkHCustomerApplove($conn,$sr_id);
+				
+				$hCustomerSignature = '';
+				
+				if($_GET['taget'] === "service"){
+					
+					if($chkHCustomerAP !== '' && $chkHCustomerAP != NULL){
+						echo $hCustomerSignature = '<img src="../../upload/customer/signature/'.$chkHCustomerAP.'" height="50" border="0" />';
+					}else{
+						?>
+						<input type="button" name="Cancel" value=" ลายเช็นผู้รับบริการ " class="button bt_cancel" onClick="window.location='signature.php?mode=update&sr_id=<?php echo $_GET['sr_id'];?>&page=<?php echo $_GET['page'];?>&taget=service&cus_id=<?php echo $_GET['cus_id'];?>';" style="width: 100%;height: 40px;">
+						<?php
+					}
+					
+				}else{
+
+					if($chkHCustomerAP !== '' && $chkHCustomerAP != NULL){
+						echo $hCustomerSignature = '<img src="../../upload/customer/signature/'.$chkHCustomerAP.'" height="50" border="0" />';
+					}else{
+						echo $hCustomerSignature = '<img src="../../upload/customer/signature/none.png" height="50" border="0" />';
+					}
+
+				}
+			?>
+            </td>
           </tr>
           <tr>
             <td style="padding-top:10px;padding-bottom:10px;font-size:11px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>ผู้รับบริการ</strong></td>
@@ -603,8 +864,23 @@ function check(frm){
      </fieldset>
     </div><br>
     <div class="formArea">
-      <input type="submit" name="Submit" value="Submit" class="button">
-      <input type="reset" name="Submit" value="Reset" class="button">
+     <div style="text-align: center;">
+      <?php
+		 if($_GET['taget'] === "service"){
+			 if($chkHCustomerAP !== '' && $chkHCustomerAP != NULL){
+				 ?>
+				 <input type="submit" name="Submit" value=" บันทึก " class="button bt_save">
+				 <?php
+			 }
+		 }else{
+			 ?>
+			 <input type="submit" name="Submit" value=" บันทึก " class="button bt_save">
+			 <?php
+		 }
+	 ?>
+	  
+      <input type="button" name="Cancel" value=" ยกเลิก " class="button bt_cancel" onClick="window.history.back()">
+      </div>
       <?php  
 			$a_not_exists = array();
 			post_param($a_param,$a_not_exists); 
@@ -612,7 +888,9 @@ function check(frm){
       <input name="mode" type="hidden" id="mode" value="<?php  echo $_GET[mode];?>">
       <input name="detail_calpr" type="hidden" id="detail_calpr" value="<?php  echo strip_tags($detail_calpr);?>">
       <input name="detail_recom" type="hidden" id="detail_recom" value="<?php  echo strip_tags($detail_recom);?>">
-      <input name="st_setting" type="hidden" id="st_setting" value="<?php  echo $st_setting;?>">   
+      <input name="supply" type="hidden" id="supply" value="<?php  echo $supply;?>">
+      <input name="st_setting" type="hidden" id="st_setting" value="<?php  echo $st_setting;?>">
+      <input name="taget" type="hidden" id="taget" value="<?php  echo $_GET['taget'];?>">     
       <input name="<?php  echo $PK_field;?>" type="hidden" id="<?php  echo $PK_field;?>" value="<?php  echo $_GET[$PK_field];?>">
       <input name="srid" type="hidden" id="mode" value="<?php  echo $row_service2['sr_id'];?>">
     </div>

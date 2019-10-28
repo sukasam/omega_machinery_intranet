@@ -898,17 +898,17 @@ div.validateresult{background:#FF9; padding:12px; margin:-20px -20px 20px -20px;
 }
 
 .setting {
-    color: #000000;
+	color: #000000;
     font-size: 12px;
     height: 110px;
     letter-spacing: -1px;
     padding: 2px 2px 0 0;
     position: relative;
-    width: 178px;
+    width: 100%;
 }
 
 .setting .sc_wrap {
-    height: 178px;
+	height: 530px;
     overflow: auto;
     width: 100%;
 }
@@ -943,4 +943,42 @@ div.validateresult{background:#FF9; padding:12px; margin:-20px -20px 20px -20px;
 }
 .tbMain tr td{
 	border: 1px solid #DDDDDD;
+}
+.bt_save{
+    background-color: #4CAF50 !important;
+    background: #4CAF50 !important;
+    border: 1px solid #4CAF50 !important;
+    width: 100px;
+    height: 30px;
+}
+.bt_cancel{
+	background-color: #F44336 !important;
+    background: #F44336 !important;
+    border: 1px solid #F44336 !important;
+    width: 100px;
+    height: 30px;
+}
+.appAlr{
+	position: absolute;
+    right: -5px;
+    background-color: #ff0000;
+    border-radius: 20px;
+    top: -5px;
+    color: #ffffff;
+    padding: 7px;
+	font-weight: bold;
+}
+.appAlrLeft{
+    position: absolute;
+    right: 10px;
+    background-color: #ff0000;
+    border-radius: 20px;
+    top: 16px;
+    color: #ffffff;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 15px;
+}
+.tblistChk tr td{
+	white-space: nowrap;
 }

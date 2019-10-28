@@ -106,6 +106,17 @@ function check(frm){
                 <td nowrap class="name">รหัสซีรี่ย์สินค้า</td>
                 <td><input name="group_name" type="text" id="group_name"  value="<?php  echo $group_name; ?>" size="60"></td>
               </tr>
+              <tr >
+                <td nowrap class="name">ชื่อร้าน / สถานที่ติดตั้ง</td>
+                <td><input name="group_company" type="text" id="group_company"  value="<?php  echo $group_company; ?>" size="60"></td>
+              </tr>
+              <tr >
+                <td nowrap class="name">เลขที่ Frist Order</td>
+                <td><input name="group_foid" type="text" id="group_foid"  value="<?php  echo $group_foid; ?>" size="60"></td>
+              </tr>
+              <tr >
+                <td nowrap class="name" colspan="2"></td>
+              </tr>
               <!--<tr >
                 <td nowrap class="name">จำนวน</td>
                 <td><input name="group_stock" type="text" id="group_stock"  value="<?php  echo $group_stock; ?>" size="60"></td>

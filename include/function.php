@@ -2152,5 +2152,18 @@ function chkSeries($conn,$sn,$foid) {
 	$row_prosn = @mysqli_num_rows($qu_prosn);
 	return $row_prosn;
 }
+
+function checkHCustomerApplove($conn,$id){
+	$quApprove = @mysqli_query($conn,"SELECT * FROM s_service_report WHERE sr_id = '".$id."'");
+	$numApprove = mysqli_fetch_array($quApprove);
+	return $numApprove['signature'];
+}
+
+function getServiceImg($conn,$id){
+	$quImg = @mysqli_query($conn,"SELECT * FROM s_service_report WHERE sr_id = '".$id."'");
+	$numImg = mysqli_fetch_array($quImg);
+	return $numImg['service_image'];
+}
+
 ?>
 

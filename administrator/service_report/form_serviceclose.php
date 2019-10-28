@@ -65,6 +65,16 @@
 	$qu_sr2 = @mysqli_query($conn,"SELECT * FROM s_service_report2sub WHERE sr_id = '".$row_service2['sr_id']."' AND codes != ''");
 	$brf = 1;
 
+	$chkHCustomerAP = checkHCustomerApplove($conn,$id);
+		
+	$hCustomerSignature = '';
+
+	if($chkHCustomerAP !== '' && $chkHCustomerAP != NULL){
+		$hCustomerSignature = '<img src="../../upload/customer/signature/'.$chkHCustomerAP.'" height="50" border="0" />';
+	}else{
+		$hCustomerSignature = '<img src="../../upload/customer/signature/none.png" height="50" border="0" />';
+	}
+
 	$form = '<style>
 	.bgheader{
 		font-size:10px;
@@ -309,7 +319,7 @@
         <td width="33%" style="border:1px solid #000000;font-size:10px;font-family:Verdana, Geneva, sans-serif;text-align:center;padding-top:10px;padding-bottom:10px;">
         	<table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
-                <td style="border-bottom:1px solid #000000;padding-bottom:10px;font-size:10px;font-family:Verdana, Geneva, sans-serif;text-align:center;">&nbsp;</td>
+                <td style="border-bottom:1px solid #000000;padding-bottom:10px;font-size:10px;font-family:Verdana, Geneva, sans-serif;text-align:center;">'.$hCustomerSignature.'</td>
               </tr>
               <tr>
                 <td style="padding-top:10px;padding-bottom:10px;font-size:10px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>ผู้รับบริการ</strong></td>
