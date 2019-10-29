@@ -575,6 +575,10 @@ $(function(){
             <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;"><strong>รหัสลูกค้า<strong> :</strong><span style="font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;">
 
               <input type="text" name="cusid" value="<?php  echo $cusid;?>" id="cusid" class="inpfoder">
+              
+			  <span style="padding-left: 20px;"><strong>แผนที่ลูกค้า<strong>
+              <strong>latitude : </strong><input name="latitude" type="taxt" id="latitude" value="<?php  echo $latitude;?>">
+      		  <strong>longitude : </strong><input name="longitude" type="taxt" id="longitude" value="<?php  echo $longitude;?>"></span>
 
             </span></strong></td>
 
@@ -1583,6 +1587,7 @@ Vat 7%</strong></td>
       <input name="status_use" type="hidden" id="status_use" value="<?php  echo $status_use;?>">
 
       <input name="st_setting" type="hidden" id="st_setting" value="<?php  echo $st_setting;?>">
+      
 
       <input name="<?php  echo $PK_field;?>" type="hidden" id="<?php  echo $PK_field;?>" value="<?php  echo $_GET[$PK_field];?>">
 
