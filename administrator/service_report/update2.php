@@ -175,7 +175,9 @@
 		
 		
 	}
-	
+
+
+	$v = date("YmdHis");
 	
 	
 ?>
@@ -184,18 +186,18 @@
 <HEAD>
 <TITLE><?php  echo $s_title;?></TITLE>
 <META content="text/html; charset=utf-8" http-equiv=Content-Type>
-<LINK rel=stylesheet type=text/css href="../css/reset.css" media=screen>
-<LINK rel=stylesheet type=text/css href="../css/style.css" media=screen>
-<LINK rel=stylesheet type=text/css href="../css/invalid.css" media=screen>
-<SCRIPT type=text/javascript src="../js/jquery-1.3.2.min.js"></SCRIPT>
-<SCRIPT type=text/javascript src="../js/simpla.jquery.configuration.js"></SCRIPT>
-<SCRIPT type=text/javascript src="../js/facebox.js"></SCRIPT>
-<SCRIPT type=text/javascript src="../js/jquery.wysiwyg.js"></SCRIPT>
-<SCRIPT type=text/javascript src="ajax.js"></SCRIPT>
+<LINK rel=stylesheet type=text/css href="../css/reset.css?v=<?php echo $v;?>" media=screen>
+<LINK rel=stylesheet type=text/css href="../css/style.css?v=<?php echo $v;?>" media=screen>
+<LINK rel=stylesheet type=text/css href="../css/invalid.css?v=<?php echo $v;?>" media=screen>
+<SCRIPT type=text/javascript src="../js/jquery-1.3.2.min.js?v=<?php echo $v;?>"></SCRIPT>
+<SCRIPT type=text/javascript src="../js/simpla.jquery.configuration.js?v=<?php echo $v;?>"></SCRIPT>
+<SCRIPT type=text/javascript src="../js/facebox.js?v=<?php echo $v;?>"></SCRIPT>
+<SCRIPT type=text/javascript src="../js/jquery.wysiwyg.js?v=<?php echo $v;?>"></SCRIPT>
+<SCRIPT type=text/javascript src="ajax.js?v=<?php echo $v;?>"></SCRIPT>
 <META name=GENERATOR content="MSHTML 8.00.7600.16535">
 
-<script language="JavaScript" src="../Carlender/calendar_us.js"></script>
-<link rel="stylesheet" href="../Carlender/calendar.css">
+<script language="JavaScript" src="../Carlender/calendar_us.js?v=<?php echo $v;?>"></script>
+<link rel="stylesheet" href="../Carlender/calendar.css?v=<?php echo $v;?>">
 
 <script>
 function confirmDelete(delUrl,text) {
