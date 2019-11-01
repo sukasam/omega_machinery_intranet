@@ -451,8 +451,8 @@ function check(frm){
           </tr>
           <tr>
             <td>
-            <div class="setting" id="slapp">
-  				<div class="sc_wrap">
+            <div class="setting" id="slapp" style="height: 188px;">
+  				<div class="sc_wrap" style="height: 188px;">
                     <ul>
                      <?php  
 					 	$qu_fix = @mysqli_query($conn,"SELECT * FROM s_group_fix ORDER BY group_name ASC");
@@ -600,7 +600,9 @@ function check(frm){
       <input name="camount4" type="hidden" id="camount4" value="<?php  echo $camount4;?>">
       <input name="camount5" type="hidden" id="camount5" value="<?php  echo $camount5;?>">  
       
-      <input name="st_setting" type="hidden" id="st_setting" value="<?php  echo $st_setting;?>">         
+      <input name="supply" type="hidden" id="supply" value="<?php  echo $supply;?>">
+      <input name="st_setting" type="hidden" id="st_setting" value="<?php  echo $st_setting;?>"> 
+      <input name="approve" type="hidden" id="approve" value="<?php  echo $approve;?>">      
     
       <input name="<?php  echo $PK_field;?>" type="hidden" id="<?php  echo $PK_field;?>" value="<?php  echo $_GET[$PK_field];?>">
     </div>

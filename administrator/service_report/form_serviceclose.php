@@ -64,6 +64,8 @@
 		
 	$qu_sr2 = @mysqli_query($conn,"SELECT * FROM s_service_report2sub WHERE sr_id = '".$row_service2['sr_id']."' AND codes != ''");
 	$brf = 1;
+	
+	$techniSignature = '<img src="../../upload/user/signature/'.get_technician_signature($conn,$_POST['loc_contact']).'" height="50" border="0" />';
 
 	$chkHCustomerAP = checkHCustomerApplove($conn,$id);
 		
@@ -301,16 +303,13 @@
         <td width="33%" style="border:1px solid #000000;font-size:10px;font-family:Verdana, Geneva, sans-serif;text-align:center;padding-top:10px;padding-bottom:10px;">
         	<table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
-                <td style="border-bottom:1px solid #000000;padding-bottom:10px;font-size:10px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong ><br />
-                </strong></td>
+                <td style="border-bottom:1px solid #000000;padding-bottom:10px;font-size:10px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong >'.$techniSignature.'</strong></td>
               </tr>
               <tr>
                 <td style="padding-top:10px;padding-bottom:10px;font-size:10px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>ช่างบริการ</strong></td>
               </tr>
               <tr>
-                <td style="font-size:10px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>วันที่............./.............../..............<br />
-                <br />
-                  เวลา............................................
+                <td style="font-size:10px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>วันที่ '.format_date_th(checkHCustomerDate($conn,$_POST['sr_id']),8).'
                 </strong></td>
               </tr>
             </table>
@@ -325,9 +324,7 @@
                 <td style="padding-top:10px;padding-bottom:10px;font-size:10px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>ผู้รับบริการ</strong></td>
               </tr>
               <tr>
-                <td style="font-size:10px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>วันที่............./.............../..............<br />
-                  <br />
-                เวลา............................................                </strong></td>
+                <td style="font-size:10px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>วันที่ '.format_date_th(checkHCustomerDate($conn,$_POST['sr_id']),8).'</strong></td>
               </tr>
             </table>
         </td>

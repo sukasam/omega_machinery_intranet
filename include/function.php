@@ -275,6 +275,9 @@ function format_date_th ($value,$type) {
 		case "7" :  // 4 ก.พ. 51
 			$msg =  $s_day . "/" .  $month_brief_th[$s_month]   . "/" .  $s_year  ;
 			break;
+		case "8" :  // 4 ม.ค. 2548 <br /><br />14.11 น. 
+			$msg =  $s_day . " " .  $month_brief_th[$s_month]  . " " .  $s_year . "<br><br>เวลา " . $s_hour . "." . $s_minute . " น." ;
+			break;
 		}
 	return ($msg);
 
@@ -2146,9 +2149,11 @@ function get_firstorder_qr($conn,$sn) {
 
 function chkSeries($conn,$sn,$foid) {
 	
-//	echo "SELECT *  FROM `s_first_order` WHERE 1 AND (`pro_sn1` LIKE '".$sn."' OR `pro_sn1` LIKE '".$sn."' OR `pro_sn2` LIKE '".$sn."' OR `pro_sn3` LIKE '".$sn."' OR `pro_sn4` LIKE '".$sn."' OR `pro_sn5` LIKE '".$sn."' OR `pro_sn6` LIKE '".$sn."' OR `pro_sn7` LIKE '".$sn."') AND `status_use` != '2' AND fo_id != '".$foid."' ORDER BY `fo_id`  DESC";
-//	
-	$qu_prosn = @mysqli_query($conn,"SELECT *  FROM `s_first_order` WHERE 1 AND (`pro_sn1` LIKE '".$sn."' OR `pro_sn1` LIKE '".$sn."' OR `pro_sn2` LIKE '".$sn."' OR `pro_sn3` LIKE '".$sn."' OR `pro_sn4` LIKE '".$sn."' OR `pro_sn5` LIKE '".$sn."' OR `pro_sn6` LIKE '".$sn."' OR `pro_sn7` LIKE '".$sn."') AND `status_use` != '2' AND fo_id != '".$foid."' ORDER BY `fo_id`  DESC");
+//	$sqlSN = "SELECT *  FROM `s_first_order` WHERE 1 AND (`pro_sn1` LIKE '".$sn."' OR `pro_sn1` LIKE '".$sn."' OR `pro_sn2` LIKE '".$sn."' OR `pro_sn3` LIKE '".$sn."' OR `pro_sn4` LIKE '".$sn."' OR `pro_sn5` LIKE '".$sn."' OR `pro_sn6` LIKE '".$sn."' OR `pro_sn7` LIKE '".$sn."') AND `status_use` != '2' AND fo_id != '".$foid."' ORDER BY `fo_id`  DESC";
+	
+	$sqlSN = "SELECT *  FROM `s_first_order` WHERE 1 AND (`pro_sn1` LIKE '".$sn."' OR `pro_sn1` LIKE '".$sn."' OR `pro_sn2` LIKE '".$sn."' OR `pro_sn3` LIKE '".$sn."' OR `pro_sn4` LIKE '".$sn."' OR `pro_sn5` LIKE '".$sn."' OR `pro_sn6` LIKE '".$sn."' OR `pro_sn7` LIKE '".$sn."') AND `status_use` != '2' AND fo_id != '".$foid."' AND `fs_id` NOT LIKE 'SV%' ORDER BY `fo_id`  DESC";
+	
+	$qu_prosn = @mysqli_query($conn,$sqlSN);
 	$row_prosn = @mysqli_num_rows($qu_prosn);
 	return $row_prosn;
 }
@@ -2158,6 +2163,11 @@ function checkHCustomerApplove($conn,$id){
 	$numApprove = mysqli_fetch_array($quApprove);
 	return $numApprove['signature'];
 }
+function checkHCustomerDate($conn,$id){
+	$quApprove = @mysqli_query($conn,"SELECT * FROM s_service_report WHERE sr_id = '".$id."'");
+	$numApprove = mysqli_fetch_array($quApprove);
+	return $numApprove['signature_date'];
+}
 
 function getServiceImg($conn,$id){
 	$quImg = @mysqli_query($conn,"SELECT * FROM s_service_report WHERE sr_id = '".$id."'");
@@ -2165,5 +2175,81 @@ function getServiceImg($conn,$id){
 	return $numImg['service_image'];
 }
 
+function getScheduleFile($conn,$technician,$month,$fo_id){
+	$rowSchedule = @mysqli_fetch_array(@mysqli_query($conn,"SELECT * FROM `service_schedule` WHERE `month` = ".$month." AND `technician` = ".$technician." AND `fo_id` LIKE '".$fo_id."' ORDER BY `sv_id`"));
+	return $rowSchedule;
+}
+
+function getCheckProGen($conn,$pro){
+	$pro_re = get_proname($conn,$pro);
+
+	$pos1 = strpos($pro_re,'เครื่องล้างแก้ว');
+	$pos2 = strpos($pro_re,'เครื่องล้างจาน');
+	$pos3 = strpos($pro_re,'เครื่องทำน้ำแข็ง');
+	
+	$pos1CH = '';
+	$pos2CH = '';
+	$pos3CH = '';
+	
+	if($pos1 !== FALSE){
+		$pos1CH = 'yes';
+	}else{
+		$pos1CH = 'no';
+	}
+	
+	if($pos2 !== FALSE){
+		$pos2CH = 'yes';
+	}else{
+		$pos2CH = 'no';
+	}
+	
+	if($pos3 !== FALSE){
+		$pos3CH = 'yes';
+	}else{
+		$pos3CH = 'no';
+	}
+
+	if($pos1CH == 'yes' || $pos2CH == 'yes' || $pos3CH == 'yes'){
+		return 1;
+	}else{
+		return 0;
+	}
+}
+
+function get_technician_signature($conn,$technic_id) {
+	
+	$rowTechnic = @mysqli_fetch_array(@mysqli_query($conn,"SELECT * FROM `s_group_technician` WHERE group_id = '".$technic_id."'"));
+	
+	$rowAccount = @mysqli_fetch_array(@mysqli_query($conn,"SELECT * FROM `s_user` WHERE user_id = '".$rowTechnic['user_account']."'"));
+	
+	$signature = '';
+	
+	if($rowAccount['signature'] != ''){
+		$signature = $rowAccount['signature'];
+	}else{
+		$signature = 'none.png';
+	}
+	
+	return $signature;
+	
+}
+
+function get_sale_signature($conn,$sale_id) {
+	
+	$rowSale = @mysqli_fetch_array(@mysqli_query($conn,"SELECT * FROM `s_group_sale` WHERE group_id = '".$sale_id."'"));
+	
+	$rowAccount = @mysqli_fetch_array(@mysqli_query($conn,"SELECT * FROM `s_user` WHERE user_id = '".$rowSale['user_account']."'"));
+	
+	$signature = '';
+	
+	if($rowAccount['signature'] != ''){
+		$signature = $rowAccount['signature'];
+	}else{
+		$signature = 'none.png';
+	}
+	
+	return $signature;
+	
+}
 ?>
 

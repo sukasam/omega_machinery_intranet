@@ -74,7 +74,9 @@
 				@mysqli_query($conn,"UPDATE `s_service_report` SET `latitude` = '".$_SESSION["LATITUDE"]."', `longitude` = '".$_SESSION["LONGITUDE"]."' WHERE `sr_id` = ".$id.";");
 				
 				@mysqli_query($conn,"UPDATE `s_first_order` SET `latitude` = '".$_SESSION["LATITUDE"]."', `longitude` = '".$_SESSION["LONGITUDE"]."' WHERE `fo_id` = ".$_POST['cus_id'].";");
-				
+
+			}
+			
 				$checkSImg = '';
 				$numImg = 1;
 				
@@ -117,8 +119,6 @@
 				if($service_image){
 					@mysqli_query($conn,"UPDATE `s_service_report` SET `service_image` = '".$service_image."' WHERE `sr_id` = ".$id.";");
 				}
-
-			}
 				
 			include_once("../mpdf54/mpdf.php");
 			include_once("form_serviceclose.php");
@@ -677,7 +677,7 @@ function check(frm){
          </span></td>
        </tr>
        <?php
-		 if($_GET['taget'] == 'service'){
+		 //if($_GET['taget'] == 'service'){
 			 $srImg = getServiceImg($conn,$_GET['sr_id']);
 			 $sImg = explode(',',$srImg);
 			 $svImgArray = array();
@@ -744,7 +744,7 @@ function check(frm){
 				</td>
 			 </tr>
 			<?php 
-		 }
+		 //}
 	   ?>
      </table></td>
   </tr>
@@ -792,16 +792,15 @@ function check(frm){
       <tr>
         <td width="33%" style="border:1px solid #000000;font-size:11px;font-family:Verdana, Geneva, sans-serif;text-align:center;padding-top:10px;padding-bottom:10px;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
-            <td style="border-bottom:1px solid #000000;padding-bottom:10px;font-size:11px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong ><br />
-            </strong></td>
+            <td style="border-bottom:1px solid #000000;padding-bottom:10px;font-size:11px;font-family:Verdana, Geneva, sans-serif;text-align:center;">
+            	<strong ><?php echo get_technician_name($conn,$loc_contact);?></strong>
+            </td>
           </tr>
           <tr>
             <td style="padding-top:10px;padding-bottom:10px;font-size:11px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>ช่างบริการ</strong></td>
           </tr>
           <tr>
-            <td style="font-size:11px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>วันที่............./.............../..............<br />
-              <br />
-              เวลา............................................ </strong></td>
+            <td style="font-size:11px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>วันที่ <?php echo format_date_th(checkHCustomerDate($conn,$sr_id),8);?></strong></td>
           </tr>
         </table></td>
         <td width="33%" style="border:1px solid #000000;font-size:11px;font-family:Verdana, Geneva, sans-serif;text-align:center;padding-top:10px;padding-bottom:10px;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -839,9 +838,7 @@ function check(frm){
             <td style="padding-top:10px;padding-bottom:10px;font-size:11px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>ผู้รับบริการ</strong></td>
           </tr>
           <tr>
-            <td style="font-size:11px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>วันที่............./.............../..............<br />
-              <br />
-              เวลา............................................ </strong></td>
+            <td style="font-size:11px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>วันที่ <?php echo format_date_th(checkHCustomerDate($conn,$sr_id),8);?></strong></td>
           </tr>
         </table></td>
         <td width="33%" style="border:1px solid #000000;font-size:11px;font-family:Verdana, Geneva, sans-serif;text-align:center;padding-top:10px;padding-bottom:10px;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -893,7 +890,8 @@ function check(frm){
       <input name="detail_calpr" type="hidden" id="detail_calpr" value="<?php  echo strip_tags($detail_calpr);?>">
       <input name="detail_recom" type="hidden" id="detail_recom" value="<?php  echo strip_tags($detail_recom);?>">
       <input name="supply" type="hidden" id="supply" value="<?php  echo $supply;?>">
-      <input name="st_setting" type="hidden" id="st_setting" value="<?php  echo $st_setting;?>">
+      <input name="st_setting" type="hidden" id="st_setting" value="<?php  echo $st_setting;?>"> 
+      <input name="approve" type="hidden" id="approve" value="<?php  echo $approve;?>">
       <input name="taget" type="hidden" id="taget" value="<?php  echo $_GET['taget'];?>">     
       <input name="<?php  echo $PK_field;?>" type="hidden" id="<?php  echo $PK_field;?>" value="<?php  echo $_GET[$PK_field];?>">
       <input name="srid" type="hidden" id="mode" value="<?php  echo $row_service2['sr_id'];?>">
