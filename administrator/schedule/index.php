@@ -87,8 +87,10 @@ function MM_openBrWindow(theURL,winName,features) { //v2.0
 <P id=page-intro><?php  echo $page_name; ?></P>
 
 <UL class=shortcut-buttons-set>
-  <!--<LI><A class=shortcut-button href="update.php?mode=add<?php  if ($param <> "") echo "&".$param; ?>"><SPAN><IMG  alt=icon src="../images/pencil_48.png"><BR>
-    เพิ่ม</SPAN></A></LI>-->
+    <LI><A class=shortcut-button href="../schedule/index.php"><SPAN><IMG  alt=icon src="../images/icon2/categories.png"><BR>
+    ตารางบริการ</SPAN></A></LI>
+    <LI><A class=shortcut-button href="../schedule_gen/index.php"><SPAN><IMG  alt=icon src="../images/icon2/paste_f2.png" width="48"><BR>
+    ตารางงานช่าง</SPAN></A></LI>
     <?php  
 	if ($FR_module <> "") { 
 	$param2 = get_return_param();
