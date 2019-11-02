@@ -77,6 +77,15 @@
 		$hCustomerSignature = '<img src="../../upload/customer/signature/none.png" height="50" border="0" />';
 	}
 
+	 $srImg = getServiceImg($conn,$_POST['sr_id']);
+	 $sImg = explode(',',$srImg);
+	 $svImgArray = array();
+	 $svImgesArray = array();
+	 for($v=0;$v<count($sImg);$v++){
+		 $svImgArray[] = substr($sImg[$v],0,1);
+		 $svImgesArray[] = $sImg[$v];
+	 }
+
 	$form = '<style>
 	.bgheader{
 		font-size:10px;
@@ -352,7 +361,61 @@
 	    <td valign="bottom" style="text-align:left;">&nbsp;</td>
 	    <td valign="bottom" style="text-align:right;font-size:15px;"><strong>สายด่วน...งานบริการ 086-319-3766</strong></td>
       </tr>
-    </table>';
+    </table><br><br><br><br><br><br>
+	
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="ccontact">
+	  <tr>
+	    <td valign="top" style="text-align:center;font-size:15px;"><center><h3><strong>ภาพก่อนบริการ</strong></h3></center></td>
+      </tr>';
+	
+		if(in_array('1',$svImgArray)){
+			$key = array_search('1', $svImgArray);
+			$form.='<tr>
+			<td valign="top" style="text-align:center;"><img src="../../upload/service_images/'.$svImgesArray[$key].'" width="400"><br><br></td>
+		  </tr>';
+		}
+
+		if(in_array('2',$svImgArray)){
+			$key = array_search('2', $svImgArray);
+			$form.='<tr>
+			<td valign="top" style="text-align:center;"><img src="../../upload/service_images/'.$svImgesArray[$key].'" width="400"><br><br></td>
+		  </tr>';
+		}
+
+		if(in_array('3',$svImgArray)){
+			$key = array_search('3', $svImgArray);
+			$form.='<tr>
+			<td valign="top" style="text-align:center;"><img src="../../upload/service_images/'.$svImgesArray[$key].'" width="400"><br><br></td>
+		  </tr>';
+		}
+
+	  $form .='<tr>
+	    <td valign="top" style="text-align:center;font-size:15px;"><center><h3><strong>ภาพหลังบริการ</strong></h3></center><br></td>
+      </tr>';
+	  
+	  if(in_array('4',$svImgArray)){
+			$key = array_search('4', $svImgArray);
+			$form.='<tr>
+			<td valign="top" style="text-align:center;"><img src="../../upload/service_images/'.$svImgesArray[$key].'" width="400"><br><br></td>
+		  </tr>';
+		}
+
+		if(in_array('5',$svImgArray)){
+			$key = array_search('5', $svImgArray);
+			$form.='<tr>
+			<td valign="top" style="text-align:center;"><img src="../../upload/service_images/'.$svImgesArray[$key].'" width="400"><br><br></td>
+		  </tr>';
+		}
+
+		if(in_array('6',$svImgArray)){
+			$key = array_search('6', $svImgArray);
+			$form.='<tr>
+			<td valign="top" style="text-align:center;"><img src="../../upload/service_images/'.$svImgesArray[$key].'" width="400"><br><br></td>
+		  </tr>';
+		}
+	  
+    $form.='</table>';
+
 ?>
 
 
