@@ -2251,5 +2251,156 @@ function get_sale_signature($conn,$sale_id) {
 	return $signature;
 	
 }
+
+function getScheduleService($svmonth,$month,$svtype){
+	
+	if($svtype == 8){ //งานบริการประจำเดือนทุกเดือน
+		return 1;
+	}
+	
+	if($svtype == 37){ //งานบริการประจำ เดือนเว้นเดือน
+		
+		//echo $svmonth." ".$month;
+		if($svmonth == $month){ //เดือนเดียวกัน
+			return 1;
+		}
+		
+		$listMonth = array();
+		
+		for($i=1;$i<=6;$i++){
+			
+			$svmonth+= 2;
+			
+			if($svmonth == 13){$svmonth = 1;}
+			if($svmonth == 14){$svmonth = 2;}
+			
+			array_push($listMonth,$svmonth);
+			
+		}
+//		echo $month."<br>";
+//		
+//		print_r($listMonth);
+		
+		if(in_array($month,$listMonth)){
+			return 1;
+		}
+		
+	}
+	
+	if($svtype == 38){ //งานบริการประจำ 2 เดือน/ครั้ง
+		if($svmonth == $month){ //เดือนเดียวกัน
+			return 1;
+		}
+		
+		$listMonth = array();
+		
+		for($i=1;$i<=6;$i++){
+			
+			$svmonth+= 2;
+			
+			if($svmonth == 13){$svmonth = 1;}
+			if($svmonth == 14){$svmonth = 2;}
+			
+			array_push($listMonth,$svmonth);
+			
+		}
+//		echo $month."<br>";
+//		
+//		print_r($listMonth);
+		
+		if(in_array($month,$listMonth)){
+			return 1;
+		}
+		
+	}
+	
+	if($svtype == 39){ //งานบริการประจำ 3 เดือน/ครั้ง
+		
+		if($svmonth == $month){ //เดือนเดียวกัน
+			return 1;
+		}
+		
+		$listMonth = array();
+		
+		for($i=1;$i<=4;$i++){
+			
+			$svmonth+= 3;
+			
+			if($svmonth == 13){$svmonth = 1;}
+			if($svmonth == 14){$svmonth = 2;}
+			if($svmonth == 15){$svmonth = 3;}
+			
+			array_push($listMonth,$svmonth);
+			
+		}
+		//echo $month."<br>";
+		
+		//print_r($listMonth);
+		
+		if(in_array($month,$listMonth)){
+			return 1;
+		}
+		
+	}
+	
+	if($svtype == 97){ //งานบริการประจำ 4 เดือน/ครั้ง
+		if($svmonth == $month){ //เดือนเดียวกัน
+			return 1;
+		}
+		
+		$listMonth = array();
+		
+		for($i=1;$i<=3;$i++){
+			
+			$svmonth+= 4;
+			
+			if($svmonth == 13){$svmonth = 1;}
+			if($svmonth == 14){$svmonth = 2;}
+			if($svmonth == 15){$svmonth = 3;}
+			if($svmonth == 16){$svmonth = 4;}
+			
+			array_push($listMonth,$svmonth);
+			
+		}
+//		echo $month."<br>";
+//		
+//		print_r($listMonth);
+		
+		if(in_array($month,$listMonth)){
+			return 1;
+		}
+	}
+	
+	if($svtype == 100){ //งานบริการประจำ 6 เดือน/ครั้ง
+		if($svmonth == $month){ //เดือนเดียวกัน
+			return 1;
+		}
+		
+		$listMonth = array();
+		
+		for($i=1;$i<=2;$i++){
+			
+			$svmonth+= 6;
+			
+			if($svmonth == 13){$svmonth = 1;}
+			if($svmonth == 14){$svmonth = 2;}
+			if($svmonth == 15){$svmonth = 3;}
+			if($svmonth == 17){$svmonth = 4;}
+			if($svmonth == 18){$svmonth = 5;}
+			if($svmonth == 19){$svmonth = 6;}
+			
+			array_push($listMonth,$svmonth);
+			
+		}
+//		echo $month."<br>";
+//		
+//		print_r($listMonth);
+		
+		if(in_array($month,$listMonth)){
+			return 1;
+		}
+		
+	}
+}
 ?>
 

@@ -1320,29 +1320,37 @@ Vat 7%</strong></td>
 
       <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:10px;">
 
-      	<strong>โซน/ภาค </strong>
+      	<strong>กำหนดเดือนเข้าบริการ</strong>
 
-      	<select name="service_zone" id="service_zone" class="inputselect" style="width:50%;">
+      	<select name="service_month" id="service_month" class="inputselect" style="width:50%;">
+         	<option value="0">กรุณาเลือกเดือน</option>
+         	<?php
+				$serviceMonth = array ('มกราคม', 'กุมภาพันธ์', 'มีนาคม', 'เมษายน', 'พฤษภาคม', 'มิถุนายน', 'กรกฎาคม', 'สิงหาคม',' กันยายน', 'ตุลาคม', 'พฤศจิกายน','ธันวาคม');
+			
+				for($i=1;$i<=count($serviceMonth);$i++){
+					?>
+					<option value="<?php echo $i;?>" <?php if($service_month == $i){echo 'selected';}?>><?php echo $serviceMonth[$i-1]?></option>
+					<?php
+				}
+			?>
 
-         	<option value="">กรุณาเลือกโซน/ภาค</option>
-
-          <?php 
-
-                	$quservicezone = @mysqli_query($conn,"SELECT * FROM s_group_zone ORDER BY group_name ASC");
-
-					while($row_servicezone = @mysqli_fetch_array($quservicezone)){
-
-					  ?>
-
-          <option value="<?php  echo $row_servicezone['group_id'];?>" <?php  if($service_zone == $row_servicezone['group_id']){echo 'selected';}?>><?php  echo $row_servicezone['group_name'];?></option>
-
-          <?php 	
-
-					}
-
-				?>
-
-        </select>
+<!--
+         	
+			
+        	<option value="2">กุมภาพันธ์</option>
+        	<option value="3">มีนาคม</option>
+        	<option value="4">เมษายน</option>
+        	<option value="5">พฤษภาคม</option>
+        	<option value="6">มิถุนายน</option>
+        	<option value="7">กรกฎาคม</option>
+        	<option value="8">สิงหาคม</option>
+        	<option value="9">กันยายน</option>
+        	<option value="10">ตุลาคม</option>
+        	<option value="11">พฤษจิกายน</option>
+        	<option value="12">ธันวาคม</option>
+-->
+         
+        </select>  
 
       </td>
 
@@ -1376,9 +1384,31 @@ Vat 7%</strong></td>
       
       </strong></td>
 
-      <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:10px;">&nbsp;
+      <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:10px;">
 
-      	
+		<strong>โซน/ภาค </strong>
+
+      	<select name="service_zone" id="service_zone" class="inputselect" style="width:50%;">
+
+         	<option value="">กรุณาเลือกโซน/ภาค</option>
+
+          <?php 
+
+                	$quservicezone = @mysqli_query($conn,"SELECT * FROM s_group_zone ORDER BY group_name ASC");
+
+					while($row_servicezone = @mysqli_fetch_array($quservicezone)){
+
+					  ?>
+
+          <option value="<?php  echo $row_servicezone['group_id'];?>" <?php  if($service_zone == $row_servicezone['group_id']){echo 'selected';}?>><?php  echo $row_servicezone['group_name'];?></option>
+
+          <?php 	
+
+					}
+
+				?>
+
+        </select>      	
 
       </td>
 

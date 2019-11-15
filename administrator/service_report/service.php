@@ -209,13 +209,22 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 						$sql .=  $subtext . " ) ";
 					}
 		  
+		  			if($_SESSION["QR_FIELD"] != ""){
+						$sql .= " AND `loc_sn` = '".$_SESSION["QR_FIELD"]."'";
+					}
+		  
 		  			if ($_GET['cus_id'] <> "") {
 						$sql .= " and ( cus_id = '".$_GET['cus_id']."' ";
 						$sql .=  $subtext . " ) ";
 					}
 		  
+		  
 //		  			$sql .= " and ( `sv_id` LIKE '%SR ". format_year_th(date('Y'))."/".date('m')."%'";
 //					$sql .=  $subtext . " ) ";
+		  
+		  			$monthAgo = date("Y-m",strtotime("-1 month"));
+		  			$monthCur = date("Y-m");
+		  			$sql .= " AND job_open BETWEEN '".$monthAgo."-01' AND '".$monthCur."-31'";
 		  
 
 					if ($orderby <> "") $sql .= " order by " . $orderby;
