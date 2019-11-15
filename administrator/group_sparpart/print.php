@@ -33,8 +33,16 @@
 		padding: 5px;
 	}
 </style>
+
+<script>
+function chkPrint(){
+	setTimeout(function () { window.print(); }, 500);
+	window.onfocus = function () { setTimeout(function () { window.close(); }, 500); }
+}
+</script>
+
 <html>
-    <body onLoad="javascript:window.print();window.close();">
+    <body onLoad="javascript:chkPrint();">
 	<TABLE class="tbMain">
       <THEAD>
         <TR>
