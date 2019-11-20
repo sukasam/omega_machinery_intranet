@@ -33,7 +33,7 @@
 		$condition = " AND (service_month != '0' AND service_month != '')";
 		$condition.= " AND (service_type != '0' AND service_type != '')";
 
-		$sqlSched = "SELECT * FROM `s_first_order` WHERE `technic_service` = ".$_GET['loccontact'].$condition." AND status_use != '2' ORDER BY `cd_province` ,`loc_name` ASC;";
+		$sqlSched = "SELECT * FROM `s_first_order` WHERE `technic_service` = ".$_GET['loccontact'].$condition." AND status_use != '2' AND status_use != '1' ORDER BY `cd_province` ,`loc_name` ASC;";
 
 		$quSched = mysqli_query($conn,$sqlSched);
 
