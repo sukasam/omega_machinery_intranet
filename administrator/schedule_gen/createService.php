@@ -45,14 +45,11 @@
 			  
 			  if(getScheduleService($rowSched['service_month'],$getMonth,$rowSched['service_type']) == 1){
 
-				  //echo $runRow++." => ".$rowSched['cpro2']."<br>";
-				  //exit();
-
-				  if(getCheckProGen($conn,$rowSched['cpro1']) == 1){
+				  if(getCheckProGen($conn,$rowSched['cpro1'],$rowSched['fs_id']) == 1){
 					  $fields = array(
 						'cd_names' => urlencode($rowSched['cd_name']),
 						'cus_id' => urlencode($rowSched['fo_id']),
-						'sr_ctype' => urlencode($rowSched['type_service']),
+						'sr_ctype' => urlencode($rowSched['service_type']),
 						'sr_ctype2' => urlencode($rowSched['ctype']),
 						'bbfpro' => urlencode("0"),
 						'loc_pro' => urlencode(get_proname($conn,$rowSched['cpro1'])),
@@ -88,11 +85,11 @@
 
 				  sleep(1);
 
-				  if(getCheckProGen($conn,$rowSched['cpro2']) == 1){
+				  if(getCheckProGen($conn,$rowSched['cpro2'],$rowSched['fs_id']) == 1){
 					  $fields = array(
 						'cd_names' => urlencode($rowSched['cd_name']),
 						'cus_id' => urlencode($rowSched['fo_id']),
-						'sr_ctype' => urlencode($rowSched['type_service']),
+						'sr_ctype' => urlencode($rowSched['service_type']),
 						'sr_ctype2' => urlencode($rowSched['ctype']),
 						'bbfpro' => urlencode("0"),
 						'loc_pro' => urlencode(get_proname($conn,$rowSched['cpro2'])),
