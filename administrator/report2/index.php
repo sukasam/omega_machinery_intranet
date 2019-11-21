@@ -4104,7 +4104,7 @@ if($_GET['act'] == 17){
 
             
 
-            <H3 align="left">เลือกตามรายชื่อช่าง</H3>
+            <H3 align="left">เลือกตามโซน/ภาค/เขต</H3>
 
             <DIV class=clear>
 

@@ -301,7 +301,7 @@
 	    <th colspan="5" style="text-align:right;font-size:11px;"><span style="text-align:right;font-size:12px;"><?php  echo $dateshow;?></span></th>
       </tr>
       <tr>
-        <?php  if($_REQUEST['sh1'] == 1){?><th width="6%">สัญญาเช่า</th><?php  }?>
+        <?php  if($_REQUEST['sh1'] == 1){?><th width="6%">สัญญาเช่า / FO</th><?php  }?>
         <?php  if($_REQUEST['sh2'] == 1){?><th width="14%">ชื่อลูกค้า / บริษัท + เบอร์โทร</th><?php  }?>
         <?php  if($_REQUEST['sh3'] == 1){?><th width="15%">ชื่อร้าน / สถานที่ติดตั้ง</th><?php  }?>
         <?php  if($_REQUEST['sh4'] == 1){?><th width="10%">ประเภทลูกค้า</th><?php  }?>
@@ -331,7 +331,7 @@
 				
 			?>
 			<tr>
-              <?php  if($_REQUEST['sh1'] == 1){?><td><?php  echo $row_fr['r_id'];?></td><?php  }?>
+              <?php  if($_REQUEST['sh1'] == 1){?><td><?php  echo $row_fr['r_id'];?>/<br /><?php  echo $row_fr['fs_id'];?></td><?php  }?>
               <?php  if($_REQUEST['sh2'] == 1){?><td><?php  echo $row_fr['cd_name'];?><br />
               <?php  echo $row_fr['cd_tel'];?></td><?php  }?>
               <?php  if($_REQUEST['sh3'] == 1){?><td><?php  echo $row_fr['loc_name'];?><br />
