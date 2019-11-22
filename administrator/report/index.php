@@ -850,7 +850,7 @@ function check9(frm){
                           <tr >
                             <td width="10%" nowrap class="name">ชื่อผู้ขาย</td>
                             <td width="90%">
-                            <select name="cs_sell" id="cs_sell" class="inputselect" style="width:250px;">
+                            <select name="cs_sell" id="cs_sell" style="width:250px;">
 							<?php 
                                 $qusaletype = @mysqli_query($conn,"SELECT * FROM s_group_sale ORDER BY group_name ASC");
                                 while($row_saletype = @@mysqli_fetch_array($qusaletype)){
@@ -862,6 +862,53 @@ function check9(frm){
 							</select>
 							</td>
                           </tr>
+                          
+                          <tr >
+                            <td width="10%" nowrap class="name">ประเภทลูกค้า</td>
+                            <td width="90%">
+                            <select name="ctype" id="ctype">
+                            	<option value="">กรุณาเลือกรายการ</option>
+								<?php 
+                                    $quccustommer = @mysqli_query($conn,"SELECT * FROM s_group_custommer ORDER BY group_name ASC");
+                                    while($row_cgcus = @@mysqli_fetch_array($quccustommer)){
+                                     if(substr($row_cgcus['group_name'],0,2) != "SR"){
+										?>
+                                        <option value="<?php  echo $row_cgcus['group_id'];?>" <?php  if($ctype == $row_cgcus['group_id']){echo 'selected';}?>><?php  echo $row_cgcus['group_name'];?></option>
+                                       <?php 		 
+									 }
+                                    }
+                                ?>
+                            </select>
+                           </td>
+                          </tr>
+                          
+                          <tr >
+                            <td width="10%" nowrap class="name">ประเภทสินค้า</td>
+                            <td width="90%">
+                            <select name="pro_type" id="pro_type">
+                            	<option value="">กรุณาเลือกรายการ</option>
+								<?php 
+
+									$quprotype = @mysqli_query($conn,"SELECT * FROM s_group_product ORDER BY group_name ASC");
+
+									while($row_protype = @mysqli_fetch_array($quprotype)){
+
+									  ?>
+
+										<option value="<?php  echo $row_protype['group_id'];?>" <?php  if($pro_type == $row_protype['group_id']){echo 'selected';}?>><?php  echo $row_protype['group_name'];?></option>
+
+									  <?php 	
+
+									}
+
+								?>
+
+							</select>
+                           </td>
+                          </tr>
+                          
+                          
+<!--
                           <tr >
                             <td width="10%" nowrap class="name">รายการสินค้า</td>
                             <td width="90%">
@@ -878,6 +925,7 @@ function check9(frm){
                               </select>
                             <a href="javascript:void(0);" onClick="windowOpener('400', '500', '', 'search_pro.php?protype=cpro');"><img src="../images/icon2/mark_f2.png" width="25" height="25" border="0" alt="" style="vertical-align:middle;padding-left:5px;"></a></td>
                           </tr>
+-->
                           <tr >
                             <td width="10%" nowrap class="name">รุ่นเครื่อง</td>
                             <td width="90%"><select name="pro_pod" id="pro_pod" class="inputselect" style="width:250px;">
@@ -930,10 +978,7 @@ function check9(frm){
                               <input name="sh9" type="checkbox" id="sh13" value="1" checked>
                               ผู้ขาย</td>
                           </tr>
-                          <tr>
-                            <td nowrap class="name">&nbsp;</td>
-                            <td>&nbsp;</td>
-                          </tr>
+                          
                         </table></td>
                       </tr>
                     </table>

@@ -10,8 +10,12 @@
 	if(isset($_GET['cs_sell'])){$_REQUEST['sh1'] = 1;$_REQUEST['sh2'] = 1;$_REQUEST['sh3'] = 1;$_REQUEST['sh4'] = 1;$_REQUEST['sh5'] = 1;$_REQUEST['sh6'] = 1;$_REQUEST['sh7'] = 1;$_REQUEST['sh8'] = 1;$_REQUEST['sh9'] = 1;$_REQUEST['sh10'] = 1;}
 	
 	$cs_sell = $_REQUEST['cs_sell'];
-    $cpro = $_REQUEST['cpro'];
+    //$cpro = $_REQUEST['cpro'];
 	$pro_pod = $_REQUEST['pro_pod'];
+    
+	$ctype = $_REQUEST['ctype'];
+	$pro_type = $_REQUEST['pro_type'];
+
 	$a_sdate=explode("/",$_REQUEST['date_fm']);
 	$date_fm=$a_sdate[2]."-".$a_sdate[1]."-".$a_sdate[0];
 	$a_sdate=explode("/",$_REQUEST['date_to']);
@@ -31,17 +35,26 @@
 //		$codi = " AND status_use = 0";
 //	}
 
-	$codi = " AND (status_use = 1 OR status_use = 3)";
+	$codi = " AND status_use != 2";
 
-	if($cpro != ""){
-		$codi .= "AND (cpro1 = '".$cpro."' OR cpro2 = '".$cpro."' OR cpro3 = '".$cpro."' OR cpro4 = '".$cpro."' OR cpro5 = '".$cpro."' OR cpro6 = '".$cpro."' OR cpro7 = '".$cpro."')";
-	}
+//	if($cpro != ""){
+//		$codi .= "AND (cpro1 = '".$cpro."' OR cpro2 = '".$cpro."' OR cpro3 = '".$cpro."' OR cpro4 = '".$cpro."' OR cpro5 = '".$cpro."' OR cpro6 = '".$cpro."' OR cpro7 = '".$cpro."')";
+//	}
 
 	if($pro_pod != ""){
 		$codi .= "AND (pro_pod1 LIKE '%".$pro_pod."%' OR pro_pod2 LIKE '%".$pro_pod."%' OR pro_pod3 LIKE '%".$pro_pod."%' OR pro_pod4 LIKE '%".$pro_pod."%' OR pro_pod5 LIKE '%".$pro_pod."%' OR pro_pod6 LIKE '%".$pro_pod."%' OR pro_pod7 LIKE '%".$pro_pod."%')";
 	}
 	
-	$sql = "SELECT * FROM s_first_order WHERE cs_sell = '".$cs_sell."'".$daterriod." ".$codi." ORDER BY date_forder ASC";
+	if($ctype != ""){
+		$codi .= " AND ctype = ".$ctype;
+	}
+
+	if($pro_type != ""){
+		$codi .= " AND pro_type = ".$pro_type;
+	}
+
+	
+	$sql = "SELECT * FROM s_first_order WHERE cs_company = '".$cs_sell."'".$daterriod." ".$codi." ORDER BY date_forder ASC";
 	
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -72,9 +85,10 @@
 	  <tr>
 	    <th colspan="2" style="text-align:left;font-size:12px;">บริษัท โอเมก้า แมชชีนเนอรี่ (1999) จำกัด<br />
         รายงานตามชื่อผู้ชาย ( <?php  echo getsalename($conn,$cs_sell);?> )</th>
-	    <th colspan="7" style="text-align:right;font-size:11px;"><?php  echo $dateshow;?></th>
+	    <th colspan="8" style="text-align:right;font-size:11px;"><?php  echo $dateshow;?></th>
       </tr>
       <tr>
+        <th width="3%">FOID</th>
         <?php  if($_REQUEST['sh1'] == 1){?><th width="15%">ชื่อลูกค้า / บริษัท + เบอร์โทร</th><?php  }?>
         <?php  if($_REQUEST['sh2'] == 1){?><th width="20%">ชื่อร้าน / สถานที่ติดตั้ง</th><?php  }?>
         <?php  if($_REQUEST['sh3'] == 1){?><th width="8%">กลุ่มลูกค้า</th><?php  }?>
@@ -87,7 +101,7 @@
         <?php  if($_REQUEST['sh7'] == 1){?><th width="12%">รายการของแถม</th><?php  }?>
         <?php  if($_REQUEST['sh8'] == 1){?><th width="7%">วันที่ติดตั้ง</th><?php  }?>
         <?php  if($_REQUEST['sh4'] == 1){?><th width="13%">การรับประกัน</th><?php  }?>
-        <?php  if($_REQUEST['sh9'] == 1){?><th width="7%">ผู้ขาย</th><?php  }?>
+        <?php  if($_REQUEST['sh9'] == 1){?><th width="10%">ผู้ขาย</th><?php  }?>
       </tr>
       <?php  
 	  	$qu_fr = @mysqli_query($conn,$sql);
@@ -95,6 +109,7 @@
 		while($row_fr = @mysqli_fetch_array($qu_fr)){
 			?>
 			<tr>
+              <td><?php  echo $row_fr['fs_id'];?></td>
               <?php  if($_REQUEST['sh1'] == 1){?><td><?php  echo $row_fr['cd_name'];?><br />
               <?php  echo $row_fr['cd_tel'];?></td><?php  }?>
               <?php  if($_REQUEST['sh2'] == 1){?><td><?php  echo $row_fr['loc_name'];?><br />
@@ -204,14 +219,14 @@
               </td><?php  }?>
               <?php  if($_REQUEST['sh8'] == 1){?><td><?php  echo format_date($row_fr['cs_setting']);?></td><?php  }?>
               <?php  if($_REQUEST['sh4'] == 1){?><td><?php if($row_fr['garun_id'] != ''){echo $row_fr['garun_id']."เดือน / <br/>".format_date($row_fr['date_quf'])." - ".format_date($row_fr['date_qut']);}?></td><?php  }?>
-              <?php  if($_REQUEST['sh9'] == 1){?><td><?php  echo getsalename($conn,$row_fr['cs_sell']);?></td><?php  }?>
+              <?php  if($_REQUEST['sh9'] == 1){?><td><?php  echo getsalename($conn,$row_fr['cs_company']);?></td><?php  }?>
             </tr>
 			<?php 
 			$sum += 1;	
 		}
 	  ?>
       <tr>
-		<td colspan="8" style="text-align:right;"> <strong>ทั้งหมด&nbsp;&nbsp;<?php  echo $sum;?>&nbsp;&nbsp;รายการ&nbsp;&nbsp;</strong></td>
+		<td colspan="9" style="text-align:right;"> <strong>ทั้งหมด&nbsp;&nbsp;<?php  echo $sum;?>&nbsp;&nbsp;รายการ&nbsp;&nbsp;</strong></td>
 	  </tr>
     </table>
 
