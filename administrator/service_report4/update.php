@@ -54,6 +54,13 @@
 			
 			$_POST['job_last'] = get_lastservice_s($conn,$_POST['cus_id'],"");
 			
+			
+			//job_balance up to cs_ship
+			//sr_stime up to cs_setting
+			
+			@mysqli_query($conn,"UPDATE `s_first_order` SET `cs_ship` = '".$_POST['job_balance']."',`cs_setting` = '".$_POST['sr_stime']."'  WHERE `s_first_order`.`fo_id` = ".$_POST['cus_id'].";");
+			
+			
 			include "../include/m_add.php";
 			
 			
@@ -106,6 +113,11 @@
 			}
 			
 			@mysqli_query($conn,"DELETE FROM `s_service_report4sub` WHERE `sr_id` = '".$_REQUEST[$PK_field]."'");
+			
+			//job_balance up to cs_ship
+			//sr_stime up to cs_setting
+			
+			@mysqli_query($conn,"UPDATE `s_first_order` SET `cs_ship` = '".$_POST['job_balance']."',`cs_setting` = '".$_POST['sr_stime']."'  WHERE `s_first_order`.`fo_id` = ".$_POST['cus_id'].";");
 			
 			 
 			include ("../include/m_update.php");
