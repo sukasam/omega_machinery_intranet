@@ -39,35 +39,13 @@
 </style>
 
 <?php
-	$condition = "";
 	$getMonth = $_GET['month']-1;
 	
-	$condition.= " AND (service_type = 8";
+	//$condition.= getScheduleService();
+	$condition = " AND (service_month != '0' AND service_month != '')";
+	$condition.= " AND (service_type != '0' AND service_type != '')";
 	
-	if($getMonth % 2 != 0){
-		$condition.= " OR service_type = 37";
-	}
-	
-	if($getMonth != 2 || $getMonth != 4 || $getMonth != 6 || $getMonth != 8 || $getMonth != 10 || $getMonth != 12){
-		$condition.= " OR service_type = 38";
-	}
-	
-	if($getMonth == 3 || $getMonth == 6 || $getMonth == 9 || $getMonth == 12){
-		$condition.= " OR service_type = 39";
-	}
-	
-	if($getMonth == 4 || $getMonth == 8 || $getMonth == 12){
-		$condition.= " OR service_type = 97";
-	}
-	
-	if($getMonth == 6 || $getMonth == 12){
-		$condition.= " OR service_type = 100";
-	}
-	
-	$condition.= ")";
-
-	
-	 $sqlSched = "SELECT * FROM `s_first_order` WHERE `technic_service` = ".$_GET['loccontact'].$condition." ORDER BY `cd_province` ,`loc_name` ASC;";
+	$sqlSched = "SELECT * FROM `s_first_order` WHERE `technic_service` = ".$_GET['loccontact'].$condition." AND status_use != '2' AND status_use != '1' ORDER BY `cd_province` ,`loc_name` ASC;";
 	
 	$quSched = mysqli_query($conn,$sqlSched);
 	
@@ -76,6 +54,19 @@
 <div align="center"><span class="currentdate">งานบริการประจำเดือน <?php  echo format_month_th(date ("F", mktime(0,0,0,$_GET['month']-1,1,$_GET['year'])))." ".(date ("Y", mktime(0,0,0,$_GET['month']-1,1,$_GET['year']))+543); ?></spanbr>
   <br>(<?php echo get_technician_name($conn,$_GET['loccontact']);?>)<br><br>
 </div>
+
+<?php
+	$getMonth = $_GET['month']-1;
+	
+	//$condition.= getScheduleService();
+	$condition = " AND (service_month != '0' AND service_month != '')";
+	$condition.= " AND (service_type != '0' AND service_type != '')";
+	
+	$sqlSched = "SELECT * FROM `s_first_order` WHERE `technic_service` = ".$_GET['loccontact'].$condition." AND status_use != '2' AND status_use != '1' ORDER BY `cd_province` ,`loc_name` ASC;";
+	
+	$quSched = mysqli_query($conn,$sqlSched);
+	
+?>
 
 <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tableSc">
   <tbody>
@@ -88,122 +79,50 @@
       <th>จังหวัด</th>
       <th>ชนิดลูกค้า</th>
       <th>ระยะเวลา</th>
-      <th>เลขที่ FO</th>
+      <th>ID</th>
+<!--      <th>ดาวโหลด</th>-->
     </tr>
     <?php 
 	  $runRow = 1;
 	  while($rowSched = mysqli_fetch_array($quSched)){
 		  
-		  if(getCheckProGen($conn,$rowSched['cpro1']) == 1){
-			  ?>
-			  <tr>
-				  <td><?php echo $runRow++;?></td>
-				  <td style="text-align: left;"><?php echo $rowSched['loc_name'];?></td>
-				  <td><?php echo get_proname($conn,$rowSched['cpro1']);?></td>
-				  <td><?php echo $rowSched['pro_pod1'];?></td>
-				  <td><?php echo $rowSched['pro_sn1'];?></td>
-				  <td><?php echo province_name($conn,$rowSched['cd_province']);?></td>
-				  <td><?php echo custype_name($conn,$rowSched['ctype']);?></td>
-				  <td><?php echo get_servicename($conn,$rowSched['service_type']);?></td>
-				  <td><?php echo $rowSched['fs_id'];?></td>
-	  		  </tr>
-			  <?php
-		  }
+		  if(getScheduleService($rowSched['service_month'],$getMonth,$rowSched['service_type']) == 1){
 		  
-		  if(getCheckProGen($conn,$rowSched['cpro2']) == 1){
-			  ?>
-			  <tr>
-				  <td><?php echo $runRow++;?></td>
-				  <td style="text-align: left;"><?php echo $rowSched['loc_name'];?></td>
-				  <td><?php echo get_proname($conn,$rowSched['cpro2']);?></td>
-				  <td><?php echo $rowSched['pro_pod2'];?></td>
-				  <td><?php echo $rowSched['pro_sn2'];?></td>
-				  <td><?php echo province_name($conn,$rowSched['cd_province']);?></td>
-				  <td><?php echo custype_name($conn,$rowSched['ctype']);?></td>
-				  <td><?php echo get_servicename($conn,$rowSched['service_type']);?></td>
-				  <td><?php echo $rowSched['fs_id'];?></td>
-	  		  </tr>
-			  <?php
-		  }
-		  
-		  /*if($rowSched['cpro2'] == 1 || $rowSched['cpro2'] == 2 || $rowSched['cpro2'] == 99 || $rowSched['cpro2'] == 148 || $rowSched['cpro2'] == 201){
-			  
-			  if($rowSched['cpro1'] == 147){
-				  if($getMonth == 3 || $getMonth == 6 || $getMonth == 9 || $getMonth == 12){
+			  $getFileSH = getScheduleFile($conn,$_GET['loccontact'],$_GET['month']-1,$rowSched['fs_id']);
+
+
+			  if(getCheckProGen($conn,$rowSched['cpro1'],$rowSched['fs_id']) == 1){
 				  ?>
-				<tr>
-				  <td><?php echo $runRow++;?></td>
-				  <td style="text-align: left;"><?php echo $rowSched['loc_name'];?></td>
-				  <td><?php echo get_proname($conn,$rowSched['cpro1']);?></td>
-				  <td><?php echo $rowSched['pro_pod1'];?></td>
-				  <td><?php echo $rowSched['pro_sn1'];?></td>
-				  <td><?php echo province_name($conn,$rowSched['cd_province']);?></td>
-				  <td><?php echo custype_name($conn,$rowSched['ctype']);?></td>
-				  <td><?php if($rowSched['cpro1'] == 147){echo "งานบริการประจำ 3 เดือน/ครั้ง";}else{echo get_servicename($conn,$rowSched['type_service']);}?></td>
-				</tr>
-				  <?php
-				  }
-			  }else{
-				  ?>
-				<tr>
-				  <td><?php echo $runRow++;?></td>
-				  <td style="text-align: left;"><?php echo $rowSched['loc_name'];?></td>
-				  <td><?php echo get_proname($conn,$rowSched['cpro1']);?></td>
-				  <td><?php echo $rowSched['pro_pod1'];?></td>
-				  <td><?php echo $rowSched['pro_sn1'];?></td>
-				  <td><?php echo province_name($conn,$rowSched['cd_province']);?></td>
-				  <td><?php echo custype_name($conn,$rowSched['ctype']);?></td>
-				  <td><?php if($rowSched['cpro1'] == 147){echo "งานบริการประจำ 3 เดือน/ครั้ง";}else{echo get_servicename($conn,$rowSched['type_service']);}?></td>
-				</tr>
-				  <?php
-			  }
-			  
-			  if($rowSched['cpro2'] == 147){
-				  if($getMonth == 3 || $getMonth == 6 || $getMonth == 9 || $getMonth == 12){
-				   ?>
-				   <tr>
+				  <tr>
 					  <td><?php echo $runRow++;?></td>
 					  <td style="text-align: left;"><?php echo $rowSched['loc_name'];?></td>
-					  <td><?php echo get_proname($conn,$rowSched['cpro2']);?></td>
+					  <td><?php if(substr($rowSched['fs_id'],0,2) == "SV"){echo get_proname2($conn,$rowSched['cpro1']);}else{echo get_proname($conn,$rowSched['cpro1']);}?></td>
+					  <td><?php echo $rowSched['pro_pod1'];?></td>
+					  <td><?php echo $rowSched['pro_sn1'];?></td>
+					  <td><?php echo province_name($conn,$rowSched['cd_province']);?></td>
+					  <td><?php echo custype_name($conn,$rowSched['ctype']);?></td>
+					  <td><?php echo get_servicename($conn,$rowSched['service_type']);?></td>
+					  <td><?php echo $rowSched['fs_id'];?></td>
+				  </tr>
+				  <?php
+			  }
+
+			  if(getCheckProGen($conn,$rowSched['cpro2'],$rowSched['fs_id']) == 1){
+				  ?>
+				  <tr>
+					  <td><?php echo $runRow++;?></td>
+					  <td style="text-align: left;"><?php echo $rowSched['loc_name'];?></td>
+					  <td><?php if(substr($rowSched['fs_id'],0,2) == "SV"){echo get_proname2($conn,$rowSched['cpro2']);}else{echo get_proname($conn,$rowSched['cpro2']);}?></td>
 					  <td><?php echo $rowSched['pro_pod2'];?></td>
 					  <td><?php echo $rowSched['pro_sn2'];?></td>
 					  <td><?php echo province_name($conn,$rowSched['cd_province']);?></td>
 					  <td><?php echo custype_name($conn,$rowSched['ctype']);?></td>
-					  <td><?php if($rowSched['cpro2'] == 147){echo "งานบริการประจำ 3 เดือน/ครั้ง";}else{echo get_servicename($conn,$rowSched['type_service']);}?></td>
-					</tr>
+					  <td><?php echo get_servicename($conn,$rowSched['service_type']);?></td>
+					  <td><?php echo $rowSched['fs_id'];?></td>
+				  </tr>
 				  <?php
-				  }
-			  }else{
-				   ?>
-			   <tr>
-				  <td><?php echo $runRow++;?></td>
-				  <td style="text-align: left;"><?php echo $rowSched['loc_name'];?></td>
-				  <td><?php echo get_proname($conn,$rowSched['cpro2']);?></td>
-				  <td><?php echo $rowSched['pro_pod2'];?></td>
-				  <td><?php echo $rowSched['pro_sn2'];?></td>
-				  <td><?php echo province_name($conn,$rowSched['cd_province']);?></td>
-				  <td><?php echo custype_name($conn,$rowSched['ctype']);?></td>
-				  <td><?php if($rowSched['cpro2'] == 147){echo "งานบริการประจำ 3 เดือน/ครั้ง";}else{echo get_servicename($conn,$rowSched['type_service']);}?></td>
-				</tr>
-			  <?php
 			  }
-			  
-			 
-		  }else{
-			  ?>
-				<tr>
-				  <td><?php echo $runRow++;?></td>
-				  <td style="text-align: left;"><?php echo $rowSched['loc_name'];?></td>
-				  <td><?php echo get_proname($conn,$rowSched['cpro1']);?></td>
-				  <td><?php echo $rowSched['pro_pod1'];?></td>
-				  <td><?php echo $rowSched['pro_sn1'];?></td>
-				  <td><?php echo province_name($conn,$rowSched['cd_province']);?></td>
-				  <td><?php echo custype_name($conn,$rowSched['ctype']);?></td>
-				  <td><?php echo get_servicename($conn,$rowSched['type_service']);?></td>
-				</tr>
-			<?php
-		 }*/
-		  
+		  }
 	  }
 	?>
   </tbody>
