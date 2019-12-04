@@ -1684,6 +1684,11 @@ function get_sparpart_name($conn,$gid) {
 	return $row_dea['group_name'];		
 }
 
+function get_stockmachine_name($conn,$gid) {
+	$row_dea = @mysqli_fetch_array(@mysqli_query($conn,"SELECT * FROM  group_stockmachine WHERE group_id = '".$gid."'"));
+	return $row_dea['group_name'];		
+}
+
 function get_nameStock($conn,$gid) {
 	$row_dea = @mysqli_fetch_array(@mysqli_query($conn,"SELECT * FROM  s_group_sparpart WHERE group_id = '".$gid."'"));
 	return $row_dea['group_location'];		
@@ -2103,6 +2108,11 @@ function findWord($string,$findWord){
 
 function get_sparpart_id($conn,$gid) {
 	$row_dea = @mysqli_fetch_array(@mysqli_query($conn,"SELECT * FROM  s_group_sparpart WHERE group_id = '".$gid."'"));
+	return $row_dea['group_spar_id'];		
+}
+
+function get_stockmachine_id($conn,$gid) {
+	$row_dea = @mysqli_fetch_array(@mysqli_query($conn,"SELECT * FROM  group_stockmachine WHERE group_id = '".$gid."'"));
 	return $row_dea['group_spar_id'];		
 }
 

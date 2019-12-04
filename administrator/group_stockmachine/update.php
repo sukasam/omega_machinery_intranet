@@ -13,8 +13,8 @@
 			$_POST['group_spar_id'] = $_POST['group_spar_id2'];
 		}
 		
-		$_POST['group_unit_price'] = preg_replace("/,/","",$_POST['group_unit_price']);
-		$_POST['group_price'] = preg_replace("/,/","",$_POST['group_price']);
+		//$_POST['group_unit_price'] = preg_replace("/,/","",$_POST['group_unit_price']);
+		$_POST['group_status'] = preg_replace("/,/","",$_POST['group_status']);
 
 		$_POST['group_name'] = addslashes($_POST['group_name']);
 		$_POST['group_location'] = addslashes($_POST['group_location']);
@@ -83,7 +83,7 @@ $( document ).ready(function() {
 				
 				$("#group_spar_id")[0].disabled = true;
 				$("#group_name")[0].disabled = true;
-				$("#group_namecall")[0].disabled = true;
+				//$("#group_namecall")[0].disabled = true;
 
 
 				$.ajax({
@@ -97,10 +97,10 @@ $( document ).ready(function() {
 							$("#group_id").val(obj.group_id);
 							$("#group_name").val(obj.group_name);
 							$("#group_location").val(obj.group_location);
-							$("#group_namecall").val(obj.group_namecall);
+							//$("#group_namecall").val(obj.group_namecall);
 							$("#group_type").val(obj.group_type);
-							$("#group_unit_price").val(obj.group_unit_price);
-							$("#group_price").val(obj.group_price);
+							//$("#group_unit_price").val(obj.group_unit_price);
+							$("#group_status").val(obj.group_status);
 							//$("#typespar").val(obj.typespar);
 							
 							if(obj.typespar == 2){
@@ -115,14 +115,14 @@ $( document ).ready(function() {
 							$("#mode").val('add');
 							$("#group_name").val('');
 							$("#group_location").val('');
-							$("#group_namecall").val('');
+							//$("#group_namecall").val('');
 							$("#group_spar_id2").val(group_spar_id);
 							$(".editIDPro").addClass('hide');
 						}
 
 						$("#group_spar_id")[0].disabled = true;
 						$("#group_name")[0].disabled = false;
-						$("#group_namecall")[0].disabled = false;
+						//$("#group_namecall")[0].disabled = false;
 						$("#edit_spar_id")[0].disabled = false;
 						//$("#group_name").focus();
 					}
@@ -171,10 +171,10 @@ $( document ).ready(function() {
 								$("#group_id").val(obj.group_id);
 								$("#group_name").val(obj.group_name);
 								$("#group_location").val(obj.group_location);
-								$("#group_namecall").val(obj.group_namecall);
+								//$("#group_namecall").val(obj.group_namecall);
 								$("#group_type").val(obj.group_type);
-								$("#group_unit_price").val(obj.group_unit_price);
-								$("#group_price").val(obj.group_price);
+								//$("#group_unit_price").val(obj.group_unit_price);
+								$("#group_status").val(obj.group_status);
 								//$("#typespar").val(obj.typespar);
 								
 								if(obj.typespar == 2){
@@ -185,20 +185,20 @@ $( document ).ready(function() {
 								$("#mode").val('update');
 								$("#group_spar_id2").val(obj.group_spar_id);
 								$(".editIDPro").removeClass('hide');
+								
 							}else{
 								$("#mode").val('add');
 								//$("#group_name").val('');
 								$("#group_location").val('');
-								$("#group_namecall").val('');
+								//$("#group_namecall").val('');
 								$("#group_spar_id2").val(group_spar_id);
 								$(".editIDPro").addClass('hide');
 							}
 
 							$("#group_spar_id")[0].disabled = true;
 							$("#group_name")[0].disabled = false;
-							$("#group_namecall")[0].disabled = false;
+							//$("#group_namecall")[0].disabled = false;
 							$("#edit_spar_id")[0].disabled = false;
-							//$("#group_name").focus();
 						}
 					});
 			}
@@ -262,13 +262,13 @@ function submitForm(){
           <tr>
             <td><table class="formFields" cellspacing="0" width="100%">
               <tr >
-                <td nowrap class="name">รหัสอะไหล่</td>
-				  <td><span id="chkDupID" class="hide" style="color: red;">รหัสอะไหล่ซ้ำ<br></span><input name="group_spar_id" type="text" id="group_spar_id"  value="<?php     echo $group_spar_id; ?>" size="60"> <span class="editIDPro hide"><input type="checkbox" name="edit_spar_id" id="edit_spar_id" value="1" disabled> แก้ไขรหัสอะไหล่</span>
+                <td nowrap class="name">รหัสสินค้า</td>
+				  <td><span id="chkDupID" class="hide" style="color: red;">รหัสสินค้าซ้ำ<br></span><input name="group_spar_id" type="text" id="group_spar_id"  value="<?php     echo $group_spar_id; ?>" size="60"> <span class="editIDPro hide"><input type="checkbox" name="edit_spar_id" id="edit_spar_id" value="1" disabled> แก้ไขรหัสสินค้า</span>
                 <input name="group_spar_id2" type="hidden" id="group_spar_id2"  value="" size="60">
                 </td>
               </tr>
               <tr >
-                <td nowrap class="name">ชื่ออะไหล่</td>
+                <td nowrap class="name">ชื่อสินค้า</td>
                 <td><input name="group_name" type="text" id="group_name"  value="<?php     echo $group_name; ?>" size="60"></td>
               </tr>
               <tr >
@@ -282,38 +282,29 @@ function submitForm(){
               </tr>
               <tr >
                 <td nowrap class="name">ราคา/หน่วย</td>
-                <td><input name="group_price" type="text" id="group_price"  value="<?php     echo $group_price; ?>" size="60"></td>
+                <td><input name="group_status" type="text" id="group_status"  value="<?php     echo $group_status; ?>" size="60"></td>
               </tr>
 -->
               <tr>
                 <td nowrap class="name">ชนิดสินค้า</td>
                 <td><input name="group_type" type="text" id="group_type"  value="<?php     echo $group_type; ?>" size="60"></td>
               </tr>
-              <tr>
-                <td nowrap class="name">นาม</td>
-                <td><input name="group_namecall" type="text" id="group_namecall"  value="<?php     echo $group_namecall; ?>" size="60"></td>
-              </tr>
+			  
+			  <!-- <tr>
+                <td nowrap class="name">ชนิดสินค้า</td>
+                <td><input name="typespar" type="text" id="typespar"  value="<?php echo  $typespar; ?>" size="60"></td>
+              </tr> -->
               
               <tr>
-                <td nowrap class="name">ราคาต้นทุนสินค้า</td>
-                <td><input name="group_unit_price" type="text" id="group_unit_price"  value="<?php     echo number_format($group_unit_price); ?>" size="60"></td>
+                <td nowrap class="name">สถานะเครื่อง</td>
+                <td><input name="group_status" type="text" id="group_status"  value="<?php echo  $group_status; ?>" size="60"></td>
               </tr>
-              
-              <tr>
-                <td nowrap class="name">ราคาขาย</td>
-                <td><input name="group_price" type="text" id="group_price"  value="<?php     echo  number_format($group_price); ?>" size="60"></td>
-              </tr>
-              
-              <tr style="display: none;">
-                <td nowrap class="name">ประเภทอะไหล่</td>
-                <td><input type="radio" name="typespar" value="1" id="typespar1">อะไหล่สินค้า&nbsp;&nbsp;&nbsp;<input type="radio" name="typespar" value="2" id="typespar2">สินค้าอื่นๆ</td>
-              </tr>
-              
-<!--
+
+
               <tr>
               	<td></td><td></td>
               </tr>
--->
+
               
               <?php     if ($_GET["mode"] == "add") { ?>
               <?php     } ?>
