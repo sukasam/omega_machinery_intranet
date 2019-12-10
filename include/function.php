@@ -273,7 +273,7 @@ function format_date_th ($value,$type) {
 			$msg =  $s_day . " " .  $month_brief_th[$s_month]   . " " .  substr($s_year,-2)  ;
 			break;
 		case "7" :  // 4 ก.พ. 51
-			$msg =  $s_day . "/" .  $month_brief_th[$s_month]   . "/" .  $s_year  ;
+			$msg =  $s_day . "/" .  $s_month   . "/" .  $s_year  ;
 			break;
 		case "8" :  // 4 ม.ค. 2548 <br /><br />14.11 น. 
 			$msg =  $s_day . " " .  $month_brief_th[$s_month]  . " " .  $s_year . "<br><br>เวลา " . $s_hour . "." . $s_minute . " น." ;
@@ -2461,6 +2461,17 @@ function chkServerFormGen($conn){
 		return 0;
 	}
 
+}
+
+function getShipSetupPro($conn,$fo_id,$typeSV){
+	$quSV = @mysqli_query($conn,"SELECT * FROM s_service_report4 WHERE cus_id = '".$fo_id."' ORDER BY sr_id DESC");
+	$rowSV = mysqli_fetch_array($quSV);
+	if($typeSV == 2){
+		return format_date_th($rowSV['job_balance'],7);
+	}else{
+		return format_date_th($rowSV['sr_stime'],7);
+	}
+	
 }
 
 ?>
