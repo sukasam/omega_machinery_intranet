@@ -890,15 +890,13 @@ function check(frm){
         </table></td>
         <td width="33%" style="border:1px solid #000000;font-size:11px;font-family:Verdana, Geneva, sans-serif;text-align:center;padding-top:10px;padding-bottom:10px;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
-            <td style="border-bottom:1px solid #000000;padding-bottom:10px;font-size:11px;font-family:Verdana, Geneva, sans-serif;text-align:center;">&nbsp;</td>
+            <td style="border-bottom:1px solid #000000;padding-bottom:10px;font-size:11px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>นายไพโรจน์ เพ็ชรประสิทธิ์</strong></td>
           </tr>
           <tr>
             <td style="padding-top:10px;padding-bottom:10px;font-size:11px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>ผู้ตรวจสอบ</strong></td>
           </tr>
           <tr>
-            <td style="font-size:11px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>วันที่............./.............../..............<br />
-              <br />
-              เวลา............................................ </strong></td>
+            <td style="font-size:11px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>วันที่ <?php echo format_date_th(checkHCustomerDate($conn,$sr_id),8);?></strong></td>
           </tr>
         </table></td>
       </tr>
