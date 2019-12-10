@@ -111,10 +111,9 @@
 					$_POST['job_balance'] = date("Y-m-d");
 					
 					$_POST['cd_names'] = urldecode($rowSched['cd_name']);
-					$_POST['loc_pro'] = urldecode(get_proname($conn,$rowSched['cpro1']));
-					$_POST['loc_seal'] = urldecode($rowSched['pro_pod1']);
-					$_POST['loc_sn'] = urldecode($rowSched['pro_sn1']);
-					$_POST['loc_sn'] = urldecode($rowSched['pro_sn1']);
+					$_POST['loc_pro'] = urldecode(get_proname($conn,$rowSched['cpro2']));
+					$_POST['loc_seal'] = urldecode($rowSched['pro_pod2']);
+					$_POST['loc_sn'] = urldecode($rowSched['pro_sn2']);
 					$_POST['loc_contact'] = urldecode($rowSched['technic_service']);
 					$_POST['fo_id'] = urldecode($rowSched['fs_id']);
 					$_POST['cus_id'] = urldecode($rowSched['fo_id']);
@@ -185,7 +184,7 @@
 			
 		
 		 while($rowGen2 = mysqli_fetch_array($quGen2)){
-			set_time_limit(0);
+			//set_time_limit(0);
 			$pdf->addPDF("../../upload/service_report_open/".$rowGen2['pdf'], 'all');
 		 }
 
