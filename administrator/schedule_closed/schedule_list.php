@@ -54,7 +54,7 @@
 		$ctype = " AND sr_ctype = '".$_GET['sr_ctype']."'";
 	}
 	
-  	$qu_service = @mysqli_query($conn,"SELECT * FROM s_service_report WHERE job_balance = '".$con."' AND st_setting = 0 ". $loc . $ctype);
+  	$qu_service = @mysqli_query($conn,"SELECT * FROM s_service_report WHERE job_close = '".$con."' AND st_setting = 1 ". $loc . $ctype);
 	$romn = 1;
 	while($row_serv = @mysqli_fetch_array($qu_service)){
 	$chaf = preg_replace("/\//","-",$row_serv["sv_id"]);
@@ -63,10 +63,10 @@
 	// if($row_serv['st_setting'] == 0){
 	// 	$scstatus = "<a href=\"../../upload/service_report_open/".$chaf.".pdf\" target=\"_blank\" style=\"text-decoration: none;\"><span style=\"color:green;\">".$row_serv['sv_id']."</span></a>";
 	// }else{
-	// 	$scstatus = "<a href=\"../../upload/service_report_close/".$chaf.".pdf\" target=\"_blank\" style=\"text-decoration: none;\"><span style=\"color:red;\">".$row_serv['sv_id']."</span></a>";
+	// 	$scstatus = "<a href=\"../../upload/service_report_open/".$chaf.".pdf\" target=\"_blank\" style=\"text-decoration: none;\"><span style=\"color:red;\">".$row_serv['sv_id']."</span></a>";
 	// }
 
-	$scstatus = "<a href=\"../../upload/service_report_open/".$chaf.".pdf\" target=\"_blank\" style=\"text-decoration: none;\"><span style=\"color:green;\">".$row_serv['sv_id']."</span></a>";
+	$scstatus = "<a href=\"../../upload/service_report_close/".$chaf.".pdf\" target=\"_blank\" style=\"text-decoration: none;\"><span style=\"color:red;\">".$row_serv['sv_id']."</span></a>";
 	
   ?>  
   <tr>

@@ -14,7 +14,7 @@
 	$fileName = base64_encode($sr_id).'.png';
 	file_put_contents($path.$fileName, $fileData);
 	
-	$sqlSugnature = "UPDATE `s_service_report` SET `signature` = '".$fileName."', `signature_date`= '".date("Y-m-d H:i:s")."' WHERE `sr_id` = ".$sr_id.";";
+	$sqlSugnature = "UPDATE `s_service_report` SET `signature` = '".$fileName."', `signature_date`= '".date("Y-m-d H:i:s")."', `job_close`= '".date("Y-m-d H:i:s")."' WHERE `sr_id` = ".$sr_id.";";
 	@mysqli_query($conn,"$sqlSugnature");
 	
     die;

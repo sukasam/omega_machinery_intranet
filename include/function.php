@@ -1705,18 +1705,52 @@ function get_servreport($conn,$ymd,$loc,$ctype) {
 		$condi .= " AND sr_ctype = '".$ctype."'";
 	}
 	
-	$qqu_srv = @mysqli_query($conn,"SELECT * FROM s_service_report WHERE job_close = '".$ymd."' ".$condi." LIMIT 4");
+	$qqu_srv = @mysqli_query($conn,"SELECT * FROM s_service_report WHERE job_balance = '".$ymd."' ".$condi." AND st_setting = 0 LIMIT 4");
 	$numsrv = @mysqli_num_rows($qqu_srv);
 	$res = "";
 	if($numsrv > 0){
 		while($row_dea = @mysqli_fetch_array($qqu_srv)){
 			$chaf = preg_replace("/\//","-",$row_dea["sv_id"]);
-			if($row_dea['st_setting'] == 0){
-				$scstatus = "<span style=\"color:green;\">".$row_dea['sv_id']."</span>";
-			}else{
-				$scstatus = "<span style=\"color:red;\">".$row_dea['sv_id']."</span>";
-			}	
+			// if($row_dea['st_setting'] == 0){
+			// 	$scstatus = "<span style=\"color:green;\">".$row_dea['sv_id']."</span>";
+			// 	$res .= "&nbsp;<a href=\"../../upload/service_report_open/".$chaf.".pdf\" target=\"_blank\"><strong>".$scstatus."</strong></a>\n<br>\n";
+			// }else{
+			// 	$scstatus = "<span style=\"color:red;\">".$row_dea['sv_id']."</span>";
+			// 	$res .= "&nbsp;<a href=\"../../upload/service_report_close/".$chaf.".pdf\" target=\"_blank\"><strong>".$scstatus."</strong></a>\n<br>\n";
+			// }	
+
+			$scstatus = "<span style=\"color:green;\">".$row_dea['sv_id']."</span>";
 			$res .= "&nbsp;<a href=\"../../upload/service_report_open/".$chaf.".pdf\" target=\"_blank\"><strong>".$scstatus."</strong></a>\n<br>\n";
+		}	
+	}
+	
+	return $res;		
+}
+
+function get_servreport_closed($conn,$ymd,$loc,$ctype) {
+	
+	if($loc != ""){
+		$condi .= " AND loc_contact = '".$loc."'";
+	}
+	
+	if($ctype != ""){
+		$condi .= " AND sr_ctype = '".$ctype."'";
+	}
+	
+	$qqu_srv = @mysqli_query($conn,"SELECT * FROM s_service_report WHERE job_close = '".$ymd."' ".$condi." AND st_setting = 1 LIMIT 4");
+	$numsrv = @mysqli_num_rows($qqu_srv);
+	$res = "";
+	if($numsrv > 0){
+		while($row_dea = @mysqli_fetch_array($qqu_srv)){
+			$chaf = preg_replace("/\//","-",$row_dea["sv_id"]);
+			// if($row_dea['st_setting'] == 0){
+			// 	$scstatus = "<span style=\"color:green;\">".$row_dea['sv_id']."</span>";
+			// }else{
+			// 	$scstatus = "<span style=\"color:red;\">".$row_dea['sv_id']."</span>";
+			// }	
+			$scstatus = "<span style=\"color:red;\">".$row_dea['sv_id']."</span>";
+
+			$res .= "&nbsp;<a href=\"../../upload/service_report_close/".$chaf.".pdf\" target=\"_blank\"><strong>".$scstatus."</strong></a>\n<br>\n";
 		}	
 	}
 	

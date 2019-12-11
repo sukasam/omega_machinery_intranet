@@ -437,16 +437,16 @@ function check(frm){
 	    </tr>
 	  <tr>
 	    <td><strong>โทรศัพท์ :</strong> <span id="custel"><?php  echo $finfo['cd_tel'];?></span><strong>&nbsp;&nbsp;&nbsp;&nbsp;แฟกซ์ :</strong> <span id="cusfax"><?php  echo $finfo['cd_fax'];?></span></td>
-	    <td><strong>วันที่  :</strong> <span id="datef"></span><input type="text" name="job_open" readonly value="<?php  if($job_open==""){echo date("d/m/Y");}else{ echo $job_open;}?>" class="inpfoder" style="width: 60px;"/><script language="JavaScript">new tcal ({'formname': 'form1','controlname': 'job_open'});</script><strong> วันครบกำหนดบริการ :</strong> <span id="datet"></span><input type="text" name="job_balance" readonly value="<?php  if($job_balance==""){echo date("d/m/Y");}else{ echo $job_balance;}?>" class="inpfoder" style="width: 60px;"/><script language="JavaScript">new tcal ({'formname': 'form1','controlname': 'job_balance'});</script><input type="hidden" name="job_close" value="<?php  if($job_close==""){echo date("d/m/Y");}else{ echo $job_close;}?>" class="inpfoder" style="width: 60px;"/></td>
+	    <td><strong>วันที่  :</strong> <span id="datef"></span><input type="text" name="job_open" readonly value="<?php  if($job_open==""){echo date("d/m/Y");}else{ echo $job_open;}?>" class="inpfoder" style="width: 70px;"/><script language="JavaScript">new tcal ({'formname': 'form1','controlname': 'job_open'});</script><strong> วันที่เข้าบริการ :</strong> <span id="datet"></span><input type="text" name="job_close" readonly value="<?php  if($job_close==""){echo date("d/m/Y");}else{ echo $job_close;}?>" class="inpfoder" style="width: 70px;"/><script language="JavaScript">new tcal ({'formname': 'form1','controlname': 'job_close'});</script><input type="hidden" name="job_balance" value="<?php  if($job_balance==""){echo date("d/m/Y");}else{ echo $job_balance;}?>" class="inpfoder" style="width: 70px;"/>&nbsp;&nbsp;&nbsp;<strong>เวลา :</strong> <input type="time" name="job_closetime" value="<?php echo $job_closetime;?>" class="inpfoder" style="width: 70px;text-align: center;"/><input type="hidden" name="job_opentime" value="<?php echo $job_opentime;?>" class="inpfoder" style="width: 70px;text-align: center;"/></td>
 	    </tr>
 	  <tr>
 	    <td><strong>ชื่อผู้ติดต่อ :</strong> <span id="cscont"><?php  echo $finfo['c_contact'];?></span>&nbsp;&nbsp;&nbsp;&nbsp;<strong>เบอร์โทร :</strong> <span id="cstel"><?php  echo $finfo['c_tel'];?></span></td>
-	    <td><strong>บริการครั้งล่าสุด : </strong> <span id="sevlast"><?php  echo get_lastservice_f($conn,$cus_id,$sv_id);?></span> &nbsp;&nbsp;&nbsp;&nbsp;<strong>บริการครั้งต่อไป  :</strong><span style="font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;"><input type="text" name="sr_stime" readonly value="<?php  if($sr_stime==""){echo date("d/m/Y");}else{ echo $sr_stime;}?>" class="inpfoder" style="width: 60px;"/><script language="JavaScript">new tcal ({'formname': 'form1','controlname': 'sr_stime'});</script></span></td>
+	    <td><strong>บริการครั้งล่าสุด : </strong> <span id="sevlast"><?php  echo get_lastservice_f($conn,$cus_id,$sv_id);?></span> &nbsp;&nbsp;&nbsp;&nbsp;<strong>บริการครั้งต่อไป  :</strong><span style="font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;"><input type="text" name="sr_stime" readonly value="<?php  if($sr_stime==""){echo date("d/m/Y");}else{ echo $sr_stime;}?>" class="inpfoder" style="width: 70px;"/><script language="JavaScript">new tcal ({'formname': 'form1','controlname': 'sr_stime'});</script></span></td>
 	    </tr>
 	  </table>
 	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tb2">
 	  <tr>
-	    <td width="46%"><strong>สถานที่ติดตั้ง / ส่งสินค้า : </strong><span id="sloc_name"><?php  echo $finfo['loc_name'];?></span><br />
+	    <td width="33%"><strong>สถานที่ติดตั้ง / ส่งสินค้า : </strong><span id="sloc_name"><?php  echo $finfo['loc_name'];?></span><br />
           <br>
           <strong>เลือกสินค้า :</strong>
           <span id="prolist">
@@ -483,7 +483,7 @@ function check(frm){
 						}
 					?>
                 </select></td>
-	    <td width="54%"><strong>ปริมาณน้ำยา</strong><br />
+	    <td width="33%"><strong>ปริมาณน้ำยา</strong><br />
 	      <br />
 	      <strong>ปริมาณน้ำยาล้าง : </strong>
 	      <input type="text" name="cl_01" value="<?php  echo $cl_01;?>" id="cl_01" class="inpfoder" style="width:20%;">
@@ -510,6 +510,27 @@ function check(frm){
 	      <strong> ถัง RG = </strong>
 	      <input type="text" name="cl_08" value="<?php  echo $cl_08;?>" id="cl_08" class="inpfoder" style="width:5%;">
 	      <strong> ถัง </strong></td>
+		  <td style="width: 25%;"><strong>ช่างเข้าบริการ</strong><br /><br />
+			<?php 
+			$tecList = array("", $tec_service1, $tec_service2, $tec_service3);
+			for($i=1;$i<=3;$i++){
+				
+				?>
+				<?php echo $i;?>. <select name="tec_service<?php echo $i;?>" id="tec_service<?php echo $i;?>">
+                	<option value="">กรุณาเลือก</option>
+                	<?php  
+						$qu_custec = @mysqli_query($conn,"SELECT * FROM s_group_technician ORDER BY group_name ASC");
+						while($row_custec = @mysqli_fetch_array($qu_custec)){
+							?>
+							<option value="<?php  echo $row_custec['group_id'];?>" <?php  if($row_custec['group_id'] == $tecList[$i]){echo 'selected';}?>><?php  echo $row_custec['group_name'];?></option>
+							<?php 
+						}
+					?>
+                </select><br><br>
+				<?php
+			}
+			?>
+        </td>
 	    </tr>
 	  </table>
 <!--

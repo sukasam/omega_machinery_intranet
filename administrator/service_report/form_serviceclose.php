@@ -197,7 +197,7 @@
 				$garunT = '0';
 			}
 			
-           $form .=' วันครบกำหนดบริการ :</strong> '.format_date($_POST['job_balance']).'<br /><br /><strong>บริการครั้งก่อน : </strong>'.$_POST['job_last'].'&nbsp;&nbsp;<strong>บริการครั้งต่อไป  :</strong> '.format_date($_POST['sr_stime']).'</td>
+           $form .=' วันที่เข้าบริการ :</strong> '.format_date($_POST['job_close']).'<br /><br /><strong>บริการครั้งก่อน : </strong>'.$_POST['job_last'].'&nbsp;&nbsp;<strong>บริการครั้งต่อไป  :</strong> '.format_date($_POST['sr_stime']).'</td>
           </tr>
     </table>
 	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tb2">
