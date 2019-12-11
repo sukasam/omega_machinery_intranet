@@ -176,6 +176,19 @@ function check(frm){
 	  // alert('Sorry, only ' + maxchecked + ' may be checked.');
 	   }
 	}
+
+	function changeSrNum(){
+		var d = document.getElementById("sr_ctype").value;
+		var sv_id = document.getElementById("sv_id").value;
+			sv_id = sv_id.replace(/SR/g, 'IT');
+		if(d == 45 || d == 47 || d == 79 || d == 36 || d == 23 || d == 57 || d == 51){
+			sv_id = sv_id.replace(/SR/g, 'IT');
+			document.getElementById("sv_id").value = sv_id;
+		}else{
+			sv_id = sv_id.replace(/IT/g, 'SR');
+			document.getElementById("sv_id").value = sv_id;
+		}
+	}
 	
 </script>
 </HEAD>
@@ -314,7 +327,7 @@ function check(frm){
                 <span id="rsnameid"><input type="hidden" name="cus_id" value="<?php  echo $cus_id;?>"></span><a href="javascript:void(0);" onClick="windowOpener('400', '500', '', 'search.php');"><img src="../images/icon2/mark_f2.png" width="25" height="25" border="0" alt="" style="vertical-align:middle;padding-left:5px;"></a>
             </td>
             <td><strong>ประเภทบริการลูกค้า :</strong> 
-            	<select name="sr_ctype" id="sr_ctype">
+            	<select name="sr_ctype" id="sr_ctype" onchange="changeSrNum()">
                 	<!--<option value="">กรุณาเลือก</option>-->
                 	<?php  
 						$qu_cusftype = @mysqli_query($conn,"SELECT * FROM s_group_service ORDER BY group_name ASC");
