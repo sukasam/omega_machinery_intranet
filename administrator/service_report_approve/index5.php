@@ -24,7 +24,9 @@
 		 
 		 Check_Permission($conn,$check_module,$_SESSION["login_id"],"update");
 		 
-		 $sql_status = "update $tbl_name set approve = '".$cc."' where $PK_field = '".$ids."'";
+		 $appID = userTecGroupID($conn,$_SESSION["login_id"]);
+		 
+		 $sql_status = "update $tbl_name set approve = '".$cc."', loc_contact3 = '".$appID."' where $PK_field = '".$ids."'";
 		 @mysqli_query($conn,$sql_status);
 		/*if ($_GET[dd] == 0) $status = 1;
 		if ($_GET[dd] == 1) $status = 0;
@@ -205,7 +207,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
           <TD style="vertical-align:middle;"><?php  $chaf = preg_replace("/\//","-",$rec["sv_id"]); ?><div align="center"><span class="text"><a href="../../upload/return/<?php  echo $chaf;?>.pdf" target="_blank"><?php  echo $rec["sv_id"] ; ?></a></span></div></TD>
           <TD style="vertical-align:middle;"><span class="text"><?php  echo get_customername($conn,$rec["cus_id"]); ?></span></TD>
           <TD style="vertical-align:middle;"><span class="text"><?php  echo get_localsettingname($conn,$rec["cus_id"]); ?></span></TD>
-          <TD style="vertical-align:middle;"><?php  echo get_technician_name($conn,$rec["loc_contact"]);?></TD>
+          <TD style="vertical-align:middle;"><?php  echo get_technician_name($conn,$rec["loc_contact2"]);?></TD>
           <TD style="vertical-align:middle"><select name="jumpMenu" id="jumpMenu" onChange="MM_jumpMenu('parent',this,0)" style=" <?php  if($rec["approve"] == "0"){echo "background:#FF0;color:#000;";}elseif($rec["approve"] == "1"){echo "background:#090;color:#FFF;";}elseif($rec["approve"] == "3"){echo "background:#C60;color:#FFF;";}else{echo "background:#F00;color:#FFF;";}?>">
             <option value="index5.php?action=apps&cc=0&sr_id=<?php  echo $rec["sr_id"];?>&page=<?php  echo $_GET["page"];?>" <?php  if($rec["approve"] == "0"){echo 'selected="selected"';}?> style="background:#FFF;color:#000;">รอการอนุมัติ</option>
             <option value="index5.php?action=apps&cc=1&sr_id=<?php  echo $rec["sr_id"];?>&page=<?php  echo $_GET["page"];?>" <?php  if($rec["approve"] == "1"){echo 'selected="selected"';}?> style="background:#FFF;color:#000;">อนุมัติ</option>

@@ -81,7 +81,7 @@
 			
 			if($_REQUEST['taget'] == "service"){
 				
-				@mysqli_query($conn,"UPDATE `s_service_report` SET `latitude` = '".$_SESSION["LATITUDE"]."', `longitude` = '".$_SESSION["LONGITUDE"]."', `st_setting` = 1 WHERE `sr_id` = ".$id.";");
+				@mysqli_query($conn,"UPDATE `s_service_report` SET `latitude` = '".$_SESSION["LATITUDE"]."', `longitude` = '".$_SESSION["LONGITUDE"]."', `st_setting` = 1, `approve` = 1 WHERE `sr_id` = ".$id.";");
 				
 				@mysqli_query($conn,"UPDATE `s_first_order` SET `latitude` = '".$_SESSION["LATITUDE"]."', `longitude` = '".$_SESSION["LONGITUDE"]."' WHERE `fo_id` = ".$_POST['cus_id'].";");
 

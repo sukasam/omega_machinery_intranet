@@ -1459,17 +1459,19 @@ function check_servicereport($conn){
 	$thdate = substr(date("Y")+543,2);
 	$concheck = "SR ".$thdate.date("/m/");
 	
-	$qu_forder = @mysqli_query($conn,"SELECT * FROM s_service_report WHERE sv_id like '%".$concheck."%' ORDER BY sv_id DESC");
+	$qu_forder = @mysqli_query($conn,"SELECT * FROM s_service_report ORDER BY sr_id DESC");
 	$num_oder = @mysqli_num_rows($qu_forder);
 	$row_forder = @mysqli_fetch_array($qu_forder);
 	
-	if($row_forder['sv_id'] == ""){
-		return "SR ".$thdate.date("/m/")."001";
-	}else{
-		//$num_odersum = $num_oder+1;
-		$num_odersum = substr($row_forder['sv_id'],-3)+1;
-		return "SR ".$thdate.date("/m/").sprintf("%03d",$num_odersum);
-	}	
+	// if($row_forder['sv_id'] == ""){
+	// 	return "SR ".$thdate.date("/m/")."001";
+	// }else{
+	// 	//$num_odersum = $num_oder+1;
+	// 	$num_odersum = substr($row_forder['sv_id'],-3)+1;
+	// 	return "SR ".$thdate.date("/m/").sprintf("%03d",$num_odersum);
+	// }	
+	$num_odersum = $row_forder['sr_id']+1;
+	return "SR ".$num_odersum;
 }
 
 function check_servicereportinstall($conn){
@@ -2185,6 +2187,13 @@ function userGroup($conn,$user_id){
 	$row_user_group = @mysqli_fetch_array(@mysqli_query($conn,"SELECT * FROM  s_group WHERE group_id = '".$row_user['group_id']."'"));
 	
 	return $row_user_group['group_name'];	
+}
+
+function userTecGroupID($conn,$user_id){
+	$row_user = @mysqli_fetch_array(@mysqli_query($conn,"SELECT * FROM  s_user_group WHERE user_id = '".$user_id."'"));
+	$row_user_group = @mysqli_fetch_array(@mysqli_query($conn,"SELECT * FROM s_group_technician WHERE user_account = '".$row_user['group_id']."'"));
+	
+	return $row_user_group['group_id'];	
 }
 
 function getpod_id($conn,$value) {

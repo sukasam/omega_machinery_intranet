@@ -42,6 +42,10 @@
 			include "../include/m_add.php";
 			
 			$id = mysqli_insert_id($conn);
+
+			$_POST['sv_id'] = substr($_POST['sv_id'],0,2)." ".$id;
+
+			@mysqli_query($conn,"UPDATE `s_service_report` SET `sv_id` = '".$_POST['sv_id']."' WHERE `sr_id` = ".$id.";");
 				
 			include_once("../mpdf54/mpdf.php");
 			include_once("form_serviceopen.php");

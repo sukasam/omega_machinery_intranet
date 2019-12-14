@@ -572,9 +572,9 @@ function check(frm){
         	<table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
                 <td style="border-bottom:1px solid #000000;padding-bottom:10px;font-size:12px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>
-                  <select name="cs_sell" id="cs_sell" class="inputselect" style="width:50%;">
+				  <select name="cs_sell" id="cs_sell" class="inputselect" style="width:50%;">
                     <?php   
-						$qu_custec = @mysqli_query($conn,"SELECT * FROM s_group_technician WHERE 1 AND (group_id = 12 OR group_id = 13) ORDER BY group_name ASC");
+						$qu_custec = @mysqli_query($conn,"SELECT * FROM s_group_technician WHERE 1 AND (group_id = 12 OR group_id = 30 OR group_id = 28)  ORDER BY group_name ASC");
 						while($row_custec = @mysqli_fetch_array($qu_custec)){
 							?>
                     <option value="<?php   echo $row_custec['group_id'];?>" <?php   if($row_custec['group_id'] == $cs_sell){echo 'selected';}?>><?php   echo $row_custec['group_name']. " (Tel : ".$row_custec['group_tel'].")";?></option>
@@ -597,19 +597,29 @@ function check(frm){
         <td width="33%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;text-align:center;padding-top:10px;padding-bottom:10px;">
         	<table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
-                <td style="border-bottom:1px solid #000000;padding-bottom:10px;font-size:12px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong >
-                  <select name="loc_contact3" id="loc_contact3" style="width:50%;">
+			  <td style="border-bottom:1px solid #000000;padding-bottom:10px;font-size:12px;font-family:Verdana, Geneva, sans-serif;text-align:center;padding-top: 15px;"><strong >
+				  <?php 
+				  if($loc_contact3 != 0){
+					?>
+					<?php echo get_technician_name($conn,$loc_contact3);?>
+					<?php
+				  }else{
+					  echo "<br>";
+				  }
+				  ?>
+				  <input type="hidden" name="loc_contact3" value="<?php echo $loc_contact3;?>">
+				  <!-- <select name="loc_contact3" id="loc_contact3" style="width:50%;">
                     <?php   
-						$qu_custec = @mysqli_query($conn,"SELECT * FROM s_group_technician ORDER BY group_name ASC");
+						$qu_custec = @mysqli_query($conn,"SELECT * FROM s_group_technician WHERE 1 AND (group_id = 28 OR group_id = 9) ORDER BY group_name ASC");
 						while($row_custec = @mysqli_fetch_array($qu_custec)){
-							if($loc_contact3 != ""){$loc_contact3 = $loc_contact3;}
-							else{$loc_contact3 = 9;}
+							// if($loc_contact3 != ""){$loc_contact3 = $loc_contact3;}
+							// else{$loc_contact3 = 9;}
 							?>
                     <option value="<?php   echo $row_custec['group_id'];?>" <?php   if($row_custec['group_id'] == $loc_contact3){echo 'selected';}?>><?php   echo $row_custec['group_name']. " (Tel : ".$row_custec['group_tel'].")";?></option>
                     <?php  
 						}
 					?>
-                  </select>
+                  </select> -->
                 </strong></td>
               </tr>
               <tr>

@@ -2,7 +2,7 @@
 	include ("../../include/config.php");
 	include ("../../include/connect.php");
 	include ("../../include/function.php");
-	include ("config.php");
+	include ("config6.php");
 
 	$vowels = array(",");
 
@@ -43,61 +43,7 @@
 		$_POST["money6"] = str_replace($vowels,"",$_POST["money6"]);
 		
 		
-		if ($_POST["mode"] == "add") { 
-			
-			$_POST['approve'] = 0;
-			$_POST['st_setting'] = 0;
-			$_POST['supply'] = 0;
-			
-			if($_POST['cus_id'] == ""){
-				$_POST['cus_id'] = 1;
-			}
-
-			$_POST['detail_recom'] = nl2br($_POST['detail_recom']);
-			$_POST['detail_calpr'] = nl2br($_POST['detail_calpr']);
-			$_POST['detail_calpr'] = nl2br($_POST['detail_calpr']);
-			
-			$codes = $_POST['codes'];
-			$lists = $_POST['lists'];
-			$units = $_POST['units'];
-			$prices = $_POST['prices'];
-			$amounts = $_POST['amounts'];
-			$opens = $_POST['opens'];
-			$remains = $_POST['remains'];
-
-			$_POST['sr_stime'] = date ("Y-m-d", strtotime("+7 day", strtotime($_POST['sr_stime'])));  
-			
-			
-			$_POST['job_last'] = get_lastservice_s($conn,$_POST['cus_id'],"");
-			
-
-			include "../include/m_add.php";
-			
-			$id = mysqli_insert_id($conn);
-			
-			
-			foreach($codes as $a => $b){
-				
-				if($lists[$a] != ""){
-					if($opens[$a] == ""){
-						$opens[$a] = 0;
-					}
-					@mysqli_query($conn,"INSERT INTO `s_service_report6sub` (`r_id`, `sr_id`, `codes`, `lists`, `units`, `prices`, `amounts`, `opens`, `remains`) VALUES (NULL, '".$id."', '".$codes[$a]."', '".$lists[$a]."', '".$units[$a]."', '".$prices[$a]."', '".$amounts[$a]."', '".$opens[$a]."', '".($amounts[$a]-$opens[$a])."');");
-					@mysqli_query($conn,"UPDATE `s_group_sparpart` SET `group_stock` = `group_stock` - '".$opens[$a]."' WHERE `group_id` = '".$lists[$a]."';");
-				}
-			}
-			
-				
-			include_once("../mpdf54/mpdf.php");
-			include_once("form_serviceopen.php");
-			$mpdf=new mPDF('UTF-8'); 
-			$mpdf->SetAutoFont();
-			$mpdf->WriteHTML($form);
-			$chaf = preg_replace("/\//","-",$_POST['sv_id']); 
-			$mpdf->Output('../../upload/service_report_open/'.$chaf.'.pdf','F');
-			
-			header ("location:index.php?" . $param); 
-		}
+		
 		if ($_POST["mode"] == "update" ) {
 
 			$_POST['detail_recom'] = nl2br($_POST['detail_recom']);
@@ -141,14 +87,14 @@
 			}	
 			
 			include_once("../mpdf54/mpdf.php");
-			include_once("form_serviceopen.php");
+			include("../service_report6/form_serviceopen.php");
 			$mpdf=new mPDF('UTF-8'); 
 			$mpdf->SetAutoFont();
 			$mpdf->WriteHTML($form);
 			$chaf = preg_replace("/\//","-",$_POST['sv_id']); 
 			$mpdf->Output('../../upload/service_report_open/'.$chaf.'.pdf','F');
 			
-			header ("location:index.php?" . $param); 
+			header ("location:index6.php?" . $param); 
 		}
 		
 	}
@@ -266,7 +212,7 @@ function check(frm){
 </SCRIPT>
 </HEAD>
 <?php    include ("../../include/function_script.php"); ?>
-<BODY>
+<BODY onload="document.form1.submit()">
 <DIV id=body-wrapper>
 <?php    include("../left.php");?>
 <DIV id=main-content>
@@ -274,10 +220,10 @@ function check(frm){
 </NOSCRIPT>
 <?php    include('../top.php');?>
 <P id=page-intro><?php    if ($mode == "add") { ?>Enter new information<?php    } else { ?>แก้ไข	[<?php    echo $page_name; ?>]<?php    } ?>	</P>
-<UL class=shortcut-buttons-set>
+<!-- <UL class=shortcut-buttons-set>
   <LI><A class=shortcut-button href="javascript:history.back()"><SPAN><IMG  alt=icon src="../images/btn_back.gif"><BR>
   กลับ</SPAN></A></LI>
-</UL>
+</UL> -->
 <!-- End .clear -->
 <DIV class=clear></DIV><!-- End .clear -->
 <DIV class=content-box><!-- Start Content Box -->
@@ -287,7 +233,8 @@ function check(frm){
 <DIV class=clear>
   
 </DIV></DIV><!-- End .content-box-header -->
-<DIV class=content-box-content>
+<div><center><img src="../images/waiting.gif" width="450"></center></div>
+<DIV class="content-box-content" style="display:none;">
 <DIV id=tab1 class="tab-content default-tab">
   <form action="update.php" method="post" enctype="multipart/form-data" name="form1" id="form1"  onSubmit="return check(this)">
     <div class="formArea">

@@ -224,7 +224,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
           <TD style="vertical-align:middle;"><?php     $chaf = preg_replace("/\//","-",$rec["sv_id"]); ?><div align="center"><span class="text"><a href="../../upload/service_report_open/<?php     echo $chaf;?>.pdf" target="_blank"><?php     echo $rec["sv_id"] ; ?></a></span></div></TD>
           <TD style="vertical-align:middle;"><span class="text"><?php     echo get_customername($conn,$rec["cus_id"]); ?></span></TD>
           <TD style="vertical-align:middle;"><span class="text"><?php     echo get_localsettingname($conn,$rec["cus_id"]); ?></span></TD>
-          <TD style="vertical-align:middle;"><?php     echo get_technician_name($conn,$rec["loc_contact"]);?></TD>
+          <TD style="vertical-align:middle;"><?php     echo get_technician_name($conn,$rec["loc_contact2"]);?></TD>
           <TD style="vertical-align:middle"><?php     if($rec["approve"] == 1){?>
             <IMG src="../images/icons/yes_approve.png" height="28" title="อนุมัติ">
             <?php     }else if($rec["approve"] == 2){?>
