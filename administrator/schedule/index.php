@@ -91,6 +91,8 @@ function MM_openBrWindow(theURL,winName,features) { //v2.0
 	ตารางงานบริการ ประจำเดือน</SPAN></A></LI>
 	<LI><A class=shortcut-button href="../schedule_closed/index.php"><SPAN><IMG  alt=icon src="../images/icon2/query.png"><BR>
     ตารางปิดงานบริการ</SPAN></A></LI>
+	<LI><A class=shortcut-button href="../schedule_setup/index.php"><SPAN><IMG  alt=icon src="../images/icon2/templatemanager.png"><BR>
+    ตารางงาน<br>ฝ่ายติดตั้ง</SPAN></A></LI>
     <LI><A class=shortcut-button href="../schedule_gen/index.php"><SPAN><IMG  alt=icon src="../images/icon2/paste_f2.png" width="48"><BR>
     ตารางงานช่าง ประจำเดือน</SPAN></A></LI>
     <?php  
