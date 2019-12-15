@@ -72,7 +72,7 @@
 		$ctype = substr($ctype,0,-3).")";
 	}
 	
-  	$qu_service = @mysqli_query($conn,"SELECT * FROM s_service_report WHERE job_balance = '".$con."'". $loc . $ctype);
+  	$qu_service = @mysqli_query($conn,"SELECT * FROM s_service_report WHERE job_close = '".$con."' AND st_setting = 1 ". $loc . $ctype);
 	$romn = 1;
 	while($row_serv = @mysqli_fetch_array($qu_service)){
 	$chaf = preg_replace("/\//","-",$row_serv["sv_id"]);
@@ -99,7 +99,7 @@
 		//$scstatus = "<a href=\"../../upload/service_report_open/".$chaf.".pdf\" target=\"_blank\" style=\"text-decoration: none;\"><span style=\"color:green;\">".$row_serv['sv_id']."</span></a>";
 	}
 
-	$scstatus = "<a href=\"../../upload/service_report_open/".$chaf.".pdf\" target=\"_blank\" style=\"text-decoration: none;\"><span style=\"color:".$rowColor.";\">".$row_serv['sv_id']."</span></a>";
+	$scstatus = "<a href=\"../../upload/service_report_close/".$chaf.".pdf\" target=\"_blank\" style=\"text-decoration: none;\"><span style=\"color:".$rowColor.";\">".$row_serv['sv_id']."</span></a>";
 
 	$tecService = "";
 
@@ -120,7 +120,7 @@
     <td style="padding-left:10px;padding-right:10px;color:<?php echo $rowColor;?>"><?php  echo $finfo['loc_name'];?></td>
     <td style="text-align:center;color:<?php echo $rowColor;?>"><?php  echo $finfo['cd_tel'];?></td>
 	<td style="text-align:center;color:<?php echo $rowColor;?>"><?php  echo $row_serv["loc_seal"];?></td>
-	<td style="text-align:center;color:<?php echo $rowColor;?>"><?php  echo $finfo['job_opentime'];?></td>
+	<td style="text-align:center;color:<?php echo $rowColor;?>"><?php  echo $finfo['job_closetime'];?></td>
 	<td style="text-align:center;color:<?php echo $rowColor;?>"><?php  echo $tecService;?></td>
     <td style="text-align:center;"><?php  $chaf = preg_replace("/\//","-",$row_serv["sv_id"]);?><a href="../../upload/service_report_open/<?php  echo $chaf;?>.pdf" target="_blank"><img src="../images/icons/icon-48-category.png" width="25" height="25" title="ใบเปิดงาน"/></a><a href="../../upload/service_report_close/<?php  echo $chaf;?>.pdf" target="_blank"><img src="../images/icons/icon-48-section.png" width="25" height="25" title="ใบปิดงาน"/></a></td>
   </tr>
