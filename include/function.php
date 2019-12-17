@@ -1457,7 +1457,7 @@ function check_contact($conn){
 function check_servicereport($conn){
 	
 	$thdate = substr(date("Y")+543,2);
-	$concheck = "SR ".$thdate.date("/m/");
+	$concheck = $thdate.date("m");
 	
 	$qu_forder = @mysqli_query($conn,"SELECT * FROM s_service_report ORDER BY sr_id DESC");
 	$num_oder = @mysqli_num_rows($qu_forder);
@@ -1471,7 +1471,7 @@ function check_servicereport($conn){
 	// 	return "SR ".$thdate.date("/m/").sprintf("%03d",$num_odersum);
 	// }	
 	$num_odersum = $row_forder['sr_id']+1;
-	return "SR ".$num_odersum;
+	return "SR ".$concheck.$num_odersum;
 }
 
 function check_servicereportinstall($conn){

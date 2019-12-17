@@ -78,6 +78,23 @@
   </tr>
   <?php  $romn++;}?>
 </table>
+<style>
+.button {
+    font-family: Verdana, Arial, sans-serif;
+    display: inline-block;
+    background: #D47100 url(../images/bg-button-green.gif) top left repeat-x !important;
+    border: 1px solid #D47100 !important;
+    padding: 4px 7px 4px 7px !important;
+    color: #fff !important;
+    font-size: 11px !important;
+    cursor: pointer;
+    font-weight: bold;
+}
+</style>
+<br>
+<div>
+<center><a href="javascript:print();"><input class=button name="btprint" type="button" value=" Print "></a></center>
+</div>
 
 </body>
 </html>

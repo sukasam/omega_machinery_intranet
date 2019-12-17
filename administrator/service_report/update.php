@@ -43,7 +43,9 @@
 			
 			$id = mysqli_insert_id($conn);
 
-			$_POST['sv_id'] = substr($_POST['sv_id'],0,2)." ".$id;
+			$thdate = substr(date("Y")+543,2).date("m");
+
+			$_POST['sv_id'] = substr($_POST['sv_id'],0,2)." ".$thdate.$id;
 
 			@mysqli_query($conn,"UPDATE `s_service_report` SET `sv_id` = '".$_POST['sv_id']."' WHERE `sr_id` = ".$id.";");
 				
