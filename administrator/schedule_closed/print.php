@@ -173,7 +173,7 @@ if($_GET['month'] == 2){
 
 
 <div align="center"><span class="currentdate"><?php  echo format_month_th(date ("F", mktime(0,0,0,$_GET['month']-1,1,$_GET['year'])))." ".(date ("Y", mktime(0,0,0,$_GET['month']-1,1,$_GET['year']))+543); ?></span><br>
-  <br>
+<br> <span>(ตารางปิดงานบริการ)</span><br><br>
 </div>
 <table width="700" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#000000">
   <tr>

@@ -7,7 +7,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>ตารางบริการ (วันที่ <?php  echo sprintf("%02d",$_GET['day']).'-'.sprintf("%02d",$_GET['month']).'-'.sprintf("%02d",($_GET['year']+543));?> )</title>
+<title>ตารางงานติดตั้ง (วันที่ <?php  echo sprintf("%02d",$_GET['day']).'-'.sprintf("%02d",$_GET['month']).'-'.sprintf("%02d",($_GET['year']+543));?> )</title>
 
 <style type="text/css">
 	.tbservice{
@@ -120,7 +120,7 @@
     <td style="padding-left:10px;padding-right:10px;color:<?php echo $rowColor;?>"><?php  echo $finfo['loc_name'];?></td>
     <td style="text-align:center;color:<?php echo $rowColor;?>"><?php  echo $finfo['cd_tel'];?></td>
 	<td style="text-align:center;color:<?php echo $rowColor;?>"><?php  echo $row_serv["loc_seal"];?></td>
-	<td style="text-align:center;color:<?php echo $rowColor;?>"><?php  echo $finfo['job_opentime'];?></td>
+	<td style="text-align:center;color:<?php echo $rowColor;?>"><?php  echo $row_serv['job_opentime'];?></td>
 	<td style="text-align:center;color:<?php echo $rowColor;?>"><?php  echo $tecService;?></td>
     <td style="text-align:center;"><?php  $chaf = preg_replace("/\//","-",$row_serv["sv_id"]);?><a href="../../upload/service_report_open/<?php  echo $chaf;?>.pdf" target="_blank"><img src="../images/icons/icon-48-category.png" width="25" height="25" title="ใบเปิดงาน"/></a><a href="../../upload/service_report_close/<?php  echo $chaf;?>.pdf" target="_blank"><img src="../images/icons/icon-48-section.png" width="25" height="25" title="ใบปิดงาน"/></a></td>
   </tr>
