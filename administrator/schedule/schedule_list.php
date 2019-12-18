@@ -73,7 +73,7 @@
     <td style="text-align:center;"><?php  echo sprintf("%03d",$romn);?></td>
     <td style="text-align:center;"><?php  echo $scstatus;?></td>
     <td style="padding-left:10px;padding-right:10px"><?php  echo $finfo['cd_name'];?></td>
-    <td style="text-align:center;"><?php  echo $finfo['cd_tel'];?></td>
+    <td style="text-align:center;"><?php  echo $finfo['c_contact']."/".$finfo['c_tel'];?></td>
     <td style="text-align:center;"><?php  $chaf = preg_replace("/\//","-",$row_serv["sv_id"]);?><a href="../../upload/service_report_open/<?php  echo $chaf;?>.pdf" target="_blank"><img src="../images/icons/icon-48-category.png" width="25" height="25" title="ใบเปิดงาน"/></a><a href="../../upload/service_report_close/<?php  echo $chaf;?>.pdf" target="_blank"><img src="../images/icons/icon-48-section.png" width="25" height="25" title="ใบปิดงาน"/></a></td>
   </tr>
   <?php  $romn++;}?>

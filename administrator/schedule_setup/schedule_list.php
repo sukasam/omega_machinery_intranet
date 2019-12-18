@@ -118,7 +118,7 @@
     <td style="text-align:center;color:<?php echo $rowColor;?>"><?php  echo sprintf("%03d",$romn);?></td>
     <td style="text-align:center;color:<?php echo $rowColor;?>"><?php  echo $scstatus;?></td>
     <td style="padding-left:10px;padding-right:10px;color:<?php echo $rowColor;?>"><?php  echo $finfo['loc_name'];?></td>
-    <td style="text-align:center;color:<?php echo $rowColor;?>"><?php  echo $finfo['cd_tel'];?></td>
+    <td style="text-align:center;color:<?php echo $rowColor;?>"><?php  echo $finfo['c_contact']."/".$finfo['c_tel'];?></td>
 	<td style="text-align:center;color:<?php echo $rowColor;?>"><?php  echo $row_serv["loc_seal"];?></td>
 	<td style="text-align:center;color:<?php echo $rowColor;?>"><?php  echo $row_serv['job_opentime'];?></td>
 	<td style="text-align:center;color:<?php echo $rowColor;?>"><?php  echo $tecService;?></td>
