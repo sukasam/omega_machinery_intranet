@@ -503,20 +503,13 @@ $(function(){
             <select name="cd_province" id="cd_province" class="inputselect">
 
                 <?php 
-
                 	$quprovince = @mysqli_query($conn,"SELECT * FROM s_province ORDER BY province_id ASC");
-
-					while($row_province = @mysqli_fetch_array($quprovince)){
-
-					  ?>
-
-					  	<option value="<?php  echo $row_province['province_id'];?>" <?php  if($cd_province == $row_province['province_id']){echo 'selected';}?>><?php  echo $row_province['province_name'];?></option>
-
-					  <?php 	
-
-					}
-
-				?>
+                  while($row_province = @mysqli_fetch_array($quprovince)){
+                    ?>
+                      <option value="<?php  echo $row_province['province_id'];?>" <?php  if($cd_province == $row_province['province_id']){echo 'selected';}?>><?php  echo $row_province['province_name'];?></option>
+                    <?php 	
+                  }
+				        ?>
 
             </select>
 
@@ -603,6 +596,18 @@ $(function(){
           <tr>
 
             <td style="font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;"><strong>ที่อยู่ :</strong> <input type="text" name="loc_address" value="<?php  echo $loc_address;?>" id="loc_address" class="inpfoder" style="width:80%;"> </td>
+
+          </tr>
+
+          <tr>
+
+            <td style="font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;"><strong>โทรศัพท์ : </strong> <input type="text" name="loc_tel" value="<?php  echo $loc_tel;?>" id="loc_tel" class="inpfoder" style="width:30%;">&nbsp;&nbsp;<strong>แฟกซ์ : </strong> <input type="text" name="loc_fax" value="<?php  echo $loc_fax;?>" id="loc_fax" class="inpfoder" style="width:30%;"></td>
+
+          </tr>
+
+          <tr>
+
+            <td style="font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;"><strong>ชื่อผู้ติดต่อ : </strong> <input type="text" name="loc_cname" value="<?php  echo $loc_cname;?>" id="loc_cname" class="inpfoder" style="width:30%;">&nbsp;&nbsp;<strong>เบอร์โทร : </strong> <input type="text" name="loc_ctel" value="<?php  echo $loc_ctel;?>" id="loc_ctel" class="inpfoder" style="width:30%;"></td>
 
           </tr>
 

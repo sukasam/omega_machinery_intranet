@@ -1529,9 +1529,14 @@ function check_serviceman2($conn){
 }
 
 function format_date ($value) {
-	list ($s_year, $s_month, $s_day) = explode ("-", $value);
-	$year=$s_year+543;
-	return $s_day.'-'.$s_month.'-'.$year;
+	if($value){
+		list ($s_year, $s_month, $s_day) = explode ("-", $value);
+		$year=$s_year+543;
+		return $s_day.'-'.$s_month.'-'.$year;
+	}else{
+		return '';
+	}
+	
 }
 
 function get_groupcusname($conn,$value) {
@@ -1576,6 +1581,11 @@ function get_proname2($conn,$value) {
 
 function get_projectname($conn,$value) {
 	$row_protype = @mysqli_fetch_array(@mysqli_query($conn,"SELECT * FROM  s_group_project WHERE group_id = '".$value."'"));
+	return $row_protype['group_name'];
+}
+
+function get_productname($conn,$value) {
+	$row_protype = @mysqli_fetch_array(@mysqli_query($conn,"SELECT * FROM  s_group_product WHERE group_id = '".$value."'"));
 	return $row_protype['group_name'];
 }
 
@@ -1696,6 +1706,25 @@ function get_nameStock($conn,$gid) {
 	return $row_dea['group_location'];		
 }
 
+function get_nameStockmachine($conn,$gid) {
+	$row_dea = @mysqli_fetch_array(@mysqli_query($conn,"SELECT * FROM  group_stockmachine WHERE group_id = '".$gid."'"));
+	return $row_dea['group_location'];		
+}
+
+function getShippingStatus($conn,$sv_id){
+
+	//echo "SELECT * FROM  s_bill_shipping WHERE srid2 LIKE '%".$sv_id."%'";
+	$row_dea = @mysqli_fetch_array(@mysqli_query($conn,"SELECT * FROM  s_bill_shipping WHERE srid2 LIKE '%".$sv_id."%'"));
+	$fileDo = preg_replace("/\//","-",$row_dea['sv_id']);
+	$linkA = '<a href="../../upload/bill_shipping/'.$fileDo.'.pdf" target="_blank">'.$row_dea['sv_id'].'</a>';
+
+	if($row_dea['srid2'] == $sv_id){
+		return $linkA;	
+	}else{
+		return "-";	
+	}
+	
+}
 
 function get_servreport($conn,$ymd,$loc,$ctype) {
 	
@@ -2283,6 +2312,11 @@ function getStockSpar($conn,$gid){
 	return $row_dea['group_stock'];	
 }
 
+function getStockMachine($conn,$gid){
+	$row_dea = @mysqli_fetch_array(@mysqli_query($conn,"SELECT * FROM  group_stockmachine WHERE group_id = '".$gid."'"));
+	return $row_dea['group_stock'];	
+}
+
 function check_servicerepair($conn){
 	
 	$thdate = substr(date("Y")+543,2);
@@ -2300,6 +2334,44 @@ function check_servicerepair($conn){
 		return "RO ".$thdate.date("/m/").sprintf("%03d",$num_odersum);
 	}	
 }
+
+function check_billlading($conn){
+	
+	$thdate = substr(date("Y")+543,2);
+	$concheck = "BL ".$thdate.date("/m/");
+	
+	$qu_forder = @mysqli_query($conn,"SELECT * FROM s_bill_lading WHERE sv_id like '%".$concheck."%' ORDER BY sv_id DESC");
+	$num_oder = @mysqli_num_rows($qu_forder);
+	$row_forder = @mysqli_fetch_array($qu_forder);
+	
+	if($row_forder['sv_id'] == ""){
+		return "BL ".$thdate.date("/m/")."001";
+	}else{
+		//$num_odersum = $num_oder+1;
+		$num_odersum = substr($row_forder['sv_id'],-3)+1;
+		return "BL ".$thdate.date("/m/").sprintf("%03d",$num_odersum);
+	}	
+}
+
+function check_billshipping($conn){
+	
+	$thdate = substr(date("Y")+543,2);
+	$concheck = "SS ".$thdate.date("/m/");
+	
+	$qu_forder = @mysqli_query($conn,"SELECT * FROM s_bill_shipping WHERE sv_id like '%".$concheck."%' ORDER BY sv_id DESC");
+	$num_oder = @mysqli_num_rows($qu_forder);
+	$row_forder = @mysqli_fetch_array($qu_forder);
+	
+	if($row_forder['sv_id'] == ""){
+		return "SS ".$thdate.date("/m/")."001";
+	}else{
+		//$num_odersum = $num_oder+1;
+		$num_odersum = substr($row_forder['sv_id'],-3)+1;
+		return "SS ".$thdate.date("/m/").sprintf("%03d",$num_odersum);
+	}	
+}
+
+
 
 function get_username($conn,$user_account) {
 	

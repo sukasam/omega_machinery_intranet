@@ -68,6 +68,12 @@
       <tr>
         <td colspan="4"><br /><br /></td>
       </tr>
+      <!-- <tr>
+        <td><div align="center"><a href="../group_account/"><img src="../images/menu/mn_serting02.png" alt="" width="96" height="58" border="0"><br><br><strong>รายการพนักงานเบิกสินค้า</strong></a></div></td>
+        <td><div align="center"></div></td>
+        <td><div align="center"></div></td>
+        <td><div align="center"></div></td>
+      </tr> -->
       <tr>
         <td colspan="4" style="text-align:left;">
         <script type="text/javascript" src="../js/clock.js"></script>
