@@ -1809,7 +1809,9 @@ function get_servreport_setup($conn,$ymd,$loc,$ctype) {
 
 		$condi = substr($condi,0,-3).")";
 	}
-	
+
+	//echo "SELECT * FROM s_service_report WHERE job_balance = '".$ymd."' ".$condi." AND st_setting = 0 LIMIT 4";
+
 	$qqu_srv = @mysqli_query($conn,"SELECT * FROM s_service_report WHERE job_balance = '".$ymd."' ".$condi." AND st_setting = 0 LIMIT 4");
 	$numsrv = @mysqli_num_rows($qqu_srv);
 	$res = "";

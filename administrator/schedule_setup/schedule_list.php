@@ -71,8 +71,10 @@
 
 		$ctype = substr($ctype,0,-3).")";
 	}
+
+	//echo "SELECT * FROM s_service_report WHERE job_balance = '".$con."'". $loc . $ctype;
 	
-  	$qu_service = @mysqli_query($conn,"SELECT * FROM s_service_report WHERE job_balance = '".$con."'". $loc . $ctype);
+  	$qu_service = @mysqli_query($conn,"SELECT * FROM s_service_report WHERE job_balance = '".$con."' AND st_setting = 0 ". $loc . $ctype);
 	$romn = 1;
 	while($row_serv = @mysqli_fetch_array($qu_service)){
 	$chaf = preg_replace("/\//","-",$row_serv["sv_id"]);
