@@ -119,8 +119,8 @@ $form = '
           <td style="padding-top:10px;padding-bottom:10px;font-size:10px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>ผู้รับเข้าอะไหล่</strong></td>
         </tr>
         <tr>
-                <td style="font-size:10px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>วันที่ : </strong>'.format_date($_POST['stock_date']).'</td>
-              </tr>
+          <td style="font-size:10px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>วันที่ : </strong>'.format_date($_POST['stock_date']).'</td>
+        </tr>
       </table>
   </td>
 

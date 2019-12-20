@@ -51,6 +51,7 @@ function popup(url,name,windowWidth,windowHeight){
 	properties +=",scrollbars=yes, top="+mytop+",left="+myleft;     
 	window.open(url,name,properties);  
 }  
+
 </script>  
     
 <link rel="stylesheet" href="../Carlender/calendar.css">
@@ -530,7 +531,7 @@ function popup(url,name,windowWidth,windowHeight){
                               วันสิ้นสุดสัญญา
     </div>
     <div style="clear:both;padding-top:20px;">
-        <input type="submit" name="Submit" value="Submit" class="button">
+		<input type="submit" name="Submit" value="Submit" class="button">
     </div>
     </form>
 <br /><br /><br /><br />

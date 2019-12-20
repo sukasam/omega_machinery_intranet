@@ -201,6 +201,12 @@ function check(frm){
 			document.getElementById("sv_id").value = sv_id;
 		}
 	}
+
+	function submitForm() {
+		document.getElementById("submitF").disabled = true;
+		document.getElementById("resetF").disabled = true;
+		document.form1.submit()
+	}
 	
 </script>
 </HEAD>
@@ -623,8 +629,8 @@ function check(frm){
         </fieldset>
     </div><br>
     <div class="formArea">
-      <input type="submit" name="Submit" value="Submit" class="button">
-      <input type="reset" name="Submit" value="Reset" class="button">
+	  <input type="button" value="Submit" id="submitF" class="button" onclick="submitForm()">
+      <input type="reset" name="Reset" id="resetF" value="Reset" class="button">
       <?php  
 			$a_not_exists = array();
 			post_param($a_param,$a_not_exists); 
@@ -649,9 +655,8 @@ function check(frm){
       <input name="supply" type="hidden" id="supply" value="<?php  echo $supply;?>">
       <input name="st_setting" type="hidden" id="st_setting" value="<?php  echo $st_setting;?>"> 
       <input name="approve" type="hidden" id="approve" value="<?php  echo $approve;?>">      
-    
       <input name="<?php  echo $PK_field;?>" type="hidden" id="<?php  echo $PK_field;?>" value="<?php  echo $_GET[$PK_field];?>">
-    </div>
+	</div>
   </form>
 </DIV>
 </DIV><!-- End .content-box-content -->
