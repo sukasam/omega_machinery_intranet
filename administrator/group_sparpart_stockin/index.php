@@ -27,7 +27,7 @@
 	}	
 
 	//-------------------------------------------------------------------------------------
-	if ($_GET["b"] <> "" and $_GET["s"] <> "") { 
+	if ($_GET["b"] != "" && $_GET["s"] != "") { 
 		if ($_GET["s"] == 0) $status = 1;
 		if ($_GET["s"] == 1) $status = 0;
 		Check_Permission($conn,$check_module,$_SESSION["login_id"],"update");

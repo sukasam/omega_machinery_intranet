@@ -64,6 +64,14 @@ $sumremainTotal = $sumprice - $sumdiscount;
 $sumpricevat = ($sumremainTotal * 7) / 100;
 $sumtotal = ($sumprice + $sumpricevat) - $sumdiscount;
 
+$dataApprove = '';
+
+if($_POST['stock_approve_date'] != '0000-00-00' && $_POST['stock_approve_date'] != ''){
+  $dataApprove = format_date($_POST['stock_approve_date']);
+}else{
+  $dataApprove = '';
+}
+
 $nTechniSignature = '<img src="../../upload/user/signature/'.get_technician_signature($conn,$_POST['stock_admin']).'" height="50" border="0" />';
 $hTechniSignature = '<img src="../../upload/user/signature/'.get_technician_signature($conn,$_POST['stock_approve']).'" height="50" border="0" />';
 
@@ -133,7 +141,7 @@ $form = '
           <td style="padding-top:10px;padding-bottom:10px;font-size:10px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>ผู้อนุมัติ</strong></td>
         </tr>
         <tr>
-          <td style="font-size:10px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>วันที่ : </strong>'.format_date($_POST['stock_approve_date']).'</td>
+          <td style="font-size:10px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>วันที่ : </strong>'.$dataApprove .'</td>
         </tr>
       </table>
   </td>

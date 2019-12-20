@@ -24,6 +24,8 @@
 				$_POST['approve'] = '0';
 				$_POST['stock_approve'] = '0';
 
+				$_POST['stock_approve_date'] = '0000-00-00';
+
 				include "../include/m_add.php";
 				$id = mysqli_insert_id($conn);
 
@@ -51,6 +53,10 @@
 			header ("location:index.php?" . $param); 
 		}
 		if ($_POST["mode"] == "update" ) { 
+
+			if($_POST['stock_approve_date'] == ''){
+				$_POST['stock_approve_date'] = '0000-00-00';
+			}
 
 				$sql2 = "select * from s_group_sparpart_bill_pro where id_bill = '".$_REQUEST[$PK_field]."'";
 				$quPro = @mysqli_query($conn,$sql2);
