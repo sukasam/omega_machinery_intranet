@@ -17,15 +17,10 @@
 	
 
 	$cpro = $_REQUEST['cpro'];
-
 	$sr_ctype = $_REQUEST['sr_ctype'];		
-
 	$ctype = $_REQUEST['ctype'];
-
 	$cd_name = $_REQUEST['cd_name'];
-
 	$loc_contact = $_REQUEST['loc_contact'];
-
 	$opentake = $_REQUEST['opentake'];
 
 	

@@ -98,6 +98,8 @@ function check9(frm){
         <strong>First Order</strong></SPAN></A></LI>
   <LI><A class=shortcut-button href="../report2/?mid=16"><SPAN><IMG  alt=icon src="../images/icons/icon-48-section.png"><BR>
         <strong>Service Report</strong></SPAN></A></LI>
+  <LI><A class=shortcut-button href="../report3/?mid=16"><SPAN><IMG  alt=icon src="../images/icons/icon-48-module.png"><BR>
+        <strong>Stock Machine</strong></SPAN></A></LI>
 </UL>
   
   <!-- End .shortcut-buttons-set -->
