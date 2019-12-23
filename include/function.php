@@ -2396,6 +2396,14 @@ function userTecGroupID($conn,$user_id){
 	return $row_user_group['group_id'];	
 }
 
+function userSaleGroupID($conn,$user_id){
+	//echo "SELECT * FROM  s_user WHERE user_id = '".$user_id."'";
+	$row_user = @mysqli_fetch_array(@mysqli_query($conn,"SELECT * FROM  s_user WHERE user_id = '".$user_id."'"));
+	$row_user_group = @mysqli_fetch_array(@mysqli_query($conn,"SELECT * FROM s_group_sale WHERE user_account = '".$row_user['user_id']."'"));
+	
+	return $row_user_group['group_id'];	
+}
+
 function getpod_id($conn,$value) {
 	$row_protype = @mysqli_fetch_array(@mysqli_query($conn,"SELECT * FROM s_group_pod WHERE group_name = '".$value."'"));
 	return $row_protype['group_id'];

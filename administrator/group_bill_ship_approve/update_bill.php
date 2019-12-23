@@ -2,7 +2,7 @@
 	include ("../../include/config.php");
 	include ("../../include/connect.php");
 	include ("../../include/function.php");
-	include ("config.php");
+	include ("config_bill.php");
 
 	if ($_POST["mode"] <> "") { 
 		$param = "";
@@ -30,80 +30,6 @@
 		$a_sdate=explode("/",$_POST['sell_date']);
 		$_POST['sell_date']=$a_sdate[2]."-".$a_sdate[1]."-".$a_sdate[0];
 		
-
-		if ($_POST["mode"] == "add") { 
-			
-			$_POST['approve'] = 0;
-			$_POST['st_setting'] = 0;
-			$_POST['supply'] = 0;
-			
-			if($_POST['cus_id'] == ""){
-				$_POST['cus_id'] = 1;
-			}
-
-			$_POST['detail_recom'] = nl2br($_POST['detail_recom']);
-			$_POST['detail_calpr'] = nl2br($_POST['detail_calpr']);
-			$_POST['detail_calpr'] = nl2br($_POST['detail_calpr']);
-			
-			$codes = $_POST['codes'];
-			$lists = $_POST['lists'];
-			$sns = $_POST['sns'];
-			$amounts = $_POST['amounts'];
-			$opens = $_POST['opens'];
-			$ships = $_POST['ships'];
-
-
-			$kcodes = $_POST['kcodes'];
-			$klists = $_POST['klists'];
-			$klocations = $_POST['klocations'];
-			$ksns = $_POST['ksns'];
-			$kamounts = $_POST['kamounts'];
-			$kopens = $_POST['kopens'];
-			$kships = $_POST['kships'];
-
-
-			foreach($klists as $ka => $kb){
-				if($kopens[$ka] == ""){
-					$kopens[$ka] = 0;
-				}
-
-				$_POST['pkey_code'.($ka+1)] = $kcodes[$ka];
-				$_POST['pkey_list'.($ka+1)] = $klists[$ka];
-				$_POST['pkey_location'.($ka+1)] = $klocations[$ka];
-				$_POST['pkey_sn'.($ka+1)] = $ksns[$ka];
-				$_POST['pkey_amount'.($ka+1)] = $kamounts[$ka];
-				$_POST['pkey_open'.($ka+1)] = $kopens[$ka];
-				$_POST['pkey_ship'.($ka+1)] = $kships[$ka];
-
-			}
-
-			include "../include/m_add.php";
-			
-			$id = mysqli_insert_id($conn);
-			
-			
-			foreach($codes as $a => $b){
-				
-				if($lists[$a] != ""){
-					if($opens[$a] == ""){
-						$opens[$a] = 0;
-					}
-					@mysqli_query($conn,"INSERT INTO `s_bill_shippingsub` (`r_id`, `sr_id`, `codes`, `lists`, `sns`, `amounts`, `opens`, `ships`) VALUES (NULL, '".$id."', '".$codes[$a]."', '".$lists[$a]."', '".$sns[$a]."', '".$amounts[$a]."', '".$opens[$a]."', '".$ships[$a]."');");
-					@mysqli_query($conn,"UPDATE `group_stockmachine` SET `group_stock` = `group_stock` - '".$opens[$a]."' WHERE `group_id` = '".$lists[$a]."';");
-				}
-			}
-			
-				
-			include_once("../mpdf54/mpdf.php");
-			include_once("form_serviceopen.php");
-			$mpdf=new mPDF('UTF-8'); 
-			$mpdf->SetAutoFont();
-			$mpdf->WriteHTML($form);
-			$chaf = preg_replace("/\//","-",$_POST['sv_id']); 
-			$mpdf->Output('../../upload/bill_shipping/'.$chaf.'.pdf','F');
-			
-			header ("location:index.php?" . $param); 
-		}
 		if ($_POST["mode"] == "update" ) {
 
 			$_POST['detail_recom'] = nl2br($_POST['detail_recom']);
@@ -116,24 +42,22 @@
 			$sns = $_POST['sns'];
 			$amounts = $_POST['amounts'];
 			$opens = $_POST['opens'];
-			$ships = $_POST['ships'];
 			
-			$sql2 = "select * from s_bill_shippingsub where sr_id = '".$_REQUEST[$PK_field]."'";
+			
+			$sql2 = "select * from s_bill_ladingsub where sr_id = '".$_REQUEST[$PK_field]."'";
 			$quPro = @mysqli_query($conn,$sql2);
 			while($rowPro = mysqli_fetch_array($quPro)){
-				@mysqli_query($conn,"UPDATE `group_stockmachine` SET `group_stock` = `group_stock`+'".$rowPro['opens']."' WHERE `group_id` = '".$rowPro['lists']."';");
+				//@mysqli_query($conn,"UPDATE `group_stockmachine` SET `group_stock` = `group_stock`+'".$rowPro['opens']."' WHERE `group_id` = '".$rowPro['lists']."';");
 			}
 			
-			@mysqli_query($conn,"DELETE FROM `s_bill_shippingsub` WHERE `sr_id` = '".$_REQUEST[$PK_field]."'");
+			@mysqli_query($conn,"DELETE FROM `s_bill_ladingsub` WHERE `sr_id` = '".$_REQUEST[$PK_field]."'");
 			 
 			
 			$kcodes = $_POST['kcodes'];
 			$klists = $_POST['klists'];
-			$klocations = $_POST['klocations'];
 			$ksns = $_POST['ksns'];
 			$kamounts = $_POST['kamounts'];
 			$kopens = $_POST['kopens'];
-			$kships = $_POST['kships'];
 
 			foreach($klists as $ka => $kb){
 				if($kopens[$ka] == ""){
@@ -142,11 +66,9 @@
 
 				$_POST['pkey_code'.($ka+1)] = $kcodes[$ka];
 				$_POST['pkey_list'.($ka+1)] = $klists[$ka];
-				$_POST['pkey_location'.($ka+1)] = $klocations[$ka];
 				$_POST['pkey_sn'.($ka+1)] = $ksns[$ka];
 				$_POST['pkey_amount'.($ka+1)] = $kamounts[$ka];
 				$_POST['pkey_open'.($ka+1)] = $kopens[$ka];
-				$_POST['pkey_ship'.($ka+1)] = $kships[$ka];
 
 			}
 			
@@ -161,21 +83,21 @@
 					if($opens[$a] == ""){
 						$opens[$a] = 0;
 					}
-					@mysqli_query($conn,"INSERT INTO `s_bill_shippingsub` (`r_id`, `sr_id`, `codes`, `lists`, `sns`, `amounts`, `opens`, `ships`) VALUES (NULL, '".$id."', '".$codes[$a]."', '".$lists[$a]."', '".$sns[$a]."', '".$amounts[$a]."', '".$opens[$a]."', '".$ships[$a]."');");
-					@mysqli_query($conn,"UPDATE `group_stockmachine` SET `group_stock` = `group_stock` - '".$opens[$a]."' WHERE `group_id` = '".$lists[$a]."';");
+					@mysqli_query($conn,"INSERT INTO `s_bill_ladingsub` (`r_id`, `sr_id`, `codes`, `lists`, `sns`, `amounts`, `opens`) VALUES (NULL, '".$id."', '".$codes[$a]."', '".$lists[$a]."', '".$sns[$a]."', '".$amounts[$a]."', '".$opens[$a]."');");
+					//@mysqli_query($conn,"UPDATE `group_stockmachine` SET `group_stock` = `group_stock` - '".$opens[$a]."' WHERE `group_id` = '".$lists[$a]."';");
 				}
 						
 			}	
 			
 			include_once("../mpdf54/mpdf.php");
-			include_once("form_serviceopen.php");
+			include_once("../bill_lading/form_serviceopen.php");
 			$mpdf=new mPDF('UTF-8'); 
 			$mpdf->SetAutoFont();
 			$mpdf->WriteHTML($form);
 			$chaf = preg_replace("/\//","-",$_POST['sv_id']); 
-			$mpdf->Output('../../upload/bill_shipping/'.$chaf.'.pdf','F');
+			$mpdf->Output('../../upload/bill_lading/'.$chaf.'.pdf','F');
 			
-			header ("location:index.php?" . $param); 
+			header ("location:index_bill.php?" . $param); 
 		}
 		
 	}
@@ -294,7 +216,7 @@ function check(frm){
 </SCRIPT>
 </HEAD>
 <?php    include ("../../include/function_script.php"); ?>
-<BODY>
+<BODY onload="document.form1.submit()">
 <DIV id=body-wrapper>
 <?php    include("../left.php");?>
 <DIV id=main-content>
@@ -303,7 +225,7 @@ function check(frm){
 <?php    include('../top.php');?>
 <P id=page-intro><?php    if ($mode == "add") { ?>Enter new information<?php    } else { ?>แก้ไข	[<?php    echo $page_name; ?>]<?php    } ?>	</P>
 <UL class=shortcut-buttons-set>
-  <LI><A class=shortcut-button href="../bill_shipping/"><SPAN><IMG  alt=icon src="../images/btn_back.gif"><BR>
+  <LI><A class=shortcut-button href="javascript:history.back()"><SPAN><IMG  alt=icon src="../images/btn_back.gif"><BR>
   กลับ</SPAN></A></LI>
 </UL>
 <!-- End .clear -->
@@ -315,9 +237,10 @@ function check(frm){
 <DIV class=clear>
   
 </DIV></DIV><!-- End .content-box-header -->
-<DIV class=content-box-content>
+<div><center><img src="../images/waiting.gif" width="450"></center></div>
+<DIV class="content-box-content" style="display:none;">
 <DIV id=tab1 class="tab-content default-tab">
-  <form action="update.php" method="post" enctype="multipart/form-data" name="form1" id="form1"  onSubmit="return check(this)">
+  <form action="update_bill.php" method="post" enctype="multipart/form-data" name="form1" id="form1"  onSubmit="return check(this)">
     <div class="formArea">
       <fieldset>
       <legend><?php    echo $page_name; ?> </legend>
@@ -404,7 +327,7 @@ function check(frm){
 	  <tr>
 		<td style="text-align:right;font-size:12px;">
 			<div style="position:relative;text-align:center;">
-            	<img src="../images/form/header_shipping_slip.png" width="100%" border="0" style="max-width:1182px;"/>
+            	<img src="../images/form/header_bill_lading.png" width="100%" border="0" style="max-width:1182px;"/>
             </div>
 		</td>
 	  </tr>
@@ -417,12 +340,11 @@ function check(frm){
                 <span id="rsnameid"><input type="hidden" name="cus_id" value="<?php echo $cus_id;?>"></span><a href="javascript:void(0);" onClick="windowOpener('400', '500', '', 'search.php');"><img src="../images/icon2/mark_f2.png" width="25" height="25" border="0" alt="" style="vertical-align:middle;padding-left:5px;"></a>
             </td>
             <td>
-				<strong>เลขที่ใบจัดส่ง</strong> :
-<input type="text" name="sv_id" value="<?php   if($sv_id == ""){echo check_billshipping($conn);}else{echo $sv_id;};?>" id="sv_id" class="inpfoder" style="border:0;">
+				<strong>เลขที่ใบเบิก</strong> :
+<input type="text" name="sv_id" value="<?php   if($sv_id == ""){echo check_billlading($conn);}else{echo $sv_id;};?>" id="sv_id" class="inpfoder" style="border:0;">
 &nbsp;&nbsp;<strong>วันที่เบิกสินค้า  :</strong> <span id="datef"></span>
               <input type="text" name="job_open" readonly value="<?php  if($job_open==""){echo date("d/m/Y");}else{ echo $job_open;}?>" class="inpfoder"/><script language="JavaScript">new tcal ({'formname': 'form1','controlname': 'job_open'});</script>
-			  &nbsp;&nbsp;<strong>อ้างอิงใบเบิก</strong> : <input type="text" name="srid2" value="<?php   echo $srid2;?>" id="srid2" class="inpfoder">
-				</td>
+            	</td>
           </tr>
           <tr>
             <td><strong>ที่อยู่ :</strong> 
@@ -508,31 +430,29 @@ function check(frm){
 		  <strong>ชื่อผู้ติดต่อ : </strong><input type="text" name="loc_cname" value="<?php echo $loc_cname;?>" id="loc_cname" class="inpfoder" style="width: 30%;">&nbsp;&nbsp;&nbsp;&nbsp;<strong>เบอร์โทร :</strong> <input type="text" name="loc_ctel" value="<?php echo $loc_ctel;?>" id="loc_ctel" class="inpfoder" style="width: 30%;">
           </td>
                 
-        <td width="50%"><center><strong>รายละเอียดเพิ่มเติมการเบิกสินค้า/ใบจัดสินค้า</strong></center><br><br>
+        <td width="50%"><center><strong>รายละเอียดเพิ่มเติมการเบิกสินค้า</strong></center><br><br>
         <textarea name="detail_recom" class="inpfoder" id="detail_recom" style="width:50%;height:100px;background:#FFFFFF;"><?php   echo strip_tags($detail_recom);?></textarea></td>
       </tr>
     </table>
     
     <center>
       <br>
-      <span style="font-size:18px;font-weight:bold;">รายการสินค้าที่ต้องการจัดส่ง</span></center><br>
+      <span style="font-size:18px;font-weight:bold;">รายการสินค้าที่ต้องการเบิก</span></center><br>
     <table width="100%" border="0" cellspacing="0" cellpadding="0" id="dataTable" style="text-align:center;margin-top:5px;">
       <tr>
         <td width="4%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;text-align:center;"><strong>ลำดับ</strong></td>
         <td width="10%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;text-align:center;"><strong>Code</strong></td>
         <td width="30%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;"><strong>รายการ</strong></td>
-		<td width="9%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;text-align:center;"><strong>สถานที่จัดเก็บ</strong></td>
+        <td width="9%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;text-align:center;"><strong>S/N</strong></td>
         <!-- <td width="9%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;text-align:center;"><strong>หน่วยนับ</strong></td> -->
 		<td width="9%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;text-align:center;"><strong>คงเหลือ Stock</strong></td>
         <!-- <td width="9%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;text-align:center;"><strong>ราคา/หน่วย</strong></td> -->
         <td width="9%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;text-align:center;"><strong>จำนวนเบิก</strong></td>
-		<td width="9%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;text-align:center;"><strong>จำนวนที่จัด</strong></td>
         <!--<td width="9%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;text-align:center;"><strong>จำนวนคงเหลือ</strong></td>-->
-		<td width="9%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;text-align:center;"><strong>S/N</strong></td>
         </tr>
         <?php   
 		if($_GET['mode'] == "update"){
-		 $qu = @mysqli_query($conn,"SELECT * FROM s_bill_shippingsub WHERE sr_id = '".$sr_id."' ORDER BY r_id ASC");
+		 $qu = @mysqli_query($conn,"SELECT * FROM s_bill_ladingsub WHERE sr_id = '".$sr_id."' ORDER BY r_id ASC");
 		 while($row_sub = @mysqli_fetch_array($qu)){
 			 $brid[] = $row_sub['r_id'];
 			 $bcodes[] = $row_sub['codes'];
@@ -540,7 +460,6 @@ function check(frm){
 			 $bsns[] = $row_sub['sns'];
 			 $bamounts[] = $row_sub['amounts'];
 			 $bopens[] = $row_sub['opens'];
-			 $bships[] = $row_sub['ships'];
 	     }
 		}
 		 for($i=1;$i<=10;$i++){
@@ -562,39 +481,32 @@ function check(frm){
 				?>
             </select></span><a href="javascript:void(0);" onClick="windowOpener('400', '500', '', 'search2.php?resdata=<?php   echo $i;?>');"><img src="../images/icon2/mark_f2.png" width="25" height="25" border="0" alt="" style="vertical-align:middle;padding-left:5px;"></a>
         </td>
+        <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;"><input type="text" name="sns[]" id="sns<?php echo $i;?>" value="<?php   echo $bsns[$i-1];?>" style="width:100%;text-align:center;"></td>
         <!-- <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;"><input type="hidden" name="r_id[]" value="<?php   echo $brid[$i-1]?>"><input type="text" name="units[]" id="units<?php   echo $i;?>" value="<?php   echo $bunits[$i-1];?>" style="width:100%;text-align:center;" readonly></td> -->
-		<td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;"><input type="text" name="locations[]" id="locations<?php echo $i;?>" value="<?php   echo get_nameStockmachine($conn,$blists[$i-1]);?>" style="width:100%;text-align:center;" readonly></td>
 		<td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;"><input type="text" name="amounts[]" id="amounts<?php   echo $i;?>" value="<?php   
 		echo getStockMachine($conn,$blists[$i-1]);
 		?>" style="width:100%;text-align:right;" readonly></td>
 		<!-- <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;"><input type="text" name="prices[]" id="prices<?php   echo $i;?>" value="<?php   if($bprices[$i-1] != 0){echo $bprices[$i-1];}?>" style="width:100%;text-align:right;" readonly></td> -->
         <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;"><input type="text" name="opens[]" id="opens<?php   echo $i;?>" value="<?php   if($bopens[$i-1] != 0){echo $bopens[$i-1];}?>" style="width:100%;text-align:right;" onkeypress="return isNumberKey(event)"></td>
-		<td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;"><input type="text" name="ships[]" id="ships<?php   echo $i;?>" value="<?php   if($bships[$i-1] != 0){echo $bships[$i-1];}?>" style="width:100%;text-align:right;" onkeypress="return isNumberKey(event)"></td>
-		<td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;"><input type="text" name="sns[]" id="sns<?php echo $i;?>" value="<?php   echo $bsns[$i-1];?>" style="width:100%;text-align:center;"></td>
-		</tr>
 
 				<?php  	
 			}
 
-			$bkcodes = array($pkey_code1, $pkey_code2, $pkey_code3);
+			/*$bkcodes = array($pkey_code1, $pkey_code2, $pkey_code3);
 			$bklists = array($pkey_list1, $pkey_list2, $pkey_list3);
-			$bklocations = array($pkey_location1, $pkey_location2, $pkey_location3);
 			$bksns = array($pkey_sn1, $pkey_sn2, $pkey_sn3);
 			$bkamounts = array($pkey_amount1, $pkey_amount2, $pkey_amount3);
 			$bkopens = array($pkey_open1, $pkey_open2, $pkey_open3);
-			$bkships = array($pkey_ship1, $pkey_ship2, $pkey_ship3);
 
-			/*for($i=8;$i<=10;$i++){
+			for($i=8;$i<=10;$i++){
 				?>
 				<tr >
 				<td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;text-align:center;"><?php   echo $i;?></td>
 				<td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;"><input type="text" name="kcodes[]" id="kcodes<?php   echo $i;?>" value="<?php   echo $bkcodes[$i-8];?>" style="width:100%"></td>
 				<td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;"><input type="text" name="klists[]" id="klists<?php   echo $i;?>" value="<?php   echo $bklists[$i-8];?>" style="width:100%"></td>
-				<td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;"><input type="text" name="klocations[]" id="klocations<?php   echo $i;?>" value="<?php   echo $bklocations[$i-8];?>" style="width:100%"></td>
+				<td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;"><input type="text" name="ksns[]" id="ksns<?php echo $i;?>" value="<?php   echo $bksns[$i-8];?>" style="width:100%;text-align:center;"></td>
 				<td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;"><input type="text" name="kamounts[]" id="kamounts<?php   echo $i;?>" value="<?php   echo $bkamounts[$i-8];?>" style="width:100%;text-align:right;" onkeypress="return isNumberKey(event)"></td>
 				<td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;"><input type="text" name="kopens[]" id="kopens<?php   echo $i;?>" value="<?php   if($bkopens[$i-8] != 0){echo $bkopens[$i-8];}?>" style="width:100%;text-align:right;" onkeypress="return isNumberKey(event)"></td>
-				<td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;"><input type="text" name="kships[]" id="kships<?php   echo $i;?>" value="<?php   if($bkships[$i-8] != 0){echo $bkships[$i-8];}?>" style="width:100%;text-align:right;" onkeypress="return isNumberKey(event)"></td>
-				<td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;"><input type="text" name="ksns[]" id="ksns<?php echo $i;?>" value="<?php   echo $bksns[$i-8];?>" style="width:100%;text-align:center;"></td>
 				</tr>
 						<?php  	
 			}*/
@@ -654,7 +566,7 @@ function check(frm){
                 </strong></td>
               </tr>
               <tr>
-                <td style="padding-top:10px;padding-bottom:10px;font-size:12px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>ผู้จัดสินค้า</strong></td>
+                <td style="padding-top:10px;padding-bottom:10px;font-size:12px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>หัวหน้าฝ่าย / ตรวจสอบ</strong></td>
               </tr>
               <tr>
                 <td style="font-size:12px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>วันที่ :</strong>
@@ -692,7 +604,7 @@ function check(frm){
                 </strong></td>
               </tr>
               <tr>
-                <td style="padding-top:10px;padding-bottom:10px;font-size:12px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>ผู้อนุมัติ / จัดสินค้า</strong></td>
+                <td style="padding-top:10px;padding-bottom:10px;font-size:12px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>ผู้อนุมัติ / เบิกสินค้า</strong></td>
               </tr>
               <tr>
                 <td style="font-size:12px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>วันที่ :</strong>

@@ -29,6 +29,20 @@
 		$listShipping = '';
 	}
 
+	$dataApprove = '';
+
+	if($_POST['loc_contact3'] != '0' && $_POST['loc_contact3'] != ''){
+		if($_POST['loc_date3'] != '0000-00-00' && $_POST['loc_date3'] != ''){
+			$dataApprove = format_date($_POST['loc_date3']);
+		}else{
+			$dataApprove = '';
+		}
+	}else{
+		$dataApprove = '';
+	}
+
+	$hSaleSignature = '<img src="../../upload/user/signature/'.get_sale_signature($conn,$_POST['loc_contact3']).'" height="50" border="0" />';
+
 	$form = '<style>
 	.bgheader{
 		font-size:10px;
@@ -244,13 +258,13 @@
 		<td width="33%" style="border:1px solid #000000;font-size:10px;font-family:Verdana, Geneva, sans-serif;text-align:center;padding-top:10px;padding-bottom:10px;">
         	<table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
-                <td style="border-bottom:1px solid #000000;padding-bottom:10px;font-size:10px;font-family:Verdana, Geneva, sans-serif;text-align:center;">'.get_technician_name($conn,$_POST['loc_contact3']).'</td>
+                <td style="border-bottom:1px solid #000000;padding-bottom:10px;font-size:10px;font-family:Verdana, Geneva, sans-serif;text-align:center;">'.$hSaleSignature.'</td>
               </tr>
               <tr>
                 <td style="padding-top:10px;padding-bottom:10px;font-size:10px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>ผู้อนุมัติ / เบิกสินค้า</strong></td>
               </tr>
               <tr>
-                <td style="font-size:10px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>วันที่ : </strong>'.format_date($_POST['loc_date3']).'</td>
+                <td style="font-size:10px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>วันที่ : </strong>'.$dataApprove.'</td>
               </tr>
             </table>
         </td>

@@ -2,7 +2,7 @@
 	include ("../../include/config.php");
 	include ("../../include/connect.php");
 	include ("../../include/function.php");
-	include ("config.php");
+	include ("config_ship.php");
 
 	if ($_POST["mode"] <> "") { 
 		$param = "";
@@ -31,79 +31,7 @@
 		$_POST['sell_date']=$a_sdate[2]."-".$a_sdate[1]."-".$a_sdate[0];
 		
 
-		if ($_POST["mode"] == "add") { 
-			
-			$_POST['approve'] = 0;
-			$_POST['st_setting'] = 0;
-			$_POST['supply'] = 0;
-			
-			if($_POST['cus_id'] == ""){
-				$_POST['cus_id'] = 1;
-			}
-
-			$_POST['detail_recom'] = nl2br($_POST['detail_recom']);
-			$_POST['detail_calpr'] = nl2br($_POST['detail_calpr']);
-			$_POST['detail_calpr'] = nl2br($_POST['detail_calpr']);
-			
-			$codes = $_POST['codes'];
-			$lists = $_POST['lists'];
-			$sns = $_POST['sns'];
-			$amounts = $_POST['amounts'];
-			$opens = $_POST['opens'];
-			$ships = $_POST['ships'];
-
-
-			$kcodes = $_POST['kcodes'];
-			$klists = $_POST['klists'];
-			$klocations = $_POST['klocations'];
-			$ksns = $_POST['ksns'];
-			$kamounts = $_POST['kamounts'];
-			$kopens = $_POST['kopens'];
-			$kships = $_POST['kships'];
-
-
-			foreach($klists as $ka => $kb){
-				if($kopens[$ka] == ""){
-					$kopens[$ka] = 0;
-				}
-
-				$_POST['pkey_code'.($ka+1)] = $kcodes[$ka];
-				$_POST['pkey_list'.($ka+1)] = $klists[$ka];
-				$_POST['pkey_location'.($ka+1)] = $klocations[$ka];
-				$_POST['pkey_sn'.($ka+1)] = $ksns[$ka];
-				$_POST['pkey_amount'.($ka+1)] = $kamounts[$ka];
-				$_POST['pkey_open'.($ka+1)] = $kopens[$ka];
-				$_POST['pkey_ship'.($ka+1)] = $kships[$ka];
-
-			}
-
-			include "../include/m_add.php";
-			
-			$id = mysqli_insert_id($conn);
-			
-			
-			foreach($codes as $a => $b){
-				
-				if($lists[$a] != ""){
-					if($opens[$a] == ""){
-						$opens[$a] = 0;
-					}
-					@mysqli_query($conn,"INSERT INTO `s_bill_shippingsub` (`r_id`, `sr_id`, `codes`, `lists`, `sns`, `amounts`, `opens`, `ships`) VALUES (NULL, '".$id."', '".$codes[$a]."', '".$lists[$a]."', '".$sns[$a]."', '".$amounts[$a]."', '".$opens[$a]."', '".$ships[$a]."');");
-					@mysqli_query($conn,"UPDATE `group_stockmachine` SET `group_stock` = `group_stock` - '".$opens[$a]."' WHERE `group_id` = '".$lists[$a]."';");
-				}
-			}
-			
-				
-			include_once("../mpdf54/mpdf.php");
-			include_once("form_serviceopen.php");
-			$mpdf=new mPDF('UTF-8'); 
-			$mpdf->SetAutoFont();
-			$mpdf->WriteHTML($form);
-			$chaf = preg_replace("/\//","-",$_POST['sv_id']); 
-			$mpdf->Output('../../upload/bill_shipping/'.$chaf.'.pdf','F');
-			
-			header ("location:index.php?" . $param); 
-		}
+		
 		if ($_POST["mode"] == "update" ) {
 
 			$_POST['detail_recom'] = nl2br($_POST['detail_recom']);
@@ -118,13 +46,13 @@
 			$opens = $_POST['opens'];
 			$ships = $_POST['ships'];
 			
-			$sql2 = "select * from s_bill_shippingsub where sr_id = '".$_REQUEST[$PK_field]."'";
-			$quPro = @mysqli_query($conn,$sql2);
-			while($rowPro = mysqli_fetch_array($quPro)){
-				@mysqli_query($conn,"UPDATE `group_stockmachine` SET `group_stock` = `group_stock`+'".$rowPro['opens']."' WHERE `group_id` = '".$rowPro['lists']."';");
-			}
+			// $sql2 = "select * from s_bill_shippingsub where sr_id = '".$_REQUEST[$PK_field]."'";
+			// $quPro = @mysqli_query($conn,$sql2);
+			// while($rowPro = mysqli_fetch_array($quPro)){
+			// 	@mysqli_query($conn,"UPDATE `group_stockmachine` SET `group_stock` = `group_stock`+'".$rowPro['opens']."' WHERE `group_id` = '".$rowPro['lists']."';");
+			// }
 			
-			@mysqli_query($conn,"DELETE FROM `s_bill_shippingsub` WHERE `sr_id` = '".$_REQUEST[$PK_field]."'");
+			//@mysqli_query($conn,"DELETE FROM `s_bill_shippingsub` WHERE `sr_id` = '".$_REQUEST[$PK_field]."'");
 			 
 			
 			$kcodes = $_POST['kcodes'];
@@ -161,21 +89,21 @@
 					if($opens[$a] == ""){
 						$opens[$a] = 0;
 					}
-					@mysqli_query($conn,"INSERT INTO `s_bill_shippingsub` (`r_id`, `sr_id`, `codes`, `lists`, `sns`, `amounts`, `opens`, `ships`) VALUES (NULL, '".$id."', '".$codes[$a]."', '".$lists[$a]."', '".$sns[$a]."', '".$amounts[$a]."', '".$opens[$a]."', '".$ships[$a]."');");
-					@mysqli_query($conn,"UPDATE `group_stockmachine` SET `group_stock` = `group_stock` - '".$opens[$a]."' WHERE `group_id` = '".$lists[$a]."';");
+					//@mysqli_query($conn,"INSERT INTO `s_bill_shippingsub` (`r_id`, `sr_id`, `codes`, `lists`, `sns`, `amounts`, `opens`, `ships`) VALUES (NULL, '".$id."', '".$codes[$a]."', '".$lists[$a]."', '".$sns[$a]."', '".$amounts[$a]."', '".$opens[$a]."', '".$ships[$a]."');");
+					//@mysqli_query($conn,"UPDATE `group_stockmachine` SET `group_stock` = `group_stock` - '".$opens[$a]."' WHERE `group_id` = '".$lists[$a]."';");
 				}
 						
 			}	
 			
 			include_once("../mpdf54/mpdf.php");
-			include_once("form_serviceopen.php");
+			include_once("../bill_shipping/form_serviceopen.php");
 			$mpdf=new mPDF('UTF-8'); 
 			$mpdf->SetAutoFont();
 			$mpdf->WriteHTML($form);
 			$chaf = preg_replace("/\//","-",$_POST['sv_id']); 
 			$mpdf->Output('../../upload/bill_shipping/'.$chaf.'.pdf','F');
 			
-			header ("location:index.php?" . $param); 
+			header ("location:index_ship.php?" . $param); 
 		}
 		
 	}
@@ -294,7 +222,7 @@ function check(frm){
 </SCRIPT>
 </HEAD>
 <?php    include ("../../include/function_script.php"); ?>
-<BODY>
+<BODY onload="document.form1.submit()">
 <DIV id=body-wrapper>
 <?php    include("../left.php");?>
 <DIV id=main-content>
@@ -303,7 +231,7 @@ function check(frm){
 <?php    include('../top.php');?>
 <P id=page-intro><?php    if ($mode == "add") { ?>Enter new information<?php    } else { ?>แก้ไข	[<?php    echo $page_name; ?>]<?php    } ?>	</P>
 <UL class=shortcut-buttons-set>
-  <LI><A class=shortcut-button href="../bill_shipping/"><SPAN><IMG  alt=icon src="../images/btn_back.gif"><BR>
+  <LI><A class=shortcut-button href="javascript:history.back()"><SPAN><IMG  alt=icon src="../images/btn_back.gif"><BR>
   กลับ</SPAN></A></LI>
 </UL>
 <!-- End .clear -->
@@ -315,9 +243,10 @@ function check(frm){
 <DIV class=clear>
   
 </DIV></DIV><!-- End .content-box-header -->
-<DIV class=content-box-content>
+<div><center><img src="../images/waiting.gif" width="450"></center></div>
+<DIV class="content-box-content" style="display:none;">
 <DIV id=tab1 class="tab-content default-tab">
-  <form action="update.php" method="post" enctype="multipart/form-data" name="form1" id="form1"  onSubmit="return check(this)">
+  <form action="update_ship.php" method="post" enctype="multipart/form-data" name="form1" id="form1"  onSubmit="return check(this)">
     <div class="formArea">
       <fieldset>
       <legend><?php    echo $page_name; ?> </legend>
