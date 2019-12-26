@@ -59,7 +59,7 @@
 			}
 		}
 		
-		$displ = "|".$rowcus['cd_address']."|".$sprovince."|".$rowcus['cd_tel']."|".$rowcus['cd_fax']."|".$rowcus['c_contact']."|".$rowcus['c_tel']."|".$rowcus['loc_name']."|".$rowcus['loc_address']."|".$rowcus['loc_tel']."|".$rowcus['loc_fax']."|".$rowcus['loc_cname']."|".$rowcus['loc_ctel'].'|'.$sr_ctype2.'|'.$sr_ctype;
+		$displ = "|".$rowcus['cd_address']."|".$sprovince."|".$rowcus['cd_tel']."|".$rowcus['cd_fax']."|".$rowcus['c_contact']."|".$rowcus['c_tel']."|".$rowcus['loc_name']."|".$rowcus['loc_address']."|".$rowcus['loc_tel']."|".$rowcus['loc_fax']."|".$rowcus['loc_cname']."|".$rowcus['loc_ctel'].'|'.$sr_ctype2.'|'.$sr_ctype.'|'.$rowcus['fs_id'];
 		echo $displ;
 	}
 	

@@ -42,6 +42,7 @@ function checkfirstorder(pval){
          document.getElementById('loc_ctel').value=ds[12];
          document.getElementById('sr_ctype2').innerHTML=ds[13];
          document.getElementById('sr_ctype').innerHTML=ds[14];
+         document.getElementById('srid').value=ds[15];
         } else{
           //document.getElementById(ElementId).innerHTML="<div class='loading'> Loading..</div>" ;
         }
