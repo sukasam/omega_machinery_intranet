@@ -231,7 +231,7 @@ function check_select(frm){
             <a href="../project_order/?b=<?php  echo $rec[$PK_field]; ?>&s=<?php  echo $rec["st_setting"]; ?>&page=<?php  echo $_GET["page"]; ?>&<?php  echo $FK_field; ?>=<?php  echo $_REQUEST["$FK_field"];?>"><img src="../icons/status_off.gif" width="10" height="10"></a>
             <?php  }?>
           </div></TD>
-          <TD style="vertical-align: middle;"><div align="center"><a href="../job_tracking?tab=PJ&<?php  echo $PK_field; ?>=<?php  echo $rec["$PK_field"]; if($param <> "") {?>&<?php  echo $param; }?>"><img src="../images/tracking.png" width="40" border="0" alt=""></a></div></TD>
+          <TD style="vertical-align: middle;"><div align="center"><a href="../job_tracking?tab=PJ&<?php  echo $PK_field; ?>=<?php  echo $rec["$PK_field"];?>"><img src="../images/tracking.png" width="40" border="0" alt=""></a></div></TD>
           <!-- <TD><div align="center"><a href="../../upload/project_order/<?php  echo $chaf;?>.pdf" target="_blank"><img src="../images/icon2/download_f2.png" width="25" height="25" border="0" alt=""></a></div></TD> -->
           
           <TD style="vertical-align:middle"><!-- Icons -->

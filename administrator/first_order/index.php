@@ -237,7 +237,7 @@ function check_select(frm){
           </div></TD>
            <!-- <TD style="vertical-align: middle;"><div align="center"><a href="../../upload/first_order/<?php  echo $chaf;?>.pdf" target="_blank"><img src="../images/icon2/download_f2.png" width="20" height="20" border="0" alt=""></a></div></TD> -->
           
-          <TD style="vertical-align: middle;"><div align="center"><a href="../job_tracking?tab=FO&<?php  echo $PK_field; ?>=<?php  echo $rec["$PK_field"]; if($param <> "") {?>&<?php  echo $param; }?>"><img src="../images/tracking.png" width="40" border="0" alt=""></a></div></TD>
+          <TD style="vertical-align: middle;"><div align="center"><a href="../job_tracking?tab=FO&<?php  echo $PK_field; ?>=<?php  echo $rec["$PK_field"];?>"><img src="../images/tracking.png" width="40" border="0" alt=""></a></div></TD>
           <TD style="vertical-align: middle;"><div align="center"><a href="../document/?fo_id=<?php  echo $rec[$PK_field]; ?>"><img src="../images/document.png" width="30" height="30" border="0" alt=""></a></div></TD>
           
           <TD style="vertical-align: middle;">
