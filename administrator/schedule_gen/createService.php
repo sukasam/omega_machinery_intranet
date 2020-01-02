@@ -31,7 +31,7 @@
 	
 	if($numCreated == 0){
 		
-		/*$condition = " AND (service_month != '0' AND service_month != '')";
+		$condition = " AND (service_month != '0' AND service_month != '')";
 		$condition.= " AND (service_type != '0' AND service_type != '')";
 
 		$sqlSched = "SELECT * FROM `s_first_order` WHERE `technic_service` = ".$_GET['loccontact'].$condition." AND status_use != '2' AND status_use != '1' ORDER BY `cd_province` ,`loc_name` ASC;";
@@ -39,8 +39,7 @@
 		$quSched = mysqli_query($conn,$sqlSched);
 
 		$runRow = 1;
-		$svGenID = 606;
-		$thdate = "SR ".substr(date("Y")+543,2)."/".date("m")."/";
+		$svGenID = 1;
 		
 		  while($rowSched = mysqli_fetch_array($quSched)){
 			  
@@ -67,7 +66,7 @@
 
 					//ADD DB
 					//$_POST['sv_id'] = check_servicereport($conn);
-					$_POST['sv_id'] = $thdate.sprintf("%03d",$svGenID);
+					$_POST['sv_id'] = "SR ".substr(date("Y")+543,2).date("m").$svGenID;
 					$svGenID++;
 					if(get_lastservice_s($conn,$_POST['cus_id'],"") != ""){
 						$_POST['job_last'] = get_lastservice_s($conn,$_POST['cus_id'],"");
@@ -82,6 +81,10 @@
 					include "../include/m_add2.php";
 					
 					$id = mysqli_insert_id($conn);
+
+					$thdate = substr(date("Y")+543,2).date("m");
+					$_POST['sv_id'] = substr($_POST['sv_id'],0,2)." ".$thdate.$id;
+					@mysqli_query($conn,"UPDATE `s_service_report` SET `sv_id` = '".$_POST['sv_id']."' WHERE `sr_id` = ".$id.";");
 						
 					include_once("../mpdf54/mpdf.php");
 					
@@ -122,7 +125,7 @@
 
 					//ADD DB
 					//$_POST['sv_id'] = check_servicereport($conn);
-					$_POST['sv_id'] = $thdate.sprintf("%03d",$svGenID);
+					$_POST['sv_id'] = "SR ".substr(date("Y")+543,2).date("m").$svGenID;
 					$svGenID++;
 					if(get_lastservice_s($conn,$_POST['cus_id'],"") != ""){
 						$_POST['job_last'] = get_lastservice_s($conn,$_POST['cus_id'],"");
@@ -137,6 +140,10 @@
 					include "../include/m_add2.php";
 					
 					$id = mysqli_insert_id($conn);
+
+					$thdate = substr(date("Y")+543,2).date("m");
+					$_POST['sv_id'] = substr($_POST['sv_id'],0,2)." ".$thdate.$id;
+					@mysqli_query($conn,"UPDATE `s_service_report` SET `sv_id` = '".$_POST['sv_id']."' WHERE `sr_id` = ".$id.";");
 						
 					include_once("../mpdf54/mpdf.php");
 					
@@ -165,7 +172,7 @@
 		
 			echo "<script>window.opener.location.reload();window.close();</script>";
 		 
-		  */
+		  
 		}else{
 			
 			genFile($conn,$getMonth,$_GET['loccontact'],$getYear);

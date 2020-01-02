@@ -22,7 +22,6 @@
 		
 
 		$a_sdate=explode("/",$_POST['date_forder']);
-
 		$_POST['date_forder']=$a_sdate[2]."-".$a_sdate[1]."-".$a_sdate[0];
 
 		

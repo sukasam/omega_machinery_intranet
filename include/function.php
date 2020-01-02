@@ -2725,5 +2725,20 @@ function getShipSetupPro($conn,$fo_id,$typeSV){
 	
 }
 
+function getTrackJObs($conn,$tab,$fo_id){
+
+	$tableDB = '';
+
+	if($tab == 'FO' || $tab == 'SV' ){
+		$tableDB = 's_first_order';
+	}else if($tab == 'PJ' ){
+		$tableDB = 's_project_order';
+	}
+	$quFO = @mysqli_query($conn,"SELECT * FROM ".$tableDB." WHERE fo_id = '".$fo_id."' ORDER BY fo_id DESC");
+	$rowFO = mysqli_fetch_array($quFO);
+
+	return $rowFO['fs_id'];
+}
+
 ?>
 
