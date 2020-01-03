@@ -1607,6 +1607,30 @@ function check9(frm){
                         <td><table class="formFields" cellspacing="0" width="100%">
 
                         <tr >
+                            <td width="10%" nowrap class="name">ชื่อร้าน-ชื่อบริษัท</td>
+                            <td width="90%"><input name="cd_name" type="text" id="cd_name"  value="" style="width:40%;">
+                            <a href="javascript:void(0);" onClick="windowOpener('400', '500', '', 'search.php');"><img src="../images/icon2/mark_f2.png" width="25" height="25" border="0" alt="" style="vertical-align:middle;padding-left:5px;"></a>
+                            </td>
+                          </tr>
+
+                          <tr >
+                            <td width="10%" nowrap class="name">ชื่อผู้ขาย</td>
+                            <td width="90%">
+                            <select name="cs_sell" id="cs_sell" style="width:250px;">
+                            <option value="">กรุณาเลือกพนักงานขาย</option>
+                            <?php 
+                                $qusaletype = @mysqli_query($conn,"SELECT * FROM s_group_sale ORDER BY group_name ASC");
+                                while($row_saletype = @@mysqli_fetch_array($qusaletype)){
+                                  ?>
+                                    <option value="<?php  echo $row_saletype['group_id'];?>"><?php  echo $row_saletype['group_name'];?></option>
+                                  <?php 	
+                                  }
+                                ?>
+                              </select>
+                              </td>
+                          </tr>
+
+                        <!-- <tr >
 
                             <td nowrap class="name">โซน/ภาค/เขต</td>
 
@@ -1632,9 +1656,9 @@ function check9(frm){
 
                             </select></td>
 
-                          </tr>
+                          </tr> -->
 
-                          <tr >
+                          <!-- <tr >
 
                             <td nowrap class="name">ประเภทบริการ</td>
 
@@ -1698,7 +1722,7 @@ function check9(frm){
 
                             </select></td>
 
-                          </tr>
+                          </tr> -->
 
                           <!-- <tr>
 
@@ -1795,23 +1819,23 @@ function check9(frm){
 
                               ชื่อร้าน / สถานที่ติดตั้ง
 
-                              <input name="sh3" type="checkbox" id="sh47" value="1" checked>
+                              <!-- <input name="sh3" type="checkbox" id="sh47" value="1" checked>
 
                               อำเภอ/จังหวัด
 
                               <input name="sh4" type="checkbox" id="sh48" value="1" checked>
 
-                              กลุ่มลูกค้า
+                              กลุ่มลูกค้า -->
 
                               <br>
 
                               <!-- <input name="sh5" type="checkbox" id="sh49" value="1" checked>
 
-                              สินค้า
+                              สินค้า-->
 
                               <input name="sh6" type="checkbox" id="sh50" value="1" checked>
 
-                รุ่นเครื่อง / SN -->
+                รุ่นเครื่อง / SN 
 
                 <input name="sh7" type="checkbox" id="sh51" value="1" checked>
 
@@ -1837,13 +1861,13 @@ function check9(frm){
 
                           </tr>
 
-                          <!-- <tr>
+                          <tr>
 
                             <td nowrap class="name">&nbsp;</td>
 
                             <td>&nbsp;</td>
 
-                          </tr> -->
+                          </tr>
 
                         </table></td>
 
