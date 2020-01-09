@@ -473,6 +473,15 @@ function popup(url,name,windowWidth,windowHeight){
           </tr>
         </table>
         </div>
+
+		<div style="clear:both;font-size:13px;">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tbdate">
+          <tr class="formFields">
+            <td width="7%" nowrap="nowrap" class="name">ปีลูกค้า : </td>
+            <td width="93%"><input name="cusyear" type="text" id="cusyear" value="" style="width:100px;height:25px;"></td>
+          </tr>
+        </table>
+        </div>
 			
 			<?php 
      	}

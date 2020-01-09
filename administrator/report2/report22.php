@@ -198,11 +198,11 @@
 
         </table></th><?php  }?>
 
+		<?php  if($_REQUEST['sh9'] == 1){?><th width="10%"><div align="center">ประเภทลูกค้า</div></th><?php  }?>
+
         <?php  if($_REQUEST['sh7'] == 1){?><th width="10%"><div align="center">วันที่ติดตั้ง</div></th><?php  }?>
 
         <?php  if($_REQUEST['sh8'] == 1){?><th width="10%"><div align="center">ประเภทงานบริการ</div></th><?php  }?>
-
-        <?php  if($_REQUEST['sh9'] == 1){?><th width="10%"><div align="center">ประเภทลูกค้า</div></th><?php  }?>
 
         <?php  if($_REQUEST['sh10'] == 1){?><th width="10%"><div align="center">รายชื่อช่าง</div></th><?php  }?>
 
@@ -420,6 +420,8 @@
 
               </table></td><?php  }?>
 
+			  <?php  if($_REQUEST['sh9'] == 1){?><td><div align="center"><?php  echo getcustom_type($conn,$row_fr['ctype']);?></div></td>   <?php  }?>
+
               <?php  if($_REQUEST['sh7'] == 1){?><td style="padding:0;"><div align="center"><?php echo format_date($row_fr['cs_setting']);?></div>
 
               	</td><?php  }?>
@@ -428,7 +430,6 @@
 
               	</td><?php  }?>
 
-              <?php  if($_REQUEST['sh9'] == 1){?><td><div align="center"><?php  echo getcustom_type($conn,$row_fr['ctype']);?></div></td>   <?php  }?>
 
               <?php  if($_REQUEST['sh10'] == 1){?><td><?php  echo get_technician_name($conn,$row_fr['technic_service']); ?></td>  <?php  }?>    
 

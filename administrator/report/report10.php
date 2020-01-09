@@ -8,6 +8,7 @@
 	$param = get_param($a_param,$a_not_exists);
 	
 	$cusid = $_REQUEST['cusid'];
+	$cusyear = $_REQUEST['cusyear'];
 	$cd_name = $_REQUEST['cd_name'];
 
 	$condition = "";
@@ -28,6 +29,10 @@
 	
 	if($_REQUEST['cusid'] != ""){
 		$condition .= " AND cusid LIKE '%".$cusid."%'";
+	}
+
+	if($_REQUEST['cusyear'] != ""){
+		$condition .= " AND cusyear LIKE '%".$cusyear."%'";
 	}
 	
 	
