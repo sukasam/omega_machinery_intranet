@@ -65,7 +65,7 @@ $form = '
             <br />            
             <strong>เลขที่ First order :</strong>'.$_POST["fs_id"].'<strong>&nbsp;&nbsp;&nbsp;&nbsp;วันที่ :</strong> '.format_date($_POST["date_forder"]).'
 			<br /><br />    
-            <strong>รหัสลูกค้า : </strong>'.$_POST["cusid"].'
+            <strong>ปีลูกค้า : </strong>'.$_POST["cusyear"].'&nbsp;&nbsp;&nbsp;&nbsp;<strong>รหัสลูกค้า : </strong>'.$_POST["cusid"].'
 			</td>
           </tr>
 </table>

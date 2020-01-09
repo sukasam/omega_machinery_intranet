@@ -568,8 +568,11 @@ function submitForm() {
 
               <input type="text" name="c_tel" value="<?php  echo $c_tel;?>" id="c_tel" class="inpfoder"></td>
 
-            <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;"><strong>รหัสลูกค้า<strong> :</strong><span style="font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;">
-
+            <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;">
+            <strong>ปีลูกค้า<strong> : </strong><input type="text" name="cusyear"value="<?php  echo $cusyear;?>" id="cusyear" class="inpfoder">
+            <span style="font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;"></span>
+            <strong>รหัสลูกค้า<strong> :</strong>
+            <span style="font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;"></span>
               <input type="text" name="cusid" value="<?php  echo $cusid;?>" id="cusid" class="inpfoder">
               
 			  <span style="padding-left: 20px;"><strong>แผนที่ลูกค้า<strong>
