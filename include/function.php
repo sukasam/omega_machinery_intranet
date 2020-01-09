@@ -1916,6 +1916,126 @@ function get_servreport_setupclosed($conn,$ymd,$loc,$ctype) {
 	return $res;		
 }
 
+function get_servreport_fix($conn,$ymd,$loc,$ctype) {
+
+	
+	if($loc != ""){
+		$condi .= " AND loc_contact = '".$loc."'";
+	}
+	
+	if($ctype != ""){
+		$condi .= " AND sr_ctype = '".$ctype."'";
+	}else{
+
+		$serTypeList = array("103", "107");
+
+		$condi .= " AND (";
+
+		for($i=0;$i<count($serTypeList);$i++){
+			$condi .= "sr_ctype = '".$serTypeList[$i]."' OR ";
+		}
+
+		$condi = substr($condi,0,-3).")";
+	}
+
+	//echo "SELECT * FROM s_service_report WHERE job_balance = '".$ymd."' ".$condi." AND st_setting = 0 LIMIT 4";
+
+	$qqu_srv = @mysqli_query($conn,"SELECT * FROM s_service_report WHERE job_balance = '".$ymd."' ".$condi." AND st_setting = 0 LIMIT 4");
+	$numsrv = @mysqli_num_rows($qqu_srv);
+	$res = "";
+	if($numsrv > 0){
+		$numR = 1;
+		//blue , #f68cfd, red, green
+		while($row_dea = @mysqli_fetch_array($qqu_srv)){
+			$chaf = preg_replace("/\//","-",$row_dea["sv_id"]);
+			// if($row_dea['st_setting'] == 0){
+			// 	$scstatus = "<span style=\"color:green;\">".$row_dea['sv_id']."</span>";
+			// }else{
+			// 	$scstatus = "<span style=\"color:red;\">".$row_dea['sv_id']."</span>";
+			// }
+
+			if($row_dea['job_opentime'] != ""){
+				$jobOpen = " เวลา ".$row_dea['job_opentime'];
+			}else{
+				$jobOpen = "";
+			}
+			
+
+			if($row_dea['sr_ctype'] == '107'){
+				$scstatus = "<span style=\"color:blue;\">".$numR.".".get_localsettingname($conn,$row_dea['cus_id']).$jobOpen."</span>";
+			}else{
+				$scstatus = "<span style=\"color:green;\">".$numR.".".get_localsettingname($conn,$row_dea['cus_id']).$jobOpen."</span>";
+			}
+			
+
+			$res .= "&nbsp;<a href=\"../../upload/service_report_open/".$chaf.".pdf\" target=\"_blank\"><strong>".$scstatus."</strong></a>\n<br>\n";
+			$numR++;
+		}
+		
+	}
+	
+	return $res;		
+}
+
+function get_servreport_fixclosed($conn,$ymd,$loc,$ctype) {
+
+	
+	if($loc != ""){
+		$condi .= " AND loc_contact = '".$loc."'";
+	}
+	
+	if($ctype != ""){
+		$condi .= " AND sr_ctype = '".$ctype."'";
+	}else{
+
+		$serTypeList = array("103", "107");
+
+		$condi .= " AND (";
+
+		for($i=0;$i<count($serTypeList);$i++){
+			$condi .= "sr_ctype = '".$serTypeList[$i]."' OR ";
+		}
+
+		$condi = substr($condi,0,-3).")";
+	}
+	
+	$qqu_srv = @mysqli_query($conn,"SELECT * FROM s_service_report WHERE job_close = '".$ymd."' ".$condi." AND st_setting = 1 LIMIT 4");
+	$numsrv = @mysqli_num_rows($qqu_srv);
+	$res = "";
+	if($numsrv > 0){
+		$numR = 1;
+		//blue , #f68cfd, red, green
+		while($row_dea = @mysqli_fetch_array($qqu_srv)){
+			$chaf = preg_replace("/\//","-",$row_dea["sv_id"]);
+			// if($row_dea['st_setting'] == 0){
+			// 	$scstatus = "<span style=\"color:green;\">".$row_dea['sv_id']."</span>";
+			// }else{
+			// 	$scstatus = "<span style=\"color:red;\">".$row_dea['sv_id']."</span>";
+			// }
+
+			if($row_dea['job_opentime'] != ""){
+				$jobOpen = " เวลา ".$row_dea['job_closetime'];
+			}else{
+				$jobOpen = "";
+			}
+			
+
+			if($row_dea['sr_ctype'] == '107'){
+				$scstatus = "<span style=\"color:blue;\">".$numR.".".get_localsettingname($conn,$row_dea['cus_id']).$jobOpen."</span>";
+			}else{
+				$scstatus = "<span style=\"color:green;\">".$numR.".".get_localsettingname($conn,$row_dea['cus_id']).$jobOpen."</span>";
+			}
+			
+
+			$res .= "&nbsp;<a href=\"../../upload/service_report_close/".$chaf.".pdf\" target=\"_blank\"><strong>".$scstatus."</strong></a>\n<br>\n";
+			$numR++;
+		}
+		
+	}
+	
+	return $res;		
+}
+
 function get_imguser($conn,$userid) {
 	$row_fix = @mysqli_fetch_array(@mysqli_query($conn,"SELECT * FROM  s_user WHERE user_id = '".$userid."'"));
 	

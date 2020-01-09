@@ -74,85 +74,26 @@ function MM_openBrWindow(theURL,winName,features) { //v2.0
   window.open(theURL,winName,features);
 }
 //-->
+
+function chkPrint(){
+	setTimeout(function () { window.print(); }, 200);
+	window.onfocus = function () { setTimeout(function () { window.close(); }, 200); }
+}
+
 </script>
 </HEAD>
 <?php  include ("../../include/function_script.php"); ?>
-<BODY>
+<BODY onLoad="javascript:chkPrint();">
 <DIV id=body-wrapper>
-<?php  include("../left.php");?>
 <DIV id=main-content>
 <NOSCRIPT>
 </NOSCRIPT>
-<?php  include('../top.php');?>
-<P id=page-intro><?php  echo $page_name; ?></P>
 
-<UL class=shortcut-buttons-set>
-	<LI><A class=shortcut-button href="../schedule/index.php"><SPAN><IMG  alt=icon src="../images/icon2/categories.png"><BR>
-	ตารางงานบริการ ประจำเดือน</SPAN></A></LI>
-	<LI><A class=shortcut-button href="../schedule_closed/index.php"><SPAN><IMG  alt=icon src="../images/icon2/categories.png"><BR>
-    ตารางปิดงานบริการ</SPAN></A></LI>
-	<LI><A class=shortcut-button href="../schedule_setup/index.php"><SPAN><IMG  alt=icon src="../images/icon2/templatemanager.png"><BR>
-    ตารางงาน<br>ฝ่ายติดตั้ง</SPAN></A></LI>
-	<LI><A class=shortcut-button href="../schedule_setupclosed/index.php"><SPAN><IMG  alt=icon src="../images/icon2/templatemanager.png"><BR>
-    ตารางปิดงาน<br>ฝ่ายติดตั้ง</SPAN></A></LI>
-	<LI><A class=shortcut-button href="../schedule_fix/index.php"><SPAN><IMG  alt=icon src="../images/icon2/config.png"><BR>
-    ตารางงาน<br>ฝ่ายซ่อม</SPAN></A></LI>
-	<LI><A class=shortcut-button href="../schedule_fixclosed/index.php"><SPAN><IMG  alt=icon src="../images/icon2/config.png"><BR>
-    ตารางปิดงาน<br>ฝ่ายซ่อม</SPAN></A></LI>
-    <LI><A class=shortcut-button href="../schedule_gen/index.php"><SPAN><IMG  alt=icon src="../images/icon2/paste_f2.png" width="48"><BR>
-    ตารางงานช่าง ประจำเดือน</SPAN></A></LI>
-    <?php  
-	if ($FR_module <> "") { 
-	$param2 = get_return_param();
-	?>
-  <LI><A class=shortcut-button href="../<?php  echo $FR_module; ?>/?<?php  if($param2 <> "") echo $param2;?>"><SPAN><IMG  alt=icon src="../images/btn_back.gif"><BR>
-  กลับ</SPAN></A></LI>
-  <?php  }?> 
-</UL>
-  
   <!-- End .shortcut-buttons-set -->
 <DIV class=clear></DIV><!-- End .clear -->
 <DIV class=content-box><!-- Start Content Box -->
 <DIV class=content-box-header align="right" style="padding-right:15px;">
 
-<H3 align="left"><?php  echo $check_module; ?></H3>
-<div style="padding-top:4px;">
-
-	<?php  
-		if($_GET['loccontact'] != ""){
-			$paramLoc = "&loccontact=".$_GET['loccontact'];
-		}
-		
-		if($_GET['sr_ctype'] != ""){
-			$paramCtype = "&sr_ctype=".$_GET['sr_ctype'];
-		}
-		
-	?>
-
-	<select name="loccontact" id="loccontact" id="jumpMenu" onchange="MM_jumpMenu('parent',this,0)" style="height:30px;">
-      <option value="index.php?month=<?php  echo $monthStart;?>&year=<?php  echo $yesrStart;?><?php  echo $paramCtype;?>"><== กรุณาเลือกชื่อช่าง ==></option>
-          <?php  
-              $qu_custec = @mysqli_query($conn,"SELECT * FROM s_group_technician ORDER BY group_name ASC");
-              while($row_custec = @mysqli_fetch_array($qu_custec)){
-                  ?>
-                  <option value="index.php?month=<?php  echo $monthStart;?>&year=<?php  echo $yesrStart;?>&loccontact=<?php  echo $row_custec['group_id'];?><?php  echo $paramCtype;?>" <?php  if($row_custec['group_id'] == $_GET['loccontact']){echo 'selected';}?>><?php  echo $row_custec['group_name']. " (Tel : ".$row_custec['group_tel'].")";?></option>
-                  <?php 
-              }
-          ?>
-      </select>
-      
-      <select name="sr_ctype" id="sr_ctype" id="jumpMenu" onchange="MM_jumpMenu('parent',this,0)" style="height:30px;">
-                <option value="index.php?month=<?php  echo $monthStart;?>&year=<?php  echo $yesrStart;?><?php  echo $paramLoc;?>"><== กรุณาเลือกประเภทบริการลูกค้า ==></option>
-                	<?php  
-						$qu_cusftype = @mysqli_query($conn,"SELECT * FROM s_group_service ORDER BY group_name ASC");
-						while($row_cusftype = @mysqli_fetch_array($qu_cusftype)){
-							?>
-							<option value="index.php?month=<?php  echo $monthStart;?>&year=<?php  echo $yesrStart;?><?php  echo $paramLoc;?>&sr_ctype=<?php  echo $row_cusftype['group_id'];?>" <?php  if($row_cusftype['group_id'] == $_GET['sr_ctype']){echo 'selected';}?>><?php  echo $row_cusftype['group_name'];?></option>
-							<?php 
-						}
-					?>
-      </select>
-</div>
 <DIV class=clear>
 
 </DIV></DIV><!-- End .content-box-header -->
@@ -231,44 +172,7 @@ if($_GET['month'] == 2){
 
 
 <div align="center"><span class="currentdate"><?php  echo format_month_th(date ("F", mktime(0,0,0,$_GET['month']-1,1,$_GET['year'])))." ".(date ("Y", mktime(0,0,0,$_GET['month']-1,1,$_GET['year']))+543); ?></span><br>
-  <br>
-</div>
-<div align="center"><br>
-  <table width="700" border="0" cellspacing="0" cellpadding="0">
-    <tr> 
-      <td><div align="right"><a href="<?php  echo "index.php?month=$prev_month&amp;year=$prev_year$getLocontract$getSr_ctype"?>">&lt;&lt;</a></div></td>
-      <td width="200"><div align="center">
-            
-          <select name="month" id="month" onChange="MM_jumpMenu('parent',this,0)">
-            <?php 
-			for ($i = 1; $i <= 12; $i++) {
-				$link = $i+1;
-				IF($_GET['month'] == $link){
-					$selected = "selected";
-				} ELSE {
-					$selected = "";
-				}
-				echo "<option value=\"index.php?month=$link&amp;year=$_GET[year]$getLocontract$getSr_ctype\" $selected>" . format_month_th(date ("F", mktime(0,0,0,$i,1,$_GET['year']))) . "</option>\n";
-			}
-			?>
-          </select>
-          <select name="year" id="year" onChange="MM_jumpMenu('parent',this,0)">
-		  <?php 
-		  for ($i = date("Y")-10; $i <= (date("Y"))+5; $i++) {
-		  	IF($i == $_GET['year']){
-				$selected = "selected";
-			} ELSE {
-				$selected = "";
-			}
-		  	echo "<option value=\"index.php?month=$_GET[month]&amp;year=$i$getLocontract$getSr_ctype\" $selected>".($i+543)."</option>\n";
-		  }
-		  ?>
-          </select>
-        </div></td>
-      <td><div align="left"><a href="<?php  echo "index.php?month=$next_month&amp;year=$next_year$getLocontract$getSr_ctype"; ?>">&gt;&gt;</a></div></td>
-    </tr>
-  </table>
-  <br>
+<br> <span>(ตารางปิดงานซ่อม)</span><br><br>
 </div>
 <table width="700" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#000000">
   <tr>
@@ -311,12 +215,12 @@ if($_GET['month'] == 2){
 			
 				echo "<div align=\"left\"><span class=\"eventinbox\">\n";
 				
-					echo get_servreport($conn,$_GET['year'].'-'.sprintf("%02d",$link_month).'-'.sprintf("%02d",$i),$_GET['loccontact'],$_GET['sr_ctype']);
+					echo get_servreport_fixclosed($conn,$_GET['year'].'-'.sprintf("%02d",$link_month).'-'.sprintf("%02d",$i),$_GET['loccontact'],$_GET['sr_ctype']);
 				
 				echo "</span></div>\n";
 
 			echo "</td>\n";
-			if(($count_boxes == 7) and ($days_so_far != (($first_day_of_month-1) + $days_in_month))){
+			if(($count_boxes == 7) && ($days_so_far != (($first_day_of_month-1) + $days_in_month))){
 				$count_boxes = 0;
 				echo "</TR><TR valign=\"top\">\n";
 			}
@@ -332,10 +236,7 @@ if($_GET['month'] == 2){
       </table></td>
   </tr>
 </table>
-<br>
-<div>
-<center><a href="print.php?<?php echo $_SERVER['QUERY_STRING'];?>" target="_blank"><input class=button name="btprint" type="button" value=" Print "></a></center>
-</div>
+
 </DIV><!-- End #tab1 -->
 
 
@@ -346,7 +247,6 @@ if($_GET['month'] == 2){
 <DIV class=clear></DIV><!-- Start Notifications -->
 <!-- End Notifications -->
 
-<?php  include("../footer.php");?>
 </DIV><!-- End #main-content -->
 </DIV>
 </BODY>

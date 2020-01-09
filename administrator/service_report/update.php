@@ -186,19 +186,25 @@ function check(frm){
 	function changeSrNum(){
 		var d = document.getElementById("sr_ctype").value;
 		var sv_id = document.getElementById("sv_id").value;
-			sv_id = sv_id.replace(/SR/g, 'IT');
+			sv_id = sv_id.replace(/RP/g, 'SR');
+			sv_id = sv_id.replace(/IT/g, 'SR');
 
-		var serTypeList = ["45", "47", "36", "23", "31", "48", "89", "55", "24", "87", "88", "105", "108"];
-		var nChk = serTypeList.includes(d);
-
-		if(nChk === true){
-			console.log(nChk,d);
-			sv_id = sv_id.replace(/SR/g, 'IT');
+		if(d == 103 || d == 107){
+			sv_id = sv_id.replace(/SR/g, 'RP');
 			document.getElementById("sv_id").value = sv_id;
 		}else{
-			console.log(nChk,d);
-			sv_id = sv_id.replace(/IT/g, 'SR');
-			document.getElementById("sv_id").value = sv_id;
+			var serTypeList = ["45", "47", "36", "23", "31", "48", "89", "55", "24", "87", "88", "105", "108"];
+			var nChk = serTypeList.includes(d);
+
+			if(nChk === true){
+				console.log(nChk,d);
+				sv_id = sv_id.replace(/SR/g, 'IT');
+				document.getElementById("sv_id").value = sv_id;
+			}else{
+				console.log(nChk,d);
+				sv_id = sv_id.replace(/IT/g, 'SR');
+				document.getElementById("sv_id").value = sv_id;
+			}
 		}
 	}
 
