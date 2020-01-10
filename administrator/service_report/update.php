@@ -57,6 +57,15 @@
 			$chaf = preg_replace("/\//","-",$_POST['sv_id']); 
 			$mpdf->Output('../../upload/service_report_open/'.$chaf.'.pdf','F');
 			
+			if($_POST['sr_ctype'] == 103 || $_POST['sr_ctype'] == 107 ){
+				include_once("form_serviceclose.php");
+				$mpdf=new mPDF('UTF-8'); 
+				$mpdf->SetAutoFont();
+				$mpdf->WriteHTML($form);
+				$chaf = preg_replace("/\//","-",$_POST['sv_id']); 
+				$mpdf->Output('../../upload/service_report_close/'.$chaf.'.pdf','F');
+			}
+			
 			header ("location:index.php?" . $param); 
 		}
 		if ($_POST["mode"] == "update" ) {

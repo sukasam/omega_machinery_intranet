@@ -43,7 +43,7 @@
 	<th width="10%">รุ่นเครื่อง</th>
 	<th width="10%">เวลา</th>
 	<th width="15%">ช่าง</th>
-    <th width="10%">ดาวน์โหลด</th>
+    <th width="10%">วันที่เปิด</th>
   </tr>
   <?php  
   
@@ -95,7 +95,7 @@
 		//$scstatus = "<a href=\"../../upload/service_report_open/".$chaf.".pdf\" target=\"_blank\" style=\"text-decoration: none;\"><span style=\"color:green;\">".$row_serv['sv_id']."</span></a>";
 	}
 
-	$scstatus = "<a href=\"../../upload/service_report_open/".$chaf.".pdf\" target=\"_blank\" style=\"text-decoration: none;\"><span style=\"color:".$rowColor.";\">".$row_serv['sv_id']."</span></a>";
+	$scstatus = "<a href=\"../../upload/service_report_close/".$chaf.".pdf\" target=\"_blank\" style=\"text-decoration: none;\"><span style=\"color:".$rowColor.";\">".$row_serv['sv_id']."</span></a>";
 
 	$tecService = "";
 
@@ -118,7 +118,7 @@
 	<td style="text-align:center;color:<?php echo $rowColor;?>"><?php  echo $row_serv["loc_seal"];?></td>
 	<td style="text-align:center;color:<?php echo $rowColor;?>"><?php  echo $row_serv['job_opentime'];?></td>
 	<td style="text-align:center;color:<?php echo $rowColor;?>"><?php  echo $tecService;?></td>
-    <td style="text-align:center;"><?php  $chaf = preg_replace("/\//","-",$row_serv["sv_id"]);?><a href="../../upload/service_report_open/<?php  echo $chaf;?>.pdf" target="_blank"><img src="../images/icons/icon-48-category.png" width="25" height="25" title="ใบเปิดงาน"/></a><a href="../../upload/service_report_close/<?php  echo $chaf;?>.pdf" target="_blank"><img src="../images/icons/icon-48-section.png" width="25" height="25" title="ใบปิดงาน"/></a></td>
+    <td style="text-align:center;"><?php  echo format_date_th ($row_serv['job_balance'],7);?></td>
   </tr>
   <?php  $romn++;}?>
 </table>
