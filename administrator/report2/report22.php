@@ -262,7 +262,7 @@
 
 					$getMachin = findWord(get_proname($conn,$row_fr['cpro1']),'เครื่อง');
 
-					if($row_fr['cpro1'] != "" && $getMachin == 'yes'){
+					if($row_fr['cpro1'] != ""){
 
 						?>
 
@@ -270,11 +270,11 @@
 
                           <?php  if($_REQUEST['sh5'] == 1){?><td style="border:0;padding-bottom:0;" width="31%"><?php   
 
-							if($getMachin === 'yes'){
+							//if($getMachin === 'yes'){
 
 								$sumMachin += $row_fr['camount1'];
 
-							}
+							//}
 
 							echo  get_proname($conn,$row_fr['cpro1']);?></td><?php  }?>
 
@@ -292,7 +292,7 @@
 
 					$getMachin = findWord(get_proname($conn,$row_fr['cpro2']),'เครื่อง');
 
-					if($row_fr['cpro2'] != "" && $getMachin == 'yes'){
+					if($row_fr['cpro2'] != ""){
 
 						?>
 
@@ -300,11 +300,11 @@
 
                           <?php  if($_REQUEST['sh5'] == 1){?><td style="border:0;padding-bottom:0;padding-top:0;"><?php  
 
-							if($getMachin === 'yes'){
+							//if($getMachin === 'yes'){
 
 								$sumMachin += $row_fr['camount2'];
 
-							}
+							//}
 
 						  echo get_proname($conn,$row_fr['cpro2']);?></td><?php  }?>
 

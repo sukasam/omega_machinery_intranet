@@ -71,30 +71,31 @@ $form = '
 </table>
 <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tb2" style="border:1px solid #000000;margin-top:10px;">
           <tr>
-            <td style="font-size:10px;font-family:Verdana, Geneva, sans-serif;padding:5px;"><strong>สถานที่ติดตั้ง / ส่งสินค้า :</strong> '.$_POST["loc_name"].'<br />
-            <br />              <strong>ที่อยู่ :</strong> '.$_POST["loc_address"].'<strong><br />
-            <br />
-            ขนส่งโดย :</strong> '.$_POST["loc_shopping"].'<br /><br />
-			<strong>เครื่องป้อนน้ำยา :</strong> '.$feeder.'</td>
-            <td style="vertical-align:top;font-size:10px;padding:5px;">
+            <td style="font-size:10px;font-family:Verdana, Geneva, sans-serif;padding:5px;width:70%">
+              <strong>สถานที่ติดตั้ง / ส่งสินค้า :</strong> '.$_POST["loc_name"].'<br />
+               <br /><strong>ที่อยู่ :</strong> '.$_POST["loc_address"].'<br /><br />
+               <strong>ชื่อผู้ติดต่อ :</ strong> '.$_POST['loc_cname'].'&nbsp;&nbsp;&nbsp;&nbsp;<strong>เบอร์โทร :</ strong> '.$_POST['loc_ctel'].'<br /><br />
+               <strong>ขนส่งโดย :</strong> '.$_POST["loc_shopping"].'&nbsp;&nbsp;&nbsp;&nbsp;<strong>เครื่องป้อนน้ำยา :</strong> '.$feeder.'
+            </td>
+            <td style="vertical-align:top;font-size:10px;padding:5px;width:30%">
             	<table width="100%" border="0" cellspacing="0" cellpadding="0" style="border:none;font-size:10px;font-family:Verdana, Geneva, sans-serif;">
-				  <tr>
-					<td width="50%"><strong>OMG C :</strong> '.$warter01.'</td>
-					<td width="50%"><strong>Wash Glass :</strong> '.$warter04.'</td>
-				  </tr>
-				  <tr>
-					<td ><strong>OMG R :</strong> '.$warter02.'</td>
-					<td><strong>Rinse Glass :</strong> '.$warter05.'</td>
-				  </tr>
-				  <tr>
-					<td><strong>OMG A :</strong> '.$warter03.'</td>
-					<td><strong>Omega Wash :</strong> '.$warter06.'</td>
-				  </tr>
-				  <tr>
-					<td>&nbsp;</td>
-					<td><strong>Omega Dry :</strong> '.$warter07.'</td>
-				  </tr>
-				</table>
+                <tr>
+                  <td width="50%"><strong>OMG C :</strong> '.$warter01.'</td>
+                  <td width="50%"><strong>Wash Glass :</strong> '.$warter04.'</td>
+                </tr>
+                <tr>
+                  <td ><strong>OMG R :</strong> '.$warter02.'</td>
+                  <td><strong>Rinse Glass :</strong> '.$warter05.'</td>
+                </tr>
+                <tr>
+                  <td><strong>OMG A :</strong> '.$warter03.'</td>
+                  <td><strong>Omega Wash :</strong> '.$warter06.'</td>
+                </tr>
+                <tr>
+                  <td>&nbsp;</td>
+                  <td><strong>Omega Dry :</strong> '.$warter07.'</td>
+                </tr>
+            </table>
             </td>
     </tr>
 </table>
@@ -253,7 +254,7 @@ $form = '
           </tr>
 </table>
 
-  <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top:10px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top:0px;">
     <tr>
       <td width="50%" style="border:1px solid #000000;font-size:10px;font-family:Verdana, Geneva, sans-serif;padding:10px;"><strong>บุคคลติดต่อทางด้านการเงิน : '.$_POST["cs_contact"].'</strong></td>
       <td width="50%" style="border:1px solid #000000;font-size:10px;font-family:Verdana, Geneva, sans-serif;padding:10px;"> <strong>โทรศัพท์ : </strong>'.$_POST["cs_tel"].'</td>
