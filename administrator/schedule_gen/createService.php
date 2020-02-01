@@ -1,4 +1,5 @@
 <?php 
+    date_default_timezone_set("Asia/Bangkok");
 	include_once ("../../include/config.php");
 	include_once ("../../include/connect.php");
 	include_once ("../../include/function.php");
@@ -17,14 +18,9 @@
     $domain = str_replace("createService","update",$domain);
 	$url = $domain;
 
-	// echo $url;
-	// exit();
-	
-
 	$getMonth = $_GET['month']-1;
 	$getYear = $_GET['year'];
 
-	
 
 	$quGen = mysqli_query($conn,"SELECT * FROM service_schedule WHERE month = '".$getMonth."' AND technician = '".$_GET['loccontact']."' AND year = '".$getYear."'");
 	$numCreated = mysqli_num_rows($quGen);
