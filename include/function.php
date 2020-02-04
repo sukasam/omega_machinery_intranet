@@ -1607,6 +1607,11 @@ function get_price($conn,$value) {
 	return $row_protype['group_pro_price'];
 }
 
+function get_pro_code($conn,$value) {
+	$row_protype = @mysqli_fetch_array(@mysqli_query($conn,"SELECT * FROM  s_group_typeproduct WHERE group_id = '".$value."'"));
+	return $row_protype['group_spro_id'];
+}
+
 function get_sprice($cprice,$camount) {
 	
 	if(($cprice * $camount) != 0){
@@ -2458,6 +2463,26 @@ function check_servicerepair($conn){
 	}	
 }
 
+function check_work_noti($conn){
+	
+	$thdate = substr(date("Y")+543,2);
+	$concheck = "WO ".$thdate.date("/m/");
+	
+	$qu_forder = @mysqli_query($conn,"SELECT * FROM s_work_noti WHERE fs_id like '%".$concheck."%' ORDER BY fs_id DESC");
+	$num_oder = @mysqli_num_rows($qu_forder);
+	$row_forder = @mysqli_fetch_array($qu_forder);
+	
+	if($row_forder['fs_id'] == ""){
+		return "WO ".$thdate.date("/m/")."001";
+	}else{
+		//$num_odersum = $num_oder+1;
+		$num_odersum = substr($row_forder['fs_id'],-3)+1;
+		return "WO ".$thdate.date("/m/").sprintf("%03d",$num_odersum);
+	}	
+}
+
+
+
 function check_billlading($conn){
 	
 	$thdate = substr(date("Y")+543,2);
@@ -2852,6 +2877,8 @@ function getTrackJObs($conn,$tab,$fo_id){
 
 	if($tab == 'FO' || $tab == 'SV' ){
 		$tableDB = 's_first_order';
+	}else if($tab == 'WO' ){
+		$tableDB = 's_work_noti';
 	}else if($tab == 'PJ' ){
 		$tableDB = 's_project_order';
 	}
@@ -2859,6 +2886,11 @@ function getTrackJObs($conn,$tab,$fo_id){
 	$rowFO = mysqli_fetch_array($quFO);
 
 	return $rowFO['fs_id'];
+}
+
+function getWorkNotiInfo($conn,$val) {
+	$row_dea = @mysqli_fetch_array(@mysqli_query($conn,"SELECT * FROM s_work_noti WHERE fo_id = '".$val."'"));
+	return $row_dea;		
 }
 
 ?>

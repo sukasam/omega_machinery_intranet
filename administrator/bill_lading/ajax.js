@@ -128,14 +128,15 @@ function showspare(sval,idList){
          var ds = xmlHttp.responseText.split("|");
 
 			if(ds[2] <= 0){
+
+            document.getElementById('codes'+idList).value=ds[1];
+            document.getElementById('sns'+idList).value='';
+            document.getElementById('amounts'+idList).value=value=ds[2];
+            document.getElementById('opens'+idList).value='';
+
             if(ds[1] != ''){
                alert(ds[1]+' : สินค้าตัวนี้ไม่เพียงพอสำหรับการเบิก');
-             }
-
-            document.getElementById('codes'+idList).value='';
-            document.getElementById('sns'+idList).value='';
-            document.getElementById('amounts'+idList).value='';
-            document.getElementById('opens'+idList).value='';
+            }
 
 			}else{
             document.getElementById('codes'+idList).value=ds[1];

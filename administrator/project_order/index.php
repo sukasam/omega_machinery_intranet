@@ -103,6 +103,8 @@ function check_select(frm){
     Service Order</SPAN></A></LI>
     <LI><A class=shortcut-button href="../project_order/index.php"><SPAN><IMG  alt=icon src="../images/icons/icon-48-module.png"><BR>
     Project Order</SPAN></A></LI>
+    <LI><A class=shortcut-button href="../work_noti/index.php"><SPAN><IMG  alt=icon src="../images/icons/icon-48-section.png"><BR>
+    ใบสั่งงาน/แจ้งงาน</SPAN></A></LI>
     <?php  
 	if ($FR_module <> "") { 
 	$param2 = get_return_param();

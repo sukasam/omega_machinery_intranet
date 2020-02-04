@@ -11,7 +11,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>ค้าหาอะไหล่</title>
+<title>ค้าหาชื่อสินค้า</title>
 <style type="text/css">
 	.tv_search{
 		font-size:12px;
@@ -50,45 +50,19 @@
 </script>-->
 <script type="text/javascript" src="ajax.js"></script> 
 <script type="text/javascript">
-   function get_sparactive(spid,resdata){  
+   function get_pod(group_id,group_name,protype,chk){
+	//alert(group_id);
 	var xmlHttp;
    xmlHttp=GetXmlHttpObject(); //Check Support Brownser
-   URL = pathLocal+'ajax_return.php?action=getsparactive&spid='+spid+'&resdata='+resdata;
+   URL = pathLocal+'ajax_return.php?action=getpod&group_id='+group_id+'&group_name='+group_name+'&protype='+protype;
    if (xmlHttp==null){
       alert ("Browser does not support HTTP Request");
       return;
    }
     xmlHttp.onreadystatechange=function (){
         if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete"){   
-			var ds = xmlHttp.responseText.split("|");
-			
-			//window.close();
-			//console.log(JSON.stringify(ds));
-			
-			if(ds[3] <= 0){
-				
-
-				self.opener.document.getElementById('codes'+resdata).value=ds[1];
-				self.opener.document.getElementById('lists'+resdata).innerHTML=ds[2];
-				self.opener.document.getElementById('sns'+resdata).value='';
-				self.opener.document.getElementById('amounts'+resdata).value=ds[3];
-				self.opener.document.getElementById('opens'+resdata).value='';
-
-				if(ds[1] != ''){
-					alert(ds[1]+' : สินค้าตัวนี้ไม่เพียงพอสำหรับการเบิก');
-				}
-
-			}else{
-				//alert(resdata);
-				self.opener.document.getElementById('codes'+resdata).value=ds[1];
-				self.opener.document.getElementById('lists'+resdata).innerHTML=ds[2];
-				self.opener.document.getElementById('sns'+resdata).value='';
-				self.opener.document.getElementById('amounts'+resdata).value=ds[3];
-				self.opener.document.getElementById('opens'+resdata).value='';
-			}
-
+            self.opener.document.getElementById(protype).innerHTML = xmlHttp.responseText;
 			window.close();
-			
         } else{
           //document.getElementById(ElementId).innerHTML="<div class='loading'> Loading..</div>" ;
         }
@@ -103,22 +77,22 @@
 <table width="100%" border="0" cellpadding="0" cellspacing="0" class="tv_search">
   <tr>
     <td colspan="2"><strong>ค้นหา&nbsp;&nbsp;:&nbsp;&nbsp;</strong>
-        <input type="text" name="textfield" id="textfield" style="width:85%;" onkeyup="get_sparpart(this.value,'<?php echo $_GET['resdata']?>');"/>
+        <input type="text" name="textfield" id="textfield" style="width:85%;" onkeyup="get_podkey(this.value,'<?php     echo $_GET['protype']?>');"/>
     </td>
   </tr>
 </table>
 <table width="100%" border="0" cellpadding="0" cellspacing="0" class="tv_search">
 <tr>
-    <th width="50%">รายการอะไหล่</th>
+    <th width="50%">รายการรุ่นสินค้า</th>
   </tr>
 </table>
 <table width="100%" border="0" cellpadding="0" cellspacing="0" class="tv_search" id="rscus">
 <?php     
-  	$qu_sparcus = mysqli_query($conn,"SELECT * FROM group_stockmachine WHERE 1 ORDER BY group_spar_id ASC");
-	while($row_sparcus = @mysqli_fetch_array($qu_sparcus)){
+  	$qu_cus = mysqli_query($conn,"SELECT * FROM s_group_pod ORDER BY group_name ASC");
+	while($row_cus = @mysqli_fetch_array($qu_cus)){
 		?>
 		 <tr>
-            <td><A href="javascript:void(0);" onclick="get_sparactive('<?php echo $row_sparcus['group_id'];?>','<?php echo $_REQUEST['resdata']?>');"><?php     echo $row_sparcus['group_spar_id'].'&nbsp;&nbsp;'.$row_sparcus['group_name'];?></A></td>
+            <td><A href="javascript:void(0);" onclick="get_pod('<?php     echo $row_cus['group_id'];?>','<?php     echo $row_cus['group_name'];?>','<?php     echo $_GET['protype']?>');"><?php     echo $row_cus['group_name'];?></A></td>
           </tr>
 		<?php    	
 	}
