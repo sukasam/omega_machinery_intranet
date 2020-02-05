@@ -472,8 +472,6 @@ $( document ).ready(function() {
       <LI><A class=shortcut-button href="../report2/?mid=16&act=23"><SPAN><IMG  alt=icon src="../images/icons/icon-48-category.png"><BR>
       <strong>ติดตามสถานะงาน (FO/SV/PJ)</strong>
       </SPAN></A></LI>
-      <LI><A class=shortcut-button href="../report2/?mid=16&act=24"><SPAN><IMG  alt=icon src="../images/icons/icon-48-category.png"><BR>
-      <strong>รายงานใบสั่งงาน/แจ้งงาน</strong></SPAN></A></LI>
 
   </UL>
 
@@ -5884,82 +5882,7 @@ if($_GET['act'] == 17){
   
       <?php 
   
-    }if($_GET['act'] == 24){
-      ?>
-      <DIV class=content-box><!-- Start Content Box -->
-            <DIV class=content-box-header align="right" style="padding-right:15px;">
-            
-            <H3 align="left">เลือกตามใบสั่งงาน/แจ้งงาน</H3>
-            <DIV class=clear>
-            
-            </DIV></DIV><!-- End .content-box-header -->
-            <DIV class=content-box-content>
-            <DIV id=tab1 class="tab-content default-tab"><!-- This is the target div. id must match the href of this div's tab -->
-              <form action="report24.php" method="post" name="form1" id="form1" target="_blank" onSubmit="return check1(this)">
-                <div class="formArea">
-                  <fieldset>
-                    <table width="100%" cellspacing="0" cellpadding="0" border="0">
-                      <tr>
-                        <td><table class="formFields" cellspacing="0" width="100%">
-                          <tr >
-                            <td width="10%" nowrap class="name">ชื่อร้าน-ชื่อบริษัท</td>
-                            <td width="90%"><input name="cd_name" type="text" id="cd_name"  value="" style="width:40%;"><a href="javascript:void(0);" onClick="windowOpener('400', '500', '', 'search.php');"><img src="../images/icon2/mark_f2.png" width="25" height="25" border="0" alt="" style="vertical-align:middle;padding-left:5px;"></a></td>
-                          </tr>
-                          <tr>
-                            <td nowrap class="name">&nbsp;</td>
-                            <td><span class="name">
-                              <input name="priod" type="radio" value="0" checked>
-                              กำหนดช่วงเวลา&nbsp;
-                              <input name="priod" type="radio" value="1">
-                            ไม่กำหนดช่วงเวลา</span></td>
-                          </tr>
-                          <tr>
-                            <td width="10%" nowrap class="name">เริ่มวันที่</td>
-                            <td width="90%"><input type="text" name="date_fm" readonly value="<?php     echo date("d/m/Y");?>" class="inpfoder"/><script language="JavaScript">new tcal ({'formname': 'form1','controlname': 'date_fm'});</script></td>
-                          </tr>
-                          <tr>
-                            <td width="10%" nowrap class="name">ถึงวันที่</td>
-                            <td width="90%"><input type="text" name="date_to" readonly value="<?php     echo date("d/m/Y");?>" class="inpfoder"/><script language="JavaScript">new tcal ({'formname': 'form1','controlname': 'date_to'});</script></td>
-                          </tr>
-                          <tr>
-                            <td nowrap class="name">รายการแสดง</td>
-                            <td><input name="sh1" type="checkbox" id="sh1" value="1" checked>
-                              ชื่อลูกค้า / บริษัท + เบอร์โทร
-                              <input name="sh2" type="checkbox" id="sh2" value="1" checked>
-                              ชื่อร้าน / สถานที่ติดตั้ง
-                              <input name="sh3" type="checkbox" id="sh3" value="1" checked>
-                                                        จังหวัด
-                                                        
-                              <input name="sh6" type="checkbox" id="sh6" value="1" checked>
-                              สินค้า 
-                              <input name="sh7" type="checkbox" id="sh7" value="1" checked>
-                              รุ่นเครื่อง/SN/
-                              <input name="sh11" type="checkbox" id="sh11" value="1" checked>
-                              สถานะติดตามการแจ้งงาน
-                              <input name="sh10" type="checkbox" id="sh10" value="1" checked>
-                              พนักงานขาย
-                            </td>
-                          </tr>
-                          <tr>
-                            <td width="10%" nowrap class="name"></td>
-                            <td width="90%"></td>
-                          </tr>
-                        </table></td>
-                      </tr>
-                    </table>
-                    </fieldset>
-                </div><br>
-                <div class="formArea">
-                  <input type="submit" name="Submit" value="Submit" class="button">
-                </div>
-              </form>
-            </DIV><!-- End #tab1 -->
-            
-            
-            </DIV><!-- End .content-box-content -->
-            </DIV>
-      <?php    
-  }
+    }
 
 ?>
 
