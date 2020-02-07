@@ -152,7 +152,7 @@ $form = '
       </td>
     </tr>
     <tr>
-      <td style="padding:5px;font-size:12px;vertical-align: top;" height="340">
+      <td style="padding:5px;font-size:12px;vertical-align: top;">
         <div >'.stripslashes($_POST['remark']).'</div>
       </td>
     </tr>
