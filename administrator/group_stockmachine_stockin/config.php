@@ -2,7 +2,7 @@
 <?php    
 	$PK_field = "sub_id";
 	//$FR_field = "";
-	$check_module = "รายการอะไหล่";
+	$check_module = "รายการรับเข้าสต็อค";
 	$page_name = "รายการรับเข้าสต็อค";;
 	$tbl_name = "group_stockmachine_bill";
 	$field_confirm_showname= "sub_name";
