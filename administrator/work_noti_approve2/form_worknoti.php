@@ -62,33 +62,6 @@ for($i=0;$i<=count($_POST['cpro']);$i++){
 	}
 }
 
-$dataApprove = '';
-$dataApprove2 = '';
-
-	if($_POST['sign_work2'] != '0' && $_POST['sign_work2'] != ''){
-		if($_POST['sign_date_work2'] != '0000-00-00' && $_POST['sign_date_work2'] != ''){
-			$dataApprove = format_date($_POST['sign_date_work2']);
-		}else{
-			$dataApprove = '';
-		}
-	}else{
-		$dataApprove = '';
-	}
-
-  $hSaleSignature = '<img src="../../upload/user/signature/'.get_sale_signature($conn,$_POST['sign_work2']).'" height="50" border="0" />';
-  
-  if($_POST['sign_work3'] != '0' && $_POST['sign_work3'] != ''){
-		if($_POST['sign_date_work3'] != '0000-00-00' && $_POST['sign_date_work3'] != ''){
-			$dataApprove2 = format_date($_POST['sign_date_work3']);
-		}else{
-			$dataApprove2 = '';
-		}
-	}else{
-		$dataApprove2 = '';
-  }
-  
-  $GMSaleSignature = '<img src="../../upload/user/signature/'.get_sale_signature($conn,$_POST['sign_work3']).'" height="50" border="0" />';
-
 $form = '
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
@@ -203,13 +176,13 @@ $form = '
 		<td width="33%" style="border:1px solid #000000;font-size:10px;font-family:Verdana, Geneva, sans-serif;text-align:center;padding-top:10px;padding-bottom:10px;">
         	<table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
-                <td style="border-bottom:1px solid #000000;padding-bottom:10px;font-size:10px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong >'.$hSaleSignature.'</strong></td>
+                <td style="border-bottom:1px solid #000000;padding-bottom:10px;font-size:10px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong >'.getsalename($conn,$_POST["sign_work2"]).'</strong></td>
               </tr>
               <tr>
                 <td style="padding-top:10px;padding-bottom:10px;font-size:10px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>หัวหน้า / ผู้แจ้งงาน</strong></td>
               </tr>
               <tr>
-                <td style="font-size:10px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>วันที่ '.$dataApprove.'</strong></td>
+                <td style="font-size:10px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>วันที่ '.format_date($_POST["sign_date_work2"]).'</strong></td>
               </tr>
             </table>
 
@@ -217,13 +190,13 @@ $form = '
         <td width="33%" style="border:1px solid #000000;font-size:10px;font-family:Verdana, Geneva, sans-serif;text-align:center;padding-top:10px;padding-bottom:10px;">
         	<table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
-                <td style="border-bottom:1px solid #000000;padding-bottom:10px;font-size:10px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>'.$GMSaleSignature.'</strong></td>
+                <td style="border-bottom:1px solid #000000;padding-bottom:10px;font-size:10px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>'.$_POST["sign_work3"].'</strong></td>
               </tr>
               <tr>
                 <td style="padding-top:10px;padding-bottom:10px;font-size:10px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>หัวหน้า/อนุมัติ</strong></td>
               </tr>
               <tr>
-                <td style="font-size:10px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>วันที่ '.$dataApprove2.'</strong></td>
+                <td style="font-size:10px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>วันที่ '.format_date($_POST["sign_date_work3"]).'</strong></td>
               </tr>
             </table>
         </td>

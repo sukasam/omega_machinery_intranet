@@ -724,7 +724,7 @@ function checkMobileSale(){
               <tr>
                 <td style="border-bottom:1px solid #000000;padding-bottom:10px;font-size:12px;font-family:Verdana, Geneva, sans-serif;text-align:center;">
                   <!-- <strong ><input type="text" name="sign_work2" value="<?php echo $sign_work2;?>" id="sign_work2" class="inpfoder" style="width:50%;text-align:center;"></strong> -->
-                  <select name="sign_work2" id="sign_work2" style="width:50%;">
+                  <!-- <select name="sign_work2" id="sign_work2" style="width:50%;">
                     <?php   
                       $qu_custec = @mysqli_query($conn,"SELECT * FROM s_group_sale WHERE 1 AND (group_id = 6 OR group_id = 29)  ORDER BY group_name ASC");
                       while($row_custec = @mysqli_fetch_array($qu_custec)){
@@ -733,7 +733,17 @@ function checkMobileSale(){
                               <?php  
                       }
                     ?>
-                  </select>
+                  </select> -->
+                  <?php 
+                    if($sign_work2 != 0){
+                    ?>
+                    <?php echo getsalename($conn,$sign_work2);?>
+                    <?php
+                    }else{
+                      echo "<br>";
+                    }
+                    ?>
+                     <input type="hidden" name="sign_work2" value="<?php echo $sign_work2;?>">
                 </td>
               </tr>
               <tr>
@@ -791,6 +801,7 @@ function checkMobileSale(){
       <input name="mode" type="hidden" id="mode" value="<?php echo $_GET["mode"];?>">
       <input name="status" type="hidden" id="status" value="<?php echo $status;?>">
       <input name="approve" type="hidden" id="approve" value="<?php   echo $approve;?>">  
+      <input name="approve2" type="hidden" id="approve2" value="<?php   echo $approve2;?>">  
       <input name="<?php  echo $PK_field;?>" type="hidden" id="<?php echo $PK_field;?>" value="<?php     echo $_GET[$PK_field];?>">
     </div>
   </form>

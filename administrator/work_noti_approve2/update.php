@@ -64,102 +64,6 @@
 
     $_POST['remark'] = nl2br(addslashes($_POST['remark']));
 		
-		if ($_POST["mode"] == "add") { 
-
-        $_POST['status'] = 1;
-        $_POST['approve'] = 0;
-        $_POST['approve2'] = 0;
-				$_POST['fs_id'] = check_work_noti($conn,$_POST['fs_id']);
-				
-				include "../include/m_add.php";
-        $id = mysqli_insert_id($conn);
-        
-        if ($_FILES['fimages1']['name'] != "") { 
-					
-					$mname="";
-					$mname=gen_random_num(5);
-					$filename = "";
-					if($filename == "")
-					$name_data = explode(".",$_FILES['fimages1']['name']);
-					$type = $name_data[1];
-					$filename = $mname.".".$type;
-					
-					$target_dir = "../../upload/work_noti/images/";
-					$target_file = $target_dir . basename($filename);
-					$uploadOk = 1;
-					$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-					// Check if image file is a actual image or fake image
-					$check = getimagesize($_FILES["fimages1"]["tmp_name"]);
-					
-					@move_uploaded_file($_FILES["fimages1"]["tmp_name"], $target_file);
-					$sql = "update $tbl_name set images1 = '".$filename."' where $PK_field = '".$id."' ";
-					@mysqli_query($conn, $sql);	
-	
-        } // end if ($_FILES[fimages][name] != "")	
-        
-        if ($_FILES['fimages2']['name'] != "") { 
-					
-					$mname="";
-					$mname=gen_random_num(5);
-					$filename = "";
-					if($filename == "")
-					$name_data = explode(".",$_FILES['fimages2']['name']);
-					$type = $name_data[1];
-					$filename = $mname.".".$type;
-					
-					$target_dir = "../../upload/work_noti/images/";
-					$target_file = $target_dir . basename($filename);
-					$uploadOk = 1;
-					$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-					// Check if image file is a actual image or fake image
-					$check = getimagesize($_FILES["fimages2"]["tmp_name"]);
-					
-					@move_uploaded_file($_FILES["fimages2"]["tmp_name"], $target_file);
-					$sql = "update $tbl_name set images2 = '".$filename."' where $PK_field = '".$id."' ";
-					@mysqli_query($conn, $sql);	
-	
-        } // end if ($_FILES[fimages][name] != "")	
-        
-        if ($_FILES['fimages3']['name'] != "") { 
-					
-					$mname="";
-					$mname=gen_random_num(5);
-					$filename = "";
-					if($filename == "")
-					$name_data = explode(".",$_FILES['fimages3']['name']);
-					$type = $name_data[1];
-					$filename = $mname.".".$type;
-					
-					$target_dir = "../../upload/work_noti/images/";
-					$target_file = $target_dir . basename($filename);
-					$uploadOk = 1;
-					$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-					// Check if image file is a actual image or fake image
-					$check = getimagesize($_FILES["fimages3"]["tmp_name"]);
-					
-					@move_uploaded_file($_FILES["fimages3"]["tmp_name"], $target_file);
-					$sql = "update $tbl_name set images3 = '".$filename."' where $PK_field = '".$id."' ";
-					@mysqli_query($conn, $sql);	
-	
-        } // end if ($_FILES[fimages][name] != "")	
-        
-
-        for($i=0;$i<=count($_POST['cpro']);$i++){
-					if($_POST['cpro'][$i] != ""){
-						@mysqli_query($conn,"INSERT INTO `s_work_noti_product` (`id`, `fo_id`, `ccode`, `cpro`, `cpod`, `csn`, `camount`) VALUES (NULL,'".$id."', '".$_POST['ccode'][$i]."', '".$_POST['cpro'][$i]."', '".$_POST['cpod'][$i]."', '".$_POST['csn'][$i]."', '".$_POST['camount'][$i]."');");
-					}
-				}
-				
-				include_once("../mpdf54/mpdf.php");
-				include_once("form_worknoti.php");
-				$mpdf=new mPDF('UTF-8'); 
-				$mpdf->SetAutoFont();
-				$mpdf->WriteHTML($form);
-				$chaf = preg_replace("/\//","-",$_POST['fs_id']); 
-				$mpdf->Output('../../upload/work_noti/'.$chaf.'.pdf','F');
-				
-			header ("location:index.php?" . $param); 
-		}
 		if ($_POST["mode"] == "update" ) { 
 				include ("../include/m_update.php");
         $id = $_REQUEST[$PK_field];			
@@ -245,7 +149,7 @@
         } // end if ($_FILES[fimages][name] != "")
 				
 				include_once("../mpdf54/mpdf.php");
-        include_once("form_worknoti.php");
+        include_once("../work_noti/form_worknoti.php");
         
 				$mpdf=new mPDF('UTF-8'); 
         $mpdf->SetAutoFont();
@@ -410,7 +314,7 @@ function checkMobileSale(){
 </script>
 </HEAD>
 <?php     include ("../../include/function_script.php"); ?>
-<BODY>
+<BODY onload="document.form1.submit()">
 <DIV id=body-wrapper>
 <?php     include("../left.php");?>
 <DIV id=main-content>
@@ -431,7 +335,8 @@ function checkMobileSale(){
 <DIV class=clear>
   
 </DIV></DIV><!-- End .content-box-header -->
-<DIV class=content-box-content>
+<div><center><img src="../images/waiting.gif" width="450"></center></div>
+<DIV class="content-box-content" style="display:none;">
 <DIV id=tab1 class="tab-content default-tab">
   <form action="update.php" method="post" enctype="multipart/form-data" name="form1" id="form1"  onSubmit="return check(this)">
     <div class="formArea">
@@ -829,6 +734,7 @@ function checkMobileSale(){
                       }
                     ?>
                   </select> -->
+
                   <?php 
                     if($sign_work2 != 0){
                     ?>
@@ -838,7 +744,8 @@ function checkMobileSale(){
                       echo "<br>";
                     }
                     ?>
-                    <input type="hidden" name="sign_work2" value="<?php echo $sign_work2;?>">
+                     <input type="hidden" name="sign_work2" value="<?php echo $sign_work2;?>">
+                     
                 </td>
               </tr>
               <tr>
@@ -867,7 +774,7 @@ function checkMobileSale(){
                       echo "<br>";
                     }
                     ?>
-                    <input type="hidden" name="sign_work3" value="<?php echo $sign_work3;?>">
+                     <input type="hidden" name="sign_work3" value="<?php echo $sign_work3;?>">
                 </td>
               </tr>
               <tr>
@@ -895,8 +802,8 @@ function checkMobileSale(){
 			?>
       <input name="mode" type="hidden" id="mode" value="<?php echo $_GET["mode"];?>">
       <input name="status" type="hidden" id="status" value="<?php echo $status;?>">
-      <input name="approve" type="hidden" id="approve" value="<?php echo $approve;?>">
-      <input name="approve" type="hidden" id="approve" value="<?php echo $approve2;?>">
+      <input name="approve" type="hidden" id="approve" value="<?php   echo $approve;?>">  
+      <input name="approve2" type="hidden" id="approve2" value="<?php   echo $approve2;?>">  
       <input name="<?php  echo $PK_field;?>" type="hidden" id="<?php echo $PK_field;?>" value="<?php     echo $_GET[$PK_field];?>">
     </div>
   </form>
