@@ -670,7 +670,7 @@ function check(frm){
 				  <?php 
 				  if($loc_contact3 != 0){
 					?>
-					<?php echo get_technician_name($conn,$loc_contact3);?>
+					<?php echo getsalename($conn,$loc_contact3);?>
 					<?php
 				  }else{
 					  echo "<br>";

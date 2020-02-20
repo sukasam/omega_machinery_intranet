@@ -872,7 +872,7 @@ function checkMobileSale(){
               </tr>
               <tr>
                 <td style="padding-top:10px;padding-bottom:10px;font-size:12px;font-family:Verdana, Geneva, sans-serif;text-align:center;">
-                  <strong>หัวหน้า/อนุมัติ</strong>
+                  <strong>GM/อนุมัติ</strong>
                 </td>
               </tr>
               <tr>
@@ -896,7 +896,7 @@ function checkMobileSale(){
       <input name="mode" type="hidden" id="mode" value="<?php echo $_GET["mode"];?>">
       <input name="status" type="hidden" id="status" value="<?php echo $status;?>">
       <input name="approve" type="hidden" id="approve" value="<?php echo $approve;?>">
-      <input name="approve" type="hidden" id="approve" value="<?php echo $approve2;?>">
+      <input name="approve2" type="hidden" id="approve2" value="<?php echo $approve2;?>">
       <input name="<?php  echo $PK_field;?>" type="hidden" id="<?php echo $PK_field;?>" value="<?php     echo $_GET[$PK_field];?>">
     </div>
   </form>

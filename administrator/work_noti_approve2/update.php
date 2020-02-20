@@ -779,7 +779,7 @@ function checkMobileSale(){
               </tr>
               <tr>
                 <td style="padding-top:10px;padding-bottom:10px;font-size:12px;font-family:Verdana, Geneva, sans-serif;text-align:center;">
-                  <strong>หัวหน้า/อนุมัติ</strong>
+                  <strong>GM/อนุมัติ</strong>
                 </td>
               </tr>
               <tr>
