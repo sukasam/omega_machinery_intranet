@@ -184,7 +184,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 					if($orderby=="") $orderby = "sr.".$PK_field;
 					if ($sortby =="") $sortby ="DESC";
 					
-				   	$sql = "SELECT sr . * , fd.cd_name FROM $tbl_name AS sr, s_first_order AS fd WHERE sr.cus_id = fd.fo_id";
+				  $sql = "SELECT sr . * , fd.cd_name FROM $tbl_name AS sr, s_first_order AS fd WHERE sr.cus_id = fd.fo_id";
 					if ($_GET[$PK_field] <> "") $sql .= " and ($PK_field  = '" . $_GET[$PK_field] . " ' ) ";					
 					if ($_GET[$FR_field] <> "") $sql .= " and ($FR_field  = '" . $_GET[$FR_field] . " ' ) ";					
  					if ($_GET["keyword"] <> "") { 
@@ -199,10 +199,10 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 					} 
 					
 					if ($_GET['app_id'] <> "") { 
-						$sql .= " and ( approve = '$_GET[app_id]' ";
+						$sql .= " and ( sr.approve = '$_GET[app_id]' ";
 						$sql .=  $subtext . " ) ";
 					}else{
-						$sql .= " and ( approve = '0' ";
+						$sql .= " and ( sr.approve = '0' ";
 						$sql .=  $subtext . " ) ";
 					}
 					
