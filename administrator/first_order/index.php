@@ -100,7 +100,11 @@ function check_select(frm){
   <LI><A class=shortcut-button href="update.php?mode=add<?php  if ($param <> "") echo "&".$param; ?>"><SPAN><IMG  alt=icon src="../images/pencil_48.png"><BR>
     เพิ่ม</SPAN></A></LI>
     <LI><A class=shortcut-button href="../first_order/index.php"><SPAN><IMG  alt=icon src="../images/icons/icon-48-category.png"><BR>
-    First Order</SPAN></A></LI>
+    First Order<br><br></SPAN></A></LI>
+    <LI><A class=shortcut-button href="../first_order_approve/index.php"><SPAN><IMG  alt=icon src="../images/icons/icon-48-user.png"><BR>
+    อนุมัติใบ FO (Superviser)</SPAN></A></LI>
+    <LI><A class=shortcut-button href="../first_order_approve2/index.php"><SPAN><IMG  alt=icon src="../images/icons/icon-48-user.png"><BR>
+    อนุมัติใบ FO (GM)</SPAN></A></LI>
     <LI><A class=shortcut-button href="../project_order/index.php"><SPAN><IMG  alt=icon src="../images/icons/icon-48-module.png"><BR>
     Project Order</SPAN></A></LI>
   <LI><A class=shortcut-button href="../first_order2/index.php"><SPAN><IMG  alt=icon src="../images/icons/icon-48-section.png"><BR>
