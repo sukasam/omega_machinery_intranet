@@ -1516,7 +1516,7 @@ Vat 7%</strong></td>
 
                 <td style="border-bottom:1px solid #000000;padding-bottom:10px;font-size:12px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>
                 <?php 
-                    if($cs_sell != 0){
+                    if($cs_aceep != 0){
                     ?>
                     <?php echo getsalename($conn,$cs_aceep);?>
                     <?php

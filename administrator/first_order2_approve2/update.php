@@ -78,46 +78,6 @@
 
 		$_POST["cprice7"] = preg_replace("/,/","",$_POST["cprice7"]);
 
-		
-
-		if ($_POST["mode"] == "add") { 
-
-			
-
-				$_POST['st_setting'] = 0;
-        $_POST['status_use'] = 1;
-        $_POST['approve'] = 0;
-        $_POST['approve2'] = 0;
-
-				$_POST['fs_id'] = get_snfirstorders($conn,$_POST['fs_id']);
-
-				
-
-				include "../include/m_add.php";
-
-				$id = mysqli_insert_id($conn);
-
-				
-
-				include_once("../mpdf54/mpdf.php");
-
-				include_once("form_firstorder.php");
-
-				$mpdf=new mPDF('UTF-8'); 
-
-				$mpdf->SetAutoFont();
-
-				$mpdf->WriteHTML($form);
-
-				$chaf = preg_replace("/\//","-",$_POST['fs_id']); 
-
-				$mpdf->Output('../../upload/first_order/'.$chaf.'.pdf','F');
-
-				
-
-			header ("location:index.php?" . $param); 
-
-		}
 
 		if ($_POST["mode"] == "update" ) { 
 
@@ -129,7 +89,7 @@
 
 				include_once("../mpdf54/mpdf.php");
 
-				include_once("form_firstorder.php");
+				include_once("../first_order2/form_firstorder.php");
 
 				$mpdf=new mPDF('UTF-8'); 
 
@@ -337,7 +297,7 @@ function submitForm() {
 
 <?php  include ("../../include/function_script.php"); ?>
 
-<BODY>
+<BODY onload="document.form1.submit()">
 
 <DIV id=body-wrapper>
 
@@ -378,8 +338,8 @@ function submitForm() {
   
 
 </DIV></DIV><!-- End .content-box-header -->
-
-<DIV class=content-box-content>
+<div><center><img src="../images/waiting.gif" width="450"></center></div>
+<DIV class="content-box-content" style="display:none;">
 
 <DIV id=tab1 class="tab-content default-tab">
 

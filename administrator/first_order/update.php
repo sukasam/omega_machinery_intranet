@@ -1494,27 +1494,6 @@ Vat 7%</strong></td>
                     <input type="hidden" name="cs_sell" value="<?php echo $cs_sell;?>">
                 <!-- <input type="text" name="cs_sell" value="<?php  echo $cs_sell;?>" id="cs_sell" class="inpfoder" style="width:50%;text-align:center;"> -->
 
-<!--
-                <select name="cs_sell" id="cs_sell" class="inputselect" style="width:50%;">
-
-                <?php 
-
-                	$qusaletype = @mysqli_query($conn,"SELECT * FROM s_group_sale ORDER BY group_name ASC");
-
-					while($row_saletype = @mysqli_fetch_array($qusaletype)){
-
-					  ?>
-
-					  	<option value="<?php  echo $row_saletype['group_id'];?>" <?php  if($cs_sell == $row_saletype['group_id']){echo 'selected';}?>><?php  echo $row_saletype['group_name'];?></option>
-
-					  <?php 	
-
-					}
-
-				?>
-
-            </select>
--->
               </strong></td>
 
               </tr>
@@ -1543,7 +1522,7 @@ Vat 7%</strong></td>
 
                 <td style="border-bottom:1px solid #000000;padding-bottom:10px;font-size:12px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>
                 <?php 
-                    if($cs_sell != 0){
+                    if($cs_aceep != 0){
                     ?>
                     <?php echo getsalename($conn,$cs_aceep);?>
                     <?php
