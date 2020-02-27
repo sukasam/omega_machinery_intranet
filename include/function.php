@@ -2051,6 +2051,11 @@ function get_imguser($conn,$userid) {
 	return $img;		
 }
 
+function get_user_fullname($conn,$userid) {
+	$row_fix = @mysqli_fetch_array(@mysqli_query($conn,"SELECT * FROM  s_user WHERE user_id = '".$userid."'"));
+	return $row_fix['name'];		
+}
+
 function get_numprosall($conn,$value) {
 		
 		$row_fod = @mysqli_fetch_array(@mysqli_query($conn,"SELECT * FROM  s_first_order WHERE fo_id = '".$value."'"));

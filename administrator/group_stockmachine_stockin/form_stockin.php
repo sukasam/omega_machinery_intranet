@@ -75,8 +75,9 @@ $form = '
             <strong>วันที่รับเข้า : </strong>'.format_date($_POST["stock_date"]).'<strong></td>
             <td width="43%" valign="top" style="font-size:10px;font-family:Verdana, Geneva, sans-serif;padding:5px;"><strong>เลขที่บิล : </strong> '.$_POST['sub_billnum'].'&nbsp;&nbsp;&nbsp;&nbsp;<strong>วันที่บิล : </strong>'.format_date($_POST["sub_billdate"]).'<strong><br />
               <br />
-            หมายเหตุ :</strong> '.$_POST["sub_comment"].'<br />
+            หมายเหตุ :</strong> '.stripslashes($_POST["sub_comment"]).'<br />
             <br />
+            <strong>ชื่อผู้รับเข้า : </strong>'.get_user_fullname($conn,$_POST["checkin"]).'<strong></td>
 			</td>
           </tr>
 </table>
@@ -91,7 +92,21 @@ $form = '
 	'.$projectPro.'    
 
 </table>
+';
+
+if($_POST['comment_other'] != ""){
+  $form .= '
+  <p><h3>รายละเอียดเพิ่มเติม</h3></p>
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" style="font-size:10px;">
+    <tr>
+      <td width="5%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;">
+        '.stripslashes($_POST['comment_other']).'
+      </td>
+    </tr>
+  </table>
   ';
+}
+
 ?>
 	
 

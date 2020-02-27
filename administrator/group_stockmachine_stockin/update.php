@@ -15,7 +15,9 @@
 		
 		$a_sdate=explode("/",$_POST['stock_date']);
 		$_POST['stock_date']=$a_sdate[2]."-".$a_sdate[1]."-".$a_sdate[0];
-
+		
+		$_POST['sub_comment'] = addslashes(nl2br($_POST['sub_comment']));
+		$_POST['comment_other'] = addslashes(nl2br($_POST['comment_other']));
 		
 		if ($_POST["mode"] == "add") { 
 			
@@ -284,8 +286,10 @@ function submitForm() {
 						</td>
 					  </tr>
 					  <tr >
-						<td nowrap class="name">หมายเหตุ</td>
-						<td><input name="sub_comment" type="text" id="sub_comment"  value="<?php   echo $sub_comment; ?>" size="60"></td>
+						<td nowrap class="name" style="vertical-align: top;">หมายเหตุ</td>
+						<td>
+							<textarea id="sub_comment" name="sub_comment" rows="4" cols="50"><?php   echo stripslashes(strip_tags($sub_comment)); ?></textarea>	
+						</td>
 					  </tr>
 					  <tr >
 						<td nowrap class="name" colspan="2">
@@ -294,8 +298,17 @@ function submitForm() {
 						</td>
 					  </tr>
 					  <tr >
-						<td nowrap class="name" colspan="2">&nbsp;
-
+					  	<td nowrap class="name">ชื่อผู้รับเข้าสต็อก</td>
+						<td nowrap class="name">
+							<?php 
+								if($checkin == ""){
+									$checkin = $_SESSION['login_id'];
+									echo get_user_fullname($conn,$checkin);
+								}else{
+									echo get_user_fullname($conn,$checkin);
+								}
+							?>
+							<input type="hidden" name="checkin" id="checkin" value="<?php echo $checkin;?>">
 						</td>
 					  </tr>
 				  </table>
@@ -462,6 +475,17 @@ function submitForm() {
 		}
 		
 	</script>
+
+<table class="formFields" cellspacing="0" width="100%">
+					  <tr >
+						<td nowrap class="name"><strong>รายละเอียดเพิ่มเติม</strong></td>
+					  </tr>
+					  <tr >
+						<td>
+							<textarea id="comment_other" name="comment_other" rows="10" cols="200"><?php  echo stripslashes(strip_tags($comment_other)); ?></textarea>	
+						</td>
+					  </tr>
+				  </table>
 	
     
         </fieldset>

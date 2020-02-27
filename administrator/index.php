@@ -8,7 +8,7 @@
 	}
 	
 	if ($_GET["action"] == "check") { 
-		$sql = "select * from s_user where username like '$_POST[login_name]' and password like '$_POST[passwd]'";
+		$sql = "select * from s_user where username like '".$_POST['login_name']."' and password like '".$_POST['passwd']."'";
 		$query = @mysqli_query($conn,$sql);
                 $numuser = mysqli_num_rows($query);
                 $rec = @mysqli_fetch_array ($query);
