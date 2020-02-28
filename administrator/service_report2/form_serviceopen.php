@@ -118,9 +118,9 @@
             <strong>ชื่อผู้ติดต่อ :</strong> '.$finfos['c_contact'].' <strong>&nbsp;&nbsp;&nbsp;&nbsp;<br>
             <br>
             เบอร์โทร :</strong> '.$finfos['c_tel'].'</td>
-            <td width="43%"><strong>ประเภทบริการลูกค้า :</strong> '.get_servicename($conn,$_POST['sr_ctype']).' <strong><br>
+            <td width="43%"> <strong>ประเภทลูกค้า :</strong> '.custype_name($conn,$_POST['sr_ctype2']).' <strong><br>
             <br>
-            ประเภทลูกค้า :</strong> '.custype_name($conn,$_POST['sr_ctype2']).' <strong><br />
+			<strong>ประเภทบริการลูกค้า :</strong> '.get_servicename($conn,$_POST['sr_ctype']).' <br />
               <br />
             </strong><strong>วันที่เบิกอะไหล่  :</strong> '.format_date($_POST['job_open']).' <strong>&nbsp;&nbsp;เลขที่ใบงาน  :</strong> '.$_POST['srid'].' <strong><br />
             <br />

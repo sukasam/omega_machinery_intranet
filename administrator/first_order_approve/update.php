@@ -405,7 +405,7 @@ function submitForm() {
 
 					while($row_cgcus = @mysqli_fetch_array($quccustommer)){
 
-						if(substr($row_cgcus['group_name'],0,2) != "SR"){
+						if(substr($row_cgcus['group_name'],0,2) != "SR" && substr($row_cgcus['group_name'],0,2) != "IT"){
 
 					  ?>
 

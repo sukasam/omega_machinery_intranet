@@ -394,18 +394,7 @@ function check(frm){
                 <input name="cd_names" type="text" id="cd_names"  value="<?php    echo get_customername($conn,$cus_id);?>" style="width:50%;" readonly>
                 <span id="rsnameid"><input type="hidden" name="cus_id" value="<?php   echo $cus_id;?>"></span><a href="javascript:void(0);" onClick="windowOpener('400', '500', '', 'search.php');"><img src="../images/icon2/mark_f2.png" width="25" height="25" border="0" alt="" style="vertical-align:middle;padding-left:5px;"></a>
             </td>
-            <td><strong>ประเภทบริการลูกค้า :</strong> 
-            	<select name="sr_ctype" id="sr_ctype">
-                	<!--<option value="">กรุณาเลือก</option>-->
-                	<?php   
-						$qu_cusftype = @mysqli_query($conn,"SELECT * FROM s_group_service ORDER BY group_name ASC");
-						while($row_cusftype = @mysqli_fetch_array($qu_cusftype)){
-							?>
-							<option value="<?php   echo $row_cusftype['group_id'];?>" <?php   if($row_cusftype['group_id'] == $sr_ctype){echo 'selected';}?>><?php   echo $row_cusftype['group_name'];?></option>
-							<?php  
-						}
-					?>
-                </select>
+            <td>
 				<strong>ประเภทลูกค้า :</strong>
             	<select name="sr_ctype2" id="sr_ctype2">
             	  <!--<option value="">กรุณาเลือก</option>-->
@@ -420,6 +409,20 @@ function check(frm){
 						}
 					?>
           	  </select>
+				<strong>ประเภทบริการลูกค้า :</strong> 
+            	<select name="sr_ctype" id="sr_ctype">
+                	<!--<option value="">กรุณาเลือก</option>-->
+                	<?php   
+						$qu_cusftype = @mysqli_query($conn,"SELECT * FROM s_group_service ORDER BY group_name ASC");
+						while($row_cusftype = @mysqli_fetch_array($qu_cusftype)){
+							if($row_cusftype['group_id'] == 107 || $row_cusftype['group_id'] == 103){
+							?>
+							<option value="<?php   echo $row_cusftype['group_id'];?>" <?php   if($row_cusftype['group_id'] == $sr_ctype){echo 'selected';}?>><?php   echo $row_cusftype['group_name'];?></option>
+							<?php  
+							}
+						}
+					?>
+                </select>
             	</td>
           </tr>
           <tr>
