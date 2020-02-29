@@ -53,7 +53,9 @@
 			
 		
 				$_POST['fs_id'] = get_snprojectorders($conn,$_POST['fs_id']);
-				$_POST['status_use'] = 1;
+        $_POST['status_use'] = 1;
+        $_POST['approve'] = 0;
+				$_POST['approve2'] = 0;
 				
 				include "../include/m_add.php";
 				$id = mysqli_insert_id($conn);

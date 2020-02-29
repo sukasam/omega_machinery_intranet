@@ -20,29 +20,40 @@ $dateW3 = ($_POST["date_work3"] != '0000-00-00') ? format_date($_POST["date_work
 $dateW4 = ($_POST["date_work4"] != '0000-00-00') ? format_date($_POST["date_work4"]) : "-";
 $dateW5 = ($_POST["date_work5"] != '0000-00-00') ? format_date($_POST["date_work5"]) : "-";
 
-switch($_POST['get_noti']){
-  case '1':
-    $gwetNoti  = 'ฝ่ายขาย';
-  break;
-  case '2':
-    $gwetNoti  = 'ฝ่ายบัญชี';
-  break;
-  case '3':
-    $gwetNoti  = 'ฝ่ายโรงงาน';
-  break;
-  case '4':
-    $gwetNoti  = 'ฝ่ายขนส่งสินค้า';
-  break;
-  case '5':
-    $gwetNoti  = 'ฝ่ายแผนกช่าง';
-  break;
-  case '6':
-    $gwetNoti  = 'ฝ่ายติดตั้ง / โปรเจ็ค';
-  break;
-  case '7':
-    $gwetNoti  = 'ฝ่ายบริการ';
-  break;
-}
+$gwetNoti = '';
+if(in_array('1',$get_noti)){$gwetNoti .= 'ฝ่ายขาย, ';}
+if(in_array('2',$get_noti)){$gwetNoti .= 'ฝ่ายบัญชี, ';}
+if(in_array('3',$get_noti)){$gwetNoti .= 'ฝ่ายโรงงาน, ';}
+if(in_array('4',$get_noti)){$gwetNoti .= 'ฝ่ายขนส่งสินค้า, ';}
+if(in_array('5',$get_noti)){$gwetNoti .= 'ฝ่ายแผนกช่าง, ';}
+if(in_array('6',$get_noti)){$gwetNoti .= 'ฝ่ายติดตั้ง / โปรเจ็ค, ';}
+if(in_array('7',$get_noti)){$gwetNoti .= 'ฝ่ายบริการ, ';}
+
+$gwetNoti = substr($gwetNoti,0,-2);
+
+// switch($_POST['get_noti']){
+//   case '1':
+//     $gwetNoti  = 'ฝ่ายขาย';
+//   break;
+//   case '2':
+//     $gwetNoti  = 'ฝ่ายบัญชี';
+//   break;
+//   case '3':
+//     $gwetNoti  = 'ฝ่ายโรงงาน';
+//   break;
+//   case '4':
+//     $gwetNoti  = 'ฝ่ายขนส่งสินค้า';
+//   break;
+//   case '5':
+//     $gwetNoti  = 'ฝ่ายแผนกช่าง';
+//   break;
+//   case '6':
+//     $gwetNoti  = 'ฝ่ายติดตั้ง / โปรเจ็ค';
+//   break;
+//   case '7':
+//     $gwetNoti  = 'ฝ่ายบริการ';
+//   break;
+// }
 
 
 for($i=0;$i<=count($_POST['cpro']);$i++){
@@ -144,12 +155,12 @@ $form = '
 </tr>
 <tr>
   <td><img src="../images/'.$workList5.'" width="10" height="10" border="0" alt="" style="vertical-align: middle"/>&nbsp;ย้ายเครื่อง / ถอดเครื่อง</td>
-  <td><img src="../images/'.$workList6.'" width="10" height="10" border="0" alt="" style="vertical-align: middle"/>&nbsp;เพื่อผลิตสินค้า (อ้างอิงเอกสาร) : '.$_POST['work_detail2'].'</td>
+  <td><img src="../images/'.$workList6.'" width="10" height="10" border="0" alt="" style="vertical-align: middle"/>&nbsp;เพื่อแจ้งซ่อม / บริการ : '.$_POST['work_detail2'].'</td>
   <td>วันที่ : '.$dateW3.'</td>
 </tr>
 <tr>
   <td><img src="../images/'.$workList7.'" width="10" height="10" border="0" alt="" style="vertical-align: middle"/>&nbsp;ดูพื้นที่ / ตรวจเช็คหน้างาน</td>
-  <td><img src="../images/'.$workList8.'" width="10" height="10" border="0" alt="" style="vertical-align: middle"/>&nbsp;เพื่อแจ้งซ่อม / บริการ : '.$_POST['work_detail3'].'</td>
+  <td><img src="../images/'.$workList8.'" width="10" height="10" border="0" alt="" style="vertical-align: middle"/>&nbsp;เพื่อผลิตสินค้า (อ้างอิงเอกสาร) : '.$_POST['work_detail3'].'</td>
   <td>วันที่ : '.$dateW4.'</td>
 </tr>
 <tr>

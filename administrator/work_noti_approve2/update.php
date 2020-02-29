@@ -62,6 +62,15 @@
 
     $work_list = explode(',',$_POST['work_list']);
 
+    $itemIds2 = "";
+    foreach ($_POST['get_noti1'] as $itemId2) {
+		  $itemIds2 = $itemIds2 . $itemId2 . ",";
+    }
+
+    $_POST['get_noti'] = rtrim($itemIds2, ",");
+
+    $get_noti = explode(',',$_POST['get_noti']);
+
     $_POST['remark'] = nl2br(addslashes($_POST['remark']));
 		
 		if ($_POST["mode"] == "update" ) { 
@@ -218,6 +227,7 @@
     }
     
     $work_list = explode(',',$work_list);
+    $get_noti = explode(',',$get_noti);
 
 	}
 ?>
@@ -438,18 +448,24 @@ function checkMobileSale(){
             <tr>
               <td style="font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;width:60%;"><strong>สถานที่ติดตั้ง / ส่งสินค้า :</strong> <input type="text" name="loc_name" value="<?php echo $loc_name;?>" id="loc_name" class="inpfoder" style="width:70%;"></td>
               <td style="font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;"><strong>ฝ่ายที่รับแจ้ง :</strong>
-                <input type="radio" name="get_noti" value="1" <?php if($get_noti == '1' || $get_noti == ''){echo 'checked';}?>> ฝ่ายขาย
+                <input type="checkbox" name="get_noti1[]" value="1" <?php if(in_array(1,$get_noti)){echo 'checked';}?>> ฝ่ายขาย
+                <input type="checkbox" name="get_noti1[]" value="2" <?php if(in_array(2,$get_noti)){echo 'checked';}?>> ฝ่ายบัญชี
+                <input type="checkbox" name="get_noti1[]" value="3" <?php if(in_array(3,$get_noti)){echo 'checked';}?>> ฝ่ายโรงงาน<!-- <input type="radio" name="get_noti" value="1" <?php if($get_noti == '1' || $get_noti == ''){echo 'checked';}?>> ฝ่ายขาย
                 <input type="radio" name="get_noti" value="2" <?php if($get_noti == '2'){echo 'checked';}?>> ฝ่ายบัญชี
-                <input type="radio" name="get_noti" value="3" <?php if($get_noti == '3'){echo 'checked';}?>> ฝ่ายโรงงาน
+                <input type="radio" name="get_noti" value="3" <?php if($get_noti == '3'){echo 'checked';}?>> ฝ่ายโรงงาน -->
               </td>
             </tr>
             <tr>
               <td style="font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;"><strong>ที่อยู่ :</strong> <input type="text" name="loc_address" value="<?php     echo $loc_address;?>" id="loc_address" class="inpfoder" style="width:50%;"> </td>
               <td style="font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;">
-                <input type="radio" name="get_noti" value="4" <?php if($get_noti == '4'){echo 'checked';}?>> ฝ่ายขนส่งสินค้า
+                <input type="checkbox" name="get_noti1[]" value="4" <?php if(in_array(4,$get_noti)){echo 'checked';}?>> ฝ่ายขนส่งสินค้า
+                <input type="checkbox" name="get_noti1[]" value="5" <?php if(in_array(5,$get_noti)){echo 'checked';}?>> แผนกช่าง
+                <input type="checkbox" name="get_noti1[]" value="6" <?php if(in_array(6,$get_noti)){echo 'checked';}?>> ติดตั้ง / โปรเจ็ค
+                <input type="checkbox" name="get_noti1[]" value="7" <?php if(in_array(7,$get_noti)){echo 'checked';}?>> บริการ
+                <!-- <input type="radio" name="get_noti" value="4" <?php if($get_noti == '4'){echo 'checked';}?>> ฝ่ายขนส่งสินค้า
                 <input type="radio" name="get_noti" value="4" <?php if($get_noti == '5'){echo 'checked';}?>> แผนกช่าง
                 <input type="radio" name="get_noti" value="5" <?php if($get_noti == '6'){echo 'checked';}?>> ติดตั้ง / โปรเจ็ค
-                <input type="radio" name="get_noti" value="6" <?php if($get_noti == '7'){echo 'checked';}?>> บริการ
+                <input type="radio" name="get_noti" value="6" <?php if($get_noti == '7'){echo 'checked';}?>> บริการ -->
               </td>
             </tr>
         </table>
