@@ -35,7 +35,7 @@
 			$consd = "WHERE cd_name LIKE '%".$cd_name."%'";
 		}
 		//echo "SELECT * FROM s_first_order ".$consd." ORDER BY cd_name ASC";
-		$qu_cus = mysqli_query($conn,"SELECT * FROM s_first_order ".$consd." ORDER BY cd_name ASC");
+		$qu_cus = mysqli_query($conn,"SELECT * FROM s_first_order ".$consd." AND (status_use = '3' or status_use = '0') ORDER BY cd_name ASC");
 		while($row_cus = @mysqli_fetch_array($qu_cus)){
 			?>
 			 <tr>
