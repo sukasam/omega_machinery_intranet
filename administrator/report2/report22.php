@@ -25,6 +25,8 @@
 
 	$dbfosv = $_REQUEST['dbfosv'];
 
+	$sQR = $_REQUEST['sQR'];
+
 
 	$a_sdate=explode("/",$_REQUEST['date_fm']);
 
@@ -99,7 +101,6 @@
 	}
 
 
-
 	$condition .= " AND fr.status_use != 1 AND fr.status_use != 2"; 
 
 	
@@ -166,7 +167,7 @@
 
 </th>
 
-	    <th colspan="5" style="text-align:right;font-size:11px;vertical-align:bottom;"><?php  echo $dateshow;?><br />
+	    <th colspan="6" style="text-align:right;font-size:11px;vertical-align:bottom;"><?php  echo $dateshow;?><br />
 
         <br />
 
@@ -175,6 +176,8 @@
       </tr>
 
       <tr>
+
+	  	<?php  if($_REQUEST['sQR'] == 2){?><th width="%">QR Code</th><?php  }?>
         
         <?php  if($_REQUEST['sh1'] == 1){?><th width="%">หมายเลข</th><?php  }?>
 
@@ -227,22 +230,20 @@
 			?>
 
 			<tr>
+
+			<?php if($_REQUEST['sQR'] == 2){?><td>
+				<?php 
+					if($row_fr['cpro1'] != ""){
+						?>
+						<img src="../../qrcode_gen/qrcode.php?val=<?php echo $row_fr['pro_sn1'];?>" width="80">
+						<?php 
+					}
+				?>
+			<?php }?>
               
               <td><?php echo $row_fr['fs_id'];?></td>
 
               <?php  if($_REQUEST['sh1'] == 1){?><td><?php  
-
-//				$proN = get_proname($conn,$row_fr['cpro1']);
-
-//				if(strpos("AAAAAA","AAA")){
-
-//					echo "Found";
-
-//				}else{
-
-//					echo "Not Found";
-
-//				}
 
 				echo $row_fr['cd_name'];?><br />
 
@@ -318,106 +319,6 @@
 
 				?>
 
-                <?php  
-
-					/*if($row_fr['cpro3'] != ""){
-
-						?>
-
-						<tr>
-
-                          <?php  if($_REQUEST['sh5'] == 1){?><td style="border:0;padding-bottom:0;padding-top:0;"><?php  echo get_proname($conn,$row_fr['cpro3']);?></td><?php  }?>
-
-                          <?php  if($_REQUEST['sh6'] == 1){?><td style="border:0;padding-bottom:0;padding-top:0;"><?php  echo $row_fr['pro_pod3']." / ".$row_fr['pro_sn3'];?></td><?php  }?>
-
-                        </tr>
-
-						<?php 	
-
-					}
-
-				?>
-
-                <?php  
-
-					if($row_fr['cpro4'] != ""){
-
-						?>
-
-						<tr>
-
-                          <?php  if($_REQUEST['sh5'] == 1){?><td style="border:0;padding-bottom:0;padding-top:0;"><?php  echo get_proname($conn,$row_fr['cpro4']);?></td><?php  }?>
-
-                          <?php  if($_REQUEST['sh6'] == 1){?><td style="border:0;padding-bottom:0;padding-top:0;"><?php  echo $row_fr['pro_pod4']." / ".$row_fr['pro_sn4'];?></td><?php  }?>
-
-                        </tr>
-
-						<?php 	
-
-					}
-
-				?>
-
-                <?php  
-
-					if($row_fr['cpro5'] != ""){
-
-						?>
-
-						<tr>
-
-                          <?php  if($_REQUEST['sh5'] == 1){?><td style="border:0;padding-bottom:0;padding-top:0;"><?php  echo get_proname($conn,$row_fr['cpro5']);?></td><?php  }?>
-
-                          <?php  if($_REQUEST['sh6'] == 1){?><td style="border:0;padding-bottom:0;padding-top:0;"><?php  echo $row_fr['pro_pod5']." / ".$row_fr['pro_sn5'];?></td><?php  }?>
-
-                        </tr>
-
-						<?php 	
-
-					}
-
-				?>
-
-                <?php  
-
-					if($row_fr['cpro6'] != ""){
-
-						?>
-
-						<tr>
-
-                          <?php  if($_REQUEST['sh5'] == 1){?><td style="border:0;padding-bottom:0;padding-top:0;"><?php  echo get_proname($conn,$row_fr['cpro6']);?></td><?php  }?>
-
-                          <?php  if($_REQUEST['sh6'] == 1){?><td style="border:0;padding-bottom:0;padding-top:0;"><?php  echo $row_fr['pro_pod6']." / ".$row_fr['pro_sn6'];?></td><?php  }?>
-
-                        </tr>
-
-						<?php 	
-
-					}
-
-				?>
-
-                <?php  
-
-					if($row_fr['cpro7'] != ""){
-
-						?>
-
-						<tr>
-
-                          <?php  if($_REQUEST['sh5'] == 1){?><td style="border:0;padding-bottom:0;padding-top:0;"><?php  echo get_proname($conn,$row_fr['cpro7']);?></td><?php  }?>
-
-                          <?php  if($_REQUEST['sh6'] == 1){?><td style="border:0;padding-bottom:0;padding-top:0;"><?php  echo $row_fr['pro_pod7']." / ".$row_fr['pro_sn7'];?></td><?php  }?>
-
-                        </tr>
-
-						<?php 	
-
-					}*/
-
-				?>
-
               </table></td><?php  }?>
 
 			  <?php  if($_REQUEST['sh9'] == 1){?><td><div align="center"><?php  echo getcustom_type($conn,$row_fr['ctype']);?></div></td>   <?php  }?>
@@ -453,7 +354,7 @@
 
       <tr>
 
-			  <td colspan="10" align="right"><strong>รวมยอดจำนวนลูกค้าทั้งสิ้น</strong>&nbsp;&nbsp;&nbsp;<strong><?php  echo $sums;?>&nbsp;&nbsp;ราย</strong>&nbsp;&nbsp;&nbsp;&nbsp;<br />
+			  <td colspan="11" align="right"><strong>รวมยอดจำนวนลูกค้าทั้งสิ้น</strong>&nbsp;&nbsp;&nbsp;<strong><?php  echo $sums;?>&nbsp;&nbsp;ราย</strong>&nbsp;&nbsp;&nbsp;&nbsp;<br />
 
 			  <strong>รวมยอดจำนวนเครื่องทั้งสิ้น</strong>&nbsp;&nbsp;&nbsp;<strong><?php  echo $sumMachin;?>&nbsp;&nbsp;เครื่อง</strong>&nbsp;&nbsp;&nbsp;&nbsp;
 
