@@ -5706,7 +5706,7 @@ if ($_GET["action"] == "chksum") {
           }
 
           if ($_GET['act'] == 22) {
-
+            Check_Permission($conn, "รายงานตามโซน/ภาค/เขต", $_SESSION["login_id"], "read");
           ?>
 
             <DIV class=content-box>
