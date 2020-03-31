@@ -300,7 +300,7 @@
 				?>
               </table></td><?php  }?>
               <?php  if($_REQUEST['sh9'] == 1){?><td><?php  echo $row_fr['detail_recom2'];?></td>   <?php  }?>
-              <?php  if($_REQUEST['sh10'] == 1){?><td><?php  if($openclose == 0){echo format_date($row_fr['sr_stime']);}else if($openclose == 2){echo format_date($row_fr['sr_stime']);}else{echo "-";}?></td>  <?php  }?>    
+              <?php  if($_REQUEST['sh10'] == 1){?><td><?php  if($row_fr['signature_date'] !== '' && $row_fr['signature_date'] !== NULL){echo $row_fr['signature_date'];}else{echo "-";}?></td>  <?php  }?>    
             </tr>
 			
 			<?php 
