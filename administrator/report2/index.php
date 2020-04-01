@@ -811,7 +811,7 @@ if ($_GET["action"] == "chksum") {
 
                                       while ($row_cgcus = @mysqli_fetch_array($quccustommer)) {
 
-                                        if (substr($row_cgcus['group_name'], 0, 2) == "SR") {
+                                        //if (substr($row_cgcus['group_name'], 0, 2) == "SR") {
 
                                       ?>
 
@@ -821,7 +821,7 @@ if ($_GET["action"] == "chksum") {
 
                                       <?php
 
-                                        }
+                                        //}
                                       }
 
                                       ?>

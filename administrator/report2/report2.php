@@ -89,7 +89,7 @@
         <?php  if($_REQUEST['sh3'] == 1){?><th width="9%">ประเภทลูกค้า</th><?php  }?>
         <?php  if($_REQUEST['sh4'] == 1){?><th width="9%">ประเภทงานบริการ</th><?php  }?>
         <?php  if($_REQUEST['sh5'] == 1){?><th width="9%">เลขที่ใบบริการ</th><?php  }?>
-        <?php  if($_REQUEST['sh6'] == 1){?><th width="7%">วันที่เปิด / วันที่ปิด</th><?php  }?>
+        <?php  if($_REQUEST['sh6'] == 1){?><th width="7%">วันที่เปิด / วันที่ปิด / เวลา</th><?php  }?>
         <?php  if($_REQUEST['sh7'] == 1 || $_REQUEST['sh8'] == 1){?><th width="14%"><table width="100%" border="0" cellpadding="0" cellspacing="0" class="tbreport">
           <tr>
             <?php  if($_REQUEST['sh7'] == 1){?><th style="border:0;" width="50%">รุ่นเครื่อง</th><?php  }?>
@@ -112,7 +112,7 @@
               <?php  if($_REQUEST['sh1'] == 1){?><td><?php  echo getcustom_type($conn,$row_fr['sr_ctype2']);?></td><?php  }?>
               <?php  if($_REQUEST['sh1'] == 1){?><td><?php  echo get_servicename($conn,$row_fr['sr_ctype']);?></td><?php  }?>
               <?php  if($_REQUEST['sh1'] == 1){?><td><?php  echo $row_fr['sv_id'];?></td><?php  }?>
-              <?php  if($_REQUEST['sh1'] == 1){?><td><?php  echo format_date($row_fr['job_open']);?> / <?php  echo format_date($row_fr['job_close']);?></td><?php  }?>
+              <?php  if($_REQUEST['sh1'] == 1){?><td><?php  echo format_date($row_fr['job_open']);?> / <?php  echo format_date($row_fr['job_close'])." / ".$row_fr['job_closetime'];?></td><?php  }?>
               <?php  if($_REQUEST['sh7'] == 1 || $_REQUEST['sh8'] == 1){?><td><table width="99%" border="0" cellpadding="0" cellspacing="0" class="tbreport" style="margin-bottom:5px;">
                 <?php  
 					if($row_fr['pro_pod1'] != ""){
@@ -186,7 +186,7 @@
 				?>
               </table></td><?php  }?>
               <?php  if($_REQUEST['sh9'] == 1){?><td><?php  echo $row_fr['detail_recom2'];?></td><?php  }?>
-              <?php  if($_REQUEST['sh10'] == 1){?><td><?php  echo get_technician_id($conn,$row_fr['loc_contact']);?></td><?php  }?>
+              <?php  if($_REQUEST['sh10'] == 1){?><td><?php  echo get_technician_name($conn,$row_fr['loc_contact']);?></td><?php  }?>
             </tr>
 			<?php 
 			$sum += 1;
