@@ -11,14 +11,16 @@
 
 		if ($_POST['mode'] == "add") { 
 			
-			$_POST['group_pod'] = $_POST['pod'];
+      $_POST['group_pod'] = $_POST['pod'];
+      $_POST['group_name'] = trim($_POST['group_name']);
 			
 				include "../include/m_add.php";
 			header ("location:index.php?pod=".$_POST['pod']."&" . $param); 
 		}
 		if ($_POST['mode'] == "update" ) { 
 			
-			$_POST['group_pod'] = $_POST['pod'];
+      $_POST['group_pod'] = $_POST['pod'];
+      $_POST['group_name'] = trim($_POST['group_name']);
 			
 			include ("../include/m_update.php");
 			header ("location:index.php?pod=".$_POST['pod']."&" . $param); 

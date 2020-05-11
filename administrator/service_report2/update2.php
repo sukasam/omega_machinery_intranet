@@ -65,7 +65,9 @@
 						 
 			include ("../include/m_update.php");
 			
-			$id = $_REQUEST[$PK_field];			
+			$id = $_REQUEST[$PK_field];	
+			
+			@mysqli_query($conn,"DELETE FROM `s_service_report2sub` WHERE `sr_id` = 0");
 				
 			include_once("../mpdf54/mpdf.php");
 			include_once("form_serviceclose.php");
