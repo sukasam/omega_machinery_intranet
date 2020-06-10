@@ -215,6 +215,10 @@ if ($loc_seal != "") {
 
 		$totalsall = 0;
 
+		$totalsSumOther = 0;
+
+		$totalsAllSumOther = 0;
+
 		while ($row_fr = @mysqli_fetch_array($qu_fr)) {
 
 
@@ -315,6 +319,10 @@ if ($loc_seal != "") {
 
 							$totalOther = $rowOtherTotal['mn_1'] + $rowOtherTotal['mn_2'] + $rowOtherTotal['mn_3'] + $rowOtherTotal['mn_4'] + $rowOtherTotal['mn_5'];
 
+							$totalsSumOther += $totalOther;
+
+							$totalsAllSumOther += ($sum+$totalOther);
+
 							?>
 
 							<tr>
@@ -360,6 +368,18 @@ if ($loc_seal != "") {
 		<tr>
 
 			<td colspan="7" style="text-align:right;"> <strong>ราคาอ่ะไหล่ทั้งหมด&nbsp;&nbsp;<?php echo number_format($totalsall, 2); ?>&nbsp;&nbsp;บาท&nbsp;&nbsp;</strong></td>
+
+		</tr>
+
+		<tr>
+
+			<td colspan="7" style="text-align:right;"> <strong>รวมค่าใช้จ่ายอื่น ทั้งสิ้น&nbsp;&nbsp;<?php echo number_format($totalsSumOther, 2); ?>&nbsp;&nbsp;บาท&nbsp;&nbsp;</strong></td>
+
+		</tr>
+
+		<tr>
+
+			<td colspan="7" style="text-align:right;"> <strong>รวมค่าใช้จ่ายรวม (ค่าอะไหล่และอื่นๆ) ทั้งสิ้น&nbsp;&nbsp;<?php echo number_format($totalsAllSumOther, 2); ?>&nbsp;&nbsp;บาท&nbsp;&nbsp;</strong></td>
 
 		</tr>
 

@@ -53,9 +53,9 @@
 	if($_GET['action'] == 'getcus'){
 		$cd_name = $_REQUEST['pval'];
 		if($cd_name != ""){
-			$consd = "WHERE cd_name LIKE '%".$cd_name."%'";
+			$consd = "AND (cd_name LIKE '%".$cd_name."%' OR loc_name LIKE '%".$cd_name."%' OR cusid LIKE '%".$cd_name."%')";
 		}
-		$qu_cus = mysqli_query($conn,"SELECT fo_id,cd_name,loc_name FROM s_first_order ".$consd." ORDER BY cd_name ASC");
+		$qu_cus = mysqli_query($conn,"SELECT fo_id,cd_name,loc_name,cusid FROM s_first_order ".$consd." ORDER BY cd_name ASC");
 		while($row_cusx = @mysqli_fetch_array($qu_cus)){
 			?>
 			 <tr>
