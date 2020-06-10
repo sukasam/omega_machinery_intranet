@@ -21,6 +21,16 @@ if ($_POST["mode"] <> "") {
 	$a_sdate = explode("/", $_POST['job_balance']);
 	$_POST['job_balance'] = $a_sdate[2] . "-" . $a_sdate[1] . "-" . $a_sdate[0];
 
+	if ($_POST['ot_dateto'] != "") {
+		$a_sdate = explode("/", $_POST['ot_dateto']);
+		$_POST['ot_dateto'] = $a_sdate[2] . "-" . $a_sdate[1] . "-" . $a_sdate[0];
+	}
+
+	if ($_POST['ot_datefm'] != "") {
+		$a_sdate = explode("/", $_POST['ot_datefm']);
+		$_POST['ot_datefm'] = $a_sdate[2] . "-" . $a_sdate[1] . "-" . $a_sdate[0];
+	}
+
 	$_POST['cprice1'] = preg_replace("/,/", "", $_POST['cprice1']);
 	$_POST['cprice2'] = preg_replace("/,/", "", $_POST['cprice2']);
 	$_POST['cprice3'] = preg_replace("/,/", "", $_POST['cprice3']);
@@ -80,8 +90,7 @@ if ($_POST["mode"] <> "") {
 		$id = $_REQUEST[$PK_field];
 
 		if ($_REQUEST['taget'] == "service") {
-
-			@mysqli_query($conn, "UPDATE `s_service_report` SET `latitude` = '" . $_SESSION["LATITUDE"] . "', `longitude` = '" . $_SESSION["LONGITUDE"] . "', `st_setting` = 1, `approve` = 1 WHERE `sr_id` = " . $id . ";");
+			@mysqli_query($conn, "UPDATE `s_service_report` SET `latitude` = '" . $_SESSION["LATITUDE"] . "', `longitude` = '" . $_SESSION["LONGITUDE"] . "', `st_setting` = 1, `approve` = 1, `ot_time` = '".date("H:i")."' WHERE `sr_id` = " . $id . ";");
 
 			@mysqli_query($conn, "UPDATE `s_first_order` SET `latitude` = '" . $_SESSION["LATITUDE"] . "', `longitude` = '" . $_SESSION["LONGITUDE"] . "' WHERE `fo_id` = " . $_POST['cus_id'] . ";");
 		}
@@ -150,10 +159,10 @@ if ($_POST["mode"] <> "") {
 		}
 	}
 }
-if ($_GET[mode] == "add") {
+if ($_GET['mode'] == "add") {
 	Check_Permission($conn, $check_module, $_SESSION["login_id"], "add");
 }
-if ($_GET[mode] == "update") {
+if ($_GET['mode'] == "update") {
 	Check_Permission($conn, $check_module, $_SESSION["login_id"], "update");
 	$sql = "select * from $tbl_name where $PK_field = '" . $_GET[$PK_field] . "'";
 	$query = @mysqli_query($conn, $sql);
@@ -183,6 +192,16 @@ if ($_GET[mode] == "update") {
 
 	$a_sdate = explode("-", $finfo['date_qut']);
 	$sr_date_qut = $a_sdate[2] . "/" . $a_sdate[1] . "/" . $a_sdate[0];
+
+	if ($ot_dateto != "") {
+		$a_sdate = explode("-", $ot_dateto);
+		$ot_dateto = $a_sdate[2] . "/" . $a_sdate[1] . "/" . $a_sdate[0];
+	}
+
+	if ($ot_datefm != "") {
+		$a_sdate = explode("-", $ot_datefm);
+		$ot_datefm = $a_sdate[2] . "/" . $a_sdate[1] . "/" . $a_sdate[0];
+	}
 
 
 	$ckl_list = explode(',', $ckl_list);
@@ -263,6 +282,13 @@ $v = date("YmdHis");
 				document.getElementById("form1").submit();
 			}, 1000);
 		}
+
+		// $("#ot_dateto").change(function() {
+		// 	alert("Handler for .change() called.");
+		// });
+		// $("#ot_datefm").change(function() {
+		// 	alert("Handler for .change() called.");
+		// });
 	</script>
 </HEAD>
 <?php include("../../include/function_script.php"); ?>
@@ -498,10 +524,10 @@ $v = date("YmdHis");
 										<tr>
 											<td><strong>ชื่อผู้ติดต่อ :</strong> <span id="cscont"><?php echo $finfo['c_contact']; ?></span>&nbsp;&nbsp;&nbsp;&nbsp;<strong>เบอร์โทร :</strong> <span id="cstel"><?php echo $finfo['c_tel']; ?></span></td>
 											<td><strong>บริการครั้งล่าสุด : </strong> <span id="sevlast"><?php echo get_lastservice_f($conn, $cus_id, $sv_id); ?></span> &nbsp;&nbsp;&nbsp;&nbsp;<strong>บริการครั้งต่อไป :</strong><span style="font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;"><input type="text" name="sr_stime" readonly value="<?php if ($sr_stime == "") {
-																																																																																											echo date("d/m/Y");
-																																																																																										} else {
-																																																																																											echo $sr_stime;
-																																																																																										} ?>" class="inpfoder" style="width: 70px;" />
+																																																																																												echo date("d/m/Y");
+																																																																																											} else {
+																																																																																												echo $sr_stime;
+																																																																																											} ?>" class="inpfoder" style="width: 70px;" />
 													<script language="JavaScript">
 														new tcal({
 															'formname': 'form1',
@@ -608,6 +634,23 @@ $v = date("YmdHis");
 												<?php
 												}
 												?>
+												<strong>เบี้ยเลี้ยง วันที่ :</strong> <input type="text" name="ot_dateto" id="ot_dateto" readonly value="<?php echo $ot_dateto; ?>" class="inpfoder" style="width: 70px;" />
+												<script language="JavaScript">
+													new tcal({
+														'formname': 'form1',
+														'controlname': 'ot_dateto'
+													});
+												</script>
+												<strong> ถึง วันที่ :</strong> <input type="text" name="ot_datefm" id="ot_datefm" readonly value="<?php echo $ot_datefm; ?>" class="inpfoder" style="width: 70px;" />
+												<script language="JavaScript">
+													new tcal({
+														'formname': 'form1',
+														'controlname': 'ot_datefm'
+													});
+												</script>
+												<br><br>
+												<strong>โอที :</strong> <input type="time" name="ot_time" value="<?php echo $ot_time; ?>" class="inpfoder" style="width: 70px;text-align: center;" />
+												&nbsp;&nbsp;<strong>รวมจำนวน : <span id="rsOtday"><?php echo diffDate(date_format(date_create($ot_dateto), "Y-d-m"), date_format(date_create($ot_datefm), "Y-d-m")) ?></span> วัน</strong>
 											</td>
 										</tr>
 									</table>

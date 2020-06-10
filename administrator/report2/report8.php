@@ -89,7 +89,7 @@
 <br />
 ประเภทบริการ  :
 <?php  if($_POST['sr_ctype']){echo get_servicename($conn,$_POST['sr_ctype']);}else{echo "ทั้งหมด";}?><br /></th>
-	    <th colspan="4" style="text-align:right;font-size:11px;vertical-align:bottom;"><?php  echo $dateshow;?><br />
+	    <th colspan="5" style="text-align:right;font-size:11px;vertical-align:bottom;"><?php  echo $dateshow;?><br />
         <br />
         <br /></th>
       </tr>
@@ -111,8 +111,9 @@
           </tr>
         </table>
        </th><?php  }?>
-        <?php  if($_REQUEST['sh9'] == 1){?><th width="19%">รายละเอียดบริการ</th><?php  }?>
-        <?php  if($_REQUEST['sh10'] == 1){?><th width="7%">วันที่ให้บริการ</th><?php  }?>
+		<?php  if($_REQUEST['sh9'] == 1){?><th width="19%">รายละเอียดบริการ</th><?php  }?>
+		<?php  if($_REQUEST['sh11'] == 1){?><th width="10%">โอที / เบี้ยเลี้ยง</th><?php  }?>
+        <?php  if($_REQUEST['sh10'] == 1){?><th width="10%" style="white-space: nowrap;">วันที่ให้บริการ</th><?php  }?>
       </tr>
       <?php  
 		$sql = "SELECT * FROM s_first_order as fr, s_service_report as sv WHERE sv.cus_id = fr.fo_id ".$condition." ".$daterriod." ORDER BY fr.cd_name ASC";
@@ -299,7 +300,8 @@
 					}
 				?>
               </table></td><?php  }?>
-              <?php  if($_REQUEST['sh9'] == 1){?><td><?php  echo $row_fr['detail_recom2'];?></td>   <?php  }?>
+			  <?php  if($_REQUEST['sh9'] == 1){?><td><?php  echo $row_fr['detail_recom2'];?></td>   <?php  }?>
+			  <?php  if($_REQUEST['sh11'] == 1){?><td><?php  if($row_fr['ot_time'] != ""){echo 'โอที '.$row_fr['ot_time']." น.";}else{echo '-';} if($row_fr['ot_dateto'] != "" && $row_fr['ot_datefm'] != ""){echo "<br>เบี้ยงเลี้ยง : วันที่ ".format_date_th($row_fr['ot_dateto'],7)." ถึง วันที่ ".format_date_th($row_fr['ot_datefm'],7);}?></td>   <?php  }?>
               <?php  if($_REQUEST['sh10'] == 1){?><td><?php  if($row_fr['signature_date'] !== '' && $row_fr['signature_date'] !== NULL){echo $row_fr['signature_date'];}else{echo "-";}?></td>  <?php  }?>    
             </tr>
 			
@@ -310,7 +312,7 @@
 		
 	  ?>
       <tr>
-			  <td colspan="9" align="right"><strong>ให้บริการตามรายชื่อช่างทั้งหมด</strong>&nbsp;&nbsp;&nbsp;<strong><?php  echo $sums;?>&nbsp;&nbsp;รายการ</strong>&nbsp;&nbsp;&nbsp;&nbsp;</td>
+			  <td colspan="10" align="right"><strong>ให้บริการตามรายชื่อช่างทั้งหมด</strong>&nbsp;&nbsp;&nbsp;<strong><?php  echo $sums;?>&nbsp;&nbsp;รายการ</strong>&nbsp;&nbsp;&nbsp;&nbsp;</td>
 	  </tr>
     </table>
 

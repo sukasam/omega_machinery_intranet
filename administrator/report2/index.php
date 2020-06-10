@@ -1848,6 +1848,7 @@ if ($_GET["action"] == "chksum") {
 
                                     ประเภทบริการ<br>
 
+  
                                     <input name="sh5" type="checkbox" id="sh41" value="1" checked>
 
                                     รุ่นเครื่อง
@@ -1870,7 +1871,8 @@ if ($_GET["action"] == "chksum") {
 
                                     <input name="sh10" type="checkbox" id="sh45" value="1" checked>
 
-                                    ชื่อช่าง</td>
+                                    ชื่อช่าง
+                                  </td>
 
                                 </tr>
 
@@ -2319,7 +2321,11 @@ if ($_GET["action"] == "chksum") {
 
                                     <input name="sh4" type="checkbox" id="sh48" value="1" checked>
 
-                                    ประเภทบริการ<br>
+                                    ประเภทบริการ
+
+                                    <input name="sh11" type="checkbox" id="sh46" value="1" checked>
+
+                                    โอที / เบี้ยเลี้ยง<br>
 
                                     <input name="sh5" type="checkbox" id="sh49" value="1" checked>
 
@@ -2343,7 +2349,10 @@ if ($_GET["action"] == "chksum") {
 
                                     <input name="sh10" type="checkbox" id="sh54" value="1" checked>
 
-                                    วันที่ให้บริการ</td>
+                                    วันที่ให้บริการ
+                                    
+                                   
+                                  </td>
 
                                 </tr>
 

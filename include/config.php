@@ -3,6 +3,7 @@ ob_start();
 @session_start();
 error_reporting(0);
 $cookie_time = time() + (3600 * 24 * 15) ;
+date_default_timezone_set("Asia/Bangkok");
 $s_title="Omega Intranet";
 define("S_TITLE","Omega Intranet");
 define("S_DOMAIN","http://server3/");

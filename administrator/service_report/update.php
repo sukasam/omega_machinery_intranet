@@ -532,7 +532,7 @@ if ($_GET[mode] == "update") {
 															<strong>สต๊อกน้ำยา C =</strong> <input type="text" name="cl_04" value="<?php echo $cl_04; ?>" id="cl_04" class="inpfoder" style="width:5%;"> <strong>ถัง R = </strong><input type="text" name="cl_05" value="<?php echo $cl_05; ?>" id="cl_05" class="inpfoder" style="width:5%;"> <strong>ถัง A =</strong> <input type="text" name="cl_06" value="<?php echo $cl_06; ?>" id="cl_06" class="inpfoder" style="width:5%;"> <strong>ถัง</strong><br />
 															<strong><br />
 																&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WG = </span></strong><input type="text" name="cl_07" value="<?php echo $cl_07; ?>" id="cl_07" class="inpfoder" style="width:5%;"> <strong> ถัง RG = </strong><input type="text" name="cl_08" value="<?php echo $cl_08; ?>" id="cl_08" class="inpfoder" style="width:5%;"> <strong> ถัง </strong>
-														</td>
+															</td>
 														<td style="width: 25%;"><strong>ช่างเข้าบริการ</strong><br /><br />
 															<?php
 															$tecList = array("", $tec_service1, $tec_service2, $tec_service3);

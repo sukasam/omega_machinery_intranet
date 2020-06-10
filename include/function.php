@@ -2900,5 +2900,13 @@ function getWorkNotiInfo($conn,$val) {
 	return $row_dea;		
 }
 
+function diffDate($dateTo,$dateFm){
+	//echo $dateTo.' '.$dateFm;
+	$date1=date_create($dateTo);
+	$date2=date_create($dateFm);
+	$diff=date_diff($date1,$date2);
+	return $diff->format("%a");
+}
+
 ?>
 
