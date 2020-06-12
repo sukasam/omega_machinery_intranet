@@ -2263,6 +2263,22 @@ if ($_GET["action"] == "chksum") {
 
                                   <td><span class="name">
 
+                                      <input name="otVal" type="radio" value="0" checked>
+
+                                      รวมงานทั้งหมด&nbsp;
+
+                                      <input name="otVal" type="radio" value="1">
+
+                                      เฉพาะงานที่มีโอที / เบี้ยเลี้ยง</span></td>
+
+                                </tr>
+
+                                <tr>
+
+                                  <td nowrap class="name">&nbsp;</td>
+
+                                  <td><span class="name">
+
                                       <input name="priod" type="radio" value="0" checked>
 
                                       กำหนดช่วงเวลา&nbsp;
@@ -2356,13 +2372,13 @@ if ($_GET["action"] == "chksum") {
 
                                 </tr>
 
-                                <tr>
+                                <!-- <tr>
 
                                   <td nowrap class="name">&nbsp;</td>
 
                                   <td>&nbsp;</td>
 
-                                </tr>
+                                </tr> -->
 
                               </table>
                             </td>

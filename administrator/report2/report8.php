@@ -28,6 +28,7 @@
 	else{
 		$dateshow = "วันที่ค้นหา : ".format_date(date("Y-m-d")); 
 	}
+
 	
 	$condition = "";
 	
@@ -37,6 +38,10 @@
 		$condition .= " AND sv.st_setting = 1 "; 
 	}else{
 		$condition .= "";
+	}
+
+	if($_REQUEST['otVal'] == 1){
+		$condition .= " AND (`ot_time` != '' OR `ot_dateto` != '' OR `ot_datefm` != '')"; 
 	}
 	
 	if($loc_contact != ""){
@@ -301,7 +306,7 @@
 				?>
               </table></td><?php  }?>
 			  <?php  if($_REQUEST['sh9'] == 1){?><td><?php  echo $row_fr['detail_recom2'];?></td>   <?php  }?>
-			  <?php  if($_REQUEST['sh11'] == 1){?><td><?php  if($row_fr['ot_time'] != ""){echo 'โอที '.$row_fr['ot_time']." น.";}else{echo '-';} if($row_fr['ot_dateto'] != "" && $row_fr['ot_datefm'] != ""){echo "<br>เบี้ยงเลี้ยง : วันที่ ".format_date_th($row_fr['ot_dateto'],7)." ถึง วันที่ ".format_date_th($row_fr['ot_datefm'],7);}?></td>   <?php  }?>
+			  <?php  if($_REQUEST['sh11'] == 1){?><td><?php  if($row_fr['ot_time'] != ""){echo 'โอที '.$row_fr['ot_time']." น.";}else{echo '-';} if($row_fr['ot_dateto'] != "" && $row_fr['ot_datefm'] != ""){echo "<br>เบี้ยงเลี้ยง : วันที่ ".format_date_th($row_fr['ot_dateto'],7)." ถึง วันที่ ".format_date_th($row_fr['ot_datefm'],7)."<br>รวม ".diffDate($row_fr['ot_dateto'], $row_fr['ot_datefm'])." วัน";}?></td>   <?php  }?>
               <?php  if($_REQUEST['sh10'] == 1){?><td><?php  if($row_fr['signature_date'] !== '' && $row_fr['signature_date'] !== NULL){echo $row_fr['signature_date'];}else{echo "-";}?></td>  <?php  }?>    
             </tr>
 			
