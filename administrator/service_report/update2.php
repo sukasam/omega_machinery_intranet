@@ -650,7 +650,7 @@ $v = date("YmdHis");
 												</script>
 												<br><br>
 												<strong>โอที :</strong> <input type="time" name="ot_time" value="<?php echo $ot_time; ?>" class="inpfoder" style="width: 70px;text-align: center;" />
-												&nbsp;&nbsp;<strong>รวมจำนวน : <span id="rsOtday"><?php echo diffDate(date_format(date_create($ot_dateto), "Y-d-m"), date_format(date_create($ot_datefm), "Y-d-m")) ?></span> วัน</strong>
+												&nbsp;&nbsp;<strong>รวมจำนวน : <span id="rsOtday"><?php echo diffDate(date_format(date_create($ot_dateto), "Y-m-d"), date_format(date_create($ot_datefm), "Y-m-d")) ?></span> วัน</strong>
 											</td>
 										</tr>
 									</table>
