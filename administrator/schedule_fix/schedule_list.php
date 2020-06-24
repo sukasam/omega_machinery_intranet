@@ -89,7 +89,7 @@
 
 	if($row_serv['sr_ctype'] == '107'){
 		$rowColor = "blue";
-		//$scstatus = "<a href=\"../../upload/service_report_open/".$chaf.".pdf\" target=\"_blank\" style=\"text-decoration: none;\"><span style=\"color:#f68cfd;\">".$row_serv['sv_id']."</span></a>";
+		//$scstatus = "<a href=\"../../upload/service_report_open/".$chaf.".pdf\" target=\"_blank\" style=\"text-decoration: none;\"><span style=\"color:#f911c5;\">".$row_serv['sv_id']."</span></a>";
 	}else{
 		$rowColor = "green";
 		//$scstatus = "<a href=\"../../upload/service_report_open/".$chaf.".pdf\" target=\"_blank\" style=\"text-decoration: none;\"><span style=\"color:green;\">".$row_serv['sv_id']."</span></a>";

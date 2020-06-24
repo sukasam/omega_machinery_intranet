@@ -1822,7 +1822,7 @@ function get_servreport_setup($conn,$ymd,$loc,$ctype) {
 	$res = "";
 	if($numsrv > 0){
 		$numR = 1;
-		//blue , #f68cfd, red, green
+		//blue , #f911c5, red, green
 		while($row_dea = @mysqli_fetch_array($qqu_srv)){
 			$chaf = preg_replace("/\//","-",$row_dea["sv_id"]);
 			// if($row_dea['st_setting'] == 0){
@@ -1839,7 +1839,7 @@ function get_servreport_setup($conn,$ymd,$loc,$ctype) {
 			
 
 			if($row_dea['sr_ctype'] == '31' || $row_dea['sr_ctype'] == '48'){
-				$scstatus = "<span style=\"color:#f68cfd;\">".$numR.".".get_localsettingname($conn,$row_dea['cus_id']).$jobOpen."</span>";
+				$scstatus = "<span style=\"color:#f911c5;\">".$numR.".".get_localsettingname($conn,$row_dea['cus_id']).$jobOpen."</span>";
 			}else if($row_dea['sr_ctype'] == '24' || $row_dea['sr_ctype'] == '55' || $row_dea['sr_ctype'] == '89'){
 				$scstatus = "<span style=\"color:red;\">".$numR.".".get_localsettingname($conn,$row_dea['cus_id']).$jobOpen."</span>";
 			}else if($row_dea['sr_ctype'] == '23' || $row_dea['sr_ctype'] == '36' || $row_dea['sr_ctype'] == '45' || $row_dea['sr_ctype'] == '47'){
@@ -1885,7 +1885,7 @@ function get_servreport_setupclosed($conn,$ymd,$loc,$ctype) {
 	$res = "";
 	if($numsrv > 0){
 		$numR = 1;
-		//blue , #f68cfd, red, green
+		//blue , #f911c5, red, green
 		while($row_dea = @mysqli_fetch_array($qqu_srv)){
 			$chaf = preg_replace("/\//","-",$row_dea["sv_id"]);
 			// if($row_dea['st_setting'] == 0){
@@ -1902,7 +1902,7 @@ function get_servreport_setupclosed($conn,$ymd,$loc,$ctype) {
 			
 
 			if($row_dea['sr_ctype'] == '31' || $row_dea['sr_ctype'] == '48'){
-				$scstatus = "<span style=\"color:#f68cfd;\">".$numR.".".get_localsettingname($conn,$row_dea['cus_id']).$jobOpen."</span>";
+				$scstatus = "<span style=\"color:#f911c5;\">".$numR.".".get_localsettingname($conn,$row_dea['cus_id']).$jobOpen."</span>";
 			}else if($row_dea['sr_ctype'] == '24' || $row_dea['sr_ctype'] == '55' || $row_dea['sr_ctype'] == '89'){
 				$scstatus = "<span style=\"color:red;\">".$numR.".".get_localsettingname($conn,$row_dea['cus_id']).$jobOpen."</span>";
 			}else if($row_dea['sr_ctype'] == '23' || $row_dea['sr_ctype'] == '36' || $row_dea['sr_ctype'] == '45' || $row_dea['sr_ctype'] == '47'){
@@ -1950,7 +1950,7 @@ function get_servreport_fix($conn,$ymd,$loc,$ctype) {
 	$res = "";
 	if($numsrv > 0){
 		$numR = 1;
-		//blue , #f68cfd, red, green
+		//blue , #f911c5, red, green
 		while($row_dea = @mysqli_fetch_array($qqu_srv)){
 			$chaf = preg_replace("/\//","-",$row_dea["sv_id"]);
 			// if($row_dea['st_setting'] == 0){
@@ -2010,7 +2010,7 @@ function get_servreport_fixclosed($conn,$ymd,$loc,$ctype) {
 	$res = "";
 	if($numsrv > 0){
 		$numR = 1;
-		//blue , #f68cfd, red, green
+		//blue , #f911c5, red, green
 		while($row_dea = @mysqli_fetch_array($qqu_srv)){
 			$chaf = preg_replace("/\//","-",$row_dea["sv_id"]);
 			// if($row_dea['st_setting'] == 0){

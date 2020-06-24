@@ -86,8 +86,8 @@
 	$rowColor = "";
 
 	if($row_serv['sr_ctype'] == '31' || $row_serv['sr_ctype'] == '48'){
-		$rowColor = "#f68cfd";
-		//$scstatus = "<a href=\"../../upload/service_report_open/".$chaf.".pdf\" target=\"_blank\" style=\"text-decoration: none;\"><span style=\"color:#f68cfd;\">".$row_serv['sv_id']."</span></a>";
+		$rowColor = "#f911c5";
+		//$scstatus = "<a href=\"../../upload/service_report_open/".$chaf.".pdf\" target=\"_blank\" style=\"text-decoration: none;\"><span style=\"color:#f911c5;\">".$row_serv['sv_id']."</span></a>";
 	}else if($row_serv['sr_ctype'] == '24' || $row_serv['sr_ctype'] == '55' || $row_serv['sr_ctype'] == '89'){
 		$rowColor = "red";
 		//$scstatus = "<a href=\"../../upload/service_report_open/".$chaf.".pdf\" target=\"_blank\" style=\"text-decoration: none;\"><span style=\"color:red;\">".$row_serv['sv_id']."</span></a>";
