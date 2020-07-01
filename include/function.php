@@ -1741,7 +1741,7 @@ function get_servreport($conn,$ymd,$loc,$ctype) {
 		$condi .= " AND sr_ctype = '".$ctype."'";
 	}
 	
-	$qqu_srv = @mysqli_query($conn,"SELECT * FROM s_service_report WHERE job_balance = '".$ymd."' ".$condi." AND st_setting = 0 LIMIT 4");
+	$qqu_srv = @mysqli_query($conn,"SELECT * FROM s_service_report WHERE job_balance = '".$ymd."' ".$condi." AND st_setting = 0 LIMIT 6");
 	$numsrv = @mysqli_num_rows($qqu_srv);
 	$res = "";
 	if($numsrv > 0){
@@ -1773,7 +1773,7 @@ function get_servreport_closed($conn,$ymd,$loc,$ctype) {
 		$condi .= " AND sr_ctype = '".$ctype."'";
 	}
 	
-	$qqu_srv = @mysqli_query($conn,"SELECT * FROM s_service_report WHERE job_close = '".$ymd."' ".$condi." AND st_setting = 1 LIMIT 4");
+	$qqu_srv = @mysqli_query($conn,"SELECT * FROM s_service_report WHERE job_close = '".$ymd."' ".$condi." AND st_setting = 1 LIMIT 6");
 	$numsrv = @mysqli_num_rows($qqu_srv);
 	$res = "";
 	if($numsrv > 0){
@@ -1817,7 +1817,7 @@ function get_servreport_setup($conn,$ymd,$loc,$ctype) {
 
 	//echo "SELECT * FROM s_service_report WHERE job_balance = '".$ymd."' ".$condi." AND st_setting = 0 LIMIT 4";
 
-	$qqu_srv = @mysqli_query($conn,"SELECT * FROM s_service_report WHERE job_balance = '".$ymd."' ".$condi." AND st_setting = 0 LIMIT 4");
+	$qqu_srv = @mysqli_query($conn,"SELECT * FROM s_service_report WHERE job_balance = '".$ymd."' ".$condi." AND st_setting = 0 LIMIT 6");
 	$numsrv = @mysqli_num_rows($qqu_srv);
 	$res = "";
 	if($numsrv > 0){
@@ -1880,7 +1880,7 @@ function get_servreport_setupclosed($conn,$ymd,$loc,$ctype) {
 		$condi = substr($condi,0,-3).")";
 	}
 	
-	$qqu_srv = @mysqli_query($conn,"SELECT * FROM s_service_report WHERE job_close = '".$ymd."' ".$condi." AND st_setting = 1 LIMIT 4");
+	$qqu_srv = @mysqli_query($conn,"SELECT * FROM s_service_report WHERE job_close = '".$ymd."' ".$condi." AND st_setting = 1 LIMIT 6");
 	$numsrv = @mysqli_num_rows($qqu_srv);
 	$res = "";
 	if($numsrv > 0){
@@ -1945,7 +1945,7 @@ function get_servreport_fix($conn,$ymd,$loc,$ctype) {
 
 	//echo "SELECT * FROM s_service_report WHERE job_balance = '".$ymd."' ".$condi." AND st_setting = 0 LIMIT 4";
 
-	$qqu_srv = @mysqli_query($conn,"SELECT * FROM s_service_report WHERE job_balance = '".$ymd."' ".$condi." AND st_setting = 0 LIMIT 4");
+	$qqu_srv = @mysqli_query($conn,"SELECT * FROM s_service_report WHERE job_balance = '".$ymd."' ".$condi." AND st_setting = 0 LIMIT 6");
 	$numsrv = @mysqli_num_rows($qqu_srv);
 	$res = "";
 	if($numsrv > 0){
@@ -2005,7 +2005,7 @@ function get_servreport_fixclosed($conn,$ymd,$loc,$ctype) {
 		$condi = substr($condi,0,-3).")";
 	}
 	
-	$qqu_srv = @mysqli_query($conn,"SELECT * FROM s_service_report WHERE job_close = '".$ymd."' ".$condi." AND st_setting = 1 LIMIT 4");
+	$qqu_srv = @mysqli_query($conn,"SELECT * FROM s_service_report WHERE job_close = '".$ymd."' ".$condi." AND st_setting = 1 LIMIT 6");
 	$numsrv = @mysqli_num_rows($qqu_srv);
 	$res = "";
 	if($numsrv > 0){

@@ -233,9 +233,14 @@
 
 			<?php if($_REQUEST['sQR'] == 2){?><td>
 				<?php 
-					if($row_fr['cpro1'] != ""){
+					if($row_fr['cpro1'] != "" && $row_fr['pro_sn1'] != ""){
 						?>
 						<img src="../../qrcode_gen/qrcode.php?val=<?php echo $row_fr['pro_sn1'];?>" width="80">
+						<?php 
+					}
+					if($row_fr['cpro2'] != "" && $row_fr['pro_sn2'] != ""){
+						?>
+						<img src="../../qrcode_gen/qrcode.php?val=<?php echo $row_fr['pro_sn2'];?>" width="80">
 						<?php 
 					}
 				?>

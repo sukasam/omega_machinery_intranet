@@ -287,8 +287,8 @@ $form = '
       <td width="50%" style="border:1px solid #000000;font-size:10px;font-family:Verdana, Geneva, sans-serif;padding:5px;"> <strong>โทรศัพท์ : </strong>'.$_POST["cs_tel"].'</td>
     </tr>
     <tr>
-      <td style="border:1px solid #000000;font-size:10px;font-family:Verdana, Geneva, sans-serif;padding:5px;"><strong>วันที่ส่งสินค้า : '.format_date($_POST["cs_ship"]).'</strong></td>
-      <td style="border:1px solid #000000;font-size:10px;font-family:Verdana, Geneva, sans-serif;padding:5px;"><strong>วันที่ติดตั้งเครื่อง : '.format_date($_POST["cs_setting"]).'</strong></td>
+      <td style="border:1px solid #000000;font-size:10px;font-family:Verdana, Geneva, sans-serif;padding:5px;"><strong>วันที่ส่งสินค้า : '.getShipSetupPro($conn,$_POST['fo_id'],1).'</strong></td>
+      <td style="border:1px solid #000000;font-size:10px;font-family:Verdana, Geneva, sans-serif;padding:5px;"><strong>วันที่ติดตั้งเครื่อง : '.getShipSetupPro($conn,$_POST['fo_id'],2).'</strong></td>
     </tr>
     <tr>
       <td style="border:1px solid #000000;font-size:10px;font-family:Verdana, Geneva, sans-serif;padding:5px;"><strong>เงินประกัน : '.number_format($money_garuntree,2).'</strong></td>
