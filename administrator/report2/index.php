@@ -311,11 +311,18 @@ if ($_GET["action"] == "chksum") {
 
                       <br></strong></SPAN></A></LI>
 
+                     
+
               <LI><A class=shortcut-button href="../report2/?mid=16&act=2"><SPAN><IMG alt=icon src="../images/icons/icon-48-category.png"><BR>
 
                     <strong>ใบปิดงาน<br>
 
                       <br></strong></SPAN></A></LI>
+
+                <LI><A class=shortcut-button href="../report2/?mid=16&act=25"><SPAN><IMG alt=icon src="../images/icons/icon-48-category.png"><BR>
+
+<strong>ใบปิดงาน<br>(ส่วนงานติดตั้ง)<br>
+</strong></SPAN></A></LI>
 
               <LI><A class=shortcut-button href="../report2/?mid=16&act=3"><SPAN><IMG alt=icon src="../images/icons/icon-48-category.png"><BR>
 
@@ -470,6 +477,8 @@ if ($_GET["action"] == "chksum") {
               <LI><A class=shortcut-button href="../report2/?mid=16&act=23"><SPAN><IMG alt=icon src="../images/icons/icon-48-category.png"><BR>
                     <strong>ติดตามสถานะงาน (FO/SV/PJ)</strong>
                   </SPAN></A></LI>
+
+                 
 
             </UL>
 
@@ -6404,6 +6413,262 @@ if ($_GET["action"] == "chksum") {
           <?php
 
           }
+
+          if ($_GET['act'] == 25) {
+
+            ?>
+  
+              <DIV class=content-box>
+                <!-- Start Content Box -->
+  
+                <DIV class=content-box-header align="right" style="padding-right:15px;">
+  
+  
+  
+                  <H3 align="left">เลือกตามใบปิดงาน (ส่วนงานติดตั้ง)</H3>
+  
+                  <DIV class=clear>
+  
+  
+  
+                  </DIV>
+                </DIV><!-- End .content-box-header -->
+  
+                <DIV class=content-box-content>
+  
+                  <DIV id=tab1 class="tab-content default-tab">
+                    <!-- This is the target div. id must match the href of this div's tab -->
+  
+                    <form action="report25.php" method="post" name="form1" id="form1" target="_blank" onSubmit="return check2(this)">
+  
+                      <div class="formArea">
+  
+                        <fieldset>
+  
+                          <table width="100%" cellspacing="0" cellpadding="0" border="0">
+  
+                            <tr>
+  
+                              <td>
+                                <table class="formFields" cellspacing="0" width="100%">
+  
+                                  <tr>
+  
+                                    <td nowrap class="name">ประเภทบริการ</td>
+  
+                                    <td><select name="sr_ctype" id="sr_ctype">
+  
+                                        <option value="">กรุณาเลือก</option>
+  
+                                        <?php
+  
+                                        $qu_cusftype = @mysqli_query($conn, "SELECT * FROM s_group_service ORDER BY group_name ASC");
+
+                                        $listC = array(88,105,106,45,47,79,36,23,57,51,89,55,24,87,31,48);
+  
+                                        while ($row_cusftype = @mysqli_fetch_array($qu_cusftype)) {
+
+                                         if(in_array($row_cusftype['group_id'],$listC)){
+  
+                                        ?>
+  
+                                          <option value="<?php echo $row_cusftype['group_id']; ?>" <?php if ($row_cusftype['group_id'] == $sr_ctype) {
+                                                                                                      echo 'selected';
+                                                                                                    } ?>><?php echo $row_cusftype['group_name']; ?></option>
+  
+                                        <?php
+                                         }
+  
+                                        }
+  
+                                        ?>
+  
+                                      </select></td>
+  
+                                  </tr>
+  
+                                  <tr>
+  
+                                    <td width="10%" nowrap class="name">ประเภทลูกค้า</td>
+  
+                                    <td width="90%">
+  
+                                      <select name="ctype" id="ctype" class="inputselect">
+  
+                                        <option value="">กรุณาเลือก</option>
+  
+                                        <?php
+  
+                                        $quccustommer = @mysqli_query($conn, "SELECT * FROM s_group_custommer ORDER BY group_name ASC");
+  
+                                        while ($row_cgcus = @mysqli_fetch_array($quccustommer)) {
+  
+                                          //if (substr($row_cgcus['group_name'], 0, 2) == "SR") {
+  
+                                        ?>
+  
+                                            <option value="<?php echo $row_cgcus['group_id']; ?>" <?php if ($ctype == $row_cgcus['group_id']) {
+                                                                                                    echo 'selected';
+                                                                                                  } ?>><?php echo $row_cgcus['group_name']; ?></option>
+  
+                                        <?php
+  
+                                          //}
+                                        }
+  
+                                        ?>
+  
+                                      </select>
+  
+                                    </td>
+  
+                                  </tr>
+  
+                                  <tr>
+  
+                                    <td>รหัสลูกค้า</td>
+  
+                                    <td><input name="cusid" type="text" id="cusid" value="" style="width:40%;">
+  
+                                      <a href="javascript:void(0);" onClick="windowOpener('400', '500', '', 'search_id.php');"><img src="../images/icon2/mark_f2.png" width="25" height="25" border="0" alt="" style="vertical-align:middle;padding-left:5px;"></a></td>
+  
+                                  </tr>
+  
+                                  <tr>
+  
+                                    <td nowrap class="name">ชื่อลูกค้า</td>
+  
+                                    <td><input name="cd_name" type="text" id="cd_name" value="" style="width:40%;">
+  
+                                      <a href="javascript:void(0);" onClick="windowOpener('400', '500', '', 'search.php');"><img src="../images/icon2/mark_f2.png" width="25" height="25" border="0" alt="" style="vertical-align:middle;padding-left:5px;"></a></td>
+  
+                                  </tr>
+  
+                                  <tr>
+  
+                                    <td nowrap class="name">&nbsp;</td>
+  
+                                    <td><span class="name">
+  
+                                        <input name="priod" type="radio" value="0" checked>
+  
+                                        กำหนดช่วงเวลา&nbsp;
+  
+                                        <input name="priod" type="radio" value="1">
+  
+                                        ไม่กำหนดช่วงเวลา</span></td>
+  
+                                  </tr>
+  
+                                  <tr>
+  
+                                    <td width="10%" nowrap class="name">เริ่มวันที่</td>
+  
+                                    <td width="90%"><input type="text" name="date_fm" readonly value="<?php echo date("d/m/Y"); ?>" class="inpfoder" />
+                                      <script language="JavaScript">
+                                        new tcal({
+                                          'formname': 'form1',
+                                          'controlname': 'date_fm'
+                                        });
+                                      </script>
+                                    </td>
+  
+                                  </tr>
+  
+                                  <tr>
+  
+                                    <td width="10%" nowrap class="name">ถึงวันที่</td>
+  
+                                    <td width="90%"><input type="text" name="date_to" readonly value="<?php echo date("d/m/Y"); ?>" class="inpfoder" />
+                                      <script language="JavaScript">
+                                        new tcal({
+                                          'formname': 'form1',
+                                          'controlname': 'date_to'
+                                        });
+                                      </script>
+                                    </td>
+  
+                                  </tr>
+  
+                                  <tr>
+  
+                                    <td nowrap class="name">รายการแสดง</td>
+  
+                                    <td><input name="sh1" type="checkbox" id="sh19" value="1" checked>
+  
+                                      ชื่อลูกค้า / บริษัท + เบอร์โทร
+  
+                                      <input name="sh2" type="checkbox" id="sh20" value="1" checked>
+  
+                                      ชื่อร้าน / สถานที่ติดตั้ง
+  
+                                      <input name="sh3" type="checkbox" id="sh21" value="1" checked>
+  
+                                      ประเภทลูกค้า
+  
+                                      <input name="sh4" type="checkbox" id="sh22" value="1" checked>
+  
+                                      โอที / เบี้ยเลี้ยง
+                                      <br>
+  
+                                      <input name="sh5" type="checkbox" id="sh23" value="1" checked>
+  
+                                      เลขที่ใบบริการ
+  
+                                      <input name="sh6" type="checkbox" id="sh24" value="1" checked>
+  
+                                      วันที่เปิด / วันที่ปิด
+  
+                                      <input name="sh7" type="checkbox" id="sh25" value="1" checked>
+  
+                                      รุ่นเครื่อง
+  
+                                      <input name="sh8" type="checkbox" id="sh10" value="1" checked>
+  
+                                      S/N
+  
+                                      <input name="sh9" type="checkbox" id="sh26" value="1" checked>
+  
+                                      รายละเอียดการบริการ
+  
+                                      <input name="sh10" type="checkbox" id="sh27" value="1" checked>
+  
+                                      ชื่อช่าง</td>
+  
+                                  </tr>
+  
+                                </table>
+                              </td>
+  
+                            </tr>
+  
+                          </table>
+  
+                        </fieldset>
+  
+                      </div><br>
+  
+                      <div class="formArea">
+  
+                        <input type="submit" name="Submit" value="Submit" class="button">
+  
+                      </div>
+  
+                    </form>
+  
+                  </DIV><!-- End #tab1 -->
+  
+  
+  
+  
+  
+                </DIV><!-- End .content-box-content -->
+  
+              </DIV>
+  
+            <?php
+  
+            }
 
           ?>
 

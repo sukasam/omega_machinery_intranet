@@ -45,7 +45,7 @@
 		$condition .= " AND fr.loc_name LIKE '%".$cd_name."%'";
 	}
 	
-	//$condition .= " AND `st_setting` = '1' "; 
+	$condition .= " AND sv.sv_id LIKE 'IT%'"; 
 	
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -75,7 +75,7 @@
 	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="tbreport">
 	  <tr>
 	    <th colspan="4" style="text-align:left;font-size:12px;">บริษัท โอเมก้า แมชชีนเนอรี่ (1999) จำกัด<br />
-รายงานการปิดใบงานลูกค้า<br />
+รายงานการปิดใบงานลูกค้า (ส่วนงานติดตั้ง) โอที/เบี้ยเลี้ยง<br />
 ประเภทลูกค้า  :
 <?php  if($_POST['ctype'] != ""){echo getcustom_type($conn,$_POST['ctype']);}else{echo "ทั้งหมด";}?>
 <br />
@@ -87,16 +87,18 @@
         <?php  if($_REQUEST['sh1'] == 1){?><th width="12%">ชื่อลูกค้า / บริษัท</th><?php  }?>
         <?php  if($_REQUEST['sh2'] == 1){?><th width="12%">ชื่อร้าน / สถานที่ติดตั้ง</th><?php  }?>
         <?php  if($_REQUEST['sh3'] == 1){?><th width="9%">ประเภทลูกค้า</th><?php  }?>
-        <?php  if($_REQUEST['sh4'] == 1){?><th width="9%">ประเภทงานบริการ</th><?php  }?>
-        <?php  if($_REQUEST['sh5'] == 1){?><th width="9%">เลขที่ใบบริการ</th><?php  }?>
-        <?php  if($_REQUEST['sh6'] == 1){?><th width="7%">วันที่เปิด / วันที่ปิด / เวลา</th><?php  }?>
-        <?php  if($_REQUEST['sh7'] == 1 || $_REQUEST['sh8'] == 1){?><th width="14%"><table width="100%" border="0" cellpadding="0" cellspacing="0" class="tbreport">
+		<?php  if($_REQUEST['sh7'] == 1 || $_REQUEST['sh8'] == 1){?><th width="14%"><table width="100%" border="0" cellpadding="0" cellspacing="0" class="tbreport">
           <tr>
             <?php  if($_REQUEST['sh7'] == 1){?><th style="border:0;" width="50%">รุ่นเครื่อง</th><?php  }?>
             <?php  if($_REQUEST['sh8'] == 1){?><th style="border:0;" width="50%">SN</th><?php  }?>
           </tr>
         </table></th><?php  }?>
-        <?php  if($_REQUEST['sh1'] == 1){?><th width="22%">รายละเอียดการให้บริการ</th><?php  }?>
+        <?php  /*if($_REQUEST['sh4'] == 1){?><th width="9%">ประเภทงานบริการ</th><?php  }*/?>
+        <?php  if($_REQUEST['sh5'] == 1){?><th width="9%">เลขที่ใบบริการ</th><?php  }?>
+        <?php  if($_REQUEST['sh6'] == 1){?><th width="7%">วันที่เปิด / วันที่ปิด / เวลา</th><?php  }?>
+        
+        <?php  if($_REQUEST['sh9'] == 1){?><th width="22%">รายละเอียดการให้บริการ</th><?php  }?>
+		<?php  if($_REQUEST['sh4'] == 1){?><th width="22%">โอที/เบี้ยเลี้ยง</th><?php  }?>
         <?php  if($_REQUEST['sh10'] == 1){?><th width="6%">ชื่อช่าง</th><?php  }?>
       </tr>
       <?php  
@@ -110,10 +112,7 @@
               <?php  echo $row_fr['cd_tel'];?></td><?php  }?>
               <?php  if($_REQUEST['sh2'] == 1){?><td><?php  echo $row_fr['loc_name']."<br />".$row_fr['loc_address'];?></td><?php  }?>
               <?php  if($_REQUEST['sh3'] == 1){?><td><?php  echo getcustom_type($conn,$row_fr['sr_ctype2']);?></td><?php  }?>
-              <?php  if($_REQUEST['sh4'] == 1){?><td><?php  echo get_servicename($conn,$row_fr['sr_ctype']);?></td><?php  }?>
-              <?php  if($_REQUEST['sh5'] == 1){?><td><?php  echo $row_fr['sv_id'];?></td><?php  }?>
-              <?php  if($_REQUEST['sh6'] == 1){?><td><?php  echo format_date($row_fr['job_open']);?> / <?php  echo format_date($row_fr['job_close'])." / ".$row_fr['job_closetime'];?></td><?php  }?>
-              <?php  if($_REQUEST['sh7'] == 1 || $_REQUEST['sh8'] == 1){?><td><table width="99%" border="0" cellpadding="0" cellspacing="0" class="tbreport" style="margin-bottom:5px;">
+			  <?php  if($_REQUEST['sh7'] == 1 || $_REQUEST['sh8'] == 1){?><td><table width="99%" border="0" cellpadding="0" cellspacing="0" class="tbreport" style="margin-bottom:5px;">
                 <?php  
 					if($row_fr['pro_pod1'] != ""){
 						?>
@@ -185,8 +184,19 @@
 					}
 				?>
               </table></td><?php  }?>
+              <?php  /*if($_REQUEST['sh1'] == 1){?><td><?php  echo get_servicename($conn,$row_fr['sr_ctype']);?></td><?php  }*/?>
+              <?php  if($_REQUEST['sh1'] == 1){?><td><?php  echo $row_fr['sv_id'];?></td><?php  }?>
+              <?php  if($_REQUEST['sh1'] == 1){?><td><?php  echo format_date($row_fr['job_open']);?> / <?php  echo format_date($row_fr['job_close'])." / ".$row_fr['job_closetime'];?></td><?php  }?>
               <?php  if($_REQUEST['sh9'] == 1){?><td><?php  echo $row_fr['detail_recom2'];?></td><?php  }?>
-              <?php  if($_REQUEST['sh10'] == 1){?><td><?php  echo get_technician_name($conn,$row_fr['loc_contact']);?></td><?php  }?>
+			  <?php  if($_REQUEST['sh4'] == 1){?><td><?php  if($row_fr['ot_time'] != ""){echo 'โอที '.$row_fr['ot_time']." น.";}else{echo '-';} if($row_fr['ot_dateto'] != "" && $row_fr['ot_datefm'] != ""){echo "<br>เบี้ยงเลี้ยง : วันที่ ".format_date_th($row_fr['ot_dateto'],7)." ถึง วันที่ ".format_date_th($row_fr['ot_datefm'],7)."<br>รวม ".diffDate($row_fr['ot_dateto'], $row_fr['ot_datefm'])." วัน";}?></td><?php  }?>
+              <?php  if($_REQUEST['sh10'] == 1){?><td>
+				  <?php  
+				  $numTec = 1;
+				  if($row_fr['tec_service1'] != ""){echo $numTec.".".get_technician_name($conn,$row_fr['tec_service1'])."<br>";$numTec++;}
+				  if($row_fr['tec_service2'] != ""){echo $numTec++.".".get_technician_name($conn,$row_fr['tec_service2'])."<br>";$numTec++;}
+				  if($row_fr['tec_service3'] != ""){echo $numTec++.".".get_technician_name($conn,$row_fr['tec_service3'])."<br>";$numTec++;}
+				  ?>
+			</td><?php  }?>
             </tr>
 			<?php 
 			$sum += 1;

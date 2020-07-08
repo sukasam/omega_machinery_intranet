@@ -36,6 +36,8 @@ if($_POST["warter04"] != ""){$warter04 = number_format($_POST["warter04"]);}else
 if($_POST["warter05"] != ""){$warter05 = number_format($_POST["warter05"]);}else{$warter05 = " - ";}
 if($_POST["warter06"] != ""){$warter06 = number_format($_POST["warter06"]);}else{$warter06 = " - ";}
 if($_POST["warter07"] != ""){$warter07 = number_format($_POST["warter07"]);}else{$warter07 = " - ";}
+if($_POST["warter08"] != ""){$warter08 = number_format($_POST["warter08"]);}else{$warter08 = " - ";}
+if($_POST["warter09"] != ""){$warter09 = number_format($_POST["warter09"]);}else{$warter09 = " - ";}
 
 if($_POST["feeder"] == 1){$feeder = "เครื่องป้อนเกาหลี (".$_POST["feeder_type"].")";}
 else if($_POST["feeder"] == 2){$feeder = "เครื่องป้อน DC906 (".$_POST["feeder_type2"].")";}
@@ -107,20 +109,24 @@ $form = '
             <td style="vertical-align:top;font-size:10px;padding:5px;width:30%">
             	<table width="100%" border="0" cellspacing="0" cellpadding="0" style="border:none;font-size:10px;font-family:Verdana, Geneva, sans-serif;">
                 <tr>
-                  <td width="50%"><strong>OMG C :</strong> '.$warter01.'</td>
-                  <td width="50%"><strong>Wash Glass :</strong> '.$warter04.'</td>
+                  <td width="50%" style="white-space: nowrap;"><strong>OMG C :</strong> '.$warter01.'</td>
+                  <td width="50%" style="white-space: nowrap;"><strong>Wash Glass :</strong> '.$warter04.'</td>
                 </tr>
                 <tr>
-                  <td ><strong>OMG R :</strong> '.$warter02.'</td>
-                  <td><strong>Rinse Glass :</strong> '.$warter05.'</td>
+                  <td style="white-space: nowrap;"><strong>OMG R :</strong> '.$warter02.'</td>
+                  <td style="white-space: nowrap;"><strong>Rinse Glass :</strong> '.$warter05.'</td>
                 </tr>
                 <tr>
-                  <td><strong>OMG A :</strong> '.$warter03.'</td>
-                  <td><strong>Omega Wash :</strong> '.$warter06.'</td>
+                  <td style="white-space: nowrap;"><strong>OMG A :</strong> '.$warter03.'</td>
+                  <td style="white-space: nowrap;"><strong>Omega Sulution EX :</strong> '.$warter08.'</td>
                 </tr>
                 <tr>
-                  <td>&nbsp;</td>
-                  <td><strong>Omega Dry :</strong> '.$warter07.'</td>
+                  <td style="white-space: nowrap;"><strong>Omega Wash :</strong> '.$warter06.'&nbsp;&nbsp;&nbsp;</td>
+                  <td style="white-space: nowrap;"><strong>Omega Sulution EX Dry :</strong> '.$warter09.'</td>
+                </tr>
+                <tr>
+                  <td style="white-space: nowrap;"><strong>Omega Dry :</strong> '.$warter07.'&nbsp;&nbsp;&nbsp;</td>
+                  <td style="white-space: nowrap;"></td>
                 </tr>
             </table>
             </td>

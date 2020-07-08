@@ -692,6 +692,20 @@ Vat 7%</strong></td>
               <input type="text" name="warter07" value="<?php  echo $warter07;?>" id="warter07" class="inpfoder"></td>
 
     </tr>
+    <tr>
+
+            <td style="font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;"><strong>Omega Sulution EX :</strong>
+
+              <input type="text" name="warter08" value="<?php  echo $warter08;?>" id="warter08" class="inpfoder"></td>
+
+    </tr>
+    <tr>
+
+            <td style="font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;"><strong>Omega Sulution EX Dry :</strong>
+
+              <input type="text" name="warter09" value="<?php  echo $warter09;?>" id="warter09" class="inpfoder"></td>
+
+    </tr>
 
 </table>
 

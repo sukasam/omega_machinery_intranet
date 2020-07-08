@@ -90,9 +90,30 @@ if ($_POST["mode"] <> "") {
 		$id = $_REQUEST[$PK_field];
 
 		if ($_REQUEST['taget'] == "service") {
-			@mysqli_query($conn, "UPDATE `s_service_report` SET `latitude` = '" . $_SESSION["LATITUDE"] . "', `longitude` = '" . $_SESSION["LONGITUDE"] . "', `st_setting` = 1, `approve` = 1, `ot_time` = '".date("H:i")."' WHERE `sr_id` = " . $id . ";");
 
-			@mysqli_query($conn, "UPDATE `s_first_order` SET `latitude` = '" . $_SESSION["LATITUDE"] . "', `longitude` = '" . $_SESSION["LONGITUDE"] . "' WHERE `fo_id` = " . $_POST['cus_id'] . ";");
+			$chkHCustomerAP = checkHCustomerApplove($conn, $id);
+
+			if ($chkHCustomerAP !== '' && $chkHCustomerAP != NULL) {
+
+				$dateCsign = substr(checkHCustomerDate($conn,$id),11);
+				$current_time = $dateCsign;
+				$from_time = "19:00:00";
+				$to_time = "08:00:00";
+				
+				if (TimeIsBetweenTwoTimes($current_time, $from_time, $to_time)):
+					//echo 'OT Time';
+					$conOT = ", `ot_time` = '".substr(checkHCustomerDate($conn,$id),11,5)."'";
+				else:
+					//echo 'Working Time'; ช่วงเวลางาน
+					$conOT = "";
+				endif;
+
+
+				@mysqli_query($conn, "UPDATE `s_service_report` SET `latitude` = '" . $_SESSION["LATITUDE"] . "', `longitude` = '" . $_SESSION["LONGITUDE"] . "', `st_setting` = 1, `approve` = 1 ".$conOT." WHERE `sr_id` = " . $id . ";");
+
+				@mysqli_query($conn, "UPDATE `s_first_order` SET `latitude` = '" . $_SESSION["LATITUDE"] . "', `longitude` = '" . $_SESSION["LONGITUDE"] . "' WHERE `fo_id` = " . $_POST['cus_id'] . ";");
+
+			}
 		}
 
 		$checkSImg = '';
@@ -634,14 +655,14 @@ $v = date("YmdHis");
 												<?php
 												}
 												?>
-												<strong>เบี้ยเลี้ยง วันที่ :</strong> <input type="text" name="ot_dateto" id="ot_dateto" readonly value="<?php echo $ot_dateto; ?>" class="inpfoder" style="width: 70px;" />
+												<strong>เบี้ยเลี้ยง วันที่ :</strong> <input type="text" name="ot_dateto" id="ot_dateto" value="<?php echo $ot_dateto; ?>" class="inpfoder" style="width: 70px;" />
 												<script language="JavaScript">
 													new tcal({
 														'formname': 'form1',
 														'controlname': 'ot_dateto'
 													});
 												</script>
-												<strong> ถึง วันที่ :</strong> <input type="text" name="ot_datefm" id="ot_datefm" readonly value="<?php echo $ot_datefm; ?>" class="inpfoder" style="width: 70px;" />
+												<strong> ถึง วันที่ :</strong> <input type="text" name="ot_datefm" id="ot_datefm" value="<?php echo $ot_datefm; ?>" class="inpfoder" style="width: 70px;" />
 												<script language="JavaScript">
 													new tcal({
 														'formname': 'form1',
@@ -1060,6 +1081,8 @@ $v = date("YmdHis");
 															<?php
 
 															$chkHCustomerAP = checkHCustomerApplove($conn, $sr_id);
+
+															//echo "sss".$chkHCustomerAP;
 
 															$hCustomerSignature = '';
 
