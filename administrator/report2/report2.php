@@ -100,7 +100,7 @@
         <?php  if($_REQUEST['sh10'] == 1){?><th width="6%">ชื่อช่าง</th><?php  }?>
       </tr>
       <?php  
-		$sql = "SELECT * FROM s_first_order as fr, s_service_report as sv WHERE sv.cus_id = fr.fo_id ".$condition." AND sv.st_setting = 1 ".$daterriod." ORDER BY sv.job_close ASC";
+		$sql = "SELECT * FROM s_first_order as fr, s_service_report as sv WHERE sv.cus_id = fr.fo_id ".$condition." AND sv.st_setting = 1 ".$daterriod." ORDER BY sv.job_close DESC";
 	  	$qu_fr = @mysqli_query($conn,$sql);
 		$sum = 0;
 		while($row_fr = @mysqli_fetch_array($qu_fr)){
@@ -112,7 +112,7 @@
               <?php  if($_REQUEST['sh3'] == 1){?><td><?php  echo getcustom_type($conn,$row_fr['sr_ctype2']);?></td><?php  }?>
               <?php  if($_REQUEST['sh4'] == 1){?><td><?php  echo get_servicename($conn,$row_fr['sr_ctype']);?></td><?php  }?>
               <?php  if($_REQUEST['sh5'] == 1){?><td><?php  echo $row_fr['sv_id'];?></td><?php  }?>
-              <?php  if($_REQUEST['sh6'] == 1){?><td><?php  echo format_date($row_fr['job_open']);?> / <?php  echo format_date($row_fr['job_close'])." / ".$row_fr['job_closetime'];?></td><?php  }?>
+              <?php  if($_REQUEST['sh6'] == 1){?><td><?php  echo format_date($row_fr['job_open'])."<br>";?> <?php  echo format_date($row_fr['job_close'])."<br>".$row_fr['job_closetime'];?></td><?php  }?>
               <?php  if($_REQUEST['sh7'] == 1 || $_REQUEST['sh8'] == 1){?><td><table width="99%" border="0" cellpadding="0" cellspacing="0" class="tbreport" style="margin-bottom:5px;">
                 <?php  
 					if($row_fr['pro_pod1'] != ""){

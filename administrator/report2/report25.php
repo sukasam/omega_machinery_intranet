@@ -98,11 +98,11 @@
         <?php  if($_REQUEST['sh6'] == 1){?><th width="7%">วันที่เปิด / วันที่ปิด / เวลา</th><?php  }?>
         
         <?php  if($_REQUEST['sh9'] == 1){?><th width="22%">รายละเอียดการให้บริการ</th><?php  }?>
-		<?php  if($_REQUEST['sh4'] == 1){?><th width="22%">โอที/เบี้ยเลี้ยง</th><?php  }?>
+		<?php  if($_REQUEST['sh4'] == 1){?><th width="22%">เบี้ยเลี้ยง/โอที</th><?php  }?>
         <?php  if($_REQUEST['sh10'] == 1){?><th width="6%">ชื่อช่าง</th><?php  }?>
       </tr>
       <?php  
-		$sql = "SELECT * FROM s_first_order as fr, s_service_report as sv WHERE sv.cus_id = fr.fo_id ".$condition." AND sv.st_setting = 1 ".$daterriod." ORDER BY sv.job_close ASC";
+		$sql = "SELECT * FROM s_first_order as fr, s_service_report as sv WHERE sv.cus_id = fr.fo_id ".$condition." AND sv.st_setting = 1 ".$daterriod." ORDER BY sv.job_close DESC";
 	  	$qu_fr = @mysqli_query($conn,$sql);
 		$sum = 0;
 		while($row_fr = @mysqli_fetch_array($qu_fr)){
@@ -186,10 +186,16 @@
               </table></td><?php  }?>
               <?php  /*if($_REQUEST['sh1'] == 1){?><td><?php  echo get_servicename($conn,$row_fr['sr_ctype']);?></td><?php  }*/?>
               <?php  if($_REQUEST['sh1'] == 1){?><td><?php  echo $row_fr['sv_id'];?></td><?php  }?>
-              <?php  if($_REQUEST['sh1'] == 1){?><td><?php  echo format_date($row_fr['job_open']);?> / <?php  echo format_date($row_fr['job_close'])." / ".$row_fr['job_closetime'];?></td><?php  }?>
+			  <?php  if($_REQUEST['sh6'] == 1){?><td style="white-space: nowrap;">
+			  <?php  echo format_date($row_fr['job_open']);?> <br> <?php  echo format_date($row_fr['job_close'])." <br> ";
+			  $closeTime = substr(checkHCustomerDate($conn,$row_fr['sr_id']),11,5);
+			  if(!empty($closeTime)){
+				echo $closeTime." น.";
+			  }
+			  ?></td><?php  }?>
               <?php  if($_REQUEST['sh9'] == 1){?><td><?php  echo $row_fr['detail_recom2'];?></td><?php  }?>
-			  <?php  if($_REQUEST['sh4'] == 1){?><td><?php  if($row_fr['ot_time'] != ""){echo 'โอที '.$row_fr['ot_time']." น.";}else{echo '-';} if($row_fr['ot_dateto'] != "" && $row_fr['ot_datefm'] != ""){echo "<br>เบี้ยงเลี้ยง : วันที่ ".format_date_th($row_fr['ot_dateto'],7)." ถึง วันที่ ".format_date_th($row_fr['ot_datefm'],7)."<br>รวม ".diffDate($row_fr['ot_dateto'], $row_fr['ot_datefm'])." วัน";}?></td><?php  }?>
-              <?php  if($_REQUEST['sh10'] == 1){?><td>
+			  <?php  if($_REQUEST['sh4'] == 1){?><td style="white-space: nowrap;"><?php  if($row_fr['ot_dateto'] != "" && $row_fr['ot_datefm'] != ""){echo "เบี้ยงเลี้ยง : <br>วันที่ ".format_date_th($row_fr['ot_dateto'],7)." ถึง วันที่ ".format_date_th($row_fr['ot_datefm'],7)."<br>รวม ".diffDate($row_fr['ot_dateto'], $row_fr['ot_datefm'])." วัน<br>";} if($row_fr['ot_time'] != ""){echo 'โอที '.$row_fr['ot_time']." น.";}else{echo '';}?></td><?php  }?>
+              <?php  if($_REQUEST['sh10'] == 1){?><td style="white-space: nowrap;">
 				  <?php  
 				  $numTec = 1;
 				  if($row_fr['tec_service1'] != ""){echo $numTec.".".get_technician_name($conn,$row_fr['tec_service1'])."<br>";$numTec++;}

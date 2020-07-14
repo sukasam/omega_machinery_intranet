@@ -65,7 +65,7 @@ function check_select(frm){
 
 <link href="cal.css" rel="stylesheet" type="text/css">
 <script language="JavaScript" type="text/JavaScript">
-<!--
+
 function MM_jumpMenu(targ,selObj,restore){ //v3.0
   eval(targ+".location='"+selObj.options[selObj.selectedIndex].value+"'");
   if (restore) selObj.selectedIndex=0;
@@ -73,7 +73,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 function MM_openBrWindow(theURL,winName,features) { //v2.0
   window.open(theURL,winName,features);
 }
-//-->
+
 </script>
 </HEAD>
 <?php  include ("../../include/function_script.php"); ?>
