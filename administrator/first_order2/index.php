@@ -201,7 +201,7 @@ function check_select(frm){
             if($rec["status_use"] != 2){
               $GMApprove = 'color: #0018ff;';
             }else{
-              $GMApprove = 'color: ##f00;';
+              $GMApprove = 'color: #f00;';
             }
           }else{
             $GMApprove = '';
