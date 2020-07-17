@@ -194,15 +194,27 @@ function check_select(frm){
 					$counter = ($_GET["page"]-1)*$pagesize;
 					
 					while ($rec = @mysqli_fetch_array ($query)) { 
-					$counter++;
+          $counter++;
+          
+          $GMApprove = '';
+          if($rec['approve2'] == '1' || $rec['approve2'] == 1){
+            if($rec["status_use"] != 2){
+              $GMApprove = 'color: #0018ff;';
+            }else{
+              $GMApprove = 'color: ##f00;';
+            }
+          }else{
+            $GMApprove = '';
+          }
+
 				   ?>
         <TR>
           <TD style="vertical-align:middle"><INPUT type=checkbox name="del[]" value="<?php  echo $rec[$PK_field]; ?>" ></TD>
-          <TD style="vertical-align:middle"><span class="text"><?php  echo sprintf("%04d",$counter); ?></span></TD>
-          <TD style="vertical-align:middle"><?php  $chaf = preg_replace("/\//","-",$rec["fs_id"]); ?><span class="text"><a href="../../upload/first_order/<?php  echo $chaf;?>.pdf" target="_blank"><?php  echo $rec["fs_id"] ; ?></a></span></TD>
-          <TD>
-          <span class="text"><?php  echo $rec["cd_name"] ; ?></span><br>
-          <?php  echo "<strong>สถานที่ติดตั้ง:</strong>".$rec["loc_name"] ; ?></span>
+          <TD style="vertical-align:middle"><span class="text" style="<?php echo $GMApprove;?>"><?php  echo sprintf("%04d",$counter); ?></span></TD>
+          <TD style="vertical-align:middle"><?php  $chaf = preg_replace("/\//","-",$rec["fs_id"]); ?><span class="text"><a href="../../upload/first_order/<?php  echo $chaf;?>.pdf" target="_blank" style="<?php echo $GMApprove;?>"><?php  echo $rec["fs_id"] ; ?></a></span></TD>
+          <TD style="<?php echo $GMApprove;?>">
+          <span class="text" style="<?php echo $GMApprove;?>"><?php  echo $rec["cd_name"] ; ?></span><br>
+          <?php  echo "<strong style=\"".$GMApprove."\">สถานที่ติดตั้ง:</strong>".$rec["loc_name"] ; ?></span>
           </TD>
           <!-- <TD><span class="text"><?php  echo "<strong>สถานที่ติดตั้ง:</strong>".$rec["loc_name"] ; ?></span></TD> -->
           <TD nowrap style="vertical-align:middle"><div align="center">
