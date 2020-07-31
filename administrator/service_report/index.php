@@ -199,7 +199,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
           <TH width="8%"><div align="center"><a>การยืนยัน</a></div></TH>
           <TH width="8%"><div align="center"><a>จ่ายอะไหล่</a></div></TH>
           <TH width="8%"><div align="center"><a>Open / Close</a></div></TH>
-          <TH width="8%" style="white-space: nowrap;"><div align="center"><!--<img src="../icons/favorites_stranby.png" width="15" height="15"> เปิดใบงาน <br>--><img src="../icons/favorites_use.png" width="15" height="15"> ปิด/ไม่เข้าบริการ <br><img src="../icons/favorites_close.png" width="15" height="15"> ปิด/เข้าบริการ</div></TH>
+          <TH width="8%" style="white-space: nowrap;"><div align="center"><img src="../icons/favorites_stranby.png" width="15" height="15"> เปิดใบงาน <br><img src="../icons/favorites_use.png" width="15" height="15"> ปิด/ไม่เข้าบริการ <br><img src="../icons/favorites_close.png" width="15" height="15"> ปิด/เข้าบริการ</div></TH>
           <TH width="9%"><div align="center"><a>แก้ไข (Open)</a></div></TH>
           <TH width="10%"><div align="center"><a>แก้ไข (Close)</a></div></TH>
           <TH width="5%"><div align="center"><a>Map</a></div></TH>
