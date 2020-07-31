@@ -1167,6 +1167,7 @@ $v = date("YmdHis");
 								<input name="detail_recom" type="hidden" id="detail_recom" value="<?php echo strip_tags($detail_recom); ?>">
 								<input name="supply" type="hidden" id="supply" value="<?php echo $supply; ?>">
 								<input name="st_setting" type="hidden" id="st_setting" value="<?php echo $st_setting; ?>">
+								<input name="st_status" type="hidden" id="st_status" value="<?php echo $st_status; ?>">
 								<input name="approve" type="hidden" id="approve" value="<?php echo $approve; ?>">
 								<input name="taget" type="hidden" id="taget" value="<?php echo $_GET['taget']; ?>">
 								<input name="<?php echo $PK_field; ?>" type="hidden" id="<?php echo $PK_field; ?>" value="<?php echo $_GET[$PK_field]; ?>">

@@ -14,6 +14,32 @@
 			@mysqli_query($conn,$sql);			
 			header ("location:index.php");
 		} 
+  }
+  
+  //-------------------------------------------------------------------------------------
+  if ($_GET["ff"] != "" && $_GET["gg"] != "") { 
+		if ($_GET["gg"] == 0) $st_status = 0;
+		if ($_GET["gg"] == 1) $st_status = 1;
+		if ($_GET["gg"] == 2) $st_status = 2;
+    $code = Check_Permission($conn,$check_module,$_SESSION["login_id"],"update");
+    if ($code == "1") {
+
+      $sql_status = "update $tbl_name set st_status = '".$st_status."' where $PK_field = '".$_GET["ff"]."'";
+      @mysqli_query($conn,$sql_status);
+
+      if($st_status == 2){
+        $sql_status = "update $tbl_name set st_setting = '1' where $PK_field = '".$_GET["ff"]."'";
+        @mysqli_query($conn,$sql_status);
+      }else{
+        $sql_status = "update $tbl_name set st_setting = '".$st_status."' where $PK_field = '".$_GET["ff"]."'";
+        @mysqli_query($conn,$sql_status);
+      }
+      
+      
+      if($_GET["page"] != ""){$conpage = "page=".$_GET["page"];}
+      header ("location:?".$conpage); 
+    }
+
 	}
 	
 	//-------------------------------------------------------------------------------------
@@ -22,7 +48,11 @@
 		if ($_GET["s"] == 1) $status = 0;
 		Check_Permission($conn,$check_module,$_SESSION["login_id"],"update");
 		$sql_status = "update $tbl_name set st_setting = '$status' where $PK_field = '".$_GET["b"]."'";
-		@mysqli_query($conn,$sql_status);
+    @mysqli_query($conn,$sql_status);
+    
+    $sql_status = "update $tbl_name set st_status = '".$status."' where $PK_field = '".$_GET["b"]."'";
+    @mysqli_query($conn,$sql_status);
+
 		/*$sql_fostatus = "update s_first_order set status = '$status' where fo_id = '$_GET[cus_id]'";
 		@mysqli_query($conn,$sql_fostatus);*/
 		if($_GET["page"] != ""){$conpage = "page=".$_GET["page"];}
@@ -166,10 +196,10 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
             &nbsp;</TH>
           <TH width="9%"><div align="center"><a>Serive ID</a></div></TH>
           <TH width="25%"><a>ชื่อลูกค้า</a></TH>
-          <TH width="24%"><a>สถานที่ติดตั้ง</a></TH>
           <TH width="8%"><div align="center"><a>การยืนยัน</a></div></TH>
           <TH width="8%"><div align="center"><a>จ่ายอะไหล่</a></div></TH>
           <TH width="8%"><div align="center"><a>Open / Close</a></div></TH>
+          <TH width="8%" style="white-space: nowrap;"><div align="center"><!--<img src="../icons/favorites_stranby.png" width="15" height="15"> เปิดใบงาน <br>--><img src="../icons/favorites_use.png" width="15" height="15"> ปิด/ไม่เข้าบริการ <br><img src="../icons/favorites_close.png" width="15" height="15"> ปิด/เข้าบริการ</div></TH>
           <TH width="9%"><div align="center"><a>แก้ไข (Open)</a></div></TH>
           <TH width="10%"><div align="center"><a>แก้ไข (Close)</a></div></TH>
           <TH width="5%"><div align="center"><a>Map</a></div></TH>
@@ -221,8 +251,8 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
           <TD style="vertical-align:middle;"><INPUT type=checkbox name="del[]" value="<?php  echo $rec[$PK_field]; ?>" ></TD>
           <TD style="vertical-align:middle;"><span class="text"><?php  echo sprintf("%04d",$counter); ?></span></TD>
           <TD style="vertical-align:middle;"><?php  $chaf = preg_replace("/\//","-",$rec["sv_id"]); ?><div align="center"><span class="text"><a href="../../upload/service_report_open/<?php  echo $chaf;?>.pdf" target="_blank"><?php  echo $rec["sv_id"] ; ?></a></span></div></TD>
-          <TD style="vertical-align:middle;"><span class="text"><?php  echo get_customername($conn,$rec["cus_id"]); ?></span></TD>
-          <TD style="vertical-align:middle;"><span class="text"><?php  echo get_localsettingname($conn,$rec["cus_id"]); ?></span></TD>
+          <TD style="vertical-align:middle;"><span class="text"><?php  echo get_customername($conn,$rec["cus_id"]); ?><br>
+          <strong>สถานที่ติดตั้ง : </strong><span class="text"><?php  echo get_localsettingname($conn,$rec["cus_id"]); ?></span></span></TD>
           <TD style="vertical-align:middle"><?php  if($rec["approve"] == 1){?>
             <IMG src="../images/icons/yes_approve.png" height="28" title="อนุมัติ">
             <?php  }else if($rec["approve"] == 2){?>
@@ -244,6 +274,36 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
             <a href="../service_report/?b=<?php  echo $rec[$PK_field]; ?>&s=<?php  echo $rec["st_setting"]; ?>&page=<?php  echo $_GET["page"]; ?>&<?php  echo $FK_field; ?>=<?php  echo $_REQUEST["$FK_field"];?>&cus_id=<?php  echo $rec["cus_id"];?>"><img src="../icons/status_off.gif" width="10" height="10"></a>
             <?php  }?>
           </div></TD>
+          <TD style="vertical-align:middle;"><div align="center">
+          <?php if($rec["st_status"] == '1'){
+            ?>
+             <img src="../icons/favorites_close.png" width="15" height="15">
+            <?php
+          }else if($rec["st_status"] == '2'){
+            ?>
+             <img src="../icons/favorites_use.png" width="15" height="15">
+            <?php
+          }else{
+            if($rec["st_setting"] == 1){
+              $sqlS = "update $tbl_name set st_status = '1' where $PK_field = '".$rec[$PK_field]."'";
+              @mysqli_query($conn,$sqlS);
+              ?>
+              <img src="../icons/favorites_close.png" width="15" height="15">
+             <?php
+            }else{
+              ?>
+              <img src="../icons/favorites_stranby.png" width="15" height="15">
+            <?php
+            }
+          }
+          ?>
+          <div align="center" style="padding-top:5px;">
+            <!-- <a href="../service_report/?ff=<?php  echo $rec[$PK_field]; ?>&gg=0&page=<?php  echo $_GET["page"]; ?>&<?php  echo $FK_field; ?>=<?php  echo $_REQUEST["$FK_field"];?>"><img src="../icons/favorites_stranby.png" width="15" height="15"> | </a> -->
+            <a href="../service_report/?ff=<?php  echo $rec[$PK_field]; ?>&gg=2&page=<?php  echo $_GET["page"]; ?>&<?php  echo $FK_field; ?>=<?php  echo $_REQUEST["$FK_field"];?>"><img src="../icons/favorites_use.png" width="15" height="15"> | </a>
+            <a href="../service_report/?ff=<?php  echo $rec[$PK_field]; ?>&gg=1&page=<?php  echo $_GET["page"]; ?>&<?php  echo $FK_field; ?>=<?php  echo $_REQUEST["$FK_field"];?>"><img src="../icons/favorites_close.png" width="15" height="15"></a>
+            </div>
+            </div>
+          </TD>
           <TD style="vertical-align:middle;"><div align="center"><!-- Icons -->
             <A title=Edit href="update.php?mode=update&<?php  echo $PK_field; ?>=<?php  echo $rec["$PK_field"]; if($param <> "") {?>&<?php  echo $param; }?>"><IMG src="../images/icons/paper_content_pencil_48.png" alt=Edit width="25" height="25" title="แก้ไขรายงานแจ้งซ่อม"></A>&nbsp;<a href="../../upload/service_report_open/<?php  echo $chaf;?>.pdf" target="_blank"><img src="../images/icon2/backup.png" alt="" width="25" height="25" style="margin-left:10px;" title="ดาวน์โหลดรายงานช่างซ่ิอม"></a></div></TD>
           <TD style="vertical-align:middle;"><!-- Icons -->
