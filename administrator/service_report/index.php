@@ -187,23 +187,18 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
     <TABLE>
       <THEAD>
         <TR>
-          <TH width="5%"><INPUT class=check-all type=checkbox name="ca" value="true" onClick="chkAll(this.form, 'del[]', this.checked)"></TH>
-          <TH width="5%" <?php  Show_Sort_bg ("user_id", $orderby) ?>> <?php 
-		$a_not_exists = array('orderby','sortby');
-		$param2 = get_param($a_param,$a_not_exists);
-	?>
-            <?php   Show_Sort_new ("user_id", "ลำดับ.", $orderby, $sortby,$page,$param2);?>
-            &nbsp;</TH>
-          <TH width="9%"><div align="center"><a>Serive ID</a></div></TH>
-          <TH width="25%"><a>ชื่อลูกค้า</a></TH>
-          <TH width="8%"><div align="center"><a>การยืนยัน</a></div></TH>
-          <TH width="8%"><div align="center"><a>จ่ายอะไหล่</a></div></TH>
-          <TH width="8%"><div align="center"><a>Open / Close</a></div></TH>
-          <TH width="8%" style="white-space: nowrap;"><div align="center"><img src="../icons/favorites_stranby.png" width="15" height="15"> เปิดใบงาน <br><img src="../icons/favorites_use.png" width="15" height="15"> ปิด/ไม่เข้าบริการ <br><img src="../icons/favorites_close.png" width="15" height="15"> ปิด/เข้าบริการ</div></TH>
-          <TH width="9%"><div align="center"><a>แก้ไข (Open)</a></div></TH>
-          <TH width="10%"><div align="center"><a>แก้ไข (Close)</a></div></TH>
-          <TH width="5%"><div align="center"><a>Map</a></div></TH>
-          <TH width="5%"><div align="center"><a>ลบ</a></div></TH>
+          <!-- <TH width="5%"><INPUT class=check-all type=checkbox name="ca" value="true" onClick="chkAll(this.form, 'del[]', this.checked)"></TH> -->
+          <TH width="5%" style="vertical-align: middle;"><div align="center"><a>ลำดับ</a></div></TH>
+          <TH width="9%" style="vertical-align: middle;"><div align="center"><a>Serive ID</a></div></TH>
+          <TH width="25%" style="vertical-align: middle;"><a>ชื่อลูกค้า</a></TH>
+          <TH width="8%" style="vertical-align: middle;"><div align="center"><a>การยืนยัน</a></div></TH>
+          <TH width="8%" style="vertical-align: middle;"><div align="center"><a>จ่ายอะไหล่</a></div></TH>
+          <TH width="8%" style="vertical-align: middle;"><div align="center"><a>Open / Close</a></div></TH>
+          <TH width="8%" style="white-space: nowrap;vertical-align: middle;"><div align="center"><img src="../icons/favorites_stranby.png" width="15" height="15"> เปิดใบงาน <br><img src="../icons/favorites_use.png" width="15" height="15"> ปิด/ไม่เข้าบริการ <br><img src="../icons/favorites_close.png" width="15" height="15"> ปิด/เข้าบริการ</div></TH>
+          <TH width="9%" style="vertical-align: middle;"><div align="center"><a>แก้ไข (Open)</a></div></TH>
+          <TH width="10%" style="vertical-align: middle;"><div align="center"><a>แก้ไข (Close)</a></div></TH>
+          <TH width="5%" style="vertical-align: middle;"><div align="center"><a>Map</a></div></TH>
+          <TH width="5%" style="vertical-align: middle;"><div align="center"><a>ลบ</a></div></TH>
           </TR>
       </THEAD>
       <TFOOT>
@@ -248,7 +243,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 					$counter++;
 				   ?>
         <TR>
-          <TD style="vertical-align:middle;"><INPUT type=checkbox name="del[]" value="<?php  echo $rec[$PK_field]; ?>" ></TD>
+          <!-- <TD style="vertical-align:middle;"><INPUT type=checkbox name="del[]" value="<?php  echo $rec[$PK_field]; ?>" ></TD> -->
           <TD style="vertical-align:middle;"><span class="text"><?php  echo sprintf("%04d",$counter); ?></span></TD>
           <TD style="vertical-align:middle;"><?php  $chaf = preg_replace("/\//","-",$rec["sv_id"]); ?><div align="center"><span class="text"><a href="../../upload/service_report_open/<?php  echo $chaf;?>.pdf" target="_blank"><?php  echo $rec["sv_id"] ; ?></a></span></div></TD>
           <TD style="vertical-align:middle;"><span class="text"><?php  echo get_customername($conn,$rec["cus_id"]); ?><br>
@@ -326,15 +321,15 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
     </TABLE>
     <br><br>
     <DIV class="bulk-actions align-left">
-            <SELECT name="choose_action" id="choose_action">
+            <!-- <SELECT name="choose_action" id="choose_action">
               <OPTION selected value="">กรุณาเลือก...</OPTION>
               <OPTION value="del">ลบ</OPTION>
-            </SELECT>            
+            </SELECT>             -->
             <?php 
 				$a_not_exists = array();
 				post_param($a_param,$a_not_exists); 
 			?>
-            <input class=button name="Action2" type="submit" id="Action2" value="ตกลง">
+            <!-- <input class=button name="Action2" type="submit" id="Action2" value="ตกลง"> -->
           </DIV> <DIV class=pagination> <?php  include("../include/page_show.php");?> </DIV>
   </form>  
 </DIV><!-- End #tab1 -->

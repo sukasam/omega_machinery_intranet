@@ -16,24 +16,24 @@
 		} 
 	}
 	
-	if($_GET["action"] == "chksum"){
-		$_POST['date_fm'];
-		$_POST['date_to'];
+	// if($_GET["action"] == "chksum"){
+	// 	$_POST['date_fm'];
+	// 	$_POST['date_to'];
 		
-		$a_sdate=explode("/",$_REQUEST['date_fm']);
-		$date_fm=$a_sdate[2]."-".$a_sdate[1]."-".$a_sdate[0];
-		$a_sdate=explode("/",$_REQUEST['date_to']);
-		$date_to=$a_sdate[2]."-".$a_sdate[1]."-".$a_sdate[0];
+	// 	$a_sdate=explode("/",$_REQUEST['date_fm']);
+	// 	$date_fm=$a_sdate[2]."-".$a_sdate[1]."-".$a_sdate[0];
+	// 	$a_sdate=explode("/",$_REQUEST['date_to']);
+	// 	$date_to=$a_sdate[2]."-".$a_sdate[1]."-".$a_sdate[0];
 		
-		if($_POST['priod'] == 0){
-			@header("Location:?mid=16&act=11&res=show&df=".$date_fm."&dt=".$date_to."&poi=".$_POST['priod']."");
-		}else{
-			@header("Location:?mid=16&act=11&res=show&poi=".$_POST['priod']."");
-		}
+	// 	if($_POST['priod'] == 0){
+	// 		@header("Location:?mid=16&act=11&res=show&df=".$date_fm."&dt=".$date_to."&poi=".$_POST['priod']."");
+	// 	}else{
+	// 		@header("Location:?mid=16&act=11&res=show&poi=".$_POST['priod']."");
+	// 	}
 		
 		
-		//
-	}
+	// 	//
+	// }
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <HTML xmlns="http://www.w3.org/1999/xhtml">
@@ -131,15 +131,15 @@ function check9(frm){
       <LI><A class=shortcut-button href="../report/?mid=16&act=8"><SPAN><IMG  alt=icon src="../images/icons/icon-48-category.png"><BR>
       <strong>ช่างติดตั้งเครื่อง</strong></SPAN></A></LI>-->
       <LI><A class=shortcut-button href="../report/?mid=16&act=9"><SPAN><IMG  alt=icon src="../images/icons/icon-48-category.png"><BR>
-      <strong>ตามชื่่อผู้ขาย</strong></SPAN></A></LI>
+      <strong>ตามชื่อผู้ขาย</strong></SPAN></A></LI>
       <LI><A class=shortcut-button href="../report/?mid=16&act=10"><SPAN><IMG  alt=icon src="../images/icons/icon-48-category.png"><BR>
       <strong>ตารางคุมสัญญา</strong></SPAN></A></LI>
-      <LI><A class=shortcut-button href="../report/?mid=16&act=11"><SPAN><IMG  alt=icon src="../images/icons/icon-48-category.png"><BR>
-      <strong>รายงานสรุป</strong></SPAN></A></LI>
       <LI><A class=shortcut-button href="../report/?mid=16&act=12"><SPAN><IMG  alt=icon src="../images/icons/icon-48-category.png"><BR>
       <strong>เงินประกันลูกค้าเช่า</strong></SPAN></A></LI>
       <LI><A class=shortcut-button href="../report/?mid=16&act=14"><SPAN><IMG  alt=icon src="../images/icons/icon-48-category.png"><BR>
       <strong>รายงานใบสั่งงาน/แจ้งงาน</strong></SPAN></A></LI>
+      <LI><A class=shortcut-button href="../report/?mid=16&act=11"><SPAN><IMG  alt=icon src="../images/icons/icon-48-category.png"><BR>
+      <strong>รายงานสรุป</strong></SPAN></A></LI>
   </UL>
   <div class="clear"></div>
 </DIV><!-- End #tab1 -->
@@ -1176,7 +1176,7 @@ function check9(frm){
             </DIV></DIV><!-- End .content-box-header -->
             <DIV class=content-box-content>
             <DIV id=tab1 class="tab-content default-tab"><!-- This is the target div. id must match the href of this div's tab -->
-              <form action="?action=chksum" method="post" name="form1" id="form1">
+              <form action="report15.php" method="post" target="_blank" name="form1" id="form1">
                 <div class="formArea">
                   <fieldset>
                     <table width="100%" cellspacing="0" cellpadding="0" border="0">
@@ -1188,9 +1188,9 @@ function check9(frm){
                                &nbsp;&nbsp; ถึงวันที่ 
                               <input type="text" name="date_to" readonly value="<?php  echo date("d/m/Y");?>" class="inpfoder"/><script language="JavaScript">new tcal ({'formname': 'form1','controlname': 'date_to'});</script></td>
                             <td width="90%"><span class="name">
-                              <input name="priod" type="radio" value="0" <?php  if($_GET['poi']== 0){echo 'checked';}?>>
+                              <input name="priod" type="radio" value="0" checked>
                               กำหนดช่วงเวลา&nbsp;
-                              <input name="priod" type="radio" value="1" <?php  if($_GET['poi'] == 1){echo 'checked';}?>>
+                              <input name="priod" type="radio" value="1">
                               ไม่กำหนดช่วงเวลา </span>&nbsp;&nbsp;<input type="submit" name="Submit" value="Submit" class="button">
                             
                             </td>

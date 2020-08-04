@@ -10,6 +10,7 @@
 	$loc_contact = $_REQUEST['loc_contact'];
 	$openclose = $_REQUEST['openclose'];
 	$sr_ctype = $_REQUEST['sr_ctype'];
+	$wservice = $_REQUEST['wservice'];
 	$ctype = $_REQUEST['ctype'];
 	$cpro = $_REQUEST['cpro'];
 	$a_sdate=explode("/",$_REQUEST['date_fm']);
@@ -57,6 +58,14 @@
 	
 	if($cpro != ""){
 		$condition .= " AND (sv.cpro1 = '".$cpro."' OR sv.cpro2 = '".$cpro."' OR sv.cpro3 = '".$cpro."' OR sv.cpro4 = '".$cpro."' OR sv.cpro5 = '".$cpro."')";
+	}
+
+	checkTotalOpenCloseService($conn,$condition,$daterriod);
+
+	if($wservice == "2"){
+		$condition .= " AND sv.st_status = '1'";
+	}else if($wservice == "3"){
+		$condition .= " AND sv.st_status = '2'";
 	}
 	
 	
@@ -120,7 +129,9 @@
 		<?php  if($_REQUEST['sh11'] == 1){?><th width="10%">โอที / เบี้ยเลี้ยง</th><?php  }?>
         <?php  if($_REQUEST['sh10'] == 1){?><th width="10%" style="white-space: nowrap;">วันที่ให้บริการ</th><?php  }?>
       </tr>
-      <?php  
+	  <?php  
+	  
+
 		$sql = "SELECT * FROM s_first_order as fr, s_service_report as sv WHERE sv.cus_id = fr.fo_id ".$condition." ".$daterriod." ORDER BY fr.cd_name ASC";
 	  	$qu_fr = @mysqli_query($conn,$sql);
 		$sum = 0;

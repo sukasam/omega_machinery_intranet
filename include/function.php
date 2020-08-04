@@ -2915,5 +2915,49 @@ function TimeIsBetweenTwoTimes($from, $till, $input) {
     if ($f > $t) $t->modify('+1 day');
 	return ($f <= $i && $i <= $t) || ($f <= $i->modify('+1 day') && $i <= $t);
 }
+
+function checkTotalOpenCloseService($conn,$condition,$daterriod,$openclose=3){
+	$condition .= " AND sv.st_setting = 1 ";
+	$sql = "SELECT * FROM s_first_order as fr, s_service_report as sv WHERE sv.cus_id = fr.fo_id ".$condition." ".$daterriod." ORDER BY fr.cd_name ASC";
+	$quFO = @mysqli_query($conn,$sql);
+	while($row_fr = @mysqli_fetch_array($quFO)){
+		if($row_fr['st_status'] == '0' || $row_fr['st_status'] == 0){
+			@mysqli_query($conn,"UPDATE `s_service_report` SET `st_status` = '1' WHERE `sr_id` = ".$row_fr['sr_id'].";");
+		}
+	}
+}
+
+function getTotalOpenCloseService($conn,$condition,$daterriod,$openclose,$custype=0,$st_status=0){
+
+	$sums = 0;
+
+	if($openclose == 2){
+		$condition .= ""; 
+	}else if($openclose == 3){
+		$condition .= " AND sv.st_setting = 1 "; 
+	}else if($openclose == 4){
+		$condition .= " AND sv.st_status = 2 ";  
+	}else if($openclose == 5){
+		$condition .= " AND sv.sr_ctype2 = ".$custype." AND sv.st_setting = 1"; 
+	}else if($openclose == 6){
+		$condition .= " AND sr_ctype2 = ".$custype." AND st_setting = 1 AND st_status='".$st_status."'"; 
+		$sql = "SELECT * FROM s_service_report as sv WHERE 1 ".$condition." ".$daterriod;
+		$quFO = @mysqli_query($conn,$sql);
+		while($row_fr = @mysqli_fetch_array($quFO)){
+			$sums += 1;
+		}
+		return $sums;
+	}
+
+	if($openclose != 6){
+		$sql = "SELECT * FROM s_first_order as fr, s_service_report as sv WHERE sv.cus_id = fr.fo_id ".$condition." ".$daterriod." ORDER BY fr.cd_name ASC";
+		$quFO = @mysqli_query($conn,$sql);
+		while($row_fr = @mysqli_fetch_array($quFO)){
+			$sums += 1;
+		}
+		return $sums;
+	}
+	
+}
 ?>
 

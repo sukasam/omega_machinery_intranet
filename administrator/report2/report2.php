@@ -14,6 +14,7 @@
 	$ctype = $_REQUEST['ctype'];
 	$cd_name = $_REQUEST['cd_name'];
 	$cusid = $_REQUEST['cusid'];
+	$wservice = $_REQUEST['wservice'];
 	$a_sdate=explode("/",$_REQUEST['date_fm']);
 	$date_fm=$a_sdate[2]."-".$a_sdate[1]."-".$a_sdate[0];
 	$a_sdate=explode("/",$_REQUEST['date_to']);
@@ -43,6 +44,12 @@
 	
 	if($cd_name != ""){
 		$condition .= " AND fr.loc_name LIKE '%".$cd_name."%'";
+	}
+
+	if($wservice == "2"){
+		$condition .= " AND sv.st_status = '1'";
+	}else if($wservice == "3"){
+		$condition .= " AND sv.st_status = '2'";
 	}
 	
 	//$condition .= " AND `st_setting` = '1' "; 
