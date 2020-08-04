@@ -2893,7 +2893,7 @@ if ($_GET["action"] == "chksum") {
                 <DIV id=tab1 class="tab-content default-tab">
                   <!-- This is the target div. id must match the href of this div's tab -->
 
-                  <form action="?action=chksum" method="post" name="form1" id="form1">
+                  <form action="report27.php?action=chksum" method="post" name="form1" target="_blank" id="form1">
 
                     <div class="formArea">
 
