@@ -3,6 +3,7 @@
 	include ("../../include/connect.php");
 	include ("../../include/function.php");
 	include ("config.php");
+
 	Check_Permission($conn,$check_module,$_SESSION["login_id"],"read");
 	if ($_GET["page"] == ""){$_REQUEST['page'] = 1;	}
 	$param = get_param($a_param,$a_not_exists);
@@ -75,7 +76,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>เลือกตามรายชื่อช่าง ( <?php  if($loc_contact){echo get_technician_name($conn,$loc_contact);}else{echo "ทั้งหมด";}?> )</title>
+<title>เลือกตามรายชื่อช่าง ( <?php  if($loc_contact){echo get_technician_name($conn,$loc_contact);}else{echo "ตามรายชื่อช่างทั้งหมด";}?> )</title>
 <style type="text/css">
  .tbreport{
  	font-size:14px;
@@ -115,7 +116,7 @@ function chkPrint(){
 	  <tr>
 	    <th colspan="3" style="text-align:left;font-size:14px;">บริษัท โอเมก้า แมชชีนเนอรี่ (1999) จำกัด<br />
 รายงานสรุป (แยกตามรายชื่อช่าง) <br>
-<?php  if($loc_contact){echo get_technician_name($conn,$loc_contact);}else{echo "ทั้งหมด";}?> <?php if($openclose == 2 || $openclose == 3){echo "(แยกตามที่".$txtopenclose."ใบงาน)";}else{echo "(แยกตามใบงานทั้งหมด)";}?><br />
+<?php  if($loc_contact){echo get_technician_name($conn,$loc_contact);}else{echo "ตามรายชื่อช่างทั้งหมด";}?> <?php if($openclose == 2 || $openclose == 3){echo "(แยกตามที่".$txtopenclose."ใบงาน)";}else{echo "(แยกตามใบงานทั้งหมด)";}?><br />
 </th>
 	    <th colspan="2" style="text-align:right;font-size:14px;vertical-align:bottom;"><?php  echo $dateshow;?><br />
         <br />
@@ -156,15 +157,15 @@ function chkPrint(){
 	</tr>
 	<tr>
 		<td class="tdLineblack">ปิดใบงาน/เข้าบริการ</td>
+		<td class="tdLineblack"></td>
+		<td class="tdLineblack"></td>
 		<td class="tdLineblack"><center><?php echo number_format($close-$closeNotSV);?></center></td>
-		<td class="tdLineblack"></td>
-		<td class="tdLineblack"></td>
 		<td class="tdLineblack"><center>ใบ</center></td>
 	</tr>
 	<tr>
 		<td class="tdLinegay">ปิดใบงาน/ไม่เข้าบริการ</td>
-		<td class="tdLinegay"><center><?php echo $closeNotSV;?></center></td>
 		<td class="tdLinegay"></td>
+		<td class="tdLinegay"><center><?php echo $closeNotSV;?></center></td>
 		<td class="tdLinegay"></td>
 		<td class="tdLinegay"><center>ใบ</center></td>
 	</tr>

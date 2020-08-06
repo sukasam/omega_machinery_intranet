@@ -102,7 +102,10 @@
 <?php  if($_POST['ctype'] != ""){echo getcustom_type($conn,$_POST['ctype']);}else{echo "ทั้งหมด";}?>
 <br />
 ประเภทบริการ  :
-<?php  if($_POST['sr_ctype']){echo get_servicename($conn,$_POST['sr_ctype']);}else{echo "ทั้งหมด";}?><br /></th>
+<?php  if($_POST['sr_ctype']){echo get_servicename($conn,$_POST['sr_ctype']);}else{echo "ทั้งหมด";}?><br />
+การบริการ  :
+<?php  if($_POST['wservice'] == 2){echo 'เข้าบริการ';}else if($_POST['wservice'] == 3){echo 'ไม่เข้าบริการ';}else{echo "ทั้งหมด";}?><br />
+</th>
 	    <th colspan="5" style="text-align:right;font-size:11px;vertical-align:bottom;"><?php  echo $dateshow;?><br />
         <br />
         <br /></th>

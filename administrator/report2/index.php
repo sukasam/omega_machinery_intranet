@@ -6746,7 +6746,7 @@ if ($_GET["action"] == "chksum") {
     
                                       <td><select name="loc_contact" id="loc_contact">
     
-                                          <!--<option value="">กรุณาเลือก</option>-->
+                                          <option value="">กรุณาเลือก</option>
     
                                           <?php
     
