@@ -2938,7 +2938,7 @@ function getTotalOpenCloseService($conn,$condition,$daterriod,$openclose,$custyp
 	}else if($openclose == 4){
 		$condition .= " AND sv.st_status = 2 ";  
 	}else if($openclose == 5){
-		$condition .= " AND sv.sr_ctype2 = ".$custype." AND sv.st_setting = 1"; 
+		$condition .= " AND sv.sr_ctype2 = ".$custype." AND sv.st_setting = 0"; 
 	}else if($openclose == 6){
 		$condition .= " AND sr_ctype2 = ".$custype." AND st_setting = 1 AND st_status='".$st_status."'"; 
 		$sql = "SELECT * FROM s_service_report as sv WHERE 1 ".$condition." ".$daterriod;
