@@ -11,7 +11,7 @@
 	$openclose = $_REQUEST['openclose'];
 	$sr_ctype = $_REQUEST['sr_ctype'];
 	$wservice = $_REQUEST['wservice'];
-	$ctype = $_REQUEST['ctype'];
+	$ctype2 = $_REQUEST['ctype2'];
 	$cpro = $_REQUEST['cpro'];
 	$a_sdate=explode("/",$_REQUEST['date_fm']);
 	$date_fm=$a_sdate[2]."-".$a_sdate[1]."-".$a_sdate[0];
@@ -52,8 +52,8 @@
 		$condition .= " AND sv.sr_ctype = '".$sr_ctype."'";
 	}
 	
-	if($ctype != ""){
-		$condition .= " AND sv.sr_ctype2 = '".$ctype."'";
+	if($ctype2 != ""){
+		$condition .= " AND sv.sr_ctype2 = '".$ctype2."'";
 	}
 	
 	if($cpro != ""){
@@ -99,7 +99,7 @@
 	    <th colspan="5" style="text-align:left;font-size:12px;">บริษัท โอเมก้า แมชชีนเนอรี่ (1999) จำกัด<br />
 รายงานการให้บริการตามรายชื่อช่าง (<?php  if($loc_contact){echo get_technician_name($conn,$loc_contact);}else{echo "ทั้งหมด";}?>)<br />
 ประเภทลูกค้า  :
-<?php  if($_POST['ctype'] != ""){echo getcustom_type($conn,$_POST['ctype']);}else{echo "ทั้งหมด";}?>
+<?php  if($_POST['ctype2'] != ""){echo getcustom_type($conn,$_POST['ctype2']);}else{echo "ทั้งหมด";}?>
 <br />
 ประเภทบริการ  :
 <?php  if($_POST['sr_ctype']){echo get_servicename($conn,$_POST['sr_ctype']);}else{echo "ทั้งหมด";}?><br />

@@ -208,7 +208,7 @@ function chkPrint(){
 			  ?>
 			  <tr>
 					<td class="<?php echo $classLine;?>"><?php echo $row_typecus['group_name'];?></td>
-					<td class="<?php echo $classLine;?>"><center></center></td>
+					<td class="<?php echo $classLine;?>"><center><?php echo number_format($closeType);?></center></td>
 					<td class="<?php echo $classLine;?>"><center><?php echo number_format($closeTypeNotS)?></center></td>
 					<td class="<?php echo $classLine;?>"><center><?php echo number_format($closeTypeS)?></center></td>
 					<td class="<?php echo $classLine;?>"><center>ใบ</center></td>
@@ -223,13 +223,13 @@ function chkPrint(){
 	  ?>
 	  <tr style="background-color: #ff9012;font-size: 22px;">
 		<td class="tdLineblack">รวมทั้งหมด</td>
-		<td class="tdLineblack"><center></center></td>
+		<td class="tdLineblack"><center><?php echo number_format($sumTotolType);?></center></td>
 		<td class="tdLineblack"><center><?php echo number_format($sumTotolNotS);?></center></td>
 		<td class="tdLineblack"><center><?php echo number_format($sumTotolServ);?></center></td>
 		<td class="tdLineblack"><center>ใบ</center></td>
 	</tr>
 	<tr>
-	  	<th width="40%">แยกตามประเภทลูกค้า (ข้อมูลจากใบงานคงค้างทั้งหมด)</th>
+	  	<th width="40%">แยกตามประเภทลูกค้า (ข้อมูลจากใบงานคงค้าง)</th>
 		<th width="20%" style="white-space: nowrap;"></th>
 		<td></td>
 		<td></td>
@@ -238,39 +238,35 @@ function chkPrint(){
 	  <?php
 		$sqlTypeCus2 = "SELECT * FROM s_group_custommer ORDER BY group_name ASC";
 		$quTypeCus2 = @mysqli_query($conn,$sqlTypeCus2);
-		$runLine2 = 0;
-		$sumTotolType2 = 0; 
-		
+		$sumTotolType2 = 0;
 		while($row_typecus2 = @mysqli_fetch_array($quTypeCus2)){
 
-		$closeType2 = getTotalOpenCloseService($conn,$condition,$daterriod,55,$row_typecus2['group_id']);
+			$openType = getTotalOpenCloseService($conn,$condition,$daterriod,55,$row_typecus2['group_id']);
 
-		if($closeType2 >= 1){
-			$classLine2 = '';
-			if($runLine2 % 2 == 0){
-				$classLine2 = 'tdLinegay';
-			}else{
-				$classLine2 = 'tdLineblack';
+			if($openType >= 1){
+				$classLine = '';
+				if($runLine % 2 == 0){
+					$classLine = 'tdLinegay';
+				}else{
+					$classLine = 'tdLineblack';
+				}
+
+			  ?>
+			  <tr>
+					<td class="<?php echo $classLine;?>"><?php echo $row_typecus2['group_name'];?></td>
+					<td class="<?php echo $classLine;?>"><center><?php echo number_format($openType);?></center></td>
+					<td class="<?php echo $classLine;?>"><center></center></td>
+					<td class="<?php echo $classLine;?>"><center></center></td>
+					<td class="<?php echo $classLine;?>"><center>ใบ</center></td>
+				</tr>
+			  <?php
+			  $sumTotolType2 += $openType; 
 			}
-
-		  ?>
-		  <tr>
-				<td class="<?php echo $classLine2;?>"><?php echo $row_typecus2['group_name'];?></td>
-				<td class="<?php echo $classLine2;?>"><center><?php echo number_format($closeType2);?></center></td>
-				<td class="<?php echo $classLine2;?>"><center></center></td>
-				<td class="<?php echo $classLine2;?>"><center></center></td>
-				<td class="<?php echo $classLine2;?>"><center>ใบ</center></td>
-			</tr>
-		  <?php
-		  $sumTotolType2 += $closeType2; 
-		  $runLine2++;
-		}
-
 		} 
 	  ?>
-	  <tr style="background-color: #1da13b;font-size: 22px;">
+	  <tr style="background-color: #23a524;font-size: 22px;">
 		<td class="tdLineblack">รวมทั้งหมด</td>
-		<td class="tdLineblack"><center><?php echo number_format($sumTotolType2);?></center></td>
+		<td class="tdLineblack"><center><?php echo number_format($sumTotolType);?></center></td>
 		<td class="tdLineblack"><center></center></td>
 		<td class="tdLineblack"><center></center></td>
 		<td class="tdLineblack"><center>ใบ</center></td>
