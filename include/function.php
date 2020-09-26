@@ -278,6 +278,9 @@ function format_date_th ($value,$type) {
 		case "8" :  // 4 ม.ค. 2548 <br /><br />14.11 น. 
 			$msg =  $s_day . " " .  $month_brief_th[$s_month]  . " " .  $s_year . "<br><br>เวลา " . $s_hour . "." . $s_minute . " น." ;
 			break;
+		case "9" :  // 4 ก.พ. 51
+				$msg =  $s_year. "-" .  sprintf("%02d",$s_month)   . "-" .  sprintf("%02d",$s_day)  ;
+			break;
 		}
 	return ($msg);
 
@@ -1733,6 +1736,8 @@ function getShippingStatus($conn,$sv_id){
 
 function get_servreport($conn,$ymd,$loc,$ctype) {
 	
+	$condi = "";
+
 	if($loc != ""){
 		$condi .= " AND loc_contact = '".$loc."'";
 	}
@@ -1744,6 +1749,7 @@ function get_servreport($conn,$ymd,$loc,$ctype) {
 	$qqu_srv = @mysqli_query($conn,"SELECT * FROM s_service_report WHERE job_balance = '".$ymd."' ".$condi." AND st_setting = 0 LIMIT 6");
 	$numsrv = @mysqli_num_rows($qqu_srv);
 	$res = "";
+	$numR = 1;
 	if($numsrv > 0){
 		while($row_dea = @mysqli_fetch_array($qqu_srv)){
 			$chaf = preg_replace("/\//","-",$row_dea["sv_id"]);
@@ -1755,8 +1761,15 @@ function get_servreport($conn,$ymd,$loc,$ctype) {
 			// 	$res .= "&nbsp;<a href=\"../../upload/service_report_close/".$chaf.".pdf\" target=\"_blank\"><strong>".$scstatus."</strong></a>\n<br>\n";
 			// }	
 
-			$scstatus = "<span style=\"color:green;\">".$row_dea['sv_id']."</span>";
-			$res .= "&nbsp;<a href=\"../../upload/service_report_open/".$chaf.".pdf\" target=\"_blank\"><strong>".$scstatus."</strong></a>\n<br>\n";
+			if($loc != ""){
+				$scstatus = "<span style=\"color:green;\">".$numR.".".get_localsettingname($conn,$row_dea['cus_id'])."</span>";
+				$res .= "&nbsp;<a href=\"../../upload/service_report_open/".$chaf.".pdf\" target=\"_blank\"><strong>".$scstatus."</strong></a>\n<br>\n";
+				
+			}else{
+				$scstatus = "<span style=\"color:green;\">".$row_dea['sv_id']."</span>";
+				$res .= "&nbsp;<a href=\"../../upload/service_report_open/".$chaf.".pdf\" target=\"_blank\"><strong>".$scstatus."</strong></a>\n<br>\n";
+			}
+			$numR++;
 		}	
 	}
 	
@@ -1765,6 +1778,8 @@ function get_servreport($conn,$ymd,$loc,$ctype) {
 
 function get_servreport_closed($conn,$ymd,$loc,$ctype) {
 	
+	$condi = "";
+
 	if($loc != ""){
 		$condi .= " AND loc_contact = '".$loc."'";
 	}
@@ -1776,6 +1791,7 @@ function get_servreport_closed($conn,$ymd,$loc,$ctype) {
 	$qqu_srv = @mysqli_query($conn,"SELECT * FROM s_service_report WHERE job_close = '".$ymd."' ".$condi." AND st_setting = 1 LIMIT 6");
 	$numsrv = @mysqli_num_rows($qqu_srv);
 	$res = "";
+	$numR = 1;
 	if($numsrv > 0){
 		while($row_dea = @mysqli_fetch_array($qqu_srv)){
 			$chaf = preg_replace("/\//","-",$row_dea["sv_id"]);
@@ -1784,9 +1800,16 @@ function get_servreport_closed($conn,$ymd,$loc,$ctype) {
 			// }else{
 			// 	$scstatus = "<span style=\"color:red;\">".$row_dea['sv_id']."</span>";
 			// }	
-			$scstatus = "<span style=\"color:red;\">".$row_dea['sv_id']."</span>";
 
-			$res .= "&nbsp;<a href=\"../../upload/service_report_close/".$chaf.".pdf\" target=\"_blank\"><strong>".$scstatus."</strong></a>\n<br>\n";
+			if($loc != ""){
+				$scstatus = "<span style=\"color:red;\">".$numR.".".get_localsettingname($conn,$row_dea['cus_id'])."</span>";
+				$res .= "&nbsp;<a href=\"../../upload/service_report_close/".$chaf.".pdf\" target=\"_blank\"><strong>".$scstatus."</strong></a>\n<br>\n";
+			}else{
+				$scstatus = "<span style=\"color:red;\">".$row_dea['sv_id']."</span>";
+				$res .= "&nbsp;<a href=\"../../upload/service_report_close/".$chaf.".pdf\" target=\"_blank\"><strong>".$scstatus."</strong></a>\n<br>\n";
+			}
+			$numR++;
+			
 		}	
 	}
 	
@@ -2960,6 +2983,16 @@ function getTotalOpenCloseService($conn,$condition,$daterriod,$openclose,$custyp
 		return $sums;
 	}
 	
+}
+
+function getServiceSchedule($conn,$technician,$fo_id,$year,$month){
+	$rowSV = mysqli_fetch_array(@mysqli_query($conn,"SELECT * FROM `service_schedule` WHERE `technician` = '".$technician."' AND `fo_id` = '".$fo_id."' AND `year` = '".$year."' AND `month` = '".$month."'  ORDER BY id ASC"));
+	$rowSVR = mysqli_fetch_array(@mysqli_query($conn,"SELECT * FROM `s_service_report` WHERE `sv_id` = '".$rowSV['sv_id']."' ORDER BY `sr_id` DESC"));
+	return format_date_th ($rowSVR['job_balance'],9);
+}
+function getServiceScheduleSV($conn,$technician,$fo_id,$year,$month){
+	$rowSV = mysqli_fetch_array(@mysqli_query($conn,"SELECT * FROM `service_schedule` WHERE `technician` = '".$technician."' AND `fo_id` = '".$fo_id."' AND `year` = '".$year."' AND `month` = '".$month."'  ORDER BY id ASC"));
+	return $rowSV['sv_id'];
 }
 ?>
 

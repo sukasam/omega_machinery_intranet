@@ -1563,7 +1563,7 @@ function get_calsprice($cprice,$camount) {
 		return $prspro = $cprice * $camount;
 }
 
-function get_sumprice$conn,($value) {
+function get_sumprice($conn,$value) {
 	
 	$row_fod = @mysqli_fetch_array(@mysqli_query($conn,"SELECT * FROM  s_first_order WHERE fo_id = '".$value."'"));
 	
@@ -1581,13 +1581,13 @@ function get_sumprice$conn,($value) {
 }
 
 function get_vatprice($value) {
-	$sumpro = get_sumprice$conn,($value);
+	$sumpro = get_sumprice($conn,$value);
 	$getvat = ($sumpro * 7) / 100;
 	return $getvat;
 }
 
 function get_totalprice($value) {
-	$sum = get_sumprice$conn,($value);
+	$sum = get_sumprice($conn,$value);
 	$vat = get_vatprice($value);
 	
 	$total = $sum + $vat;

@@ -288,7 +288,7 @@ function submitForm() {
 					  <tr >
 						<td nowrap class="name" style="vertical-align: top;">หมายเหตุ</td>
 						<td>
-							<textarea id="sub_comment" name="sub_comment" rows="4" cols="50"><?php   echo stripslashes(strip_tags($sub_comment)); ?></textarea>	
+							<textarea id="sub_comment" name="sub_comment" rows="5" cols="50" style="height: 100px;"><?php   echo stripslashes(strip_tags($sub_comment)); ?></textarea>	
 						</td>
 					  </tr>
 					  <tr >

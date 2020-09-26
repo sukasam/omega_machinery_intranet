@@ -80,6 +80,7 @@
       <th>ชนิดลูกค้า</th>
       <th>ระยะเวลา</th>
       <th>ID</th>
+	  <th>วันเข้าบริการ</th>
 <!--      <th>ดาวโหลด</th>-->
     </tr>
     <?php 
@@ -90,8 +91,11 @@
 		  
 			  $getFileSH = getScheduleFile($conn,$_GET['loccontact'],$_GET['month']-1,$rowSched['fs_id']);
 
+			  $dateSVAr = explode("-",getServiceSchedule($conn,$_GET['loccontact'],$rowSched['fs_id'],$_GET['year'],$_GET['month']-1)); 
+			  $dateSV = $dateSVAr[2].'/'.$dateSVAr[1].'/'.$dateSVAr[0];
 
 			  if(getCheckProGen($conn,$rowSched['cpro1'],$rowSched['fs_id']) == 1){
+
 				  ?>
 				  <tr>
 					  <td><?php echo $runRow++;?></td>
@@ -103,6 +107,7 @@
 					  <td><?php echo custype_name($conn,$rowSched['ctype']);?></td>
 					  <td><?php echo get_servicename($conn,$rowSched['service_type']);?></td>
 					  <td><?php echo $rowSched['fs_id'];?></td>
+					  <td><?php echo $dateSV;?></td>
 				  </tr>
 				  <?php
 			  }
@@ -119,6 +124,7 @@
 					  <td><?php echo custype_name($conn,$rowSched['ctype']);?></td>
 					  <td><?php echo get_servicename($conn,$rowSched['service_type']);?></td>
 					  <td><?php echo $rowSched['fs_id'];?></td>
+					  <td><?php echo $dateSV;?></td>
 				  </tr>
 				  <?php
 			  }
