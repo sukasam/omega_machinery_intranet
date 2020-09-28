@@ -237,7 +237,7 @@
 
 			<tr>
 
-              <?php  if($_REQUEST['sh16'] == 1){?><td><?php  echo $row_fr['sv_id'];?></td><?php  }?>
+              <?php  if($_REQUEST['sh16'] == 1){?><td><a href="../../upload/service_report_close/<?php echo $row_fr['srid'];?>.pdf" target="_blank"><?php  echo $row_fr['sv_id'];?></a></td><?php  }?>
 
               <?php  if($_REQUEST['sh1'] == 1){?><td><?php  echo $row_fr['cd_name'];?><br />
 
