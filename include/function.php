@@ -1804,11 +1804,21 @@ function get_servreport_closed($conn,$ymd,$loc,$ctype) {
 			// 	$scstatus = "<span style=\"color:red;\">".$row_dea['sv_id']."</span>";
 			// }	
 
+			$colorSet = "red";
+
+			if(substr($row_dea['sv_id'],0,2) === "RP"){
+				$colorSet = "green";
+			}else if(substr($row_dea['sv_id'],0,2) === "IT"){
+				$colorSet = "blue";
+			}else{
+				$colorSet = "red";
+			}
+
 			if($loc != ""){
-				$scstatus = "<span style=\"color:red;\">".$numR.".".get_localsettingname($conn,$row_dea['cus_id'])."</span>";
+				$scstatus = "<span style=\"color:".$colorSet.";\">".$numR.".".get_localsettingname($conn,$row_dea['cus_id'])."</span>";
 				$res .= "&nbsp;<a href=\"../../upload/service_report_close/".$chaf.".pdf\" target=\"_blank\"><strong>".$scstatus."</strong></a>\n<br>\n";
 			}else{
-				$scstatus = "<span style=\"color:red;\">".$row_dea['sv_id']."</span>";
+				$scstatus = "<span style=\"color:".$colorSet.";\">".$row_dea['sv_id']."</span>";
 				$res .= "&nbsp;<a href=\"../../upload/service_report_close/".$chaf.".pdf\" target=\"_blank\"><strong>".$scstatus."</strong></a>\n<br>\n";
 			}
 			$numR++;

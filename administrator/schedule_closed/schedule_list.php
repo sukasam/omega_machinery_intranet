@@ -67,7 +67,15 @@
 	// 	$scstatus = "<a href=\"../../upload/service_report_open/".$chaf.".pdf\" target=\"_blank\" style=\"text-decoration: none;\"><span style=\"color:red;\">".$row_serv['sv_id']."</span></a>";
 	// }
 
-	$scstatus = "<a href=\"../../upload/service_report_close/".$chaf.".pdf\" target=\"_blank\" style=\"text-decoration: none;\"><span style=\"color:red;\">".$row_serv['sv_id']."</span></a>";
+	if(substr($row_serv['sv_id'],0,2) === "RP"){
+		$colorSet = "green";
+	}else if(substr($row_serv['sv_id'],0,2) === "IT"){
+		$colorSet = "blue";
+	}else{
+		$colorSet = "red";
+	}
+
+	$scstatus = "<a href=\"../../upload/service_report_close/".$chaf.".pdf\" target=\"_blank\" style=\"text-decoration: none;\"><span style=\"color:".$colorSet.";\">".$row_serv['sv_id']."</span></a>";
 	
   ?>  
   <tr>
