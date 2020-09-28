@@ -57,6 +57,23 @@
 		}
 		//echo "SELECT cd_name FROM s_first_order ".$consd." ORDER BY cd_name ASC";
 	}
+
+	if($_GET['action'] == 'getcus2'){
+		$cd_name = $_REQUEST['pval'];
+		if($cd_name != ""){
+			$consd = "AND (sv.sv_id LIKE '%".$cd_name."%' OR fo.cd_name LIKE '%".$cd_name."%' OR fo.loc_name LIKE '%".$cd_name."%' OR fo.cusid LIKE '%".$cd_name."%')";
+		}
+		//echo "SELECT sv.sv_id,fo.fo_id,fo.cd_name,fo.loc_name FROM `s_first_order` as fo, `s_service_report` as sv  WHERE sv.cus_id = fo.fo_id ".$consd." AND (fo.status_use = '3' or fo.status_use = '0') GROUP BY sv.sv_id LIMIT 100 ORDER BY sv.sv_id DESC";
+		$qu_cus2 = mysqli_query($conn,"SELECT sv.sv_id,fo.fo_id,fo.cd_name,fo.loc_name FROM `s_first_order` as fo, `s_service_report` as sv  WHERE sv.cus_id = fo.fo_id ".$consd." AND (fo.status_use = '3' or fo.status_use = '0') GROUP BY sv.sv_id ORDER BY sv.sv_id DESC LIMIT 100");
+		while($row_cusx = @mysqli_fetch_array($qu_cus2)){
+			?>
+			 <tr>
+				<td><A href="javascript:void(0);" onclick="get_customer('<?php echo $row_cusx['sv_id'];?>');"><?php echo $row_cusx['sv_id']." | ".$row_cusx['cd_name'];?> (<?php echo $row_cusx['loc_name']?>)</A></td>
+			</tr>
+			<?php    	
+		}
+		//echo "SELECT cd_name FROM s_first_order ".$consd." ORDER BY cd_name ASC";
+	}
 	
 	if($_GET['action'] == 'getsparpart'){
 		$cd_name = $_REQUEST['pval'];

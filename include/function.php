@@ -281,6 +281,9 @@ function format_date_th ($value,$type) {
 		case "9" :  // 4 ก.พ. 51
 				$msg =  $s_year. "-" .  sprintf("%02d",$s_month)   . "-" .  sprintf("%02d",$s_day)  ;
 			break;
+		case "10" :  // 4 ม.ค. 2548 <br /><br />14.11 น. 
+			$msg =  $s_day . " " .  $month_brief_th[$s_month]  . " " .  $s_year . "<br>เวลา " . $s_hour . "." . $s_minute . " น." ;
+			break;
 		}
 	return ($msg);
 

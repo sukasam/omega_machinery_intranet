@@ -72,6 +72,7 @@
   <tbody>
     <tr>
       <th>ลำดับ</th>
+	  <th>ID</th>
       <th>ลูกค้า</th>
       <th>เครื่อง</th>
       <th>รุ่น</th>
@@ -79,7 +80,6 @@
       <th>จังหวัด</th>
       <th>ชนิดลูกค้า</th>
       <th>ระยะเวลา</th>
-      <th>ID</th>
 	  <th>วันเข้าบริการ</th>
 <!--      <th>ดาวโหลด</th>-->
     </tr>
@@ -99,6 +99,7 @@
 				  ?>
 				  <tr>
 					  <td><?php echo $runRow++;?></td>
+					  <td><?php echo $rowSched['fs_id'];?></td>
 					  <td style="text-align: left;"><?php echo $rowSched['loc_name'];?></td>
 					  <td><?php if(substr($rowSched['fs_id'],0,2) == "SV"){echo get_proname2($conn,$rowSched['cpro1']);}else{echo get_proname($conn,$rowSched['cpro1']);}?></td>
 					  <td><?php echo $rowSched['pro_pod1'];?></td>
@@ -106,7 +107,6 @@
 					  <td><?php echo province_name($conn,$rowSched['cd_province']);?></td>
 					  <td><?php echo custype_name($conn,$rowSched['ctype']);?></td>
 					  <td><?php echo get_servicename($conn,$rowSched['service_type']);?></td>
-					  <td><?php echo $rowSched['fs_id'];?></td>
 					  <td><?php echo $dateSV;?></td>
 				  </tr>
 				  <?php
@@ -116,6 +116,7 @@
 				  ?>
 				  <tr>
 					  <td><?php echo $runRow++;?></td>
+					  <td><?php echo $rowSched['fs_id'];?></td>
 					  <td style="text-align: left;"><?php echo $rowSched['loc_name'];?></td>
 					  <td><?php if(substr($rowSched['fs_id'],0,2) == "SV"){echo get_proname2($conn,$rowSched['cpro2']);}else{echo get_proname($conn,$rowSched['cpro2']);}?></td>
 					  <td><?php echo $rowSched['pro_pod2'];?></td>
@@ -123,7 +124,6 @@
 					  <td><?php echo province_name($conn,$rowSched['cd_province']);?></td>
 					  <td><?php echo custype_name($conn,$rowSched['ctype']);?></td>
 					  <td><?php echo get_servicename($conn,$rowSched['service_type']);?></td>
-					  <td><?php echo $rowSched['fs_id'];?></td>
 					  <td><?php echo $dateSV;?></td>
 				  </tr>
 				  <?php

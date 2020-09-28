@@ -38,8 +38,9 @@
   <tr>
     <th width="9%">ลำดับ</th>
     <th width="16%">Report ID</th>
-    <th width="40%">ชื่อลูกค้า - ร้านค้า</th>
-    <th width="23%">เบอร์โทร</th>
+    <th width="35%">ชื่อลูกค้า - ร้านค้า</th>
+    <th width="17%">เบอร์โทร</th>
+	<th width="10%">ปิดใบงาน</th>
     <th width="12%">ดาวน์โหลด</th>
   </tr>
   <?php  
@@ -54,7 +55,7 @@
 		$ctype = " AND sr_ctype = '".$_GET['sr_ctype']."'";
 	}
 	
-  	$qu_service = @mysqli_query($conn,"SELECT * FROM s_service_report WHERE job_close = '".$con."' AND st_setting = 1 ". $loc . $ctype);
+  	$qu_service = @mysqli_query($conn,"SELECT * FROM s_service_report WHERE job_close = '".$con."' AND st_setting = 1 ". $loc . $ctype." ORDER BY signature_date ASC");
 	$romn = 1;
 	while($row_serv = @mysqli_fetch_array($qu_service)){
 	$chaf = preg_replace("/\//","-",$row_serv["sv_id"]);
@@ -73,7 +74,8 @@
     <td style="text-align:center;"><?php  echo sprintf("%03d",$romn);?></td>
     <td style="text-align:center;"><?php  echo $scstatus;?></td>
     <td style="padding-left:10px;padding-right:10px"><?php  echo $finfo['loc_name'];?></td>
-    <td style="text-align:center;"><?php  echo $finfo['c_contact']."/".$finfo['c_tel'];?></td>
+	<td style="text-align:center;"><?php  echo $finfo['c_contact']."/".$finfo['c_tel'];?></td>
+	<td style="text-align:center;"><?php  echo format_date_th ($row_serv['signature_date'],10);?></td>
     <td style="text-align:center;"><?php  $chaf = preg_replace("/\//","-",$row_serv["sv_id"]);?><a href="../../upload/service_report_open/<?php  echo $chaf;?>.pdf" target="_blank"><img src="../images/icons/icon-48-category.png" width="25" height="25" title="ใบเปิดงาน"/></a><a href="../../upload/service_report_close/<?php  echo $chaf;?>.pdf" target="_blank"><img src="../images/icons/icon-48-section.png" width="25" height="25" title="ใบปิดงาน"/></a></td>
   </tr>
   <?php  $romn++;}?>
