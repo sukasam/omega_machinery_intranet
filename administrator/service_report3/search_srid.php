@@ -70,7 +70,7 @@
 </table>
 <table width="100%" border="0" cellpadding="0" cellspacing="0" class="tv_search" id="rscus">
 <?php     
-  	$qu_cus = mysqli_query($conn,"SELECT sv.sv_id,fo.fo_id,fo.cd_name,fo.loc_name FROM `s_first_order` as fo, `s_service_report` as sv  WHERE sv.cus_id = fo.fo_id AND (fo.status_use = '3' or fo.status_use = '0') GROUP BY sv.sv_id ORDER BY sv.sv_id DESC LIMIT 100");
+  	$qu_cus = mysqli_query($conn,"SELECT sv.sv_id,fo.fo_id,fo.cd_name,fo.loc_name FROM `s_first_order` as fo, `s_service_report` as sv  WHERE sv.cus_id = fo.fo_id AND (fo.status_use = '3' or fo.status_use = '0') AND sv.sv_id LIKE 'RP%' GROUP BY sv.sv_id ORDER BY sv.sv_id DESC LIMIT 100");
 	while($row_cus = @mysqli_fetch_array($qu_cus)){
 		?>
 		 <tr>

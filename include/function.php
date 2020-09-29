@@ -1501,18 +1501,18 @@ function check_servicereportinstall($conn){
 function check_serviceman($conn){
 	
 	$thdate = substr(date("Y")+543,2);
-	$concheck = "RP ".$thdate.date("/m/");
+	$concheck = "SP ".$thdate.date("/m/");
 	
 	$qu_forder = @mysqli_query($conn,"SELECT * FROM s_service_report2 WHERE sv_id like '%".$concheck."%' ORDER BY sv_id DESC");
 	$num_oder = @mysqli_num_rows($qu_forder);
 	$row_forder = @mysqli_fetch_array($qu_forder);
 	
 	if($row_forder['sv_id'] == ""){
-		return "RP ".$thdate.date("/m/")."001";
+		return "SP ".$thdate.date("/m/")."001";
 	}else{
 		//$num_odersum = $num_oder+1;
 		$num_odersum = substr($row_forder['sv_id'],-3)+1;
-		return "RP ".$thdate.date("/m/").sprintf("%03d",$num_odersum);
+		return "SP ".$thdate.date("/m/").sprintf("%03d",$num_odersum);
 	}	
 }
 
