@@ -38,8 +38,9 @@
   <tr>
     <th width="9%">ลำดับ</th>
     <th width="16%">Report ID</th>
-    <th width="40%">ชื่อลูกค้า - ร้านค้า</th>
-    <th width="23%">เบอร์โทร</th>
+	<th width="40%">ชื่อลูกค้า - ร้านค้า</th>
+	<th width="10%">ประเภทลูกค้า</th>
+    <th width="13%">เบอร์โทร</th>
     <th width="12%">ดาวน์โหลด</th>
   </tr>
   <?php  
@@ -72,7 +73,8 @@
   <tr>
     <td style="text-align:center;"><?php  echo sprintf("%03d",$romn);?></td>
     <td style="text-align:center;"><?php  echo $scstatus;?></td>
-    <td style="padding-left:10px;padding-right:10px"><?php  echo $finfo['loc_name'];?></td>
+	<td style="padding-left:10px;padding-right:10px"><?php  echo $finfo['loc_name'];?></td>
+	<td style="text-align:center;"><?php  echo custype_name($conn,$row_serv['sr_ctype2']);?></td>
     <td style="text-align:center;"><?php  echo $finfo['c_contact']."/".$finfo['c_tel'];?></td>
     <td style="text-align:center;"><?php  $chaf = preg_replace("/\//","-",$row_serv["sv_id"]);?><a href="../../upload/service_report_open/<?php  echo $chaf;?>.pdf" target="_blank"><img src="../images/icons/icon-48-category.png" width="25" height="25" title="ใบเปิดงาน"/></a><a href="../../upload/service_report_close/<?php  echo $chaf;?>.pdf" target="_blank"><img src="../images/icons/icon-48-section.png" width="25" height="25" title="ใบปิดงาน"/></a></td>
   </tr>

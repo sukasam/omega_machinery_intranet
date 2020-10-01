@@ -16,6 +16,8 @@
 		$a_sdate=explode("/",$_POST['stock_date']);
 		$_POST['stock_date']=$a_sdate[2]."-".$a_sdate[1]."-".$a_sdate[0];
 
+		$_POST['sub_comment'] = addslashes(nl2br($_POST['sub_comment']));
+
 		
 		if ($_POST["mode"] == "add") { 
 			
@@ -284,17 +286,18 @@ function submitForm() {
 						</td>
 					  </tr>
 				  </table>
-				</td>
-				<td>
-					<table class="formFields" cellspacing="0" width="100%">
+				  <table class="formFields" cellspacing="0" width="100%">
 					  <tr >
 						<td nowrap class="name">เลขที่บิล</td>
 						  <td><input name="sub_billnum" type="text" id="sub_billnum"  value="<?php     echo $sub_billnum; ?>" size="20%">&nbsp;&nbsp;วันที่บิล <input type="text" name="sub_billdate" readonly value="<?php     if($sub_billdate==""){echo date("d/m/Y");}else{ echo $sub_billdate;}?>" class="inpfoder"/><script language="JavaScript">new tcal ({'formname': 'form1','controlname': 'sub_billdate'});</script>
 						</td>
 					  </tr>
 					  <tr >
-						<td nowrap class="name">หมายเหตุ</td>
-						<td><input name="sub_comment" type="text" id="sub_comment"  value="<?php   echo $sub_comment; ?>" size="60"></td>
+						<td nowrap class="name" style="vertical-align: top;">หมายเหตุ</td>
+						<td>
+							<!-- <input name="sub_comment" type="text" id="sub_comment"  value="<?php   echo $sub_comment; ?>" size="60"> -->
+							<textarea id="sub_comment" name="sub_comment" rows="5" cols="50" style="height: 100px;"><?php   echo stripslashes(strip_tags($sub_comment)); ?></textarea>	
+						</td>
 					  </tr>
 					  <tr >
 						<td nowrap class="name" colspan="2">

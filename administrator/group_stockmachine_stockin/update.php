@@ -277,9 +277,7 @@ function submitForm() {
 						</td>
 					  </tr>
 				  </table>
-				</td>
-				<td>
-					<table class="formFields" cellspacing="0" width="100%">
+				  <table class="formFields" cellspacing="0" width="100%">
 					  <tr >
 						<td nowrap class="name">เลขที่บิล</td>
 						  <td><input name="sub_billnum" type="text" id="sub_billnum"  value="<?php     echo $sub_billnum; ?>" size="20%">&nbsp;&nbsp;วันที่บิล <input type="text" name="sub_billdate" readonly value="<?php     if($sub_billdate==""){echo date("d/m/Y");}else{ echo $sub_billdate;}?>" class="inpfoder"/><script language="JavaScript">new tcal ({'formname': 'form1','controlname': 'sub_billdate'});</script>
