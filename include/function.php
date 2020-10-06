@@ -279,7 +279,7 @@ function format_date_th ($value,$type) {
 			$msg =  $s_day . " " .  $month_brief_th[$s_month]  . " " .  $s_year . "<br><br>เวลา " . $s_hour . "." . $s_minute . " น." ;
 			break;
 		case "9" :  // 4 ก.พ. 51
-				$msg =  $s_year. "-" .  sprintf("%02d",$s_month)   . "-" .  sprintf("%02d",$s_day)  ;
+				$msg =  ($s_year-543). "-" .  sprintf("%02d",$s_month)   . "-" .  sprintf("%02d",$s_day)  ;
 			break;
 		case "10" :  // 4 ม.ค. 2548 <br /><br />14.11 น. 
 			$msg =  $s_day . " " .  $month_brief_th[$s_month]  . " " .  $s_year . "<br>เวลา " . $s_hour . "." . $s_minute . " น." ;
@@ -2998,14 +2998,47 @@ function getTotalOpenCloseService($conn,$condition,$daterriod,$openclose,$custyp
 	
 }
 
-function getServiceSchedule($conn,$technician,$fo_id,$year,$month){
-	$rowSV = mysqli_fetch_array(@mysqli_query($conn,"SELECT * FROM `service_schedule` WHERE `technician` = '".$technician."' AND `fo_id` = '".$fo_id."' AND `year` = '".$year."' AND `month` = '".$month."'  ORDER BY id ASC"));
-	$rowSVR = mysqli_fetch_array(@mysqli_query($conn,"SELECT * FROM `s_service_report` WHERE `sv_id` = '".$rowSV['sv_id']."' ORDER BY `sr_id` DESC"));
-	return format_date_th ($rowSVR['job_balance'],9);
+function getServiceSchedule($conn,$technician,$fo_id,$year,$month,$sn){
+	// $rowSV = mysqli_fetch_array(@mysqli_query($conn,"SELECT * FROM `service_schedule` WHERE `technician` = '".$technician."' AND `fo_id` = '".$fo_id."' AND `year` = '".$year."' AND `month` = '".$month."'  ORDER BY id ASC"));
+	// $rowSVR = mysqli_fetch_array(@mysqli_query($conn,"SELECT * FROM `s_service_report` WHERE `sv_id` = '".$rowSV['sv_id']."' ORDER BY `sr_id` DESC"));
+	// return format_date_th ($rowSVR['job_balance'],9);
+
+	$quSV = @mysqli_query($conn,"SELECT * FROM `service_schedule` WHERE `technician` = '".$technician."' AND `fo_id` = '".$fo_id."' AND `year` = '".$year."' AND `month` = '".$month."'  ORDER BY id ASC");
+	$numSV = mysqli_num_rows($quSV);
+	if($numSV > 1){
+		while($rowSV = mysqli_fetch_array($quSV)){
+
+			$rowSVR = mysqli_fetch_array(@mysqli_query($conn,"SELECT * FROM `s_service_report` WHERE `sv_id` = '".$rowSV['sv_id']."' ORDER BY `sr_id` LIMIT 1"));
+
+			if($rowSVR['loc_sn'] == $sn){
+				return format_date_th ($rowSVR['job_balance'],9);
+			}
+		}
+	}else{
+		$rowSV = mysqli_fetch_array($quSV);
+		$rowSVR = mysqli_fetch_array(@mysqli_query($conn,"SELECT * FROM `s_service_report` WHERE `sv_id` = '".$rowSV['sv_id']."' ORDER BY `sr_id` LIMIT 1"));
+		return format_date_th ($rowSVR['job_balance'],9);
+	}
+
 }
-function getServiceScheduleSV($conn,$technician,$fo_id,$year,$month){
-	$rowSV = mysqli_fetch_array(@mysqli_query($conn,"SELECT * FROM `service_schedule` WHERE `technician` = '".$technician."' AND `fo_id` = '".$fo_id."' AND `year` = '".$year."' AND `month` = '".$month."'  ORDER BY id ASC"));
-	return $rowSV['sv_id'];
+function getServiceScheduleSV($conn,$technician,$fo_id,$year,$month,$sn){
+	//echo "SELECT * FROM `service_schedule` WHERE `technician` = '".$technician."' AND `fo_id` = '".$fo_id."' AND `year` = '".$year."' AND `month` = '".$month."'  ORDER BY id ASC";
+	$quSV = @mysqli_query($conn,"SELECT * FROM `service_schedule` WHERE `technician` = '".$technician."' AND `fo_id` = '".$fo_id."' AND `year` = '".$year."' AND `month` = '".$month."'  ORDER BY id ASC");
+	$numSV = mysqli_num_rows($quSV);
+	if($numSV > 1){
+		while($rowSV = mysqli_fetch_array($quSV)){
+
+			$rowSVR = mysqli_fetch_array(@mysqli_query($conn,"SELECT * FROM `s_service_report` WHERE `sv_id` = '".$rowSV['sv_id']."' ORDER BY `sr_id` LIMIT 1"));
+
+			if($rowSVR['loc_sn'] == $sn){
+				return $rowSVR['sv_id'];
+			}
+		}
+	}else{
+		$rowSV = mysqli_fetch_array($quSV);
+		return $rowSV['sv_id'];
+	}
+	
 }
 ?>
 

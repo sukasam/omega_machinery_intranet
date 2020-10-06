@@ -55,6 +55,8 @@
 		$ctype = " AND sr_ctype = '".$_GET['sr_ctype']."'";
 	}
 	
+	//echo "SELECT * FROM s_service_report WHERE job_balance = '".$con."' AND st_setting = 0 ". $loc . $ctype;
+
   	$qu_service = @mysqli_query($conn,"SELECT * FROM s_service_report WHERE job_balance = '".$con."' AND st_setting = 0 ". $loc . $ctype);
 	$romn = 1;
 	while($row_serv = @mysqli_fetch_array($qu_service)){

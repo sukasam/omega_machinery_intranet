@@ -6,7 +6,7 @@ include_once("../../include/connect.php");
 if($_GET['action'] === "updateDate"){
 
 	$dateArray = explode("-",$_GET['date']);
-	$date = ($dateArray[0]-543).'-'.$dateArray[1].'-'.$dateArray[2];
+	$date = ($dateArray[0]).'-'.$dateArray[1].'-'.$dateArray[2];
 	$sv_id = $_GET['sv_id'];
 	
 	mysqli_query($conn,"UPDATE `s_service_report` SET `job_balance` = '".$date."' WHERE `sv_id` = '".$sv_id."';");
