@@ -1502,7 +1502,7 @@ function check_serviceman($conn){
 	
 	$thdate = substr(date("Y")+543,2);
 	$concheck = "SP ".$thdate.date("/m/");
-	
+	//echo "SELECT * FROM s_service_report2 WHERE sv_id like '%".$concheck."%' ORDER BY sv_id DESC";
 	$qu_forder = @mysqli_query($conn,"SELECT * FROM s_service_report2 WHERE sv_id like '%".$concheck."%' ORDER BY sv_id DESC");
 	$num_oder = @mysqli_num_rows($qu_forder);
 	$row_forder = @mysqli_fetch_array($qu_forder);
