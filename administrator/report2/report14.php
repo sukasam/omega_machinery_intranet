@@ -166,7 +166,7 @@ if ($loc_seal != "") {
 
 				<th width="17%">รุ่นเครื่อง / S/N</th><?php  } ?>
 
-			<?php if ($_REQUEST['sh4'] == 1 || $_REQUEST['sh5'] == 1 || $_REQUEST['sh8'] == 1) { ?><th width="40%">
+			<?php if ($_REQUEST['sh4'] == 1 || $_REQUEST['sh5'] == 1 || $_REQUEST['sh6'] == 1 || $_REQUEST['sh9'] == 1) { ?><th width="40%">
 					<table width="100%" border="0" cellpadding="0" cellspacing="0" class="tbreport">
 
 						<tr>
@@ -175,7 +175,11 @@ if ($loc_seal != "") {
 
 							<?php if ($_REQUEST['sh5'] == 1) { ?><td style="border-bottom:none;" align="center" width="25%"><strong>จำนวน</strong></td><?php  } ?>
 
+							<?php if ($_REQUEST['sh9'] == 1) { ?><td style="border-bottom:none;" align="center" width="25%"><strong>ราคาต้นทุน</strong></td><?php  } ?>
+
 							<?php if ($_REQUEST['sh6'] == 1) { ?><td style="border-bottom:none;" align="center" width="25%"><strong>รวมมูลค่า</strong></td><?php  } ?>
+
+							
 
 						</tr>
 
@@ -207,6 +211,8 @@ if ($loc_seal != "") {
 
 		$sum = 0;
 
+		$sumUnit = 0;
+
 		$sumre = 0;
 
 		$totals = 0;
@@ -214,6 +220,8 @@ if ($loc_seal != "") {
 		$spartpart = 0;
 
 		$totalsall = 0;
+		
+		$totalsallUnit = 0;
 
 		$totalsSumOther = 0;
 
@@ -254,12 +262,19 @@ if ($loc_seal != "") {
 							$totalamount = 0;
 
 							$sum = 0;
+							$sumUnit = 0;
+
+							$total = 0;
+							$totalUnit = 0;
+							
 
 							while ($row = @mysqli_fetch_array($qu_pfirst)) {
 
-								if ($row['codes'] != "" || $row['lists'] != "") {
+								if (!empty($row['codes']) ||  !empty($row['lists'])) {
 
 									$total = $row['prices'] * $row['opens'];
+									
+									$totalUnit = get_sparpart_uniprice($conn, $row['lists']) * $row['opens'];
 
 									$totalamount += $row['opens'];
 
@@ -269,15 +284,18 @@ if ($loc_seal != "") {
 
 										<?php if ($_REQUEST['sh4'] == 1) { ?><td style="border-bottom:none;width: 50%;"><?php echo get_sparpart_id($conn, $row['lists']) . ' | ' . get_sparpart_name($conn, $row['lists']); ?></td><?php  } ?>
 
-										<?php if ($_REQUEST['sh5'] == 1) { ?><td align="center" style="border-bottom:none;width: 25%;"><?php echo $row['opens']; ?></td><?php  } ?>
+										<?php if ($_REQUEST['sh5'] == 1) { ?><td align="center" style="border-bottom:none;width: 14%;"><?php echo $row['opens']; ?></td><?php  } ?>
 
-										<?php if ($_REQUEST['sh6'] == 1) { ?><td align="right" style="border-bottom:none;width: 25%;padding-right: 20px;"><?php echo number_format($total, 2); ?></td><?php } ?>
+										<?php if ($_REQUEST['sh9'] == 1) { ?><td align="right" style="border-bottom:none;width: 18%;padding-right: 20px;"><?php echo number_format($totalUnit, 2); ?></td><?php } ?>
+
+										<?php if ($_REQUEST['sh6'] == 1) { ?><td align="right" style="border-bottom:none;width: 18%;padding-right: 20px;"><?php echo number_format($total, 2); ?></td><?php } ?>
 
 									</tr>
 
 							<?php
 
 									$sum += $total;
+									$sumUnit += $totalUnit;
 
 									$spartpart += 1;
 								}
@@ -287,13 +305,16 @@ if ($loc_seal != "") {
 
 							$totalsall += $sum;
 
+							$totalsallUnit += $sumUnit;
+
 							?>
 
 							<tr>
 
-								<td style="border-bottom:none;"><strong>รวมราคาอ่ะไหล่</strong></td>
+								<td style="border-bottom:none;"><strong>รวม (ราคาต้นทุน /  ราคาอะไหล่) </strong></td>
 
 								<td style="border-bottom:none;">&nbsp;</td>
+								<td align="right" ; style="border-bottom:none;padding-right: 20px;"><strong><?php echo number_format($sumUnit, 2); ?></strong></td>
 
 								<td align="right" ; style="border-bottom:none;padding-right: 20px;"><strong><?php echo number_format($sum, 2); ?></strong></td>
 
@@ -367,9 +388,16 @@ if ($loc_seal != "") {
 
 		<tr>
 
+		<td colspan="7" style="text-align:right;"> <strong>ราคาต้นทุนอ่ะไหล่ทั้งหมด&nbsp;&nbsp;<?php echo number_format($totalsallUnit, 2); ?>&nbsp;&nbsp;บาท&nbsp;&nbsp;</strong></td>
+
+		</tr>
+
+		<tr>
+
 			<td colspan="7" style="text-align:right;"> <strong>ราคาอ่ะไหล่ทั้งหมด&nbsp;&nbsp;<?php echo number_format($totalsall, 2); ?>&nbsp;&nbsp;บาท&nbsp;&nbsp;</strong></td>
 
 		</tr>
+
 
 		<tr>
 

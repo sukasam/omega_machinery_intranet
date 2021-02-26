@@ -273,7 +273,8 @@ if ($_GET["action"] == "chksum") {
 
         <LI><A class=shortcut-button href="../report3/?mid=16"><SPAN><IMG alt=icon src="../images/icons/icon-48-module.png"><BR>
               <strong>Stock Machine</strong></SPAN></A></LI>
-
+              <LI><A class=shortcut-button href="../report4/?mid=16"><SPAN><IMG  alt=icon src="../images/icons/icon-48-article.png"><BR>
+        <strong>Sale Report</strong></SPAN></A></LI>
       </UL>
 
 
@@ -4164,9 +4165,15 @@ if ($_GET["action"] == "chksum") {
 
                                     จำนวน
 
+                                    <input name="sh9" type="checkbox" id="sh38" value="1" checked>
+
+                                    ราคาต้นทุน
+
                                     <input name="sh6" type="checkbox" id="sh18" value="1" checked>
 
                                     รวมมูลค่า
+
+                                    
 
                                     <input name="sh7" type="checkbox" id="sh28" value="1" checked>
 

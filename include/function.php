@@ -2181,6 +2181,45 @@ function get_servreport_setupclosed($conn, $ymd, $loc, $ctype)
     return $res;
 }
 
+function get_sale_schedule($conn, $ymd, $loc, $ctype)
+{
+
+    if ($loc != "") {
+        $condi .= " AND ss.cs_sale = '" . $loc . "'";
+    }
+
+    $qqu_srv = @mysqli_query($conn, "SELECT * FROM s_group_tracking as st,s_sale_schedule as ss WHERE st.group_type = 'sale_schedule' AND st.fo_id = ss.fo_id AND st.group_date = '".$ymd."' ".$condi." LIMIT 6");
+    $numsrv = @mysqli_num_rows($qqu_srv);
+    $res = "";
+    if ($numsrv > 0) {
+        $numR = 1;
+        //blue , #f911c5, red, green
+        while ($row_dea = @mysqli_fetch_array($qqu_srv)) {
+            $chaf = preg_replace("/\//", "-", $row_dea["sv_id"]);
+            // if($row_dea['st_setting'] == 0){
+            //     $scstatus = "<span style=\"color:green;\">".$row_dea['sv_id']."</span>";
+            // }else{
+            //     $scstatus = "<span style=\"color:red;\">".$row_dea['sv_id']."</span>";
+            // }
+
+            if ($row_dea['group_time'] != "") {
+                $jobOpen = " เวลา " . $row_dea['group_time'];
+            } else {
+                $jobOpen = "";
+            }
+
+            $scstatus = "<span style=\"color:green;\">" . $numR . "." . $row_dea['cd_name'] . $jobOpen . "</span>";
+
+            //$res .= "&nbsp;<a href=\"../../upload/service_report_open/".$chaf.".pdf\" target=\"_blank\"><strong>".$scstatus."</strong></a>\n<br>\n";
+            $res .= "&nbsp;<a href=\"../job_tracking/index.php?tab=sale_schedule&fo_id=".$row_dea['fo_id']."\" target=\"_blank\"><strong>" . $scstatus . "</strong></a>\n<br>\n";
+            $numR++;
+        }
+
+    }
+
+    return $res;
+}
+
 function get_servreport_fix($conn, $ymd, $loc, $ctype)
 {
 
@@ -3186,11 +3225,18 @@ function getTrackJObs($conn, $tab, $fo_id)
         $tableDB = 's_work_noti';
     } else if ($tab == 'PJ') {
         $tableDB = 's_project_order';
+    }else if ($tab == 'sale_schedule') {
+        $tableDB = 's_sale_schedule';
     }
     $quFO = @mysqli_query($conn, "SELECT * FROM " . $tableDB . " WHERE fo_id = '" . $fo_id . "' ORDER BY fo_id DESC");
     $rowFO = mysqli_fetch_array($quFO);
 
-    return $rowFO['fs_id'];
+    if ($tab == 'sale_schedule') {
+        return $rowFO['cd_name'];
+    }else{
+        return $rowFO['fs_id'];
+    }
+    
 }
 
 function getWorkNotiInfo($conn, $val)
@@ -3526,4 +3572,16 @@ function checkProcess($conn, $tag_db, $PK_field, $id)
 {
     $rowProcess = @mysqli_fetch_array(@mysqli_query($conn, "SELECT * FROM " . $tag_db . " WHERE " . $PK_field . " = '" . $id . "';"));
     return $rowProcess['process'];
+}
+
+function getDesc($value,$n) { 
+	$value = str_replace('&nbsp;','' , $value);
+	$value = str_replace('&hellip;','' , $value);
+	$value = str_replace('&ldquo;','' , $value);
+	$value = str_replace('&rdquo;','' , $value);
+	$value = str_replace('&amp;',' and ' , $value);
+	$value = str_replace('&quot;','' , $value);
+	$value = str_replace('&ndash;','' , $value);
+	$result = mb_strimwidth(trim(strip_tags($value)), 0, $n , "...", "UTF-8");
+	return $result;
 }

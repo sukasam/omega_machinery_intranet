@@ -9,18 +9,13 @@
 		$a_not_exists = array();
 		$param = get_param($a_param,$a_not_exists);
 
-		$_POST['group_detail'] = nl2br(addslashes($_POST['group_detail']));
-
-		$a_sdate=explode("/",$_POST['group_date']);
-		$_POST['group_date']=$a_sdate[2]."-".$a_sdate[1]."-".$a_sdate[0];
-
 		if ($_POST["mode"] == "add") { 
 				include "../include/m_add.php";
-			header ("location:index.php?tab=".$_POST['group_type']."&fo_id=".$_POST['fo_id']); 
+			header ("location:index.php?" . $param); 
 		}
 		if ($_POST["mode"] == "update" ) { 
 			include ("../include/m_update.php");
-			header ("location:index.php?tab=".$_POST['group_type']."&fo_id=".$_POST['fo_id']); 
+			header ("location:index.php?" . $param); 
 		}
 	}
 	if ($_GET[mode] == "add") { 
@@ -36,10 +31,6 @@
 				$$value = $rec[$value];
 			}
 		}
-
-		$a_sdate=explode("-",$group_date);
-		$group_date=$a_sdate[2]."/".$a_sdate[1]."/".$a_sdate[0];
-
 	}
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
@@ -51,12 +42,10 @@
 <LINK rel=stylesheet type=text/css href="../css/style.css" media=screen>
 <LINK rel=stylesheet type=text/css href="../css/invalid.css" media=screen>
 <SCRIPT type=text/javascript src="../js/jquery-1.3.2.min.js"></SCRIPT>
-<!-- <SCRIPT type=text/javascript src="../js/simpla.jquery.configuration.js"></SCRIPT>
+<SCRIPT type=text/javascript src="../js/simpla.jquery.configuration.js"></SCRIPT>
 <SCRIPT type=text/javascript src="../js/facebox.js"></SCRIPT>
-<SCRIPT type=text/javascript src="../js/jquery.wysiwyg.js"></SCRIPT> -->
+<SCRIPT type=text/javascript src="../js/jquery.wysiwyg.js"></SCRIPT>
 <META name=GENERATOR content="MSHTML 8.00.7600.16535">
-<script language="JavaScript" src="../Carlender/calendar_us.js"></script>
-<link rel="stylesheet" href="../Carlender/calendar.css">
 <script>
 function confirmDelete(delUrl,text) {
   if (confirm("Are you sure you want to delete\n"+text)) {
@@ -109,29 +98,17 @@ function submitForm() {
           <tr>
             <td><table class="formFields" cellspacing="0" width="100%">
               <tr >
-                <td nowrap class="name">วันที่</td>
-                <td><input type="text" name="group_date" readonly value="<?php  if($group_date==""){echo date("d/m/Y");}else{ echo $group_date;}?>" class="inpfoder"/><script language="JavaScript">new tcal ({'formname': 'form1','controlname': 'group_date'});</script></td>
+                <td nowrap class="name">รหัสกลุ่ม</td>
+                <td><input name="group_type_id" type="text" id="group_type_id"  value="<?php  echo $group_type_id; ?>" size="60"></td>
               </tr>
               <tr >
-                <td nowrap class="name">เวลา</td>
-                <td><input name="group_time" type="time" id="group_time"  value="<?php  echo $group_time; ?>" size="60"></td>
+                <td nowrap class="name">ชื่้อกลุ่ม</td>
+                <td><input name="group_name" type="text" id="group_name"  value="<?php  echo $group_name; ?>" size="60"></td>
               </tr>
-			  <tr >
-                <td nowrap class="name" style="vertical-align: top;">รายละเอียดงาน</td>
-                <td>
-				<?php if($_GET['tab'] === "sale_schedule"){
-					?>
-					<textarea rows="20" cols="50" name="group_detail" id="group_detail"><?php  echo strip_tags($group_detail); ?></textarea>
-					<?php
-				}else{
-					?>
-					<input name="group_detail" type="text" id="group_detail"  value="<?php  echo strip_tags($group_detail); ?>" size="100">
-					<?php
-				}?>
-				<!--  -->
-				
-				</td>
-              </tr>
+              <?php  if ($_GET[mode] == "add") { ?>
+              <?php  } ?>
+              <?php  if ($_GET[mode] == "update") { ?>
+              <?php  } ?>
           </table></td>
           </tr>
         </table>
@@ -144,9 +121,7 @@ function submitForm() {
 			$a_not_exists = array();
 			post_param($a_param,$a_not_exists); 
 			?>
-      <input name="mode" type="hidden" id="mode" value="<?php  echo $_GET['mode'];?>">
-	  <input name="group_type" type="hidden" id="group_type" value="<?php  echo $_GET['tab'];?>">
-	  <input name="fo_id" type="hidden" id="fo_id" value="<?php  echo $_GET['fo_id'];?>">
+      <input name="mode" type="hidden" id="mode" value="<?php  echo $_GET[mode];?>">
       <input name="<?php  echo $PK_field;?>" type="hidden" id="<?php  echo $PK_field;?>" value="<?php  echo $_GET[$PK_field];?>">
     </div>
   </form>
