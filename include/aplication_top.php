@@ -1,7 +1,7 @@
 <?php 
 @ob_start();
 @session_start();
-error_reporting(0);
+//error_reporting(0);
 include_once("config.php");
 include_once("connect.php");
 include_once("function.php");

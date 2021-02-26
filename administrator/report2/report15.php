@@ -103,7 +103,7 @@
 
 	if($loc_contact != ""){
 
-		$condition .= " AND sv.loc_contact2 LIKE '%".$loc_contact."%'";
+		$condition .= " AND sv.loc_contact2 = '".$loc_contact."'";
 
 	}
 
@@ -167,7 +167,7 @@
 
 รายงานใบเบิก<br />
 
-ประเภทใบบริการ  : ใบเบิก</th>
+ประเภทใบบริการ  : <?php if($ctype != ""){echo getcustom_type($conn,$ctype);}?> <?php  if($cpro != ""){echo "(".get_sparpart_id($conn,$cpro).' | '.get_sparpart_name($conn,$cpro).")";}?></th>
 
 	    <th colspan="5" style="text-align:right;font-size:11px;"><?php  echo $dateshow;?></th>
 
@@ -267,29 +267,52 @@
 
 				while($row = @mysqli_fetch_array($qu_pfirst)){
 
-					if($row['codes 	'] != "" || $row['lists'] != ""){
+					if($row['codes'] != "" || $row['lists'] != ""){
 
-						$total = $row['prices']*$row['opens'];
+
+						if($cpro != ""){
+							if($cpro === $row['lists']){
+								$total = $row['prices']*$row['opens'];
 
 						$totalamount += $row['opens'];
 
 						$totalTA +=	$total;
+								?>
 
-					?>
+							<tr>
+		
+							  <?php  if($_REQUEST['sh4'] == 1){?><td style="border-bottom:none;" width="50%"><?php  echo get_sparpart_id($conn,$row['lists']).' | '.get_sparpart_name($conn,$row['lists']);?></td><?php  }?>
+		
+							  <?php  if($_REQUEST['sh5'] == 1){?><td align="center" style="border-bottom:none;" width="25%"><?php  echo $row['opens'];?></td><?php  }?>
+		
+							  <!-- <?php  if($_REQUEST['sh8'] == 1){?><td align="right" style="border-bottom:none;" width="25%"><?php  echo number_format($total,2);?></td><?php  }?> -->
+		
+							</tr>
+		
+						<?php  
+							$sumTotalAll += $total;
+							}
+						}else{
+							$total = $row['prices']*$row['opens'];
 
-					<tr>
+						$totalamount += $row['opens'];
 
-					  <?php  if($_REQUEST['sh4'] == 1){?><td style="border-bottom:none;" width="50%"><?php  echo get_sparpart_id($conn,$row['lists']).' | '.get_sparpart_name($conn,$row['lists']);?></td><?php  }?>
+						$totalTA +=	$total;
+							?>
 
-					  <?php  if($_REQUEST['sh5'] == 1){?><td align="center" style="border-bottom:none;" width="25%"><?php  echo $row['opens'];?></td><?php  }?>
-
-					  <!-- <?php  if($_REQUEST['sh8'] == 1){?><td align="right" style="border-bottom:none;" width="25%"><?php  echo number_format($total,2);?></td><?php  }?> -->
-
-					</tr>
-
-				<?php  
-
-					$sumTotalAll += $total;
+							<tr>
+		
+							  <?php  if($_REQUEST['sh4'] == 1){?><td style="border-bottom:none;" width="50%"><?php  echo get_sparpart_id($conn,$row['lists']).' | '.get_sparpart_name($conn,$row['lists']);?></td><?php  }?>
+		
+							  <?php  if($_REQUEST['sh5'] == 1){?><td align="center" style="border-bottom:none;" width="25%"><?php  echo $row['opens'];?></td><?php  }?>
+		
+							  <!-- <?php  if($_REQUEST['sh8'] == 1){?><td align="right" style="border-bottom:none;" width="25%"><?php  echo number_format($total,2);?></td><?php  }?> -->
+		
+							</tr>
+		
+						<?php  
+							$sumTotalAll += $total;
+						}
 
 					}	
 
