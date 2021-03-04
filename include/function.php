@@ -2944,12 +2944,24 @@ function getScheduleFile($conn, $technician, $month, $fo_id)
 function getCheckProGen($conn, $pro, $fosv)
 {
 
-    if (substr($fosv, 0, 2) == "SV") {
+    if (substr($fosv, 0, 2) === "SV") {
 
         $pro_re = get_proname2($conn, $pro);
-        $pos4 = strpos($pro_re, 'สัญญาบริการ');
+        // $pos4 = strpos($pro_re, "สัญญาบริการ");
+
+        $mystring = $pro_re;
+        $findme   = 'สัญญาบริการ';
+        $pos4 = strpos($mystring, $findme);
 
         $pos4CH = '';
+
+        if ($pos4 !== false) {
+            //echo $pro_re."|".$pos4."<br>";
+            return 1;
+        } else {
+            //echo "NoT".$pro_re."|".$pos4."<br>";
+            return 0;
+        }
 
         if ($pos4 !== false) {
             return 1;

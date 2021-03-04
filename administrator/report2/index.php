@@ -341,7 +341,7 @@ if ($_GET["action"] == "chksum") {
 
                     <strong>ตามรายการ<br>แจ้งซ่อม</strong></SPAN></A></LI>
 
-              <LI><div style="position: relative;top: 5px;right: 5px;"><A class=shortcut-button href="../report2/?mid=16&act=6"><SPAN><IMG alt=icon src="../images/icons/icon-48-category.png"><BR>
+              <LI><div style="position: relative;top: 0px;right: 5px;"><A class=shortcut-button href="../report2/?mid=16&act=6"><SPAN><IMG alt=icon src="../images/icons/icon-48-category.png"><BR>
 
 <strong>ตามรายการ<br>ใช้อะไหล่</strong></SPAN></A><div style="    position: absolute;
     top: 5px;
@@ -417,21 +417,23 @@ if ($_GET["action"] == "chksum") {
 
                   </SPAN></A></LI>
 
-              <LI><A class=shortcut-button href="../report2/?mid=16&act=14"><SPAN><IMG alt=icon src="../images/icons/icon-48-category.png"><BR>
+              <LI><div style="position: relative;top: 0px;right: 5px;"><A class=shortcut-button href="../report2/?mid=16&act=14"><SPAN><IMG alt=icon src="../images/icons/icon-48-category.png"><BR>
 
                     <strong>ตาม Installation<br></strong>
 
                     <br>
 
-                  </SPAN></A></LI>
+                  </SPAN></A>
+                  <div style="position: absolute;
+    top: 5px;
+    right: 5px;"><img src="../images/icons/keylock.png" style="width: 25px;"></div>
+                  </A></div>
+                  </LI>
 
-              <LI><A class=shortcut-button href="../report2/?mid=16&act=11"><SPAN><IMG alt=icon src="../images/icons/icon-48-category.png"><BR>
 
-                    <strong>รายงานสรุป <br>
+                  <LI><A class=shortcut-button href="../report2/?mid=16&act=11"><SPAN><IMG alt=icon src="../images/icons/icon-48-category.png"><BR>
 
-                    </strong><br>
-
-                  </SPAN></A></LI>
+                  <strong>รายงานสรุป <br> </strong><br></SPAN></A></LI>
 
               <LI><A class=shortcut-button href="../report2/?mid=16&act=17"><SPAN><IMG alt=icon src="../images/icons/icon-48-category.png"><BR>
 
@@ -3920,6 +3922,9 @@ if ($_GET["action"] == "chksum") {
 
           if ($_GET['act'] == 14) {
 
+            $check_moduleSub = "ต้นทุนตาม Installation";
+            $codeSub = Check_Permission($conn, $check_moduleSub, $_SESSION["login_id"], "read");
+
           ?>
 
             <DIV class=content-box>
@@ -4165,16 +4170,15 @@ if ($_GET["action"] == "chksum") {
 
                                     จำนวน
 
-                                    <input name="sh9" type="checkbox" id="sh38" value="1" checked>
+                                    <input name="sh10" type="checkbox" id="sh38" value="1" checked>
 
                                     ราคาต้นทุน
 
                                     <input name="sh6" type="checkbox" id="sh18" value="1" checked>
 
-                                    รวมมูลค่า
+                                    ราคาขาย
 
-                                    
-
+                                  
                                     <input name="sh7" type="checkbox" id="sh28" value="1" checked>
 
                                     วันที่ส่งงาน

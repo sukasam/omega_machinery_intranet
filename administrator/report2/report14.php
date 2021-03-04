@@ -166,7 +166,7 @@ if ($loc_seal != "") {
 
 				<th width="17%">รุ่นเครื่อง / S/N</th><?php  } ?>
 
-			<?php if ($_REQUEST['sh4'] == 1 || $_REQUEST['sh5'] == 1 || $_REQUEST['sh6'] == 1 || $_REQUEST['sh9'] == 1) { ?><th width="40%">
+			<?php if ($_REQUEST['sh4'] == 1 || $_REQUEST['sh5'] == 1 || $_REQUEST['sh6'] == 1 || $_REQUEST['sh10'] == 1) { ?><th width="40%">
 					<table width="100%" border="0" cellpadding="0" cellspacing="0" class="tbreport">
 
 						<tr>
@@ -175,9 +175,9 @@ if ($loc_seal != "") {
 
 							<?php if ($_REQUEST['sh5'] == 1) { ?><td style="border-bottom:none;" align="center" width="25%"><strong>จำนวน</strong></td><?php  } ?>
 
-							<?php if ($_REQUEST['sh9'] == 1) { ?><td style="border-bottom:none;" align="center" width="25%"><strong>ราคาต้นทุน</strong></td><?php  } ?>
+							<?php if ($_REQUEST['sh10'] == 1) { ?><td style="border-bottom:none;" align="<?php if($_REQUEST['sh6'] == 1 && $_REQUEST['sh10'] == 1){echo "center";}else{echo "right";}?>" width="25%"><strong>ราคาต้นทุน</strong></td><?php  } ?>
 
-							<?php if ($_REQUEST['sh6'] == 1) { ?><td style="border-bottom:none;" align="center" width="25%"><strong>รวมมูลค่า</strong></td><?php  } ?>
+							<?php if ($_REQUEST['sh6'] == 1) { ?><td style="border-bottom:none;" align="<?php if($_REQUEST['sh6'] == 1 && $_REQUEST['sh10'] == 1){echo "center";}else{echo "right";}?>" width="25%"><strong>ราคาขาย</strong></td><?php  } ?>
 
 							
 
@@ -247,7 +247,7 @@ if ($loc_seal != "") {
 
 				<?php if ($_REQUEST['sh3'] == 1) { ?><td><?php echo $row_fr['loc_seal']; ?> / <?php echo $row_fr['loc_sn']; ?></td><?php  } ?>
 
-				<?php if ($_REQUEST['sh4'] == 1 || $_REQUEST['sh5'] == 1 || $_REQUEST['sh6'] == 1) { ?><td style="padding:0;">
+				<?php if ($_REQUEST['sh4'] == 1 || $_REQUEST['sh5'] == 1 || $_REQUEST['sh6'] == 1 || $_REQUEST['sh10'] == 1) { ?><td style="padding:0;">
 
 						<?php
 
@@ -286,7 +286,7 @@ if ($loc_seal != "") {
 
 										<?php if ($_REQUEST['sh5'] == 1) { ?><td align="center" style="border-bottom:none;width: 14%;"><?php echo $row['opens']; ?></td><?php  } ?>
 
-										<?php if ($_REQUEST['sh9'] == 1) { ?><td align="right" style="border-bottom:none;width: 18%;padding-right: 20px;"><?php echo number_format($totalUnit, 2); ?></td><?php } ?>
+										<?php if ($_REQUEST['sh10'] == 1) { ?><td align="right" style="border-bottom:none;width: 18%;padding-right: 20px;"><?php echo number_format($totalUnit, 2); ?></td><?php } ?>
 
 										<?php if ($_REQUEST['sh6'] == 1) { ?><td align="right" style="border-bottom:none;width: 18%;padding-right: 20px;"><?php echo number_format($total, 2); ?></td><?php } ?>
 
@@ -311,12 +311,13 @@ if ($loc_seal != "") {
 
 							<tr>
 
-								<td style="border-bottom:none;"><strong>รวม (ราคาต้นทุน /  ราคาอะไหล่) </strong></td>
+								<td style="border-bottom:none;"><strong>รวม (<?php if ($_REQUEST['sh10'] == 1) { ?>ราคาต้นทุน<?php } ?> /  <?php if ($_REQUEST['sh6'] == 1) { ?>ราคาอะไหล่<?php } ?>) </strong></td>
 
 								<td style="border-bottom:none;">&nbsp;</td>
-								<td align="right" ; style="border-bottom:none;padding-right: 20px;"><strong><?php echo number_format($sumUnit, 2); ?></strong></td>
 
-								<td align="right" ; style="border-bottom:none;padding-right: 20px;"><strong><?php echo number_format($sum, 2); ?></strong></td>
+								<?php if ($_REQUEST['sh10'] == 1) { ?><td align="right" ; style="border-bottom:none;padding-right: 20px;"><strong><?php echo number_format($sumUnit, 2); ?></strong></td><?php } ?>
+
+								<?php if ($_REQUEST['sh6'] == 1) { ?><td align="right" ; style="border-bottom:none;padding-right: 20px;"><strong><?php echo number_format($sum, 2); ?></strong></td><?php } ?>
 
 							</tr>
 
@@ -386,17 +387,22 @@ if ($loc_seal != "") {
 
 		?>
 
+		<?php if ($_REQUEST['sh10'] == 1) { ?>
 		<tr>
 
 		<td colspan="7" style="text-align:right;"> <strong>ราคาต้นทุนอ่ะไหล่ทั้งหมด&nbsp;&nbsp;<?php echo number_format($totalsallUnit, 2); ?>&nbsp;&nbsp;บาท&nbsp;&nbsp;</strong></td>
 
 		</tr>
+		<?php }?>
+
+		<?php if ($_REQUEST['sh6'] == 1) { ?>
 
 		<tr>
 
-			<td colspan="7" style="text-align:right;"> <strong>ราคาอ่ะไหล่ทั้งหมด&nbsp;&nbsp;<?php echo number_format($totalsall, 2); ?>&nbsp;&nbsp;บาท&nbsp;&nbsp;</strong></td>
+			<td colspan="7" style="text-align:right;"> <strong>ราคาขายอ่ะไหล่ทั้งหมด&nbsp;&nbsp;<?php echo number_format($totalsall, 2); ?>&nbsp;&nbsp;บาท&nbsp;&nbsp;</strong></td>
 
 		</tr>
+		<?php }?>
 
 
 		<tr>
