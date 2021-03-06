@@ -164,7 +164,8 @@ $form .= '</table><br>
               </tr>
               <tr>
               <td style="font-size:12px;font-family:Verdana, Geneva, sans-serif;text-align:center;">
-              <strong>('.get_technician_name($conn,$_POST['cs_technic']).')</strong>
+              <strong>('.get_technician_name($conn,$_POST['cs_technic']).')</strong><br><br>
+              <strong>(' . get_technician_tel($conn, $_POST['cs_technic']) . ')</strong>
 			  </td>
               </tr>
             </table>

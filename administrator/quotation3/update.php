@@ -525,13 +525,13 @@ function submitForm() {
   <br>
 <table width="100%" cellspacing="0" cellpadding="0" style="font-size:12px;text-align:center;">
     <tr>
-      <td width="3%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;text-align:center;"><strong>ลำดับ</strong></td>
-      <td width="40%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;text-align:center;"><strong>รายการ</strong></td>
-      <td width="20%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;text-align:center;"><strong>รุ่น</strong></td>
-      <td width="7%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;text-align:center;"><strong>จำนวน</strong></td>
-      <td width="10%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;text-align:center;"><strong>ราคา</strong></td>
-      <td width="10%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;text-align:center;"><strong>ส่วนลด</strong></td>
-      <td width="10%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;text-align:center;"><strong>ราคาสุทธิ</strong></td>
+      <td width="5%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;text-align:center;"><strong>ลำดับ</strong></td>
+      <td width="48%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;text-align:center;"><strong>รายการ</strong></td>
+      <!-- <td width="20%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;text-align:center;"><strong>รุ่น</strong></td> -->
+      <td width="11%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;text-align:center;"><strong>จำนวน</strong></td>
+      <td width="12%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;text-align:center;"><strong>ราคา</strong></td>
+      <td width="12%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;text-align:center;"><strong>ส่วนลด</strong></td>
+      <td width="12%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;text-align:center;"><strong>ราคาสุทธิ</strong></td>
     </tr>
     <tr>
       <td style="border:1px solid #000000;padding:5;text-align:center;">1</td>
@@ -539,17 +539,17 @@ function submitForm() {
       <select name="cpro1" id="cpro1" class="inputselect" style="width:90%;">
       		<option value="">กรุณาเลือกรายการ</option>
 		  <?php
-              $qupro1 = @mysqli_query($conn,"SELECT * FROM s_group_typeproduct ORDER BY group_name ASC");
+              $qupro1 = @mysqli_query($conn,"SELECT * FROM s_group_typeproduct2 ORDER BY group_name ASC");
               while($row_qupro1 = @mysqli_fetch_array($qupro1)){
                 ?>
-                  <option value="<?php  echo $row_qupro1['group_id'];?>" <?php  if($cpro1 == $row_qupro1['group_id']){echo 'selected';}?>><?php  echo $row_qupro1['group_name'];?></option>
+                  <option value="<?php  echo $row_qupro1['group_id'];?>" <?php  if($cpro1 == $row_qupro1['group_id']){echo 'selected';}?>><?php  echo $row_qupro1['group_spro_id']." | ".$row_qupro1['group_name'];?></option>
                 <?php
               }
           ?>
       </select>
       <a href="javascript:void(0);" onClick="windowOpener('400', '500', '', 'search.php?protype=cpro1');"><img src="../images/icon2/mark_f2.png" width="25" height="25" alt="" style="vertical-align:middle;padding-left:5px;"></a>
       </td>
-      <td style="border:1px solid #000000;padding:5;text-align:center;" >
+      <!-- <td style="border:1px solid #000000;padding:5;text-align:center;" >
       <select name="pro_pod1" id="pro_pod1" class="inputselect" style="width:80%;">
       		<option value="">กรุณาเลือกรายการ</option>
 		  <?php
@@ -561,7 +561,7 @@ function submitForm() {
               }
           ?>
       </select><a href="javascript:void(0);" onClick="windowOpener('400', '500', '', 'search_pod.php?protype=pro_pod1');"><img src="../images/icon2/mark_f2.png" width="25" height="25" alt="" style="vertical-align:middle;padding-left:5px;"></a>
-      </td>
+      </td> -->
       <td style="border:1px solid #000000;padding:5;text-align:center;" >
         <input type="text" name="pro_sn1" value="<?php  echo $pro_sn1;?>" id="pro_sn1" class="inpfoder" style="width:100%;text-align:center;"></td>
       <td style="border:1px solid #000000;padding:5;text-align:center;">
@@ -578,16 +578,16 @@ function submitForm() {
       	<select name="cpro2" id="cpro2" class="inputselect" style="width:90%;">
       		<option value="">กรุณาเลือกรายการ</option>
 		  <?php
-              $qupro1 = @mysqli_query($conn,"SELECT * FROM s_group_typeproduct ORDER BY group_name ASC");
+              $qupro1 = @mysqli_query($conn,"SELECT * FROM s_group_typeproduct2 ORDER BY group_name ASC");
               while($row_qupro2 = @mysqli_fetch_array($qupro1)){
                 ?>
-                  <option value="<?php  echo $row_qupro2['group_id'];?>" <?php  if($cpro2 == $row_qupro2['group_id']){echo 'selected';}?>><?php  echo $row_qupro2['group_name'];?></option>
+                  <option value="<?php  echo $row_qupro2['group_id'];?>" <?php  if($cpro2 == $row_qupro2['group_id']){echo 'selected';}?>><?php  echo $row_qupro2['group_spro_id']." | ".$row_qupro2['group_name'];?></option>
                 <?php
               }
           ?>
       	</select><a href="javascript:void(0);" onClick="windowOpener('400', '500', '', 'search.php?protype=cpro2');"><img src="../images/icon2/mark_f2.png" width="25" height="25" alt="" style="vertical-align:middle;padding-left:5px;"></a>
       </td>
-      <td style="border:1px solid #000000;padding:5;text-align:center;" >
+      <!-- <td style="border:1px solid #000000;padding:5;text-align:center;" >
       <select name="pro_pod2" id="pro_pod2" class="inputselect" style="width:80%;">
       		<option value="">กรุณาเลือกรายการ</option>
 		  <?php
@@ -599,7 +599,7 @@ function submitForm() {
               }
           ?>
       </select><a href="javascript:void(0);" onClick="windowOpener('400', '500', '', 'search_pod.php?protype=pro_pod2');"><img src="../images/icon2/mark_f2.png" width="25" height="25" alt="" style="vertical-align:middle;padding-left:5px;"></a>
-      </td>
+      </td> -->
       <td style="border:1px solid #000000;padding:5;text-align:center;">
       	<input type="text" name="pro_sn2" value="<?php  echo $pro_sn2;?>" id="pro_sn2" class="inpfoder" style="width:100%;text-align:center;">
       </td>
@@ -616,16 +616,16 @@ function submitForm() {
       	<select name="cpro3" id="cpro3" class="inputselect" style="width:90%;">
       		<option value="">กรุณาเลือกรายการ</option>
 		  <?php
-              $qupro3 = @mysqli_query($conn,"SELECT * FROM s_group_typeproduct ORDER BY group_name ASC");
+              $qupro3 = @mysqli_query($conn,"SELECT * FROM s_group_typeproduct2 ORDER BY group_name ASC");
               while($row_qupro3 = @mysqli_fetch_array($qupro3)){
                 ?>
-                  <option value="<?php  echo $row_qupro3['group_id'];?>" <?php  if($cpro3 == $row_qupro3['group_id']){echo 'selected';}?>><?php  echo $row_qupro3['group_name'];?></option>
+                  <option value="<?php  echo $row_qupro3['group_id'];?>" <?php  if($cpro3 == $row_qupro3['group_id']){echo 'selected';}?>><?php  echo $row_qupro3['group_spro_id']." | ".$row_qupro3['group_name'];?></option>
                 <?php
               }
           ?>
       	</select><a href="javascript:void(0);" onClick="windowOpener('400', '500', '', 'search.php?protype=cpro3');"><img src="../images/icon2/mark_f2.png" width="25" height="25" alt="" style="vertical-align:middle;padding-left:5px;"></a>
       </td>
-      <td style="border:1px solid #000000;padding:5;text-align:center;" >
+      <!-- <td style="border:1px solid #000000;padding:5;text-align:center;" >
       <select name="pro_pod3" id="pro_pod3" class="inputselect" style="width:80%;">
       		<option value="">กรุณาเลือกรายการ</option>
 		  <?php
@@ -637,7 +637,7 @@ function submitForm() {
               }
           ?>
       </select><a href="javascript:void(0);" onClick="windowOpener('400', '500', '', 'search_pod.php?protype=pro_pod3');"><img src="../images/icon2/mark_f2.png" width="25" height="25" alt="" style="vertical-align:middle;padding-left:5px;"></a>
-      </td>
+      </td> -->
       <td style="border:1px solid #000000;padding:5;text-align:center;"><input type="text" name="pro_sn3" value="<?php  echo $pro_sn3;?>" id="pro_sn3" class="inpfoder" style="width:100%;text-align:center;"></td>
       <td style="border:1px solid #000000;padding:5;text-align:center;">
       	<input type="text" name="camount3" value="<?php  echo $camount3;?>" id="camount3" class="inpfoder" style="width:100%;text-align:center;">
@@ -653,16 +653,16 @@ function submitForm() {
       	<select name="cpro4" id="cpro4" class="inputselect" style="width:90%;">
       		<option value="">กรุณาเลือกรายการ</option>
 		  <?php
-              $qupro4 = @mysqli_query($conn,"SELECT * FROM s_group_typeproduct ORDER BY group_name ASC");
+              $qupro4 = @mysqli_query($conn,"SELECT * FROM s_group_typeproduct2 ORDER BY group_name ASC");
               while($row_qupro4 = @mysqli_fetch_array($qupro4)){
                 ?>
-                  <option value="<?php  echo $row_qupro4['group_id'];?>" <?php  if($cpro4 == $row_qupro4['group_id']){echo 'selected';}?>><?php  echo $row_qupro4['group_name'];?></option>
+                  <option value="<?php  echo $row_qupro4['group_id'];?>" <?php  if($cpro4 == $row_qupro4['group_id']){echo 'selected';}?>><?php  echo $row_qupro4['group_spro_id']." | ".$row_qupro4['group_name'];?></option>
                 <?php
               }
           ?>
       	</select><a href="javascript:void(0);" onClick="windowOpener('400', '500', '', 'search.php?protype=cpro4');"><img src="../images/icon2/mark_f2.png" width="25" height="25" alt="" style="vertical-align:middle;padding-left:5px;"></a>
       </td>
-      <td style="border:1px solid #000000;padding:5;text-align:center;" >
+      <!-- <td style="border:1px solid #000000;padding:5;text-align:center;" >
       <select name="pro_pod4" id="pro_pod4" class="inputselect" style="width:80%;">
       		<option value="">กรุณาเลือกรายการ</option>
 		  <?php
@@ -674,7 +674,7 @@ function submitForm() {
               }
           ?>
       </select><a href="javascript:void(0);" onClick="windowOpener('400', '500', '', 'search_pod.php?protype=pro_pod4');"><img src="../images/icon2/mark_f2.png" width="25" height="25" alt="" style="vertical-align:middle;padding-left:5px;"></a>
-      </td>
+      </td> -->
       <td style="border:1px solid #000000;padding:5;text-align:center;"><input type="text" name="pro_sn4" value="<?php  echo $pro_sn4;?>" id="pro_sn4" class="inpfoder" style="width:100%;text-align:center;"></td>
       <td style="border:1px solid #000000;padding:5;text-align:center;">
       	<input type="text" name="camount4" value="<?php  echo $camount4;?>" id="camount4" class="inpfoder" style="width:100%;text-align:center;">
@@ -690,16 +690,16 @@ function submitForm() {
       	<select name="cpro5" id="cpro5" class="inputselect" style="width:90%;">
       		<option value="">กรุณาเลือกรายการ</option>
 		  <?php
-              $qupro5 = @mysqli_query($conn,"SELECT * FROM s_group_typeproduct ORDER BY group_name ASC");
+              $qupro5 = @mysqli_query($conn,"SELECT * FROM s_group_typeproduct2 ORDER BY group_name ASC");
               while($row_qupro5 = @mysqli_fetch_array($qupro5)){
                 ?>
-                  <option value="<?php  echo $row_qupro5['group_id'];?>" <?php  if($cpro5 == $row_qupro5['group_id']){echo 'selected';}?>><?php  echo $row_qupro5['group_name'];?></option>
+                  <option value="<?php  echo $row_qupro5['group_id'];?>" <?php  if($cpro5 == $row_qupro5['group_id']){echo 'selected';}?>><?php  echo $row_qupro5['group_spro_id']." | ".$row_qupro5['group_name'];?></option>
                 <?php
               }
           ?>
       	</select><a href="javascript:void(0);" onClick="windowOpener('400', '500', '', 'search.php?protype=cpro5');"><img src="../images/icon2/mark_f2.png" width="25" height="25" alt="" style="vertical-align:middle;padding-left:5px;"></a>
       </td>
-      <td style="border:1px solid #000000;padding:5;text-align:center;" >
+      <!-- <td style="border:1px solid #000000;padding:5;text-align:center;" >
       <select name="pro_pod5" id="pro_pod5" class="inputselect" style="width:80%;">
       		<option value="">กรุณาเลือกรายการ</option>
 		  <?php
@@ -711,7 +711,7 @@ function submitForm() {
               }
           ?>
       </select><a href="javascript:void(0);" onClick="windowOpener('400', '500', '', 'search_pod.php?protype=pro_pod5');"><img src="../images/icon2/mark_f2.png" width="25" height="25" alt="" style="vertical-align:middle;padding-left:5px;"></a>
-      </td>
+      </td> -->
       <td style="border:1px solid #000000;padding:5;text-align:center;"><input type="text" name="pro_sn5" value="<?php  echo $pro_sn5;?>" id="pro_sn5" class="inpfoder" style="width:100%;text-align:center;"></td>
       <td style="border:1px solid #000000;padding:5;text-align:center;">
       	<input type="text" name="camount5" value="<?php  echo $camount5;?>" id="camount5" class="inpfoder" style="width:100%;text-align:center;">
@@ -727,16 +727,16 @@ function submitForm() {
       	<select name="cpro6" id="cpro6" class="inputselect" style="width:90%;" >
       		<option value="">กรุณาเลือกรายการ</option>
 		  <?php
-              $qupro6 = @mysqli_query($conn,"SELECT * FROM s_group_typeproduct ORDER BY group_name ASC");
+              $qupro6 = @mysqli_query($conn,"SELECT * FROM s_group_typeproduct2 ORDER BY group_name ASC");
               while($row_qupro6 = @mysqli_fetch_array($qupro6)){
                 ?>
-                  <option value="<?php  echo $row_qupro6['group_id'];?>" <?php  if($cpro6 == $row_qupro6['group_id']){echo 'selected';}?>><?php  echo $row_qupro6['group_name'];?></option>
+                  <option value="<?php  echo $row_qupro6['group_id'];?>" <?php  if($cpro6 == $row_qupro6['group_id']){echo 'selected';}?>><?php  echo $row_qupro6['group_spro_id']." | ".$row_qupro6['group_name'];?></option>
                 <?php
               }
           ?>
       	</select><a href="javascript:void(0);" onClick="windowOpener('400', '500', '', 'search.php?protype=cpro6');"><img src="../images/icon2/mark_f2.png" width="25" height="25" alt="" style="vertical-align:middle;padding-left:5px;"></a>
       </td>
-      <td style="border:1px solid #000000;padding:5;text-align:center;" >
+      <!-- <td style="border:1px solid #000000;padding:5;text-align:center;" >
       <select name="pro_pod6" id="pro_pod6" class="inputselect" style="width:80%;">
       		<option value="">กรุณาเลือกรายการ</option>
 		  <?php
@@ -748,7 +748,7 @@ function submitForm() {
               }
           ?>
       </select><a href="javascript:void(0);" onClick="windowOpener('400', '500', '', 'search_pod.php?protype=pro_pod6');"><img src="../images/icon2/mark_f2.png" width="25" height="25" alt="" style="vertical-align:middle;padding-left:5px;"></a>
-      </td>
+      </td> -->
       <td style="border:1px solid #000000;padding:5;text-align:center;"><input type="text" name="pro_sn6" value="<?php  echo $pro_sn6;?>" id="pro_sn6" class="inpfoder" style="width:100%;text-align:center;"></td>
       <td style="border:1px solid #000000;padding:5;text-align:center;">
       	<input type="text" name="camount6" value="<?php  echo $camount6;?>" id="camount6" class="inpfoder" style="width:100%;text-align:center;">
@@ -764,16 +764,16 @@ function submitForm() {
       	<select name="cpro7" id="cpro7" class="inputselect" style="width:90%;">
       		<option value="">กรุณาเลือกรายการ</option>
 		  <?php
-              $qupro7 = @mysqli_query($conn,"SELECT * FROM s_group_typeproduct ORDER BY group_name ASC");
+              $qupro7 = @mysqli_query($conn,"SELECT * FROM s_group_typeproduct2 ORDER BY group_name ASC");
               while($row_qupro7 = @mysqli_fetch_array($qupro7)){
                 ?>
-                  <option value="<?php  echo $row_qupro7['group_id'];?>" <?php  if($cpro7 == $row_qupro7['group_id']){echo 'selected';}?>><?php  echo $row_qupro7['group_name'];?></option>
+                  <option value="<?php  echo $row_qupro7['group_id'];?>" <?php  if($cpro7 == $row_qupro7['group_id']){echo 'selected';}?>><?php  echo $row_qupro7['group_spro_id']." | ".$row_qupro7['group_name'];?></option>
                 <?php
               }
           ?>
       	</select><a href="javascript:void(0);" onClick="windowOpener('400', '500', '', 'search.php?protype=cpro7');"><img src="../images/icon2/mark_f2.png" width="25" height="25" alt="" style="vertical-align:middle;padding-left:5px;"></a>
       </td>
-      <td style="border:1px solid #000000;padding:5;text-align:center;" >
+      <!-- <td style="border:1px solid #000000;padding:5;text-align:center;" >
       <select name="pro_pod7" id="pro_pod7" class="inputselect" style="width:80%;">
       		<option value="">กรุณาเลือกรายการ</option>
 		  <?php
@@ -785,7 +785,7 @@ function submitForm() {
               }
           ?>
       </select><a href="javascript:void(0);" onClick="windowOpener('400', '500', '', 'search_pod.php?protype=pro_pod7');"><img src="../images/icon2/mark_f2.png" width="25" height="25" alt="" style="vertical-align:middle;padding-left:5px;"></a>
-      </td>
+      </td> -->
       <td style="border:1px solid #000000;padding:5;text-align:center;"><input type="text" name="pro_sn7" value="<?php  echo $pro_sn7;?>" id="pro_sn7" class="inpfoder" style="width:100%;text-align:center;"></td>
       <td style="border:1px solid #000000;padding:5;text-align:center;">
       	<input type="text" name="camount7" value="<?php  echo $camount7;?>" id="camount7" class="inpfoder" style="width:100%;text-align:center;">
@@ -796,19 +796,19 @@ function submitForm() {
       <td style="border:1px solid #000000;padding:5;text-align:right;"><?php echo $totalSub7s;?>&nbsp;&nbsp;</td>
     </tr>
     <tr>
-      <td colspan="4" style="border:0px solid #003399;padding:9px 5px;"></td>
+      <td colspan="3" style="border:0px solid #003399;padding:9px 5px;"></td>
       <td style="border:0px solid #003399;padding:9px 5px;"></td>
       <td style="border:1px solid #003399;padding:9px 5px;"><strong>รวมทั้งหมด</strong></td>
       <td style="border:1px solid #003399;padding:9px 5px;text-align:right;"><?php echo number_format($sumprice,2);?>&nbsp;&nbsp;</td>
     </tr>
     <tr>
-      <td colspan="4" style="border:0px solid #003399;padding:9px 5px;"></td>
+      <td colspan="3" style="border:0px solid #003399;padding:9px 5px;"></td>
       <td style="border:0px solid #003399;padding:9px 5px;"></td>
       <td style="border:1px solid #003399;padding:9px 5px;"><strong>VAT 7 %</strong></td>
       <td style="border:1px solid #003399;padding:9px 5px;text-align:right;"><?php echo number_format($sumpricevat,2);?>&nbsp;&nbsp;</td>
     </tr>
     <tr>
-      <td colspan="4" style="text-align:center;border:0px solid #003399;padding:9px 5px;background-color: #ddebf7;"><strong><?php echo baht_text($sumtotals);?></strong></td>
+      <td colspan="3" style="text-align:center;border:0px solid #003399;padding:9px 5px;background-color: #ddebf7;"><strong><?php echo baht_text($sumtotals);?></strong></td>
       <td style="border:0px solid #003399;padding:9px 5px;"></td>
       <td style="border:1px solid #003399;padding:9px 5px;"><strong>ราคารวมทั้งสิ้น</strong></td>
       <td style="border:1px solid #003399;padding:9px 5px;text-align:right;"><?php echo number_format($sumtotals,2);?>&nbsp;&nbsp;</td>
@@ -878,7 +878,7 @@ function submitForm() {
                 </select></strong></td>
               </tr>
               <tr>
-                <td style="padding-top:10px;padding-bottom:10px;font-size:12px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>พนักงานฝ่ายช่าง</strong></td>
+                <td style="padding-top:10px;padding-bottom:10px;font-size:12px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>พนักงานฝ่ายช่าง / ผู้เสนอ</strong></td>
               </tr>
               <tr>
               <td style="font-size:12px;font-family:Verdana, Geneva, sans-serif;text-align:center;">

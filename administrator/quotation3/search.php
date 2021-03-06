@@ -88,11 +88,11 @@
 </table>
 <table width="100%" border="0" cellpadding="0" cellspacing="0" class="tv_search" id="rscus">
 <?php  
-  	$qu_cus = mysqli_query($conn,"SELECT * FROM s_group_typeproduct ORDER BY group_name ASC");
+  	$qu_cus = mysqli_query($conn,"SELECT * FROM s_group_typeproduct2 ORDER BY group_name ASC");
 	while($row_cus = @mysqli_fetch_array($qu_cus)){
 		?>
 		 <tr>
-            <td><A href="javascript:void(0);" onclick="get_product('<?php  echo $row_cus['group_id'];?>','<?php  echo $row_cus['group_name'];?>','<?php  echo $_GET['protype']?>');"><?php  echo $row_cus['group_name'];?></A></td>
+            <td><A href="javascript:void(0);" onclick="get_product('<?php  echo $row_cus['group_id'];?>','<?php  echo $row_cus['group_name'];?>','<?php  echo $_GET['protype']?>');"><?php  echo $row_cus['group_spro_id']." | ".$row_cus['group_name'];?></A></td>
           </tr>
 		<?php 	
 	}

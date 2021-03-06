@@ -76,7 +76,7 @@ $form = '
     </tr>
     <tr>
       <td style="border:1px solid #003399;padding:9px 5px;">' . $cpro1 . '</td>
-      <td style="border:1px solid #003399;text-align:left;padding:9px 5px;">' . get_proname($conn, $_POST["cpro1"]) . $pro_pod1 . '</td>
+      <td style="border:1px solid #003399;text-align:left;padding:9px 5px;">' . get_proname2($conn, $_POST["cpro1"]) . $pro_pod1 . '</td>
       <td style="border:1px solid #003399;padding:9px 5px;">' . $_POST["pro_sn1"] . '</td>
       <td style="border:1px solid #003399;padding:9px 5px;text-align:right;">' . number_format($_POST["camount1"]) . '</td>
       <td style="border:1px solid #003399;padding:9px 5px;text-align:right;">' . $prpro1 . '&nbsp;&nbsp;</td>
@@ -84,7 +84,7 @@ $form = '
     </tr>
     <tr>
       <td style="border:1px solid #003399;padding:9px 5px;">' . $cpro2 . '</td>
-      <td style="border:1px solid #003399;text-align:left;padding:9px 5px;">' . get_proname($conn, $_POST["cpro2"]) . $pro_pod2 . '</td>
+      <td style="border:1px solid #003399;text-align:left;padding:9px 5px;">' . get_proname2($conn, $_POST["cpro2"]) . $pro_pod2 . '</td>
       <td style="border:1px solid #003399;padding:9px 5px;">' . $_POST["pro_sn2"] . '</td>
       <td style="border:1px solid #003399;padding:9px 5px;text-align:right;">' . number_format($_POST["camount2"]) . '</td>
       <td style="border:1px solid #003399;padding:9px 5px;text-align:right;">' . $prpro2 . '&nbsp;&nbsp;</td>
@@ -92,7 +92,7 @@ $form = '
     </tr>
     <tr>
       <td style="border:1px solid #003399;padding:9px 5px;">' . $cpro3 . '</td>
-      <td style="border:1px solid #003399;text-align:left;padding:9px 5px;">' . get_proname($conn, $_POST["cpro3"]) . $pro_pod3 . '</td>
+      <td style="border:1px solid #003399;text-align:left;padding:9px 5px;">' . get_proname2($conn, $_POST["cpro3"]) . $pro_pod3 . '</td>
       <td style="border:1px solid #003399;padding:9px 5px;">' . $_POST["pro_sn3"] . '</td>
       <td style="border:1px solid #003399;padding:9px 5px;text-align:right;">' . number_format($_POST["camount3"]) . '</td>
       <td style="border:1px solid #003399;padding:9px 5px;text-align:right;">' . $prpro3 . '&nbsp;&nbsp;</td>
@@ -100,7 +100,7 @@ $form = '
     </tr>
     <tr>
       <td style="border:1px solid #003399;padding:9px 5px;">' . $cpro4 . '</td>
-      <td style="border:1px solid #003399;text-align:left;padding:9px 5px;">' . get_proname($conn, $_POST["cpro4"]) . $pro_pod4 . '</td>
+      <td style="border:1px solid #003399;text-align:left;padding:9px 5px;">' . get_proname2($conn, $_POST["cpro4"]) . $pro_pod4 . '</td>
       <td style="border:1px solid #003399;padding:9px 5px;">' . $_POST["pro_sn4"] . '</td>
       <td style="border:1px solid #003399;padding:9px 5px;text-align:right;">' . number_format($_POST["camount4"]) . '</td>
       <td style="border:1px solid #003399;padding:9px 5px;text-align:right;">' . $prpro4 . '&nbsp;&nbsp;</td>
@@ -108,7 +108,7 @@ $form = '
     </tr>
     <tr>
       <td style="border:1px solid #003399;padding:9px 5px;">' . $cpro5 . '</td>
-      <td style="border:1px solid #003399;text-align:left;padding:9px 5px;">' . get_proname($conn, $_POST["cpro5"]) . $pro_pod5 . '</td>
+      <td style="border:1px solid #003399;text-align:left;padding:9px 5px;">' . get_proname2($conn, $_POST["cpro5"]) . $pro_pod5 . '</td>
       <td style="border:1px solid #003399;padding:9px 5px;">' . $_POST["pro_sn5"] . '</td>
       <td style="border:1px solid #003399;padding:9px 5px;text-align:right;">' . number_format($_POST["camount5"]) . '</td>
       <td style="border:1px solid #003399;padding:9px 5px;text-align:right;">' . $prpro5 . '&nbsp;&nbsp;</td>
@@ -116,7 +116,7 @@ $form = '
     </tr>
     <tr>
       <td style="border:1px solid #003399;padding:9px 5px;">' . $cpro6 . '</td>
-      <td style="border:1px solid #003399;text-align:left;padding:9px 5px;">' . get_proname($conn, $_POST["cpro6"]) . $pro_pod6 . '</td>
+      <td style="border:1px solid #003399;text-align:left;padding:9px 5px;">' . get_proname2($conn, $_POST["cpro6"]) . $pro_pod6 . '</td>
       <td style="border:1px solid #003399;padding:9px 5px;">' . $_POST["pro_sn6"] . '</td>
       <td style="border:1px solid #003399;padding:9px 5px;text-align:right;">' . number_format($_POST["camount6"]) . '</td>
       <td style="border:1px solid #003399;padding:9px 5px;text-align:right;">' . $prpro6 . '&nbsp;&nbsp;</td>
@@ -124,7 +124,7 @@ $form = '
     </tr>
     <tr>
       <td style="border:1px solid #003399;padding:9px 5px;">' . $cpro7 . '</td>
-      <td style="border:1px solid #003399;text-align:left;padding:9px 5px;">' . get_proname($conn, $_POST["cpro7"]) . $pro_pod7 . '</td>
+      <td style="border:1px solid #003399;text-align:left;padding:9px 5px;">' . get_proname2($conn, $_POST["cpro7"]) . $pro_pod7 . '</td>
       <td style="border:1px solid #003399;padding:9px 5px;">' . $_POST["pro_sn7"] . '</td>
       <td style="border:1px solid #003399;padding:9px 5px;text-align:right;">' . number_format($_POST["camount7"]) . '</td>
       <td style="border:1px solid #003399;padding:9px 5px;text-align:right;">' . $prpro7 . '&nbsp;&nbsp;</td>
@@ -192,7 +192,8 @@ $form .= '
               </tr>
               <tr>
               <td style="font-size:12px;font-family:Verdana, Geneva, sans-serif;text-align:center;">
-              <strong>(' . get_technician_name($conn, $_POST['cs_technic']) . ')</strong>
+              <strong>(' . get_technician_name($conn, $_POST['cs_technic']) . ')</strong><br><br>
+              <strong>(' . get_technician_tel($conn, $_POST['cs_technic']) . ')</strong>
 			  </td>
               </tr>
             </table>

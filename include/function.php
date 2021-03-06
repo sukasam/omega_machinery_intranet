@@ -2513,6 +2513,12 @@ function get_technician_name($conn, $val)
     return $row_dea['group_name'];
 }
 
+function get_technician_tel($conn, $val)
+{
+    $row_dea = @mysqli_fetch_array(@mysqli_query($conn, "SELECT * FROM s_group_technician WHERE group_id = '" . $val . "'"));
+    return $row_dea['group_tel'];
+}
+
 function get_technician_id($conn, $val)
 {
     $row_dea = @mysqli_fetch_array(@mysqli_query($conn, "SELECT * FROM s_group_technician WHERE group_id = '" . $val . "'"));

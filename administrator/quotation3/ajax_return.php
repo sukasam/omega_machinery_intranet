@@ -68,15 +68,16 @@
 	if($_GET['action'] == 'getcus'){
 		$cd_name =  iconv( 'UTF-8', 'TIS-620', $_REQUEST['pval']);
 		$keys = $_REQUEST['keys'];
-		if($cd_name != ""){
-			$consd = "WHERE group_name LIKE '%".$cd_name."%'";
+		$consd = '';
+		if(!empty($cd_name)){
+			$consd = "WHERE (group_name LIKE '%".$cd_name."%' OR group_spro_id LIKE '%".$cd_name."%')";
 		}
-		//echo "SELECT group_name FROM s_group_typeproduct ".$consd." ORDER BY group_name ASC";
-		$qu_cus = mysqli_query($conn,"SELECT * FROM s_group_typeproduct ".$consd." ORDER BY group_name ASC");
+		//echo "SELECT group_name FROM s_group_typeproduct2 ".$consd." ORDER BY group_name ASC";
+		$qu_cus = mysqli_query($conn,"SELECT * FROM s_group_typeproduct2 ".$consd." ORDER BY group_name ASC");
 		while($row_cus = @mysqli_fetch_array($qu_cus)){
 			?>
 			 <tr>
-				<td><A href="javascript:void(0);" onclick="get_product('<?php  echo $row_cus['group_id'];?>','<?php  echo $row_cus['group_name'];?>','<?php  echo $keys;?>');"><?php  echo $row_cus['group_name'];?></A></td>
+				<td><A href="javascript:void(0);" onclick="get_product('<?php  echo $row_cus['group_id'];?>','<?php  echo $row_cus['group_name'];?>','<?php  echo $keys;?>');"><?php  echo $row_cus['group_spro_id']." | ".$row_cus['group_name'];?></A></td>
 			  </tr>
 			<?php 	
 		}
@@ -106,10 +107,10 @@
 		$group_name = $_REQUEST['group_name'];
 		$protype = $_REQUEST['protype'];
 		
-		$qupro1 = @mysqli_query($conn,"SELECT * FROM s_group_typeproduct ORDER BY group_name ASC");
+		$qupro1 = @mysqli_query($conn,"SELECT * FROM s_group_typeproduct2 ORDER BY group_name ASC");
 		while($row_qupro1 = @mysqli_fetch_array($qupro1)){
 		  ?>
-			<option value="<?php  echo $row_qupro1['group_id'];?>" <?php  if($group_id == $row_qupro1['group_id']){echo 'selected';}?>><?php  echo $row_qupro1['group_name'];?></option>
+			<option value="<?php  echo $row_qupro1['group_id'];?>" <?php  if($group_id == $row_qupro1['group_id']){echo 'selected';}?>><?php  echo $row_qupro1['group_spro_id']." | ".$row_qupro1['group_name'];?></option>
 		  <?php 	
 		}
 

@@ -445,7 +445,7 @@ function submitForm() {
             <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;">
             	<strong>ใบเสนอราคาสัญญาบริการ :</strong> <input type="radio" name="type_service" value="1" <?php if($type_service == '1' || $type_service == '0' || $type_service == ''){echo 'checked';}?> onclick="handleClick(this);"> เครื่องล้างจาน
 				&nbsp;&nbsp;<input type="radio" name="type_service" value="2" <?php if($type_service == '2'){echo 'checked';}?> onclick="handleClick(this);"> เครื่องล้างแก้ว
-				<!-- &nbsp;&nbsp;<input type="radio" name="type_service" value="3" <?php if($type_service == '3'){echo 'checked';}?> onclick="handleClick(this);"> เครื่องผลิตน้ำแข็ง -->
+				&nbsp;&nbsp;<input type="radio" name="type_service" value="3" <?php if($type_service == '3'){echo 'checked';}?> onclick="handleClick(this);"> เครื่องผลิตน้ำแข็ง
             </td>
           </tr>
           <tr>
@@ -820,7 +820,7 @@ function submitForm() {
                 </select></strong></td>
               </tr>
               <tr>
-                <td style="padding-top:10px;padding-bottom:10px;font-size:12px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>พนักงานฝ่ายช่าง</strong></td>
+                <td style="padding-top:10px;padding-bottom:10px;font-size:12px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>พนักงานฝ่ายช่าง / ผู้เสนอ</strong></td>
               </tr>
               <tr>
               <td style="font-size:12px;font-family:Verdana, Geneva, sans-serif;text-align:center;">
