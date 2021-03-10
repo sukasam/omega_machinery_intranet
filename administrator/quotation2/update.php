@@ -537,6 +537,30 @@ function submitForm() {
 					  	<option value="<?php  echo $row_protype['group_id'];?>" <?php  if($pro_type == $row_protype['group_id']){echo 'selected';}?>><?php  echo $row_protype['group_name'];?></option>
 					  <?php
 					}
+        ?>
+        </select> &nbsp;&nbsp;
+          <strong>เงื่อนไขการเช่า :</strong> 
+
+             <select name="ctype" id="ctype" class="inputselect" onChange="chksign(this.value);">
+
+                <?php 
+
+                	$quccustommer = @mysqli_query($conn,"SELECT * FROM s_group_custommer ORDER BY group_name ASC");
+
+					while($row_cgcus = @mysqli_fetch_array($quccustommer)){
+
+
+						if(substr($row_cgcus['group_name'],0,2) != "SR" && substr($row_cgcus['group_name'],0,2) != "IT"){
+           
+					  ?>
+
+					  	<option value="<?php  echo $row_cgcus['group_id'];?>" <?php  if($ctype == $row_cgcus['group_id']){echo 'selected';}?>><?php  echo $row_cgcus['group_name'];?></option>
+
+					  <?php 	
+
+						}
+          }
+
 				?>
             </select>
             </td>
@@ -545,7 +569,7 @@ function submitForm() {
           <tr>
             <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;"><strong>ที่อยู่ :</strong> <input type="text" name="cd_address" value="<?php  echo $cd_address;?>" id="cd_address" class="inpfoder" style="width:80%;"></td>
             <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;">
-            <strong>เลขที่ใบเสนอราคาซื้อ:</strong> 
+            <strong>เลขที่ใบเสนอราคา:</strong> 
             <input type="text" name="fs_id" value="<?php  if($fs_id == ""){echo check_quotation2($conn);}else{echo $fs_id;};?>" id="fs_id" class="inpfoder" > 
             </td>
           </tr>
