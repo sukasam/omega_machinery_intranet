@@ -1060,16 +1060,16 @@ function submitForm() {
             </table>
         </td>
         <td width="33%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;text-align:center;padding-top:10px;padding-bottom:10px;">
-        	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+        	<!-- <table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
                 <td style="border-bottom:1px solid #000000;padding-bottom:10px;font-size:12px;font-family:Verdana, Geneva, sans-serif;text-align:center;">
                 <?php
-					$hsale = '';
+				/*	$hsale = '';
 					if($cs_hsell != ""){
 						$hsale = $cs_hsell;
 					}else{
 						$hsale = getNameSaleApprove($conn);
-					}
+					}*/
 				?>
                 <strong ><input type="text" name="cs_hsell" value="<?php  echo $hsale;?>" id="cs_hsell" class="inpfoder" style="width:50%;text-align:center;border: none;"></strong>
                 </td>
@@ -1083,7 +1083,7 @@ function submitForm() {
                 <br><br>
               <strong>วันที่ <input type="text" name="date_hsell" style="text-align: center;" readonly value="<?php  if($date_hsell==""){echo date("d/m/Y");}else{ echo $date_hsell;}?>" class="inpfoder"/><script language="JavaScript">new tcal ({'formname': 'form1','controlname': 'date_hsell'});</script></strong></td>
               </tr>
-            </table>
+            </table> -->
 
         </td>
         <td width="33%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;text-align:center;padding-top:10px;padding-bottom:10px;">
