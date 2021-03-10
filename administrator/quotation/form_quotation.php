@@ -298,9 +298,22 @@ $form = '
 
         </td>
         <td width="33%" style="border:0px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;text-align:center;padding-top:10px;padding-bottom:10px;">
-        	
-        </td>
-        <td width="33%" style="border:0px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;text-align:center;padding-top:10px;padding-bottom:10px;">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td style="border-bottom:1px solid #003399;padding-bottom:10px;font-size:11px;font-family:Verdana, Geneva, sans-serif;text-align:center;">'.$hSaleSignature.'</td>
+            </tr>
+            <tr>
+              <td style="padding-top:10px;padding-bottom:10px;font-size:11px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>( '.$_POST["cs_hsell"].' )</strong><br><br><strong>ผู้จัดการฝ่ายขาย</strong></td>
+            </tr>
+            <tr>
+            <td style="font-size:11px;font-family:Verdana, Geneva, sans-serif;text-align:center;">
+            <strong>เบอร์โทร '.$_POST["tel_hsell"].'</strong>
+            <br><br>
+            <strong>วันที่ '.format_date($_POST["date_hsell"]).'</strong></td>
+            </tr>
+          </table>
+      </td>
+        <td width="33%" style="border:1px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;text-align:center;padding-top:10px;padding-bottom:10px;">
         	<table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
                 <td style="border-bottom:1px solid #003399;padding-bottom:10px;font-size:11px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><img src="../../upload/user/signature/none.png" height="50" border="0" /></td>

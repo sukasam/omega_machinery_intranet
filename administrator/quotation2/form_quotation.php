@@ -185,84 +185,17 @@ $form = '
       <td style="border:1px solid #003399;border-top:0px solid #003399;padding:9px 5px;text-align:right;">'.number_format($sumtotals,2).'&nbsp;&nbsp;</td>
     </tr>
 </table>
-<br>
-<table width="100%" border="0" cellspacing="0" cellpadding="0" style="font-size:11px;text-align:center;">
-    <tr>
-      <td width="5%" style="border:1px solid #003399;border-right:0px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;"><strong>ลำดับ</strong></td>
-      <td width="35%" style="border:1px solid #003399;border-right:0px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;"><strong>รายการ</strong></td>
-      <td width="10%" style="border:1px solid #003399;border-right:0px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;"><strong>จำนวน</strong></td>
-      <td width="10%" style="border:1px solid #003399;border-right:0px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;"><strong>ราคา</strong></td>
-      <td width="15%" style="border:1px solid #003399;border-right:0px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;"><strong>ส่วนลด</strong></td>
-      <td width="15%" style="border:1px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;"><strong>ราคาสุทธิ</strong></td>
-    </tr>
-    <tr>
-      <td style="border-left:1px solid #003399;padding:9px 5px;">1</td>
-      <td style="border-left:1px solid #003399;text-align:left;padding:9px 5px;">'.$_POST["spro1"].'</td>
-      <td style="border-left:1px solid #003399;padding:9px 5px;">'.$_POST["sqty1"].'</td>
-      <td style="border-left:1px solid #003399;padding:9px 5px;text-align:right;">'.number_format($_POST["sprice1"]).'</td>
-      <td style="border-left:1px solid #003399;padding:9px 5px;text-align:right;">'.number_format($_POST["sdisc1"]).'&nbsp;&nbsp;</td>
-      <td style="border-left:1px solid #003399;border-right:1px solid #003399;padding:9px 5px;text-align:right;">'.$totalSubSet1s.'&nbsp;&nbsp;</td>
-    </tr>
-    <tr>
-      <td style="border-left:1px solid #003399;padding:9px 5px;">2</td>
-      <td style="border-left:1px solid #003399;text-align:left;padding:9px 5px;">'.$_POST["spro2"].'</td>
-      <td style="border-left:1px solid #003399;padding:9px 5px;">'.$_POST["sqty1"].'</td>
-      <td style="border-left:1px solid #003399;padding:9px 5px;text-align:right;">'.number_format($_POST["sprice2"]).'</td>
-      <td style="border-left:1px solid #003399;padding:9px 5px;text-align:right;">'.number_format($_POST["sdisc2"]).'&nbsp;&nbsp;</td>
-      <td style="border-left:1px solid #003399;border-right:1px solid #003399;padding:9px 5px;text-align:right;">'.$totalSubSet2s.'&nbsp;&nbsp;</td>
-    </tr>
-    <tr>
-      <td colspan="3" style="border-top:1px solid #003399;padding:9px 5px;"></td>
-      <td style="border-top:1px solid #003399;padding:9px 5px;"></td>
-      <td style="border:1px solid #003399;border-right:0px solid #003399;padding:9px 5px;"><strong>รวมทั้งหมด</strong></td>
-      <td style="border:1px solid #003399;padding:9px 5px;text-align:right;">'.number_format($sumpriceSet,2).'&nbsp;&nbsp;</td>
-    </tr>
-    <tr>
-      <td colspan="3" style="border:0px solid #003399;padding:9px 5px;"></td>
-      <td style="border:0px solid #003399;padding:9px 5px;"></td>
-      <td style="border:1px solid #003399;border-top:0px solid #003399;border-right:0px solid #003399;padding:9px 5px;"><strong>VAT 7 %</strong></td>
-      <td style="border:1px solid #003399;border-top:0px solid #003399;padding:9px 5px;text-align:right;">'.number_format($sumpricevatSet,2).'&nbsp;&nbsp;</td>
-    </tr>
-    <tr>
-      <td colspan="3" style="text-align:center;border:0px solid #003399;padding:9px 5px;background-color: #ddebf7;"><strong>'.baht_text($sumtotalsSet).'</strong></td>
-      <td style="border:0px solid #003399;padding:9px 5px;"></td>
-      <td style="border:1px solid #003399;border-top:0px solid #003399;border-right:0px solid #003399;padding:9px 5px;"><strong>ราคารวมทั้งสิ้น</strong></td>
-      <td style="border:1px solid #003399;border-top:0px solid #003399;padding:9px 5px;text-align:right;">'.number_format($sumtotalsSet,2).'&nbsp;&nbsp;</td>
-    </tr>
-</table><br>
-<p style="font-size:12px;"><strong><u>รายการของแถม</u></strong></p>
-<table width="100%" border="0" cellspacing="0" cellpadding="0" style="font-size:11px;">
-    <tr>
-        <th width="10%" style="border:1px solid #003399;border-right:0px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;"><strong>ลำดับ</strong></th>
-        <th width="75%" style="border:1px solid #003399;border-right:0px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;"><strong>รายการสินค้า</strong></th>
-        <th width="15%" style="border:1px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;"><strong>จำนวน</strong></th>
-    </tr>
-    <tr>
-      <td style="border-left:1px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;">'.$profree1.'</td>
-      <td style="border-left:1px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;">'.$_POST["cs_pro1"].'</td>
-      <td style="border-left:1px solid #003399;border-right:1px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;">'.$_POST["cs_amount1"].'</td>
-    </tr>
-    <tr>
-      <td style="border-left:1px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;">'.$profree2.'</td>
-      <td style="border-left:1px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;">'.$_POST["cs_pro2"].'</td>
-      <td style="border-left:1px solid #003399;border-right:1px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;">'.$_POST["cs_amount2"].'</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid #003399;border-top:0px solid #003399;border-right:0px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;">'.$profree3.'</td>
-      <td style="border:1px solid #003399;border-top:0px solid #003399;border-right:0px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;">'.$_POST["cs_pro3"].'</td>
-      <td style="border:1px solid #003399;border-top:0px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;">'.$_POST["cs_amount3"].'</td>
-    </tr>
-  </table>
-  <br><br><br>
+<br><br>
+  <p style="font-size:12px;"><strong><u>เงื่อนไขการชำระเงิน</u></strong></p>
+  <p style="font-size:12px;">1. ชำระค่าบริการขนส่ง/ติดตั้ง และ'.$_POST['spro2'].' ณ วันอนุมัติสั่งซื้อสินค้าหรือตามเงื่อนไขการขาย</p>
+  <p style="font-size:12px;">2. ชำระค่าเช่าวันที่ '.$_POST['paysad'].' ของทุกๆ เดือน</p>
+  <br><br><br><br><br><br><br><br><br><br>
   <table width="100%" border="0" cellspacing="0" cellpadding="0">
     <tr>
       <td style="padding-bottom:5px;"><img src="'.$headerIMG.'" width="100%" border="0" /></td>
     </tr>
   </table>
-  <p style="font-size:12px;"><strong><u>เงื่อนไขการชำระเงิน</u></strong></p>
-  <p style="font-size:12px;">1. ชำระค่าบริการขนส่ง/ติดตั้ง และ'.$_POST['spro2'].' ณ วันอนุมัติสั่งซื้อสินค้าหรือตามเงื่อนไขการขาย</p>
-  <p style="font-size:12px;">2. ชำระค่าเช่าวันที่ '.$_POST['paysad'].' ของทุกๆ เดือน</p>
-  <br>
+  
   <p style="font-size:12px;"><strong><u>เงื่อนไขการรับประกันและการส่งสินค้า</u></strong></p>
   <p style="font-size:12px;">1. การรับประกันสินค้า รับประกันตัวเครื่อง อะไหล่และบริการหลังการขายตลอดอายุการใช้งาน ฟรี</p>
   <p style="font-size:12px;">2. บริษัทเข้าบริการตรวจเช็คทุกๆ '.$checkService.' เดือน/ครั้ง ฟรี</p>
@@ -309,9 +242,22 @@ $form = '
 
         </td>
         <td width="33%" style="border:0px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;text-align:center;padding-top:10px;padding-bottom:10px;">
-        	
+        	<table width="100%" border="0" cellspacing="0" cellpadding="0">
+              <tr>
+                <td style="border-bottom:1px solid #003399;padding-bottom:10px;font-size:11px;font-family:Verdana, Geneva, sans-serif;text-align:center;">'.$hSaleSignature.'</td>
+              </tr>
+              <tr>
+                <td style="padding-top:10px;padding-bottom:10px;font-size:11px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>( '.$_POST["cs_hsell"].' )</strong><br><br><strong>ผู้จัดการฝ่ายขาย</strong></td>
+              </tr>
+              <tr>
+              <td style="font-size:11px;font-family:Verdana, Geneva, sans-serif;text-align:center;">
+              <strong>เบอร์โทร '.$_POST["tel_hsell"].'</strong>
+              <br><br>
+              <strong>วันที่ '.format_date($_POST["date_hsell"]).'</strong></td>
+              </tr>
+            </table>
         </td>
-        <td width="33%" style="border:0px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;text-align:center;padding-top:10px;padding-bottom:10px;">
+        <td width="33%" style="border:1px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;text-align:center;padding-top:10px;padding-bottom:10px;">
         	<table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
                 <td style="border-bottom:1px solid #003399;padding-bottom:10px;font-size:11px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><img src="../../upload/user/signature/none.png" height="50" border="0" /></td>
