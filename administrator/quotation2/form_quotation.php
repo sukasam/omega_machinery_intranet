@@ -167,6 +167,22 @@ $form = '
       <td style="border-left:1px solid #003399;border-right:1px solid #003399;padding:9px 5px;text-align:right;">'.$totalSub5s.'&nbsp;&nbsp;</td>
     </tr>
     <tr>
+      <td style="border-left:1px solid #003399;padding:9px 5px;">'.$cpro6.'</td>
+      <td style="border-left:1px solid #003399;text-align:left;padding:9px 5px;">'.get_proname($conn,$_POST["cpro6"]).$pro_pod6.'</td>
+      <td style="border-left:1px solid #003399;padding:9px 5px;">'.$_POST["pro_sn6"].'</td>
+      <td style="border-left:1px solid #003399;padding:9px 5px;text-align:right;">'.number_format($_POST["camount6"]).'</td>
+      <td style="border-left:1px solid #003399;padding:9px 5px;text-align:right;">'.$prpro6.'&nbsp;&nbsp;</td>
+      <td style="border-left:1px solid #003399;border-right:1px solid #003399;padding:9px 5px;text-align:right;">'.$totalSub6s.'&nbsp;&nbsp;</td>
+    </tr>
+    <tr>
+      <td style="border-left:1px solid #003399;padding:9px 5px;">'.$cpro7.'</td>
+      <td style="border-left:1px solid #003399;text-align:left;padding:9px 5px;">'.get_proname($conn,$_POST["cpro7"]).$pro_pod7.'</td>
+      <td style="border-left:1px solid #003399;padding:9px 5px;">'.$_POST["pro_sn7"].'</td>
+      <td style="border-left:1px solid #003399;padding:9px 5px;text-align:right;">'.number_format($_POST["camount7"]).'</td>
+      <td style="border-left:1px solid #003399;padding:9px 5px;text-align:right;">'.$prpro7.'&nbsp;&nbsp;</td>
+      <td style="border-left:1px solid #003399;border-right:1px solid #003399;padding:9px 5px;text-align:right;">'.$totalSub7s.'&nbsp;&nbsp;</td>
+    </tr>
+    <tr>
       <td colspan="3" style="border-top:1px solid #003399;padding:9px 5px;"></td>
       <td style="border-top:1px solid #003399;padding:9px 5px;"></td>
       <td style="border:1px solid #003399;border-right:0px solid #003399;padding:9px 5px;"><strong>รวมทั้งหมด</strong></td>
@@ -209,17 +225,18 @@ $form = '
       <td style="border:1px solid #003399;border-top:0px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;">'.$_POST["cs_amount3"].'</td>
     </tr>
   </table>
-  <br><br>
-  <p style="font-size:12px;"><strong><u>เงื่อนไขการชำระเงิน</u></strong></p>
-  <p style="font-size:12px;">1. '.$_POST['paycon1'].'</p>
-  <p style="font-size:12px;">2. ชำระค่าบริการขนส่ง/ติดตั้ง และ'.$_POST['spro2'].' ณ วันอนุมัติสั่งซื้อสินค้าหรือตามเงื่อนไขการขาย</p>
-  <p style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;ชำระค่าเช่าวันที่ '.$_POST['paysad'].' ของทุกๆ เดือน</p>
-  <br><br><br><br><br><br><br><br><br><br>
+  <br><br><br><br>
+  
   <table width="100%" border="0" cellspacing="0" cellpadding="0">
     <tr>
       <td style="padding-bottom:5px;"><img src="'.$headerIMG.'" width="100%" border="0" /></td>
     </tr>
   </table>
+
+  <p style="font-size:12px;"><strong><u>เงื่อนไขการชำระเงิน</u></strong></p>
+  <p style="font-size:12px;">1. '.$_POST['paycon1'].'</p>
+  <p style="font-size:12px;">2. ชำระค่าบริการขนส่ง/ติดตั้ง และ'.$_POST['spro2'].' ณ วันอนุมัติสั่งซื้อสินค้าหรือตามเงื่อนไขการขาย</p>
+  <p style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;ชำระค่าเช่าวันที่ '.$_POST['paysad'].' ของทุกๆ เดือน</p>
   
   <p style="font-size:12px;"><strong><u>เงื่อนไขการรับประกันและการส่งสินค้า</u></strong></p>
 
