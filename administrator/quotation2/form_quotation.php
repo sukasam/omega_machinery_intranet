@@ -185,10 +185,35 @@ $form = '
       <td style="border:1px solid #003399;border-top:0px solid #003399;padding:9px 5px;text-align:right;">'.number_format($sumtotals,2).'&nbsp;&nbsp;</td>
     </tr>
 </table>
-<br><br>
+<br>
+<p style="font-size:12px;"><strong><u>รายการของแถม</u></strong></p>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" style="font-size:11px;">
+    <tr>
+        <th width="10%" style="border:1px solid #003399;border-right:0px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;"><strong>ลำดับ</strong></th>
+        <th width="75%" style="border:1px solid #003399;border-right:0px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;"><strong>รายการสินค้า</strong></th>
+        <th width="15%" style="border:1px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;"><strong>จำนวน</strong></th>
+    </tr>
+    <tr>
+      <td style="border-left:1px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;">'.$profree1.'</td>
+      <td style="border-left:1px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;">'.$_POST["cs_pro1"].'</td>
+      <td style="border-left:1px solid #003399;border-right:1px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;">'.$_POST["cs_amount1"].'</td>
+    </tr>
+    <tr>
+      <td style="border-left:1px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;">'.$profree2.'</td>
+      <td style="border-left:1px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;">'.$_POST["cs_pro2"].'</td>
+      <td style="border-left:1px solid #003399;border-right:1px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;">'.$_POST["cs_amount2"].'</td>
+    </tr>
+    <tr>
+      <td style="border:1px solid #003399;border-top:0px solid #003399;border-right:0px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;">'.$profree3.'</td>
+      <td style="border:1px solid #003399;border-top:0px solid #003399;border-right:0px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;">'.$_POST["cs_pro3"].'</td>
+      <td style="border:1px solid #003399;border-top:0px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;">'.$_POST["cs_amount3"].'</td>
+    </tr>
+  </table>
+  <br><br>
   <p style="font-size:12px;"><strong><u>เงื่อนไขการชำระเงิน</u></strong></p>
-  <p style="font-size:12px;">1. ชำระค่าบริการขนส่ง/ติดตั้ง และ'.$_POST['spro2'].' ณ วันอนุมัติสั่งซื้อสินค้าหรือตามเงื่อนไขการขาย</p>
-  <p style="font-size:12px;">2. ชำระค่าเช่าวันที่ '.$_POST['paysad'].' ของทุกๆ เดือน</p>
+  <p style="font-size:12px;">1. '.$_POST['paycon1'].'</p>
+  <p style="font-size:12px;">2. ชำระค่าบริการขนส่ง/ติดตั้ง และ'.$_POST['spro2'].' ณ วันอนุมัติสั่งซื้อสินค้าหรือตามเงื่อนไขการขาย</p>
+  <p style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;ชำระค่าเช่าวันที่ '.$_POST['paysad'].' ของทุกๆ เดือน</p>
   <br><br><br><br><br><br><br><br><br><br>
   <table width="100%" border="0" cellspacing="0" cellpadding="0">
     <tr>
@@ -197,20 +222,21 @@ $form = '
   </table>
   
   <p style="font-size:12px;"><strong><u>เงื่อนไขการรับประกันและการส่งสินค้า</u></strong></p>
-  <p style="font-size:12px;">1. การรับประกันสินค้า รับประกันตัวเครื่อง อะไหล่และบริการหลังการขายตลอดอายุการใช้งาน ฟรี</p>
-  <p style="font-size:12px;">2. บริษัทเข้าบริการตรวจเช็คทุกๆ '.$checkService.' เดือน/ครั้ง ฟรี</p>
-  <p style="font-size:12px;">3. จัดส่งสินค้าภายใน '.$_POST['guaran2'].' วัน หลังจากลูกค้าชำระ '.$_POST["spro2"].' และค่าบริการขนส่ง/ติดตั้ง</p>';
+
+  <p style="font-size:12px;">1. ราคาดังกล่าวข้างต้น '.$_POST['paycon2'].' ภาษีมูลค่าเพิ่ม '.$_POST['paycon3'].' ตามที่สรรพากรกำหนดเรียบร้อยแล้ว</p>
+  <p style="font-size:12px;">2. การรับประกันสินค้า ในกรณีเช่า : ทางบริษัทฯ รับประกันเครื่อง, อะไหล่และบริการหลังการขาย ฟรีตลอดอายุสัญญาเช่า</p>
+  <p style="font-size:12px;">3. ระยะเวลาเช่า '.$_POST['paycon4'].' เดือน โดยสัญญาเช่าจะเริ่มต้อนเมื่อทางบริษัทฯ ทำการส่งมอบสินค้าเรียบร้อยแล้ว</p>
+  <p style="font-size:12px;">4. บริษัทฯ ขอสงวนสิทธ์ในการกำหนดให้ลูกค้าใช้น้ำยาสำหรับเครื่องทุกชนิดของบริษัท โอเมก้า แมชชีนเนอรี่ (1999) จำกัด เท่านั้น ตลอดอายุสัญญาเช่า</p>
+  <p style="font-size:12px;">5. จัดส่งสินค้าภายใน '.$_POST['guaran2'].' วัน หลังจากลูกค้าชำระเงินประกันสินค้า/ค่าเช่าล่วงหน้าและค่าบริการขนส่ง/ติดตั้ง</p>';
 
   if($_POST['type_electric'] != "no"){
-	  $form .='<p style="font-size:12px;">4. ลูกค้าเป็นผู้เตรียมระบบไฟฟ้า '.$_POST['type_electric'].' ท่อน้ำดี ขนาด 6 หุน น้ำทิ้ง ขนาด 2 นิ้ว ระยะไม่เกิน 5 เมตร จากตำแหน่งติดตั้ง</p>';
-	  $form .='<p style="font-size:12px;">5. กำหนดยืนราคา '.$_POST['giveprice'].' วัน</p>';
+	  $form .='<p style="font-size:12px;">6. ลูกค้าเป็นผู้ตรียมระบบไฟฟ้า '.$_POST['type_electric'].' ท่อน้ำดี ขนาด 6 หุน น้ำทิ้ง ขนาด 2 นิ้ว ระยะไม่เกิน 5 เมตร จากตำแหน่งติดตั้ง</p>
+    <p style="font-size:12px;">7. กำหนดยืนราคา '.$_POST['giveprice'].' วัน</p>
+    <p style="font-size:12px;">8. ทางบริษัทฯ ขอสงวนสิทธ์ในกรณีที่ลูกค้าเช็นอนุมัติใบเสนอราคาแล้วนั้น หากมีการยกเลิกสัญญา หรือ การเปลี่ยนแปลงใดๆเกิดขึ้นระหว่าง ดำเนินการ ทางลูกค้าต้องเป็นผู้รับผิดชอบต่อความเสียหายและค่าใช้จ่ายที่เกิดขึ้น</p>';
   }else{
-	   $form .='<p style="font-size:12px;">4. กำหนดยืนราคา '.$_POST['giveprice'].' วัน</p>';
+	   $form .='<p style="font-size:12px;">7. กำหนดยืนราคา '.$_POST['giveprice'].' วัน</p>
+     <p style="font-size:12px;">8. ทางบริษัทฯ ขอสงวนสิทธ์ในกรณีที่ลูกค้าเช็นอนุมัติใบเสนอราคาแล้วนั้น หากมีการยกเลิกสัญญา หรือ การเปลี่ยนแปลงใดๆ เกิดขึ้นระหว่าง ดำเนินการ ทางลูกค้าต้องเป็นผู้รับผิดชอบต่อความเสียหายและค่าใช้จ่ายที่เกิดขึ้น</p>';
   }
-
-  $form .='<br>
-  <p style="font-size:12px;"><strong>จึงเรียนมาเพื่อโปรดพิจารณาอนุมัติ บริษัทฯหวังเป็นอย่างยิ่งว่าจะได้รับโอกาสให้บริการในเร็ววันนี้<br>ขอแสดงความนับถือ</strong></p>
-  ';
 
   if(!empty($_POST["remark"])){
     $form .='<br>
@@ -220,6 +246,10 @@ $form = '
     </tr>
   </table>';
   }
+
+  $form .='<br>
+  <p style="font-size:12px;"><strong>จึงเรียนมาเพื่อโปรดพิจารณาอนุมัติ บริษัทฯหวังเป็นอย่างยิ่งว่าจะได้รับโอกาสให้บริการในเร็ววันนี้<br>ขอแสดงความนับถือ</strong></p>
+  ';
 	  
   $form .='
   <br>

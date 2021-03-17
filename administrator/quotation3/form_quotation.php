@@ -148,20 +148,53 @@ $form = '
       <td style="border:1px solid #003399;padding:9px 5px;"><strong>ราคารวมทั้งสิ้น</strong></td>
       <td style="border:1px solid #003399;padding:9px 5px;text-align:right;">' . number_format($sumtotals, 2) . '&nbsp;&nbsp;</td>
     </tr>
-</table><br>
-<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tb1" >
-    <tr>
-      <td style="border:1px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:15px;"><strong>หมายเหตุ : </strong>' . $_POST["remark"] . '</td>
-    </tr>
-  </table>
+</table><br>';
 
-  <p style="font-size:12px;"><strong><u>เงื่อนไขการขาย</u></strong></p>';
+if(!empty($_POST["remark"])){
+  $form .= '<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tb1" >
+  <tr>
+    <td style="border:1px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:15px;"><strong>หมายเหตุ : </strong>' . $_POST["remark"] . '</td>
+  </tr>
+</table><br><br><br><br><br><br><br><br><br><br><br><br>';
+$form .='<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td style="padding-bottom:5px;"><img src="'.$headerIMG.'" width="100%" border="0" /></td>
+  </tr>
+  </table>';
+}
+
+$form .= '<p style="font-size:12px;"><strong><u>เงื่อนไขการขาย / การชำระเงิน</u></strong></p>';
 
 $form .= '
-  <p style="font-size:12px;">1. <strong ><u>การชำระเงิน</u></strong> ชำระเงินสด นับจากวันที่ส่งมอบสินค้า<br>
-  2. กำหนดยืนราคา ' . $_POST['giveprice'] . ' วัน</p>
-  <p style="font-size:12px;"><strong>** รับประกันอะไหล่ ' . $_POST['guaran'] . ' เดือน **</strong></p>
-  <p style="font-size:12px;">จึงเรียนมาเพื่อโปรดพิจารณา และทางบริษัท ฯ หวังเป็นอย่างยิ่งว่าจะได้รับการพิจารณาจากท่าน</p><br>
+<table width="100%" border="0" cellspacing="0" cellpadding="0" class="" >
+  <tr>
+    <td style="border:0px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif; line-height: 20px;">
+      <div style="font-size:11px;">1. การชำระเงิน '.$_POST['paycon1'].'<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;ช่องทางการชำระเงิน : ธนาคารกสิกรไทย ชื่อ บริษัทโอเมก้า แมชชีนเนอรี่ (1999) จำกัด<br>
+      &nbsp;&nbsp;&nbsp;&nbsp;สาขาสุขาภิบาล 5 เลขที่บัญชี 026-1-810689
+      <br><br>
+      2. กำหนดยืนราคา ' . $_POST['giveprice'] . ' วัน<br>
+      <strong>** รับประกันอะไหล่ ' . $_POST['guaran'] . ' เดือน **';
+      if(!empty($_POST['paycon2'])){
+        $form .= ' หรือ '.$_POST['paycon2'].'';
+      }
+      $form .= '</strong><br><br>
+      </div>
+    </td>
+    <td style="text-align: center;border:0px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;">
+    <span style="color: #018022;font-weight: bold;">
+    ธนาคารกสิกร : สาขา สุขาภิบาล 5<br>
+    บัญชีออมทรัพย์ : บจก.โอเมก้าแมชชีนเนอรี่ (1999)<br>
+    เลขที่บัญชี : 026-1-810689</span><br><br>
+    <span style="color: #4b2b7e;font-weight: bold;">ธนาคารไทยพาณิชย์ : สาขา โชคชัย 4 5<br>
+    บัญชีออมทรัพย์ : บจก.โอเมก้าแมชชีนเนอรี่ (1999)<br>
+    เลขที่บัญชี : 127-2-27409-1
+    </span>
+    </td>
+  </tr>
+</table>
+<p style="font-size:11px;font-family:Verdana, Geneva, sans-serif;">จึงเรียนมาเพื่อโปรดพิจารณา และทางบริษัท ฯ หวังเป็นอย่างยิ่งว่าจะได้รับการพิจารณาจากท่าน<br></p>
+<br>
   	<table width="100%" border="0" cellspacing="0" cellpadding="0" style="text-align:center;">
       <tr>
         <td width="33%" style="border:1px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;text-align:center;padding-top:10px;padding-bottom:10px;">

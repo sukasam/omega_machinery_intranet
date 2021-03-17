@@ -948,7 +948,7 @@ function submitForm() {
           </tr>
         </table>
   <br>
-	<table width="100%" border="0" cellspacing="0" cellpadding="0" style="display:none;">
+	<table width="100%" border="0" cellspacing="0" cellpadding="0">
           <tr>
             <td style="border:0;padding:0;width:60%;vertical-align:top;">
             	<table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -991,12 +991,29 @@ function submitForm() {
         <td width="33%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;text-align:left;padding-top:10px;padding-bottom:10px;">
         <p><strong>เงื่อนไขการชำระเงิน</strong></p> 
         <p>
-        1. ชำระค่าบริการขนส่ง/ติดตั้ง และ<?php echo $spro2;?> ณ วันอนุมัติสั่งซื้อสินค้าหรือตามเงื่อนไขการขาย<br>
-			  2. ชำระค่าเช่าวันที่ <input type="text" name="paysad" value="<?php echo $paysad;?>" style="text-align: center;width: 50px;"> ของทุกๆเดือน
+        1. <input type="text" name="paycon1" value="<?php echo $paycon1;?>" style="text-align: left;width: 60%;"><br>
+        2. ชำระเงินประกันเครื่อง/ค่าบริการขนส่งติดตั้ง ณ วันที่อนุมัติสั่งซื้อ ก่อนติดตั้งเครื่อง หรือตามเงื่อนไขการขายที่ตกลง<br>
+			     ชำระค่าเช่าวันที่ <input type="text" name="paysad" value="<?php echo $paysad;?>" style="text-align: center;width: 100px;"> ของทุกๆเดือน
         </p>    
         <p><strong>เงื่อนไขการรับประกันและการส่งสินค้า</strong></p>
         <p>
-			1. การรับประกันสินค้า รับประกันตัวเครื่อง อะไหล่และบริการหลังการขายตลอดอายุการใช้งาน ฟรี<br>			
+
+        1. ราคาดังกล่าวข้างต้น <input type="text" name="paycon2" value="<?php echo $paycon2;?>" style="text-align: center;width: 100px;"> ภาษีมูลค่าเพิ่ม <input type="text" name="paycon3" value="<?php echo $paycon3;?>" style="text-align: center;width: 50px;"> ตามที่สรรพากรกำหนดเรียบร้อยแล้ว<br>
+        2. การรับประกันสินค้า ในกรณีเช่า : ทางบริษัทฯ รับประกันเครื่อง, อะไหล่และบริการหลังการขาย ฟรีตลอดอายุสัญญาเช่า<br>
+        3. ระยะเวลาเช่า <input type="text" name="paycon4" value="<?php echo $paycon4;?>" style="text-align: center;width: 50px;"> เดือน โดยสัญญาเช่าจะเริ่มต้อนเมื่อทางบริษัทฯ ทำการส่งมอบสินค้าเรียบร้อยแล้ว<br>
+        4. บริษัทฯ ขอสงวนสิทธ์ในการกำหนดให้ลูกค้าใช้น้ำยาสำหรับเครื่องทุกชนิดของบริษัท โอเมก้า แมชชีนเนอรี่ (1999) จำกัด เท่านั้น ตลอดอายุสัญญาเช่า<br>
+        5. จัดส่งสินค้าภายใน <input type="text" name="guaran2" value="<?php echo $guaran2;?>" style="text-align: center;width: 50px;"> วัน หลังจากลูกค้าชำระเงินประกันสินค้า/ค่าเช่าล่วงหน้าและค่าบริการขนส่ง/ติดตั้ง<br>
+        6. ลูกค้าเป็นผู้ตรียมระบบไฟฟ้า <select name="type_electric" id="type_electric" class="inputselect">
+      <option value="no" <?php  if($type_electric == "no"){echo 'selected';}?>>ไม่เลือก</option>
+      <option value="3 เฟส (380V.) เบรกเกอร์ 32A" <?php  if($type_electric == "3 เฟส (380V.) เบรกเกอร์ 32A"){echo 'selected';}?>>3 เฟส (380V.) เบรกเกอร์ 32A</option>
+      <option value="3 เฟส (380V.) เบรกเกอร์ 80A" <?php  if($type_electric == "3 เฟส (380V.) เบรกเกอร์ 80A"){echo 'selected';}?>>3 เฟส (380V.) เบรกเกอร์ 80A</option>
+      <option value="1 เฟส (220V.) เบรกเกอร์ 20A" <?php  if($type_electric == "1 เฟส (220V.) เบรกเกอร์ 20A"){echo 'selected';}?>>1 เฟส (220V.) เบรกเกอร์ 20A</option>
+      <option value="1 เฟส (220V.) เบรกเกอร์ 30A" <?php  if($type_electric == "1 เฟส (220V.) เบรกเกอร์ 30A"){echo 'selected';}?>>1 เฟส (220V.) เบรกเกอร์ 30A</option>
+      </select> ท่อน้ำดี ขนาด 6 หุน น้ำทิ้ง ขนาด 2 นิ้ว ระยะไม่เกิน 5 เมตร จากตำแหน่งติดตั้ง<br>
+        7. กำหนดยืนราคา <input type="text" name="giveprice" value="<?php echo $giveprice;?>" style="text-align: center;width: 50px;"> วัน<br>
+        8. ทางบริษัทฯ ขอสงวนสิทธ์ในกรณีที่ลูกค้าเช็นอนุมัติใบเสนอราคาแล้วนั้น หากมีการยกเลิกสัญญา หรือ การเปลี่ยนแปลงใดๆเกิดขึ้นระหว่างดำเนินการ ทางลูกค้าต้องเป็นผู้รับผิดชอบต่อความเสียหายและค่าใช้จ่ายที่เกิดขึ้น<br>
+
+			<!-- 1. การรับประกันสินค้า รับประกันตัวเครื่อง อะไหล่และบริการหลังการขายตลอดอายุการใช้งาน ฟรี<br>			
 			2. บริษัทเข้าบริการตรวจเช็คทุกๆ <select name="type_service" id="type_service" class="inputselect">
       		<option value="">กรุณาเลือกประเภทบริการ</option>
 		  <?php
@@ -1016,7 +1033,7 @@ function submitForm() {
       <option value="1 เฟส (220V.) เบรกเกอร์ 20A" <?php  if($type_electric == "1 เฟส (220V.) เบรกเกอร์ 20A"){echo 'selected';}?>>1 เฟส (220V.) เบรกเกอร์ 20A</option>
       <option value="1 เฟส (220V.) เบรกเกอร์ 30A" <?php  if($type_electric == "1 เฟส (220V.) เบรกเกอร์ 30A"){echo 'selected';}?>>1 เฟส (220V.) เบรกเกอร์ 30A</option>
       </select> ท่อน้ำดี ขนาด 6 หุน น้ำทิ้ง ขนาด 2 นิ้ว ระยะไม่เกิน 5 เมตร จากตำแหน่งติดตั้ง<br>	
-      5. กำหนดยืนราคา <input type="text" name="giveprice" value="<?php echo $giveprice;?>" style="text-align: center;width: 50px;"> วัน
+      5. กำหนดยืนราคา <input type="text" name="giveprice" value="<?php echo $giveprice;?>" style="text-align: center;width: 50px;"> วัน -->
         </p>   
         </td>
       </tr>

@@ -817,15 +817,30 @@ function submitForm() {
 	
 	<table width="100%" cellspacing="0" cellpadding="0" style="text-align:center;">
       <tr>
-        <td width="33%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;text-align:left;padding-top:10px;padding-bottom:10px;">
-        <p><strong>เงื่อนไขการขาย</strong></p> 
+        <td width="70%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;text-align:left;padding-top:10px;padding-bottom:10px;">
+        <p><strong>เงื่อนไขการขาย / การชำระเงิน</strong></p> 
         <p>
-        	 1. <strong><u>การชำระเงิน</u></strong> ชำระเงินสด นับจากวันที่ส่งมอบสินค้า<br/>
-        	 2. กำหนดยืนราคา <input type="text" name="giveprice" value="<?php echo $giveprice;?>" style="text-align: center;width: 50px;"> วัน<br>	
-          <br/><span>** รับประกันอะไหล่ <input type="text" name="guaran" value="<?php echo $guaran;?>" style="text-align: center;width: 50px;"> เดือน **</span>
+        	 1. <strong><u>การชำระเงิน</u></strong> <input type="text" name="paycon1" value="<?php  echo $paycon1;?>" id="paycon1" class="inpfoder" style="width: 350px;border: 1px solid;"><br/>
+           <br><strong><u>ช่องทางการชำระเงิน</u></strong> : ธนาคารกสิกรไทย ชื่อ บริษัทโอเมก้า แมชชีนเนอรี่ (1999) จำกัด สาขาสุขาภิบาล 5 เลขที่บัญชี 026-1-810689<br>
+        	 <br>2. กำหนดยืนราคา <input type="text" name="giveprice" value="<?php echo $giveprice;?>" style="text-align: center;width: 50px;"> วัน<br>	
+           <br><span>** รับประกันอะไหล่ <input type="text" name="guaran" value="<?php echo $guaran;?>" style="text-align: center;width: 50px;"> เดือน ** หรือ <input type="text" name="paycon2" value="<?php  echo $paycon2;?>" id="paycon2" class="inpfoder" style="width: 350px;border: 1px solid;"></span>
         </p>    
         </td>
+        <td width="30%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;text-align:left;padding-top:10px;padding-bottom:10px;">
+        <p><strong>ช่องทางการชำระเงิน</strong></p> 
+        <p style="    text-align: center;">
+        <span style="color: #018022;font-weight: bold;">
+    ธนาคารกสิกร : สาขา สุขาภิบาล 5<br>
+    บัญชีออมทรัพย์ : บจก.โอเมก้าแมชชีนเนอรี่ (1999)<br>
+    เลขที่บัญชี : 026-1-810689</span><br><br>
+    <span style="color: #4b2b7e;font-weight: bold;">ธนาคารไทยพาณิชย์ : สาขา โชคชัย 4 5<br>
+    บัญชีออมทรัพย์ : บจก.โอเมก้าแมชชีนเนอรี่ (1999)<br>
+    เลขที่บัญชี : 127-2-27409-1
+    </span>
+        </p>
+        </td>
       </tr>
+      
     </table>
     <br>
     <table width="100%" cellspacing="0" cellpadding="0" style="text-align:center;">
