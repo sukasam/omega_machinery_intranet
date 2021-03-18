@@ -51,7 +51,7 @@ $form = '
     <td style="padding-bottom:5px;"><img src="'.$headerIMG.'" width="100%" border="0" /></td>
   </tr>
 </table>
-<table width="100%" border="0" cellspacing="0" cellpadding="0" style="border:1px solid #003399;">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" style="border:1px solid #000;">
           <tr>
             <td width="57%" valign="top" style="font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;"><strong>ชื่อลูกค้า :</strong> '.$_POST["cd_name"].'<strong><br />
               <br />
@@ -71,58 +71,58 @@ $form = '
   จึงขอเสนอราคา โดยมีรายละเอียดดังนี้<br><br></p>
 <table width="100%" border="0" cellspacing="0" cellpadding="0" style="font-size:12px;text-align:center;">
     <tr>
-      <td width="5%" style="border:1px solid #003399;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;"><strong>ลำดับ</strong></td>
-      <td width="35%" style="border:1px solid #003399;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;"><strong>รายการสินค้า</strong></td>
-      <td width="10%" style="border:1px solid #003399;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;"><strong>จำนวน</strong></td>
-      <td width="10%" style="border:1px solid #003399;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;"><strong>ราคา</strong></td>
+      <td width="5%" style="border:1px solid #000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;"><strong>ลำดับ</strong></td>
+      <td width="35%" style="border:1px solid #000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;"><strong>รายการสินค้า</strong></td>
+      <td width="10%" style="border:1px solid #000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;"><strong>จำนวน</strong></td>
+      <td width="10%" style="border:1px solid #000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;"><strong>ราคา</strong></td>
     </tr>';
 	
 	if($_POST['chkserv1'] == '1'){
 		$form .= '<tr>
-		  <td style="border:1px solid #003399;padding:9px 5px;vertical-align: top;">1<br><br>
+		  <td style="border:1px solid #000;padding:9px 5px;vertical-align: top;">1<br><br>
 		  <img src="../images/checkbox-unchecked-hi.png" width="25"></td>
-		  <td style="border:1px solid #003399;text-align:left;padding:9px 5px;">
+		  <td style="border:1px solid #000;text-align:left;padding:9px 5px;">
 		  <p><strong>สัญญาบริการรายปี สำหรับ'.$typeS.' <u>แบบรวมอะไหล่</u></strong><br><br></p>
 		  <p><strong>1.1 '.$typeS.'</strong><br><br></p>
 		  <p style="line-height: 50px;">'.$_POST["cpro1"].'</p>
 		  </td>
-		  <td style="border:1px solid #003399;padding:9px 5px;">'.$_POST["pro_sn1"].'</td>
-		  <td style="border:1px solid #003399;padding:9px 5px;text-align:center;">'.number_format($_POST["camount1"]).'</td>
+		  <td style="border:1px solid #000;padding:9px 5px;">'.$_POST["pro_sn1"].'</td>
+		  <td style="border:1px solid #000;padding:9px 5px;text-align:center;">'.number_format($_POST["camount1"]).'</td>
 		</tr>';
 	}else{
 		if($_POST['chkserv2'] == '1'){
 			$form .= '<tr>
-			  <td style="border:1px solid #003399;padding:9px 5px;vertical-align: top;">1<br><br>
+			  <td style="border:1px solid #000;padding:9px 5px;vertical-align: top;">1<br><br>
 			  <img src="../images/checkbox-unchecked-hi.png" width="25"></td>
-			  <td style="border:1px solid #003399;text-align:left;padding:9px 5px;">
+			  <td style="border:1px solid #000;text-align:left;padding:9px 5px;">
 			  <p><strong>สัญญาบริการรายปี สำหรับ'.$typeS.' <u>แบบไม่รวมอะไหล่</u></strong><br><br></p>
 			  <p><strong>1.1 '.$typeS.'</strong><br><br></p>
 			  <p style="line-height: 50px;">'.$_POST["cpro2"].'</p>
 			  </td>
-			  <td style="border:1px solid #003399;padding:9px 5px;">'.$_POST["pro_sn2"].'</td>
-			  <td style="border:1px solid #003399;padding:9px 5px;text-align:center;">'.number_format($_POST["camount2"]).'</td>
+			  <td style="border:1px solid #000;padding:9px 5px;">'.$_POST["pro_sn2"].'</td>
+			  <td style="border:1px solid #000;padding:9px 5px;text-align:center;">'.number_format($_POST["camount2"]).'</td>
 			</tr>';
 		}
 	}
     
 	if($_POST['chkserv2'] == '1' && $_POST['chkserv1'] == '1'){
 		$form .= '<tr>
-		  <td style="border:1px solid #003399;padding:9px 5px;vertical-align: top;">2<br><br>
+		  <td style="border:1px solid #000;padding:9px 5px;vertical-align: top;">2<br><br>
 		  <img src="../images/checkbox-unchecked-hi.png" width="25"></td>
-		  <td style="border:1px solid #003399;text-align:left;padding:9px 5px;">
+		  <td style="border:1px solid #000;text-align:left;padding:9px 5px;">
 		  <p><strong>สัญญาบริการรายปี สำหรับ'.$typeS.' <u>แบบไม่รวมอะไหล่</u></strong><br><br></p>
 		  <p><strong>2.1 '.$typeS.'</strong><br><br></p>
 		  <p style="line-height: 50px;">'.$_POST["cpro2"].'</p>
 		  </td>
-		  <td style="border:1px solid #003399;padding:9px 5px;">'.$_POST["pro_sn2"].'</td>
-		  <td style="border:1px solid #003399;padding:9px 5px;text-align:center;">'.number_format($_POST["camount2"]).'</td>
+		  <td style="border:1px solid #000;padding:9px 5px;">'.$_POST["pro_sn2"].'</td>
+		  <td style="border:1px solid #000;padding:9px 5px;text-align:center;">'.number_format($_POST["camount2"]).'</td>
 		</tr>';
 	}
 
 $form .= '</table><br>
 <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tb1" >
     <tr>
-      <td style="border:1px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:15px;"><strong>หมายเหตุ : </strong>'.$_POST["remark"].'</td>
+      <td style="border:1px solid #000;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:15px;"><strong>หมายเหตุ : </strong>'.$_POST["remark"].'</td>
     </tr>
   </table>
  <br><br>
@@ -136,10 +136,10 @@ $form .= '</table><br>
   <p style="font-size:12px;">จึงเรียนมาเพื่อโปรดพิจารณา และทางบริษัท ฯ หวังเป็นอย่างยิ่งว่าจะได้รับการพิจารณาจากท่าน</p><br>
   	<table width="100%" border="0" cellspacing="0" cellpadding="0" style="text-align:center;">
       <tr>
-        <td width="33%" style="border:1px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;text-align:center;padding-top:10px;padding-bottom:10px;">
+        <td width="33%" style="border:1px solid #000;font-size:11px;font-family:Verdana, Geneva, sans-serif;text-align:center;padding-top:10px;padding-bottom:10px;">
         	<table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
-                <td style="border-bottom:1px solid #003399;padding-bottom:10px;font-size:11px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><br><br><br></td>
+                <td style="border-bottom:1px solid #000;padding-bottom:10px;font-size:11px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><br><br><br></td>
               </tr>
               <tr>
                 <td style="padding-top:10px;padding-bottom:10px;font-size:11px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>อนุมัติสั่งซื้อสินค้าตามรายการข้างต้น</strong></td>
@@ -151,13 +151,13 @@ $form .= '</table><br>
             </table>
 
         </td>
-        <td width="33%" style="border:0px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;text-align:center;padding-top:10px;padding-bottom:10px;">
+        <td width="33%" style="border:0px solid #000;font-size:11px;font-family:Verdana, Geneva, sans-serif;text-align:center;padding-top:10px;padding-bottom:10px;">
         	
         </td>
-        <td width="33%" style="border:0px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;text-align:center;padding-top:10px;padding-bottom:10px;">
+        <td width="33%" style="border:0px solid #000;font-size:11px;font-family:Verdana, Geneva, sans-serif;text-align:center;padding-top:10px;padding-bottom:10px;">
         	<table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
-                <td style="border-bottom:0px solid #003399;padding-bottom:10px;font-size:13px;font-family:Verdana, Geneva, sans-serif;text-align:center;">ขอแสดงความนับถือ</td>
+                <td style="border-bottom:0px solid #000;padding-bottom:10px;font-size:13px;font-family:Verdana, Geneva, sans-serif;text-align:center;">ขอแสดงความนับถือ</td>
               </tr>
               <tr>
                 <td style="padding-top:10px;padding-bottom:10px;font-size:11px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><img src="../../upload/user/signature/'.get_technician_signature($conn,$_POST['cs_technic']).'" width="130" border="0" /></td>

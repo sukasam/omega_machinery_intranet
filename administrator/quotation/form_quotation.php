@@ -100,7 +100,7 @@ $form = '
     <td style="padding-bottom:5px;"><img src="'.$headerIMG.'" width="100%" border="0" /></td>
   </tr>
 </table>
-<table width="100%" border="0" cellspacing="0" cellpadding="0" style="border:1px solid #003399;">
+<table width="100%" border="0" cellspacing="0" cellpadding="0" style="border:1px solid #000;">
           <tr>
             <td width="57%" valign="top" style="font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;"><strong>ชื่อลูกค้า :</strong> '.$_POST["cd_name"].'<strong><br />
               <br />
@@ -118,119 +118,119 @@ $form = '
 <p style="font-size:12px;"><strong>ทางบริษัท โอเมก้า แมชชีนเนอรี่ (1999) จำกัด ขอบคุณที่ท่านได้มอบความไว้วางใจ ให้นำเสนอราคาสินค้าและบริการเพื่อพิจารณาดังต่อไปนี้</strong></p>
 <table width="100%" border="0" cellspacing="0" cellpadding="0" style="font-size:11px;text-align:center;">
     <tr>
-      <td width="5%" style="border-top:1px solid #003399;border-top:1px solid #003399;border-left:1px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;"><strong>ลำดับ</strong></td>
-      <td width="35%" style="border-top:1px solid #003399;border-left:1px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;"><strong>รายการ</strong></td>
-      <td width="10%" style="border-top:1px solid #003399;border-left:1px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;"><strong>จำนวน</strong></td>
-      <td width="10%" style="border-top:1px solid #003399;border-left:1px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;"><strong>ราคา</strong></td>
-      <td width="15%" style="border-top:1px solid #003399;border-left:1px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;"><strong>ส่วนลด</strong></td>
-      <td width="15%" style="border-top:1px solid #003399;border-left:1px solid #003399;border-right:1px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;"><strong>ราคาสุทธิ</strong></td>
+      <td width="5%" style="border-top:1px solid #000;border-top:1px solid #000;border-left:1px solid #000;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;"><strong>ลำดับ</strong></td>
+      <td width="35%" style="border-top:1px solid #000;border-left:1px solid #000;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;"><strong>รายการ</strong></td>
+      <td width="10%" style="border-top:1px solid #000;border-left:1px solid #000;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;"><strong>จำนวน</strong></td>
+      <td width="10%" style="border-top:1px solid #000;border-left:1px solid #000;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;"><strong>ราคา</strong></td>
+      <td width="15%" style="border-top:1px solid #000;border-left:1px solid #000;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;"><strong>ส่วนลด</strong></td>
+      <td width="15%" style="border-top:1px solid #000;border-left:1px solid #000;border-right:1px solid #000;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;"><strong>ราคาสุทธิ</strong></td>
     </tr>
     <tr>
-      <td style="border-top:1px solid #003399;border-left:1px solid #003399;padding:9px 5px;">'.$cpro1.'</td>
-      <td style="border-top:1px solid #003399;border-left:1px solid #003399;text-align:left;padding:9px 5px;">'.get_proname($conn,$_POST["cpro1"]).$pro_pod1.'</td>
-      <td style="border-top:1px solid #003399;border-left:1px solid #003399;padding:9px 5px;">'.$_POST["pro_sn1"].'</td>
-      <td style="border-top:1px solid #003399;border-left:1px solid #003399;padding:9px 5px;text-align:right;">'.number_format($_POST["camount1"]).'</td>
-      <td style="border-top:1px solid #003399;border-left:1px solid #003399;padding:9px 5px;text-align:right;">'.$prpro1.'&nbsp;&nbsp;</td>
-      <td style="border-top:1px solid #003399;border-right:1px solid #003399;border-left:1px solid #003399;padding:9px 5px;text-align:right;">'.$totalSub1s.'&nbsp;&nbsp;</td>
+      <td style="border-top:1px solid #000;border-left:1px solid #000;padding:9px 5px;">'.$cpro1.'</td>
+      <td style="border-top:1px solid #000;border-left:1px solid #000;text-align:left;padding:9px 5px;">'.get_proname($conn,$_POST["cpro1"]).$pro_pod1.'</td>
+      <td style="border-top:1px solid #000;border-left:1px solid #000;padding:9px 5px;">'.$_POST["pro_sn1"].'</td>
+      <td style="border-top:1px solid #000;border-left:1px solid #000;padding:9px 5px;text-align:right;">'.number_format($_POST["camount1"]).'</td>
+      <td style="border-top:1px solid #000;border-left:1px solid #000;padding:9px 5px;text-align:right;">'.$prpro1.'&nbsp;&nbsp;</td>
+      <td style="border-top:1px solid #000;border-right:1px solid #000;border-left:1px solid #000;padding:9px 5px;text-align:right;">'.$totalSub1s.'&nbsp;&nbsp;</td>
     </tr>
     <tr>
-      <td style="border-left:1px solid #003399;padding:9px 5px;">'.$cpro2.'</td>
-      <td style="border-left:1px solid #003399;text-align:left;padding:9px 5px;">'.get_proname($conn,$_POST["cpro2"]).$pro_pod2.'</td>
-      <td style="border-left:1px solid #003399;padding:9px 5px;">'.$_POST["pro_sn2"].'</td>
-      <td style="border-left:1px solid #003399;padding:9px 5px;text-align:right;">'.number_format($_POST["camount2"]).'</td>
-      <td style="border-left:1px solid #003399;padding:9px 5px;text-align:right;">'.$prpro2.'&nbsp;&nbsp;</td>
-      <td style="border-left:1px solid #003399;border-right:1px solid #003399;padding:9px 5px;text-align:right;">'.$totalSub2s.'&nbsp;&nbsp;</td>
+      <td style="border-left:1px solid #000;padding:9px 5px;">'.$cpro2.'</td>
+      <td style="border-left:1px solid #000;text-align:left;padding:9px 5px;">'.get_proname($conn,$_POST["cpro2"]).$pro_pod2.'</td>
+      <td style="border-left:1px solid #000;padding:9px 5px;">'.$_POST["pro_sn2"].'</td>
+      <td style="border-left:1px solid #000;padding:9px 5px;text-align:right;">'.number_format($_POST["camount2"]).'</td>
+      <td style="border-left:1px solid #000;padding:9px 5px;text-align:right;">'.$prpro2.'&nbsp;&nbsp;</td>
+      <td style="border-left:1px solid #000;border-right:1px solid #000;padding:9px 5px;text-align:right;">'.$totalSub2s.'&nbsp;&nbsp;</td>
     </tr>
     <tr>
-      <td style="border-left:1px solid #003399;padding:9px 5px;">'.$cpro3.'</td>
-      <td style="border-left:1px solid #003399;text-align:left;padding:9px 5px;">'.get_proname($conn,$_POST["cpro3"]).$pro_pod3.'</td>
-      <td style="border-left:1px solid #003399;padding:9px 5px;">'.$_POST["pro_sn3"].'</td>
-      <td style="border-left:1px solid #003399;padding:9px 5px;text-align:right;">'.number_format($_POST["camount3"]).'</td>
-      <td style="border-left:1px solid #003399;padding:9px 5px;text-align:right;">'.$prpro3.'&nbsp;&nbsp;</td>
-      <td style="border-left:1px solid #003399;border-right:1px solid #003399;padding:9px 5px;text-align:right;">'.$totalSub3s.'&nbsp;&nbsp;</td>
+      <td style="border-left:1px solid #000;padding:9px 5px;">'.$cpro3.'</td>
+      <td style="border-left:1px solid #000;text-align:left;padding:9px 5px;">'.get_proname($conn,$_POST["cpro3"]).$pro_pod3.'</td>
+      <td style="border-left:1px solid #000;padding:9px 5px;">'.$_POST["pro_sn3"].'</td>
+      <td style="border-left:1px solid #000;padding:9px 5px;text-align:right;">'.number_format($_POST["camount3"]).'</td>
+      <td style="border-left:1px solid #000;padding:9px 5px;text-align:right;">'.$prpro3.'&nbsp;&nbsp;</td>
+      <td style="border-left:1px solid #000;border-right:1px solid #000;padding:9px 5px;text-align:right;">'.$totalSub3s.'&nbsp;&nbsp;</td>
     </tr>
     <tr>
-      <td style="border-left:1px solid #003399;padding:9px 5px;">'.$cpro4.'</td>
-      <td style="border-left:1px solid #003399;text-align:left;padding:9px 5px;">'.get_proname($conn,$_POST["cpro4"]).$pro_pod4.'</td>
-      <td style="border-left:1px solid #003399;padding:9px 5px;">'.$_POST["pro_sn4"].'</td>
-      <td style="border-left:1px solid #003399;padding:9px 5px;text-align:right;">'.number_format($_POST["camount4"]).'</td>
-      <td style="border-left:1px solid #003399;padding:9px 5px;text-align:right;">'.$prpro4.'&nbsp;&nbsp;</td>
-      <td style="border-left:1px solid #003399;border-right:1px solid #003399;padding:9px 5px;text-align:right;">'.$totalSub4s.'&nbsp;&nbsp;</td>
+      <td style="border-left:1px solid #000;padding:9px 5px;">'.$cpro4.'</td>
+      <td style="border-left:1px solid #000;text-align:left;padding:9px 5px;">'.get_proname($conn,$_POST["cpro4"]).$pro_pod4.'</td>
+      <td style="border-left:1px solid #000;padding:9px 5px;">'.$_POST["pro_sn4"].'</td>
+      <td style="border-left:1px solid #000;padding:9px 5px;text-align:right;">'.number_format($_POST["camount4"]).'</td>
+      <td style="border-left:1px solid #000;padding:9px 5px;text-align:right;">'.$prpro4.'&nbsp;&nbsp;</td>
+      <td style="border-left:1px solid #000;border-right:1px solid #000;padding:9px 5px;text-align:right;">'.$totalSub4s.'&nbsp;&nbsp;</td>
     </tr>
     <tr>
-      <td style="border-left:1px solid #003399;padding:9px 5px;">'.$cpro5.'</td>
-      <td style="border-left:1px solid #003399;text-align:left;padding:9px 5px;">'.get_proname($conn,$_POST["cpro5"]).$pro_pod5.'</td>
-      <td style="border-left:1px solid #003399;padding:9px 5px;">'.$_POST["pro_sn5"].'</td>
-      <td style="border-left:1px solid #003399;padding:9px 5px;text-align:right;">'.number_format($_POST["camount5"]).'</td>
-      <td style="border-left:1px solid #003399;padding:9px 5px;text-align:right;">'.$prpro5.'&nbsp;&nbsp;</td>
-      <td style="border-left:1px solid #003399;border-right:1px solid #003399;padding:9px 5px;text-align:right;">'.$totalSub5s.'&nbsp;&nbsp;</td>
+      <td style="border-left:1px solid #000;padding:9px 5px;">'.$cpro5.'</td>
+      <td style="border-left:1px solid #000;text-align:left;padding:9px 5px;">'.get_proname($conn,$_POST["cpro5"]).$pro_pod5.'</td>
+      <td style="border-left:1px solid #000;padding:9px 5px;">'.$_POST["pro_sn5"].'</td>
+      <td style="border-left:1px solid #000;padding:9px 5px;text-align:right;">'.number_format($_POST["camount5"]).'</td>
+      <td style="border-left:1px solid #000;padding:9px 5px;text-align:right;">'.$prpro5.'&nbsp;&nbsp;</td>
+      <td style="border-left:1px solid #000;border-right:1px solid #000;padding:9px 5px;text-align:right;">'.$totalSub5s.'&nbsp;&nbsp;</td>
     </tr>
     <tr>
-      <td style="border-left:1px solid #003399;padding:9px 5px;">'.$cpro6.'</td>
-      <td style="border-left:1px solid #003399;text-align:left;padding:9px 5px;">'.get_proname($conn,$_POST["cpro6"]).$pro_pod6.'</td>
-      <td style="border-left:1px solid #003399;padding:9px 5px;">'.$_POST["pro_sn6"].'</td>
-      <td style="border-left:1px solid #003399;padding:9px 5px;text-align:right;">'.number_format($_POST["camount6"]).'</td>
-      <td style="border-left:1px solid #003399;padding:9px 5px;text-align:right;">'.$prpro6.'&nbsp;&nbsp;</td>
-      <td style="border-left:1px solid #003399;border-right:1px solid #003399;padding:9px 5px;text-align:right;">'.$totalSub6s.'&nbsp;&nbsp;</td>
+      <td style="border-left:1px solid #000;padding:9px 5px;">'.$cpro6.'</td>
+      <td style="border-left:1px solid #000;text-align:left;padding:9px 5px;">'.get_proname($conn,$_POST["cpro6"]).$pro_pod6.'</td>
+      <td style="border-left:1px solid #000;padding:9px 5px;">'.$_POST["pro_sn6"].'</td>
+      <td style="border-left:1px solid #000;padding:9px 5px;text-align:right;">'.number_format($_POST["camount6"]).'</td>
+      <td style="border-left:1px solid #000;padding:9px 5px;text-align:right;">'.$prpro6.'&nbsp;&nbsp;</td>
+      <td style="border-left:1px solid #000;border-right:1px solid #000;padding:9px 5px;text-align:right;">'.$totalSub6s.'&nbsp;&nbsp;</td>
     </tr>
     <tr>
-      <td style="border-left:1px solid #003399;padding:9px 5px;">'.$cpro7.'</td>
-      <td style="border-left:1px solid #003399;text-align:left;padding:9px 5px;">'.get_proname($conn,$_POST["cpro7"]).$pro_pod7.'</td>
-      <td style="border-left:1px solid #003399;padding:9px 5px;">'.$_POST["pro_sn7"].'</td>
-      <td style="border-left:1px solid #003399;padding:9px 5px;text-align:right;">'.number_format($_POST["camount7"]).'</td>
-      <td style="border-left:1px solid #003399;padding:9px 5px;text-align:right;">'.$prpro7.'&nbsp;&nbsp;</td>
-      <td style="border-left:1px solid #003399;border-right:1px solid #003399;padding:9px 5px;text-align:right;">'.$totalSub7s.'&nbsp;&nbsp;</td>
+      <td style="border-left:1px solid #000;padding:9px 5px;">'.$cpro7.'</td>
+      <td style="border-left:1px solid #000;text-align:left;padding:9px 5px;">'.get_proname($conn,$_POST["cpro7"]).$pro_pod7.'</td>
+      <td style="border-left:1px solid #000;padding:9px 5px;">'.$_POST["pro_sn7"].'</td>
+      <td style="border-left:1px solid #000;padding:9px 5px;text-align:right;">'.number_format($_POST["camount7"]).'</td>
+      <td style="border-left:1px solid #000;padding:9px 5px;text-align:right;">'.$prpro7.'&nbsp;&nbsp;</td>
+      <td style="border-left:1px solid #000;border-right:1px solid #000;padding:9px 5px;text-align:right;">'.$totalSub7s.'&nbsp;&nbsp;</td>
     </tr>
     <tr>
-      <td colspan="3" style="border-top:1px solid #003399;padding:9px 5px;"></td>
-      <td style="border-top:1px solid #003399;padding:9px 5px;"></td>
-      <td style="border-left:1px solid #003399;border-top:1px solid #003399;padding:9px 5px;"><strong>รวมทั้งหมด</strong></td>
-      <td style="border-right:1px solid #003399;border-left:1px solid #003399;border-top:1px solid #003399;padding:9px 5px;text-align:right;">'.number_format($sumprice,2).'&nbsp;&nbsp;</td>
+      <td colspan="3" style="border-top:1px solid #000;padding:9px 5px;"></td>
+      <td style="border-top:1px solid #000;padding:9px 5px;"></td>
+      <td style="border-left:1px solid #000;border-top:1px solid #000;padding:9px 5px;"><strong>รวมทั้งหมด</strong></td>
+      <td style="border-right:1px solid #000;border-left:1px solid #000;border-top:1px solid #000;padding:9px 5px;text-align:right;">'.number_format($sumprice,2).'&nbsp;&nbsp;</td>
     </tr>
     <tr>
-      <td colspan="3" style="border:0px solid #003399;padding:9px 5px;"></td>
-      <td style="border:0px solid #003399;padding:9px 5px;"></td>
-      <td style="border-left:1px solid #003399;border-top:1px solid #003399;padding:9px 5px;"><strong>VAT 7 %</strong></td>
-      <td style="border-right:1px solid #003399;border-left:1px solid #003399;border-top:1px solid #003399;padding:9px 5px;text-align:right;">'.number_format($sumpricevat,2).'&nbsp;&nbsp;</td>
+      <td colspan="3" style="border:0px solid #000;padding:9px 5px;"></td>
+      <td style="border:0px solid #000;padding:9px 5px;"></td>
+      <td style="border-left:1px solid #000;border-top:1px solid #000;padding:9px 5px;"><strong>VAT 7 %</strong></td>
+      <td style="border-right:1px solid #000;border-left:1px solid #000;border-top:1px solid #000;padding:9px 5px;text-align:right;">'.number_format($sumpricevat,2).'&nbsp;&nbsp;</td>
     </tr>
     <tr>
-      <td colspan="3" style="text-align:center;border:0px solid #003399;padding:9px 5px;background-color: #ddebf7;"><strong>'.baht_text($sumtotals).'</strong></td>
-      <td style="border:0px solid #003399;padding:9px 5px;"></td>
-      <td style="border:1px solid #003399;border-right:0px solid #003399;padding:9px 5px;"><strong>ราคารวมทั้งสิ้น</strong></td>
-      <td style="border:1px solid #003399;padding:9px 5px;text-align:right;">'.number_format($sumtotals,2).'&nbsp;&nbsp;</td>
+      <td colspan="3" style="text-align:center;border:0px solid #000;padding:9px 5px;background-color: #ddebf7;"><strong>'.baht_text($sumtotals).'</strong></td>
+      <td style="border:0px solid #000;padding:9px 5px;"></td>
+      <td style="border:1px solid #000;border-right:0px solid #000;padding:9px 5px;"><strong>ราคารวมทั้งสิ้น</strong></td>
+      <td style="border:1px solid #000;padding:9px 5px;text-align:right;">'.number_format($sumtotals,2).'&nbsp;&nbsp;</td>
     </tr>
 </table><br>
 <p style="font-size:12px;"><strong><u>รายการของแถม</u></strong></p>
 <table width="100%" border="0" cellspacing="0" cellpadding="0" style="font-size:11px;">
     <tr>
-        <th width="10%" style="border:1px solid #003399;border-right:0px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;"><strong>ลำดับ</strong></th>
-        <th width="75%" style="border:1px solid #003399;border-right:0px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;"><strong>รายการสินค้า</strong></th>
-        <th width="15%" style="border:1px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;"><strong>จำนวน</strong></th>
+        <th width="10%" style="border:1px solid #000;border-right:0px solid #000;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;"><strong>ลำดับ</strong></th>
+        <th width="75%" style="border:1px solid #000;border-right:0px solid #000;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;"><strong>รายการสินค้า</strong></th>
+        <th width="15%" style="border:1px solid #000;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;"><strong>จำนวน</strong></th>
     </tr>
     <tr>
-      <td style="border-left:1px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;">'.$profree1.'</td>
-      <td style="border-left:1px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;">'.$_POST["cs_pro1"].'</td>
-      <td style="border-left:1px solid #003399;border-right:1px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;">'.$_POST["cs_amount1"].'</td>
+      <td style="border-left:1px solid #000;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;">'.$profree1.'</td>
+      <td style="border-left:1px solid #000;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;">'.$_POST["cs_pro1"].'</td>
+      <td style="border-left:1px solid #000;border-right:1px solid #000;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;">'.$_POST["cs_amount1"].'</td>
     </tr>
     <tr>
-      <td style="border-left:1px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;">'.$profree2.'</td>
-      <td style="border-left:1px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;">'.$_POST["cs_pro2"].'</td>
-      <td style="border-left:1px solid #003399;border-right:1px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;">'.$_POST["cs_amount2"].'</td>
+      <td style="border-left:1px solid #000;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;">'.$profree2.'</td>
+      <td style="border-left:1px solid #000;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;">'.$_POST["cs_pro2"].'</td>
+      <td style="border-left:1px solid #000;border-right:1px solid #000;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;">'.$_POST["cs_amount2"].'</td>
     </tr>
     <tr>
-      <td style="border-left:1px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;">'.$profree3.'</td>
-      <td style="border-left:1px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;">'.$_POST["cs_pro3"].'</td>
-      <td style="border-left:1px solid #003399;border-right:1px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;">'.$_POST["cs_amount3"].'</td>
+      <td style="border-left:1px solid #000;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;">'.$profree3.'</td>
+      <td style="border-left:1px solid #000;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;">'.$_POST["cs_pro3"].'</td>
+      <td style="border-left:1px solid #000;border-right:1px solid #000;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;">'.$_POST["cs_amount3"].'</td>
     </tr>
     <tr>
-      <td style="border-left:1px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;">'.$profree4.'</td>
-      <td style="border-left:1px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;">'.$_POST["cs_pro4"].'</td>
-      <td style="border-left:1px solid #003399;border-right:1px solid #003399;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;">'.$_POST["cs_amount4"].'</td>
+      <td style="border-left:1px solid #000;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;">'.$profree4.'</td>
+      <td style="border-left:1px solid #000;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;">'.$_POST["cs_pro4"].'</td>
+      <td style="border-left:1px solid #000;border-right:1px solid #000;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;">'.$_POST["cs_amount4"].'</td>
     </tr>
     <tr>
-      <td style="border:1px solid #003399;border-top:0px solid #003399;border-right:0px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;">'.$profree5.'</td>
-      <td style="border:1px solid #003399;border-top:0px solid #003399;border-right:0px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;">'.$_POST["cs_pro5"].'</td>
-      <td style="border:1px solid #003399;border-top:0px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;">'.$_POST["cs_amount5"].'</td>
+      <td style="border:1px solid #000;border-top:0px solid #000;border-right:0px solid #000;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;">'.$profree5.'</td>
+      <td style="border:1px solid #000;border-top:0px solid #000;border-right:0px solid #000;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;">'.$_POST["cs_pro5"].'</td>
+      <td style="border:1px solid #000;border-top:0px solid #000;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;">'.$_POST["cs_amount5"].'</td>
     </tr>
   </table>
   <br><br><br><br><br><br><br>
@@ -265,7 +265,7 @@ $form = '
     $form .='<br>
   <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tb1" >
     <tr>
-      <td style="border:0px solid #003399;font-size:11px;font-size:11px;font-family:Verdana, Geneva, sans-serif;"><strong>หมายเหตุ : </strong>'.$_POST["remark"].'</td>
+      <td style="border:0px solid #000;font-size:11px;font-size:11px;font-family:Verdana, Geneva, sans-serif;"><strong>หมายเหตุ : </strong>'.$_POST["remark"].'</td>
     </tr>
   </table>';
   }
@@ -278,10 +278,10 @@ $form = '
   <br>
   	<table width="100%" border="0" cellspacing="0" cellpadding="0" style="text-align:center;">
       <tr>
-        <td width="33%" style="border:0px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;text-align:center;padding-top:10px;padding-bottom:10px;">
+        <td width="33%" style="border:0px solid #000;font-size:11px;font-family:Verdana, Geneva, sans-serif;text-align:center;padding-top:10px;padding-bottom:10px;">
         	<table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
-                <td style="border-bottom:1px solid #003399;padding-bottom:10px;font-size:11px;font-family:Verdana, Geneva, sans-serif;text-align:center;">'.$saleSignature.'</td>
+                <td style="border-bottom:1px solid #000;padding-bottom:10px;font-size:11px;font-family:Verdana, Geneva, sans-serif;text-align:center;">'.$saleSignature.'</td>
               </tr>
               <tr>
                 <td style="padding-top:10px;padding-bottom:10px;font-size:11px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong >( '.getsalename($conn,$_POST["cs_sell"]).' )</strong><br><br><strong>พนักงานขาย</strong></td>
@@ -294,10 +294,10 @@ $form = '
             </table>
 
         </td>
-        <td width="33%" style="border:0px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;text-align:center;padding-top:10px;padding-bottom:10px;">
+        <td width="33%" style="border:0px solid #000;font-size:11px;font-family:Verdana, Geneva, sans-serif;text-align:center;padding-top:10px;padding-bottom:10px;">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
-              <td style="border-bottom:1px solid #003399;padding-bottom:10px;font-size:11px;font-family:Verdana, Geneva, sans-serif;text-align:center;">'.$hSaleSignature.'</td>
+              <td style="border-bottom:1px solid #000;padding-bottom:10px;font-size:11px;font-family:Verdana, Geneva, sans-serif;text-align:center;">'.$hSaleSignature.'</td>
             </tr>
             <tr>
               <td style="padding-top:10px;padding-bottom:10px;font-size:11px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>( '.$_POST["cs_hsell"].' )</strong><br><br><strong>ผู้จัดการฝ่ายขาย</strong></td>
@@ -310,10 +310,10 @@ $form = '
             </tr>
           </table>
       </td>
-        <td width="33%" style="border:1px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;text-align:center;padding-top:10px;padding-bottom:10px;">
+        <td width="33%" style="border:1px solid #000;font-size:11px;font-family:Verdana, Geneva, sans-serif;text-align:center;padding-top:10px;padding-bottom:10px;">
         	<table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
-                <td style="border-bottom:1px solid #003399;padding-bottom:10px;font-size:11px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><img src="../../upload/user/signature/none.png" height="50" border="0" /></td>
+                <td style="border-bottom:1px solid #000;padding-bottom:10px;font-size:11px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><img src="../../upload/user/signature/none.png" height="50" border="0" /></td>
               </tr>
               <tr>
                 <td style="padding-top:10px;padding-bottom:10px;font-size:11px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>( '.$_POST["cs_account"].' )</strong><br><br><strong>ผู้อนุมัติสั่งซื้อสินค้า</strong></td>
