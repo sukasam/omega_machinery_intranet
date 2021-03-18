@@ -86,8 +86,8 @@ $form = '
 		  <p><strong>1.1 '.$typeS.'</strong><br><br></p>
 		  <p style="line-height: 50px;">'.$_POST["cpro1"].'</p>
 		  </td>
-		  <td style="border:1px solid #000;padding:9px 5px;">'.$_POST["pro_sn1"].'</td>
-		  <td style="border:1px solid #000;padding:9px 5px;text-align:center;">'.number_format($_POST["camount1"]).'</td>
+		  <td style="border:1px solid #000;padding:9px 5px;">'.number_format($_POST["pro_sn1"],2).'</td>
+		  <td style="border:1px solid #000;padding:9px 5px;text-align:center;">'.number_format($_POST["camount1"],2).'</td>
 		</tr>';
 	}else{
 		if($_POST['chkserv2'] == '1'){
@@ -99,8 +99,8 @@ $form = '
 			  <p><strong>1.1 '.$typeS.'</strong><br><br></p>
 			  <p style="line-height: 50px;">'.$_POST["cpro2"].'</p>
 			  </td>
-			  <td style="border:1px solid #000;padding:9px 5px;">'.$_POST["pro_sn2"].'</td>
-			  <td style="border:1px solid #000;padding:9px 5px;text-align:center;">'.number_format($_POST["camount2"]).'</td>
+			  <td style="border:1px solid #000;padding:9px 5px;">'.number_format($_POST["pro_sn2"],2).'</td>
+			  <td style="border:1px solid #000;padding:9px 5px;text-align:center;">'.number_format($_POST["camount2"],2).'</td>
 			</tr>';
 		}
 	}
@@ -114,25 +114,29 @@ $form = '
 		  <p><strong>2.1 '.$typeS.'</strong><br><br></p>
 		  <p style="line-height: 50px;">'.$_POST["cpro2"].'</p>
 		  </td>
-		  <td style="border:1px solid #000;padding:9px 5px;">'.$_POST["pro_sn2"].'</td>
-		  <td style="border:1px solid #000;padding:9px 5px;text-align:center;">'.number_format($_POST["camount2"]).'</td>
+		  <td style="border:1px solid #000;padding:9px 5px;">'.number_format($_POST["pro_sn2"],2).'</td>
+		  <td style="border:1px solid #000;padding:9px 5px;text-align:center;">'.number_format($_POST["camount2"],2).'</td>
 		</tr>';
 	}
 
-$form .= '</table><br>
+$form .= '</table><br>';
+
+if(!empty($_POST["remark"])){
+  $form .='
 <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tb1" >
-    <tr>
-      <td style="border:1px solid #000;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:15px;"><strong>หมายเหตุ : </strong>'.$_POST["remark"].'</td>
-    </tr>
-  </table>
- <br><br>
-  <p style="font-size:12px;"><strong><u>เงื่อนไขการขาย</u></strong></p>';
+  <tr>
+    <td style="border:0px solid #000;font-size:12px;"><strong>หมายเหตุ : </strong>'.$_POST["remark"].'</td>
+  </tr>
+</table><br>';
+}
+
+
+$form .= '<p style="font-size:12px;"><strong><u>เงื่อนไขการขาย</u></strong></p>';
   
   $form .='
-  <p style="font-size:12px;">
-  1. ราคาดังกล่าว<strong>ยังไม่รวมภาษีมูลค่าเพิ่ม 7%</strong><br>
-  2. กำหนดส่งสัญญาภายใน '.$_POST['giveprice'].' วัน นับตั้งแต่วันอนุมัติทำสัญญา<br>	
-  3. ภายใต้เงื่อนไขการทำสัญญาบริการ ทางบริษัทโอเมก้าฯ ขอสงวนลิขสิทธิ์ให้ลูกค้าใช้น้ำยาของทางบริษัทโอเมก้าฯเท่านั้น<br/>
+  <p style="font-size:12px;">1. ราคาดังกล่าว<strong>ยังไม่รวมภาษีมูลค่าเพิ่ม 7%</strong></p>
+  <p style="font-size:12px;">2. กำหนดส่งสัญญาภายใน '.$_POST['giveprice'].' วัน นับตั้งแต่วันอนุมัติทำสัญญา</p>
+  <p style="font-size:12px;">3. ภายใต้เงื่อนไขการทำสัญญาบริการ ทางบริษัทโอเมก้าฯ ขอสงวนลิขสิทธิ์ให้ลูกค้าใช้น้ำยาของทางบริษัทโอเมก้าฯเท่านั้น</p>
   <p style="font-size:12px;">จึงเรียนมาเพื่อโปรดพิจารณา และทางบริษัท ฯ หวังเป็นอย่างยิ่งว่าจะได้รับการพิจารณาจากท่าน</p><br>
   	<table width="100%" border="0" cellspacing="0" cellpadding="0" style="text-align:center;">
       <tr>

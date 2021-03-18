@@ -147,7 +147,7 @@ function check_select(frm){
             &nbsp;</TH>
           <TH width="35%">ชื่อลูกค้า</TH>
           <TH width="10%">เบอร์โทร</TH>
-          <TH width="10%">อีเมล์</TH>
+          <TH width="10%">สถานนะลูกค้า</TH>
           <!-- <TH width="18%"><strong></strong></TH> -->
           <!-- <TH width="5%" ><div align="center"><img src="../icons/favorites_use.png" width="15" height="15"> ใช้งาน <br><img src="../icons/favorites_stranby.png" width="15" height="15"> Standby <br> <img src="../icons/favorites_close.png" width="15" height="15"> ยกเลิก  <br><img src="../icons/favorites_service.png" width="15" height="15"> Service</div></TH>
           <TH width="5%" nowrap ><div align="center"><a> Open / </a><a> Close</a></div></TH>
@@ -215,7 +215,16 @@ function check_select(frm){
             <span class="text"><?php  echo $rec["cd_tel"] ; ?></span><br>
           </TD>
           <TD style="vertical-align: middle;<?php echo $GMApprove;?>">          
-            <span class="text"><?php  echo $rec["c_contact"] ; ?></span><br>
+            <!-- <span class="text"><?php  echo $rec["c_contact"] ; ?></span><br> -->
+            <?php if($rec['status_cus'] === '3'){
+              echo "โทรศัพท์";
+            }else if($rec['status_cus'] === '2'){
+              echo "เข้าพบ";
+            }else if($rec['status_cus'] === '1'){
+              echo "สำรวจตลาด";
+            }else{
+              echo "อื่นๆ";
+            }?>
           </TD>
           <!-- <TD style="vertical-align: middle;">          
             ฟหกฟหก

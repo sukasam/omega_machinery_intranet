@@ -875,7 +875,7 @@ function submitForm() {
       <td style="border:1px solid #000000;padding:5;text-align:right;"><?php echo $totalSub7s;?>&nbsp;&nbsp;</td>
     </tr>
 
-    <tr style="display:none">
+    <tr>
       <td style="border:1px solid #000000;padding:5;text-align:center;">8</td>
       <td style="border:1px solid #000000;padding:5;text-align:left;">
       	<select name="cpro8" id="cpro8" class="inputselect" style="width:90%;">
@@ -913,7 +913,7 @@ function submitForm() {
       <td style="border:1px solid #000000;padding:5;text-align:right;"><?php echo $totalSub8s;?>&nbsp;&nbsp;</td>
     </tr>
 
-    <tr style="display:none">
+    <tr>
       <td style="border:1px solid #000000;padding:5;text-align:center;">9</td>
       <td style="border:1px solid #000000;padding:5;text-align:left;">
       	<select name="cpro9" id="cpro9" class="inputselect" style="width:90%;">
@@ -951,7 +951,7 @@ function submitForm() {
       <td style="border:1px solid #000000;padding:5;text-align:right;"><?php echo $totalSub9s;?>&nbsp;&nbsp;</td>
     </tr>
 
-    <tr style="display:none">
+    <tr>
       <td style="border:1px solid #000000;padding:5;text-align:center;">10</td>
       <td style="border:1px solid #000000;padding:5;text-align:left;">
       	<select name="cpro10" id="cpro10" class="inputselect" style="width:90%;">

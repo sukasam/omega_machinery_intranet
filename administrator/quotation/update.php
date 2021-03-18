@@ -573,12 +573,12 @@ while ($row_qupros1 = @mysqli_fetch_array($qupros1)) {
       </select><a href="javascript:void(0);" onClick="windowOpener('400', '500', '', 'search_pod.php?protype=pro_pod1');"><img src="../images/icon2/mark_f2.png" width="25" height="25" alt="" style="vertical-align:middle;padding-left:5px;"></a>
       </td>
       <td style="border:1px solid #000000;padding:5;text-align:center;" >
-        <input type="text" name="pro_sn1" value="<?php echo $pro_sn1; ?>" id="pro_sn1" class="inpfoder" style="width:100%;text-align:center;"></td>
+        <input type="text" name="pro_sn1" value="<?php echo number_format($pro_sn1, 2, '.', ''); ?>" id="pro_sn1" class="inpfoder" style="width:100%;text-align:center;"></td>
       <td style="border:1px solid #000000;padding:5;text-align:center;">
-      	<input type="text" name="camount1" value="<?php echo $camount1; ?>" id="camount1" class="inpfoder" style="width:100%;text-align:center;">
+      	<input type="text" name="camount1" value="<?php echo number_format($camount1, 2, '.', ''); ?>" id="camount1" class="inpfoder" style="width:100%;text-align:center;">
       </td>
       <td style="border:1px solid #000000;padding:5;text-align:center;">
-      	<input type="text" name="cprice1" value="<?php echo $cprice1; ?>" id="cprice1" class="inpfoder" style="width:100%;text-align:center;">
+      	<input type="text" name="cprice1" value="<?php echo number_format($cprice1, 2, '.', ''); ?>" id="cprice1" class="inpfoder" style="width:100%;text-align:center;">
       </td>
       <td style="border:1px solid #000000;padding:5;text-align:right;"><?php echo $totalSub1s; ?>&nbsp;&nbsp;</td>
     </tr>
@@ -611,13 +611,13 @@ while ($row_qupros2 = @mysqli_fetch_array($qupros2)) {
       </select><a href="javascript:void(0);" onClick="windowOpener('400', '500', '', 'search_pod.php?protype=pro_pod2');"><img src="../images/icon2/mark_f2.png" width="25" height="25" alt="" style="vertical-align:middle;padding-left:5px;"></a>
       </td>
       <td style="border:1px solid #000000;padding:5;text-align:center;">
-      	<input type="text" name="pro_sn2" value="<?php echo $pro_sn2; ?>" id="pro_sn2" class="inpfoder" style="width:100%;text-align:center;">
+      	<input type="text" name="pro_sn2" value="<?php echo number_format($pro_sn2, 2, '.', ''); ?>" id="pro_sn2" class="inpfoder" style="width:100%;text-align:center;">
       </td>
       <td style="border:1px solid #000000;padding:5;text-align:center;">
-      	<input type="text" name="camount2" value="<?php echo $camount2; ?>" id="camount2" class="inpfoder" style="width:100%;text-align:center;">
+      	<input type="text" name="camount2" value="<?php echo number_format($camount2, 2, '.', ''); ?>" id="camount2" class="inpfoder" style="width:100%;text-align:center;">
       </td>
       <td style="border:1px solid #000000;padding:5;text-align:center;">
-      <input type="text" name="cprice2" value="<?php echo $cprice2; ?>" id="cprice2" class="inpfoder" style="width:100%;text-align:center;"></td>
+      <input type="text" name="cprice2" value="<?php echo number_format($cprice2, 2, '.', ''); ?>" id="cprice2" class="inpfoder" style="width:100%;text-align:center;"></td>
       <td style="border:1px solid #000000;padding:5;text-align:right;"><?php echo $totalSub2s; ?>&nbsp;&nbsp;</td>
     </tr>
     <tr>
@@ -648,12 +648,12 @@ while ($row_qupros3 = @mysqli_fetch_array($qupros3)) {
 ?>
       </select><a href="javascript:void(0);" onClick="windowOpener('400', '500', '', 'search_pod.php?protype=pro_pod3');"><img src="../images/icon2/mark_f2.png" width="25" height="25" alt="" style="vertical-align:middle;padding-left:5px;"></a>
       </td>
-      <td style="border:1px solid #000000;padding:5;text-align:center;"><input type="text" name="pro_sn3" value="<?php echo $pro_sn3; ?>" id="pro_sn3" class="inpfoder" style="width:100%;text-align:center;"></td>
+      <td style="border:1px solid #000000;padding:5;text-align:center;"><input type="text" name="pro_sn3" value="<?php echo number_format($pro_sn7, 3, '.', ''); ?>" id="pro_sn3" class="inpfoder" style="width:100%;text-align:center;"></td>
       <td style="border:1px solid #000000;padding:5;text-align:center;">
-      	<input type="text" name="camount3" value="<?php echo $camount3; ?>" id="camount3" class="inpfoder" style="width:100%;text-align:center;">
+      	<input type="text" name="camount3" value="<?php echo number_format($camount3, 2, '.', ''); ?>" id="camount3" class="inpfoder" style="width:100%;text-align:center;">
       </td>
 		<td style="border:1px solid #000000;padding:5;text-align:center;">
-      	<input type="text" name="cprice3" value="<?php echo $cprice3; ?>" id="cprice3" class="inpfoder" style="width:100%;text-align:center;">
+      	<input type="text" name="cprice3" value="<?php echo number_format($cprice3, 2, '.', ''); ?>" id="cprice3" class="inpfoder" style="width:100%;text-align:center;">
       </td>
       <td style="border:1px solid #000000;padding:5;text-align:right;"><?php echo $totalSub3s; ?>&nbsp;&nbsp;</td>
     </tr>
@@ -685,12 +685,12 @@ while ($row_qupros4 = @mysqli_fetch_array($qupros4)) {
 ?>
       </select><a href="javascript:void(0);" onClick="windowOpener('400', '500', '', 'search_pod.php?protype=pro_pod4');"><img src="../images/icon2/mark_f2.png" width="25" height="25" alt="" style="vertical-align:middle;padding-left:5px;"></a>
       </td>
-      <td style="border:1px solid #000000;padding:5;text-align:center;"><input type="text" name="pro_sn4" value="<?php echo $pro_sn4; ?>" id="pro_sn4" class="inpfoder" style="width:100%;text-align:center;"></td>
+      <td style="border:1px solid #000000;padding:5;text-align:center;"><input type="text" name="pro_sn4" value="<?php echo number_format($pro_sn4, 2, '.', ''); ?>" id="pro_sn4" class="inpfoder" style="width:100%;text-align:center;"></td>
       <td style="border:1px solid #000000;padding:5;text-align:center;">
-      	<input type="text" name="camount4" value="<?php echo $camount4; ?>" id="camount4" class="inpfoder" style="width:100%;text-align:center;">
+      	<input type="text" name="camount4" value="<?php echo number_format($camount4, 2, '.', ''); ?>" id="camount4" class="inpfoder" style="width:100%;text-align:center;">
       </td>
 	<td style="border:1px solid #000000;padding:5;text-align:center;">
-      	<input type="text" name="cprice4" value="<?php echo $cprice4; ?>" id="cprice4" class="inpfoder" style="width:100%;text-align:center;">
+      	<input type="text" name="cprice4" value="<?php echo number_format($cprice4, 2, '.', ''); ?>" id="cprice4" class="inpfoder" style="width:100%;text-align:center;">
       </td>
       <td style="border:1px solid #000000;padding:5;text-align:right;"><?php echo $totalSub4s; ?>&nbsp;&nbsp;</td>
     </tr>
@@ -722,12 +722,12 @@ while ($row_qupros5 = @mysqli_fetch_array($qupros5)) {
 ?>
       </select><a href="javascript:void(0);" onClick="windowOpener('400', '500', '', 'search_pod.php?protype=pro_pod5');"><img src="../images/icon2/mark_f2.png" width="25" height="25" alt="" style="vertical-align:middle;padding-left:5px;"></a>
       </td>
-      <td style="border:1px solid #000000;padding:5;text-align:center;"><input type="text" name="pro_sn5" value="<?php echo $pro_sn5; ?>" id="pro_sn5" class="inpfoder" style="width:100%;text-align:center;"></td>
+      <td style="border:1px solid #000000;padding:5;text-align:center;"><input type="text" name="pro_sn5" value="<?php echo number_format($pro_sn5, 2, '.', ''); ?>" id="pro_sn5" class="inpfoder" style="width:100%;text-align:center;"></td>
       <td style="border:1px solid #000000;padding:5;text-align:center;">
-      	<input type="text" name="camount5" value="<?php echo $camount5; ?>" id="camount5" class="inpfoder" style="width:100%;text-align:center;">
+      	<input type="text" name="camount5" value="<?php echo number_format($camount5, 2, '.', ''); ?>" id="camount5" class="inpfoder" style="width:100%;text-align:center;">
       </td>
 		<td style="border:1px solid #000000;padding:5;text-align:center;">
-      	<input type="text" name="cprice5" value="<?php echo $cprice5; ?>" id="cprice5" class="inpfoder" style="width:100%;text-align:center;">
+      	<input type="text" name="cprice5" value="<?php echo number_format($cprice5, 2, '.', ''); ?>" id="cprice5" class="inpfoder" style="width:100%;text-align:center;">
       </td>
       <td style="border:1px solid #000000;padding:5;text-align:right;"><?php echo $totalSub5s; ?>&nbsp;&nbsp;</td>
     </tr>
@@ -759,12 +759,12 @@ while ($row_qupros6 = @mysqli_fetch_array($qupros6)) {
 ?>
       </select><a href="javascript:void(0);" onClick="windowOpener('400', '500', '', 'search_pod.php?protype=pro_pod6');"><img src="../images/icon2/mark_f2.png" width="25" height="25" alt="" style="vertical-align:middle;padding-left:5px;"></a>
       </td>
-      <td style="border:1px solid #000000;padding:5;text-align:center;"><input type="text" name="pro_sn6" value="<?php echo $pro_sn6; ?>" id="pro_sn6" class="inpfoder" style="width:100%;text-align:center;"></td>
+      <td style="border:1px solid #000000;padding:5;text-align:center;"><input type="text" name="pro_sn6" value="<?php echo number_format($pro_sn6, 2, '.', ''); ?>" id="pro_sn6" class="inpfoder" style="width:100%;text-align:center;"></td>
       <td style="border:1px solid #000000;padding:5;text-align:center;">
-      	<input type="text" name="camount6" value="<?php echo $camount6; ?>" id="camount6" class="inpfoder" style="width:100%;text-align:center;">
+      	<input type="text" name="camount6" value="<?php echo number_format($camount6, 2, '.', ''); ?>" id="camount6" class="inpfoder" style="width:100%;text-align:center;">
       </td>
 		<td style="border:1px solid #000000;padding:5;text-align:center;">
-      	<input type="text" name="cprice6" value="<?php echo $cprice6; ?>" id="cprice6" class="inpfoder" style="width:100%;text-align:center;">
+      	<input type="text" name="cprice6" value="<?php echo number_format($cprice6, 2, '.', ''); ?>" id="cprice6" class="inpfoder" style="width:100%;text-align:center;">
       </td>
       <td style="border:1px solid #000000;padding:5;text-align:right;"><?php echo $totalSub6s; ?>&nbsp;&nbsp;</td>
     </tr>
@@ -796,12 +796,12 @@ while ($row_qupros7 = @mysqli_fetch_array($qupros7)) {
 ?>
       </select><a href="javascript:void(0);" onClick="windowOpener('400', '500', '', 'search_pod.php?protype=pro_pod7');"><img src="../images/icon2/mark_f2.png" width="25" height="25" alt="" style="vertical-align:middle;padding-left:5px;"></a>
       </td>
-      <td style="border:1px solid #000000;padding:5;text-align:center;"><input type="text" name="pro_sn7" value="<?php echo $pro_sn7; ?>" id="pro_sn7" class="inpfoder" style="width:100%;text-align:center;"></td>
+      <td style="border:1px solid #000000;padding:5;text-align:center;"><input type="text" name="pro_sn7" value="<?php echo number_format($pro_sn7, 2, '.', ''); ?>" id="pro_sn7" class="inpfoder" style="width:100%;text-align:center;"></td>
       <td style="border:1px solid #000000;padding:5;text-align:center;">
-      	<input type="text" name="camount7" value="<?php echo $camount7; ?>" id="camount7" class="inpfoder" style="width:100%;text-align:center;">
+      	<input type="text" name="camount7" value="<?php echo number_format($camount7, 2, '.', ''); ?>" id="camount7" class="inpfoder" style="width:100%;text-align:center;">
       </td>
 	<td style="border:1px solid #000000;padding:5;text-align:center;">
-      	<input type="text" name="cprice7" value="<?php echo $cprice7; ?>" id="cprice7" class="inpfoder" style="width:100%;text-align:center;">
+      	<input type="text" name="cprice7" value="<?php echo number_format($cprice7, 2, '.', ''); ?>" id="cprice7" class="inpfoder" style="width:100%;text-align:center;">
       </td>
       <td style="border:1px solid #000000;padding:5;text-align:right;"><?php echo $totalSub7s; ?>&nbsp;&nbsp;</td>
     </tr>
@@ -914,20 +914,20 @@ while ($rowTec = @mysqli_fetch_array($qusTec)) {
 
         1. ราคาดังกล่าวข้างต้น <input type="text" name="paycon2" value="<?php echo $paycon2;?>" style="text-align: center;width: 100px;"> ภาษีมูลค่าเพิ่ม <input type="text" name="paycon3" value="<?php echo $paycon3;?>" style="text-align: center;width: 50px;"> ตามที่สรรพากรกำหนดเรียบร้อยแล้ว<br>
         2. การรับประกันสินค้า : รับประกันตัวเครื่อง อะไหล่และบริการหลังการขายฟรี <input type="text" name="paycon4" value="<?php echo $paycon4;?>" style="text-align: center;width: 50px;"> ปี <input type="text" name="paycon5" value="<?php echo $paycon5;?>" style="text-align: center;width: 50px;"> เดือนหรือตามที่ตกลงกัน<br>
-        3. ตลอดระยะเวลาการรับประกัน : บริษัทฯ กำหนดให้ลูกค้าต้องใช้น้ำยาของบริษัท โอเมก้า แมชชีนเนอรี่ (1999) จำกัด เท่านั้น<br>
+        <!-- 3. ตลอดระยะเวลาการรับประกัน : บริษัทฯ กำหนดให้ลูกค้าต้องใช้น้ำยาของบริษัท โอเมก้า แมชชีนเนอรี่ (1999) จำกัด เท่านั้น<br> -->
         <!-- 2. การรับประกันสินค้า ในกรณีเช่า : ทางบริษัทฯ รับประกันเครื่อง, อะไหล่และบริการหลังการขาย ฟรีตลอดอายุสัญญาเช่า<br>
         3. ระยะเวลาเช่า <input type="text" name="paycon4" value="<?php echo $paycon4;?>" style="text-align: center;width: 50px;"> เดือน โดยสัญญาเช่าจะเริ่มต้อนเมื่อทางบริษัทฯ ทำการส่งมอบสินค้าเรียบร้อยแล้ว<br> -->
-        4. บริษัทฯ ขอสงวนสิทธ์ในการกำหนดให้ลูกค้าใช้น้ำยาสำหรับเครื่องทุกชนิดของบริษัท โอเมก้า แมชชีนเนอรี่ (1999) จำกัด เท่านั้น ตลอดอายุสัญญาเช่า<br>
-        5. จัดส่งสินค้าภายใน <input type="text" name="guaran2" value="<?php echo $guaran2;?>" style="text-align: center;width: 50px;"> วัน หลังจากลูกค้าชำระเงินประกันสินค้า/ค่าเช่าล่วงหน้าและค่าบริการขนส่ง/ติดตั้ง<br>
-        6. ลูกค้าเป็นผู้ตรียมระบบไฟฟ้า <select name="type_electric" id="type_electric" class="inputselect">
+        3. บริษัทฯ ขอสงวนสิทธ์ในการกำหนดให้ลูกค้าใช้น้ำยาสำหรับเครื่องทุกชนิดของบริษัท โอเมก้า แมชชีนเนอรี่ (1999) จำกัด เท่านั้น ตลอดอายุสัญญาเช่า<br>
+        4. จัดส่งสินค้าภายใน <input type="text" name="guaran2" value="<?php echo $guaran2;?>" style="text-align: center;width: 50px;"> วัน หลังจากลูกค้าชำระเงินประกันสินค้า/ค่าเช่าล่วงหน้าและค่าบริการขนส่ง/ติดตั้ง<br>
+        5. ลูกค้าเป็นผู้ตรียมระบบไฟฟ้า <select name="type_electric" id="type_electric" class="inputselect">
       <option value="no" <?php  if($type_electric == "no"){echo 'selected';}?>>ไม่เลือก</option>
       <option value="3 เฟส (380V.) เบรกเกอร์ 32A" <?php  if($type_electric == "3 เฟส (380V.) เบรกเกอร์ 32A"){echo 'selected';}?>>3 เฟส (380V.) เบรกเกอร์ 32A</option>
       <option value="3 เฟส (380V.) เบรกเกอร์ 80A" <?php  if($type_electric == "3 เฟส (380V.) เบรกเกอร์ 80A"){echo 'selected';}?>>3 เฟส (380V.) เบรกเกอร์ 80A</option>
       <option value="1 เฟส (220V.) เบรกเกอร์ 20A" <?php  if($type_electric == "1 เฟส (220V.) เบรกเกอร์ 20A"){echo 'selected';}?>>1 เฟส (220V.) เบรกเกอร์ 20A</option>
       <option value="1 เฟส (220V.) เบรกเกอร์ 30A" <?php  if($type_electric == "1 เฟส (220V.) เบรกเกอร์ 30A"){echo 'selected';}?>>1 เฟส (220V.) เบรกเกอร์ 30A</option>
       </select> ท่อน้ำดี ขนาด 6 หุน น้ำทิ้ง ขนาด 2 นิ้ว ระยะไม่เกิน 5 เมตร จากตำแหน่งติดตั้ง<br>
-        7. กำหนดยืนราคา <input type="text" name="giveprice" value="<?php echo $giveprice;?>" style="text-align: center;width: 50px;"> วัน<br>
-        8. ทางบริษัทฯ ขอสงวนสิทธ์ในกรณีที่ลูกค้าเช็นอนุมัติใบเสนอราคาแล้วนั้น หากมีการยกเลิกสัญญา หรือ การเปลี่ยนแปลงใดๆเกิดขึ้นระหว่างดำเนินการ ทางลูกค้าต้องเป็นผู้รับผิดชอบต่อความเสียหายและค่าใช้จ่ายที่เกิดขึ้น<br>
+        6. กำหนดยืนราคา <input type="text" name="giveprice" value="<?php echo $giveprice;?>" style="text-align: center;width: 50px;"> วัน<br>
+        7. ทางบริษัทฯ ขอสงวนสิทธ์ในกรณีที่ลูกค้าเช็นอนุมัติใบเสนอราคาแล้วนั้น หากมีการยกเลิกสัญญา หรือ การเปลี่ยนแปลงใดๆเกิดขึ้นระหว่างดำเนินการ ทางลูกค้าต้องเป็นผู้รับผิดชอบต่อความเสียหายและค่าใช้จ่ายที่เกิดขึ้น<br>
 
 
         </td>
@@ -939,7 +939,7 @@ while ($rowTec = @mysqli_fetch_array($qusTec)) {
         <td width="33%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;text-align:left;padding-top:10px;padding-bottom:10px;">
         <strong>หมายเหตุอื่นๆ :</strong>
         <br>
-        <textarea name="remark" id="remark" style="height:150px;"><?php echo strip_tags($remark); ?></textarea>
+        <textarea name="remark" id="remark" style="height:150px;font-family: auto;font-size: 12px;"><?php echo strip_tags($remark); ?></textarea>
         </td>
       </tr>
     </table>

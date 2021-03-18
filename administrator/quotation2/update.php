@@ -643,12 +643,12 @@ function submitForm() {
           ?>
       </select><a href="javascript:void(0);" onClick="windowOpener('400', '500', '', 'search_pod.php?protype=pro_pod1');"><img src="../images/icon2/mark_f2.png" width="25" height="25" alt="" style="vertical-align:middle;padding-left:5px;"></a>
       </td>
-      <td style="border:1px solid #000000;padding:5;text-align:center;" ><input type="text" name="pro_sn1" value="<?php  echo $pro_sn1;?>" id="pro_sn1" class="inpfoder" style="width:100%;text-align:center;"></td>
+      <td style="border:1px solid #000000;padding:5;text-align:center;" ><input type="text" name="pro_sn1" value="<?php  echo number_format($pro_sn1, 2, '.', '');?>" id="pro_sn1" class="inpfoder" style="width:100%;text-align:center;"></td>
       <td style="border:1px solid #000000;padding:5;text-align:center;">
-      	<input type="text" name="camount1" value="<?php  echo $camount1;?>" id="camount1" class="inpfoder" style="width:100%;text-align:center;">
+      	<input type="text" name="camount1" value="<?php  echo number_format($camount1, 2, '.', '');?>" id="camount1" class="inpfoder" style="width:100%;text-align:center;">
       </td>
       <td style="border:1px solid #000000;padding:5;text-align:center;">
-      	<input type="text" name="cprice1" value="<?php  echo $cprice1;?>" id="cprice1" class="inpfoder" style="width:100%;text-align:center;">
+      	<input type="text" name="cprice1" value="<?php  echo number_format($cprice1, 2, '.', '');?>" id="cprice1" class="inpfoder" style="width:100%;text-align:center;">
       </td>
       <td style="border:1px solid #000000;padding:5;text-align:right;"><?php echo $totalSub1s;?>&nbsp;&nbsp;</td>
     </tr>
@@ -680,12 +680,12 @@ function submitForm() {
           ?>
       </select><a href="javascript:void(0);" onClick="windowOpener('400', '500', '', 'search_pod.php?protype=pro_pod2');"><img src="../images/icon2/mark_f2.png" width="25" height="25" alt="" style="vertical-align:middle;padding-left:5px;"></a>
       </td>
-      <td style="border:1px solid #000000;padding:5;text-align:center;" ><input type="text" name="pro_sn2" value="<?php  echo $pro_sn2;?>" id="pro_sn2" class="inpfoder" style="width:100%;text-align:center;"></td>
+      <td style="border:1px solid #000000;padding:5;text-align:center;" ><input type="text" name="pro_sn2" value="<?php  echo number_format($pro_sn2, 2, '.', '');?>" id="pro_sn2" class="inpfoder" style="width:100%;text-align:center;"></td>
       <td style="border:1px solid #000000;padding:5;text-align:center;">
-      	<input type="text" name="camount2" value="<?php  echo $camount2;?>" id="camount2" class="inpfoder" style="width:100%;text-align:center;">
+      	<input type="text" name="camount2" value="<?php  echo number_format($camount2, 2, '.', '');?>" id="camount2" class="inpfoder" style="width:100%;text-align:center;">
       </td>
       <td style="border:1px solid #000000;padding:5;text-align:center;">
-      	<input type="text" name="cprice2" value="<?php  echo $cprice2;?>" id="cprice2" class="inpfoder" style="width:100%;text-align:center;">
+      	<input type="text" name="cprice2" value="<?php  echo number_format($cprice2, 2, '.', '');?>" id="cprice2" class="inpfoder" style="width:100%;text-align:center;">
       </td>
       <td style="border:1px solid #000000;padding:5;text-align:right;"><?php echo $totalSub2s;?>&nbsp;&nbsp;</td>
     </tr>
@@ -717,12 +717,12 @@ function submitForm() {
           ?>
       </select><a href="javascript:void(0);" onClick="windowOpener('400', '500', '', 'search_pod.php?protype=pro_pod3');"><img src="../images/icon2/mark_f2.png" width="25" height="25" alt="" style="vertical-align:middle;padding-left:5px;"></a>
       </td>
-      <td style="border:1px solid #000000;padding:5;text-align:center;"><input type="text" name="pro_sn3" value="<?php  echo $pro_sn3;?>" id="pro_sn3" class="inpfoder" style="width:100%;text-align:center;"></td>
+      <td style="border:1px solid #000000;padding:5;text-align:center;"><input type="text" name="pro_sn3" value="<?php  echo number_format($pro_sn3, 2, '.', '');?>" id="pro_sn3" class="inpfoder" style="width:100%;text-align:center;"></td>
       <td style="border:1px solid #000000;padding:5;text-align:center;">
-      	<input type="text" name="camount3" value="<?php  echo $camount3;?>" id="camount3" class="inpfoder" style="width:100%;text-align:center;">
+      	<input type="text" name="camount3" value="<?php  echo number_format($camount3, 2, '.', '');?>" id="camount3" class="inpfoder" style="width:100%;text-align:center;">
       </td>
 		<td style="border:1px solid #000000;padding:5;text-align:center;">
-      	<input type="text" name="cprice3" value="<?php  echo $cprice3;?>" id="cprice3" class="inpfoder" style="width:100%;text-align:center;">
+      	<input type="text" name="cprice3" value="<?php  echo number_format($cprice3, 2, '.', '');?>" id="cprice3" class="inpfoder" style="width:100%;text-align:center;">
       </td>
       <td style="border:1px solid #000000;padding:5;text-align:right;"><?php echo $totalSub3s;?>&nbsp;&nbsp;</td>
     </tr>
@@ -755,12 +755,12 @@ function submitForm() {
           ?>
       </select><a href="javascript:void(0);" onClick="windowOpener('400', '500', '', 'search_pod.php?protype=pro_pod4');"><img src="../images/icon2/mark_f2.png" width="25" height="25" alt="" style="vertical-align:middle;padding-left:5px;"></a>
       </td>
-      <td style="border:1px solid #000000;padding:5;text-align:center;"><input type="text" name="pro_sn4" value="<?php  echo $pro_sn4;?>" id="pro_sn4" class="inpfoder" style="width:100%;text-align:center;"></td>
+      <td style="border:1px solid #000000;padding:5;text-align:center;"><input type="text" name="pro_sn4" value="<?php  echo number_format($pro_sn4, 2, '.', '');?>" id="pro_sn4" class="inpfoder" style="width:100%;text-align:center;"></td>
       <td style="border:1px solid #000000;padding:5;text-align:center;">
-      	<input type="text" name="camount4" value="<?php  echo $camount4;?>" id="camount4" class="inpfoder" style="width:100%;text-align:center;">
+      	<input type="text" name="camount4" value="<?php  echo number_format($camount4, 2, '.', '');?>" id="camount4" class="inpfoder" style="width:100%;text-align:center;">
       </td>
 	<td style="border:1px solid #000000;padding:5;text-align:center;">
-      	<input type="text" name="cprice4" value="<?php  echo $cprice4;?>" id="cprice4" class="inpfoder" style="width:100%;text-align:center;">
+      	<input type="text" name="cprice4" value="<?php  echo number_format($cprice4, 2, '.', '');?>" id="cprice4" class="inpfoder" style="width:100%;text-align:center;">
       </td>
       <td style="border:1px solid #000000;padding:5;text-align:right;"><?php echo $totalSub4s;?>&nbsp;&nbsp;</td>
     </tr>
@@ -792,12 +792,12 @@ function submitForm() {
           ?>
       </select><a href="javascript:void(0);" onClick="windowOpener('400', '500', '', 'search_pod.php?protype=pro_pod5');"><img src="../images/icon2/mark_f2.png" width="25" height="25" alt="" style="vertical-align:middle;padding-left:5px;"></a>
       </td>
-      <td style="border:1px solid #000000;padding:5;text-align:center;"><input type="text" name="pro_sn5" value="<?php  echo $pro_sn5;?>" id="pro_sn5" class="inpfoder" style="width:100%;text-align:center;"></td>
+      <td style="border:1px solid #000000;padding:5;text-align:center;"><input type="text" name="pro_sn5" value="<?php  echo number_format($pro_sn5, 2, '.', '');?>" id="pro_sn5" class="inpfoder" style="width:100%;text-align:center;"></td>
       <td style="border:1px solid #000000;padding:5;text-align:center;">
-      	<input type="text" name="camount5" value="<?php  echo $camount5;?>" id="camount5" class="inpfoder" style="width:100%;text-align:center;">
+      	<input type="text" name="camount5" value="<?php  echo number_format($camount5, 2, '.', '');?>" id="camount5" class="inpfoder" style="width:100%;text-align:center;">
       </td>
 		<td style="border:1px solid #000000;padding:5;text-align:center;">
-      	<input type="text" name="cprice5" value="<?php  echo $cprice5;?>" id="cprice5" class="inpfoder" style="width:100%;text-align:center;">
+      	<input type="text" name="cprice5" value="<?php  echo number_format($cprice5, 2, '.', '');?>" id="cprice5" class="inpfoder" style="width:100%;text-align:center;">
       </td>
       <td style="border:1px solid #000000;padding:5;text-align:right;"><?php echo $totalSub5s;?>&nbsp;&nbsp;</td>
     </tr>
@@ -829,12 +829,12 @@ function submitForm() {
           ?>
       </select><a href="javascript:void(0);" onClick="windowOpener('400', '500', '', 'search_pod.php?protype=pro_pod6');"><img src="../images/icon2/mark_f2.png" width="25" height="25" alt="" style="vertical-align:middle;padding-left:5px;"></a>
       </td>
-      <td style="border:1px solid #000000;padding:5;text-align:center;"><input type="text" name="pro_sn6" value="<?php  echo $pro_sn6;?>" id="pro_sn6" class="inpfoder" style="width:100%;text-align:center;"></td>
+      <td style="border:1px solid #000000;padding:5;text-align:center;"><input type="text" name="pro_sn6" value="<?php  echo number_format($pro_sn6, 2, '.', '');?>" id="pro_sn6" class="inpfoder" style="width:100%;text-align:center;"></td>
       <td style="border:1px solid #000000;padding:5;text-align:center;">
-      	<input type="text" name="camount6" value="<?php  echo $camount6;?>" id="camount6" class="inpfoder" style="width:100%;text-align:center;">
+      	<input type="text" name="camount6" value="<?php  echo number_format($camount6, 2, '.', '');?>" id="camount6" class="inpfoder" style="width:100%;text-align:center;">
       </td>
 		<td style="border:1px solid #000000;padding:5;text-align:center;">
-      	<input type="text" name="cprice6" value="<?php  echo $cprice6;?>" id="cprice6" class="inpfoder" style="width:100%;text-align:center;">
+      	<input type="text" name="cprice6" value="<?php  echo number_format($cprice6, 2, '.', '');?>" id="cprice6" class="inpfoder" style="width:100%;text-align:center;">
       </td>
       <td style="border:1px solid #000000;padding:5;text-align:right;"><?php echo $totalSub6s;?>&nbsp;&nbsp;</td>
     </tr>
@@ -866,12 +866,12 @@ function submitForm() {
           ?>
       </select><a href="javascript:void(0);" onClick="windowOpener('400', '500', '', 'search_pod.php?protype=pro_pod7');"><img src="../images/icon2/mark_f2.png" width="25" height="25" alt="" style="vertical-align:middle;padding-left:5px;"></a>
       </td>
-      <td style="border:1px solid #000000;padding:5;text-align:center;"><input type="text" name="pro_sn7" value="<?php  echo $pro_sn7;?>" id="pro_sn7" class="inpfoder" style="width:100%;text-align:center;"></td>
+      <td style="border:1px solid #000000;padding:5;text-align:center;"><input type="text" name="pro_sn7" value="<?php  echo number_format($pro_sn7, 2, '.', '');?>" id="pro_sn7" class="inpfoder" style="width:100%;text-align:center;"></td>
       <td style="border:1px solid #000000;padding:5;text-align:center;">
-      	<input type="text" name="camount7" value="<?php  echo $camount7;?>" id="camount7" class="inpfoder" style="width:100%;text-align:center;">
+      	<input type="text" name="camount7" value="<?php  echo number_format($camount7, 2, '.', '');?>" id="camount7" class="inpfoder" style="width:100%;text-align:center;">
       </td>
 	<td style="border:1px solid #000000;padding:5;text-align:center;">
-      	<input type="text" name="cprice7" value="<?php  echo $cprice7;?>" id="cprice7" class="inpfoder" style="width:100%;text-align:center;">
+      	<input type="text" name="cprice7" value="<?php  echo number_format($cprice7, 2, '.', '');?>" id="cprice7" class="inpfoder" style="width:100%;text-align:center;">
       </td>
       <td style="border:1px solid #000000;padding:5;text-align:right;"><?php echo $totalSub7s;?>&nbsp;&nbsp;</td>
     </tr>

@@ -140,6 +140,30 @@ $form = '
       <td style="border:1px solid #000;padding:9px 5px;text-align:right;">' . $totalSub7s . '&nbsp;&nbsp;</td>
     </tr>
     <tr>
+      <td style="border:1px solid #000;padding:9px 5px;">' . $cpro8 . '</td>
+      <td style="border:1px solid #000;text-align:left;padding:9px 5px;">' . get_proname2($conn, $_POST["cpro8"]) . $pro_pod8 . '</td>
+      <td style="border:1px solid #000;padding:9px 5px;">' . number_format($_POST["pro_sn8"],2) . '</td>
+      <td style="border:1px solid #000;padding:9px 5px;text-align:right;">' . number_format($_POST["camount8"],2) . '</td>
+      <td style="border:1px solid #000;padding:9px 5px;text-align:right;">' . $prpro8 . '&nbsp;&nbsp;</td>
+      <td style="border:1px solid #000;padding:9px 5px;text-align:right;">' . $totalSub8s . '&nbsp;&nbsp;</td>
+    </tr>
+    <tr>
+    <td style="border:1px solid #000;padding:9px 5px;">' . $cpro9 . '</td>
+    <td style="border:1px solid #000;text-align:left;padding:9px 5px;">' . get_proname2($conn, $_POST["cpro9"]) . $pro_pod9 . '</td>
+    <td style="border:1px solid #000;padding:9px 5px;">' . number_format($_POST["pro_sn9"],2) . '</td>
+    <td style="border:1px solid #000;padding:9px 5px;text-align:right;">' . number_format($_POST["camount9"],2) . '</td>
+    <td style="border:1px solid #000;padding:9px 5px;text-align:right;">' . $prpro9 . '&nbsp;&nbsp;</td>
+    <td style="border:1px solid #000;padding:9px 5px;text-align:right;">' . $totalSub9s . '&nbsp;&nbsp;</td>
+  </tr>
+  <tr>
+  <td style="border:1px solid #000;padding:9px 5px;">' . $cpro10 . '</td>
+  <td style="border:1px solid #000;text-align:left;padding:9px 5px;">' . get_proname2($conn, $_POST["cpro10"]) . $pro_pod10 . '</td>
+  <td style="border:1px solid #000;padding:9px 5px;">' . number_format($_POST["pro_sn10"],2) . '</td>
+  <td style="border:1px solid #000;padding:9px 5px;text-align:right;">' . number_format($_POST["camount10"],2) . '</td>
+  <td style="border:1px solid #000;padding:9px 5px;text-align:right;">' . $prpro10 . '&nbsp;&nbsp;</td>
+  <td style="border:1px solid #000;padding:9px 5px;text-align:right;">' . $totalSub10s . '&nbsp;&nbsp;</td>
+</tr>
+    <tr>
       <td colspan="3" style="border:0px solid #000;padding:9px 5px;"></td>
       <td style="border:0px solid #000;padding:9px 5px;"></td>
       <td style="border:1px solid #000;padding:9px 5px;"><strong>รวมทั้งหมด</strong></td>
@@ -226,6 +250,7 @@ $form .= '
         
         </td>
         <td width="33%" style="border:0px solid #000;font-size:11px;font-family:Verdana, Geneva, sans-serif;text-align:center;padding-top:10px;padding-bottom:10px;position: relative;">
+        	<div style="position: absolute; right:95px;margin-top: 30px;"><img src="../images/company_sinature.png" width="150px" border="0" /></div>
           <table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
                 <td style="border-bottom:0px solid #000;padding-bottom:10px;font-size:13px;font-family:Verdana, Geneva, sans-serif;text-align:center;">ขอแสดงความนับถือ</td>

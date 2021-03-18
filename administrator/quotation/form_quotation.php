@@ -128,56 +128,56 @@ $form = '
     <tr>
       <td style="border-top:1px solid #000;border-left:1px solid #000;padding:9px 5px;">'.$cpro1.'</td>
       <td style="border-top:1px solid #000;border-left:1px solid #000;text-align:left;padding:9px 5px;">'.get_proname($conn,$_POST["cpro1"]).$pro_pod1.'</td>
-      <td style="border-top:1px solid #000;border-left:1px solid #000;padding:9px 5px;">'.$_POST["pro_sn1"].'</td>
-      <td style="border-top:1px solid #000;border-left:1px solid #000;padding:9px 5px;text-align:right;">'.number_format($_POST["camount1"]).'</td>
+      <td style="border-top:1px solid #000;border-left:1px solid #000;padding:9px 5px;">'.number_format($_POST["pro_sn1"],2).'</td>
+      <td style="border-top:1px solid #000;border-left:1px solid #000;padding:9px 5px;text-align:right;">'.number_format($_POST["camount1"],2).'</td>
       <td style="border-top:1px solid #000;border-left:1px solid #000;padding:9px 5px;text-align:right;">'.$prpro1.'&nbsp;&nbsp;</td>
       <td style="border-top:1px solid #000;border-right:1px solid #000;border-left:1px solid #000;padding:9px 5px;text-align:right;">'.$totalSub1s.'&nbsp;&nbsp;</td>
     </tr>
     <tr>
       <td style="border-left:1px solid #000;padding:9px 5px;">'.$cpro2.'</td>
       <td style="border-left:1px solid #000;text-align:left;padding:9px 5px;">'.get_proname($conn,$_POST["cpro2"]).$pro_pod2.'</td>
-      <td style="border-left:1px solid #000;padding:9px 5px;">'.$_POST["pro_sn2"].'</td>
-      <td style="border-left:1px solid #000;padding:9px 5px;text-align:right;">'.number_format($_POST["camount2"]).'</td>
+      <td style="border-left:1px solid #000;padding:9px 5px;">'.number_format($_POST["pro_sn2"],2).'</td>
+      <td style="border-left:1px solid #000;padding:9px 5px;text-align:right;">'.number_format($_POST["camount2"],2).'</td>
       <td style="border-left:1px solid #000;padding:9px 5px;text-align:right;">'.$prpro2.'&nbsp;&nbsp;</td>
       <td style="border-left:1px solid #000;border-right:1px solid #000;padding:9px 5px;text-align:right;">'.$totalSub2s.'&nbsp;&nbsp;</td>
     </tr>
     <tr>
       <td style="border-left:1px solid #000;padding:9px 5px;">'.$cpro3.'</td>
       <td style="border-left:1px solid #000;text-align:left;padding:9px 5px;">'.get_proname($conn,$_POST["cpro3"]).$pro_pod3.'</td>
-      <td style="border-left:1px solid #000;padding:9px 5px;">'.$_POST["pro_sn3"].'</td>
-      <td style="border-left:1px solid #000;padding:9px 5px;text-align:right;">'.number_format($_POST["camount3"]).'</td>
+      <td style="border-left:1px solid #000;padding:9px 5px;">'.number_format($_POST["pro_sn3"],2).'</td>
+      <td style="border-left:1px solid #000;padding:9px 5px;text-align:right;">'.number_format($_POST["camount3"],2).'</td>
       <td style="border-left:1px solid #000;padding:9px 5px;text-align:right;">'.$prpro3.'&nbsp;&nbsp;</td>
       <td style="border-left:1px solid #000;border-right:1px solid #000;padding:9px 5px;text-align:right;">'.$totalSub3s.'&nbsp;&nbsp;</td>
     </tr>
     <tr>
       <td style="border-left:1px solid #000;padding:9px 5px;">'.$cpro4.'</td>
       <td style="border-left:1px solid #000;text-align:left;padding:9px 5px;">'.get_proname($conn,$_POST["cpro4"]).$pro_pod4.'</td>
-      <td style="border-left:1px solid #000;padding:9px 5px;">'.$_POST["pro_sn4"].'</td>
-      <td style="border-left:1px solid #000;padding:9px 5px;text-align:right;">'.number_format($_POST["camount4"]).'</td>
+      <td style="border-left:1px solid #000;padding:9px 5px;">'.number_format($_POST["pro_sn4"],2).'</td>
+      <td style="border-left:1px solid #000;padding:9px 5px;text-align:right;">'.number_format($_POST["camount4"],2).'</td>
       <td style="border-left:1px solid #000;padding:9px 5px;text-align:right;">'.$prpro4.'&nbsp;&nbsp;</td>
       <td style="border-left:1px solid #000;border-right:1px solid #000;padding:9px 5px;text-align:right;">'.$totalSub4s.'&nbsp;&nbsp;</td>
     </tr>
     <tr>
       <td style="border-left:1px solid #000;padding:9px 5px;">'.$cpro5.'</td>
       <td style="border-left:1px solid #000;text-align:left;padding:9px 5px;">'.get_proname($conn,$_POST["cpro5"]).$pro_pod5.'</td>
-      <td style="border-left:1px solid #000;padding:9px 5px;">'.$_POST["pro_sn5"].'</td>
-      <td style="border-left:1px solid #000;padding:9px 5px;text-align:right;">'.number_format($_POST["camount5"]).'</td>
+      <td style="border-left:1px solid #000;padding:9px 5px;">'.number_format($_POST["pro_sn5"],2).'</td>
+      <td style="border-left:1px solid #000;padding:9px 5px;text-align:right;">'.number_format($_POST["camount5"],2).'</td>
       <td style="border-left:1px solid #000;padding:9px 5px;text-align:right;">'.$prpro5.'&nbsp;&nbsp;</td>
       <td style="border-left:1px solid #000;border-right:1px solid #000;padding:9px 5px;text-align:right;">'.$totalSub5s.'&nbsp;&nbsp;</td>
     </tr>
     <tr>
       <td style="border-left:1px solid #000;padding:9px 5px;">'.$cpro6.'</td>
       <td style="border-left:1px solid #000;text-align:left;padding:9px 5px;">'.get_proname($conn,$_POST["cpro6"]).$pro_pod6.'</td>
-      <td style="border-left:1px solid #000;padding:9px 5px;">'.$_POST["pro_sn6"].'</td>
-      <td style="border-left:1px solid #000;padding:9px 5px;text-align:right;">'.number_format($_POST["camount6"]).'</td>
+      <td style="border-left:1px solid #000;padding:9px 5px;">'.number_format($_POST["pro_sn6"],2).'</td>
+      <td style="border-left:1px solid #000;padding:9px 5px;text-align:right;">'.number_format($_POST["camount6"],2).'</td>
       <td style="border-left:1px solid #000;padding:9px 5px;text-align:right;">'.$prpro6.'&nbsp;&nbsp;</td>
       <td style="border-left:1px solid #000;border-right:1px solid #000;padding:9px 5px;text-align:right;">'.$totalSub6s.'&nbsp;&nbsp;</td>
     </tr>
     <tr>
       <td style="border-left:1px solid #000;padding:9px 5px;">'.$cpro7.'</td>
       <td style="border-left:1px solid #000;text-align:left;padding:9px 5px;">'.get_proname($conn,$_POST["cpro7"]).$pro_pod7.'</td>
-      <td style="border-left:1px solid #000;padding:9px 5px;">'.$_POST["pro_sn7"].'</td>
-      <td style="border-left:1px solid #000;padding:9px 5px;text-align:right;">'.number_format($_POST["camount7"]).'</td>
+      <td style="border-left:1px solid #000;padding:9px 5px;">'.number_format($_POST["pro_sn7"],2).'</td>
+      <td style="border-left:1px solid #000;padding:9px 5px;text-align:right;">'.number_format($_POST["camount7"],2).'</td>
       <td style="border-left:1px solid #000;padding:9px 5px;text-align:right;">'.$prpro7.'&nbsp;&nbsp;</td>
       <td style="border-left:1px solid #000;border-right:1px solid #000;padding:9px 5px;text-align:right;">'.$totalSub7s.'&nbsp;&nbsp;</td>
     </tr>
@@ -238,8 +238,18 @@ $form = '
     <tr>
       <td style="padding-bottom:5px;"><img src="'.$headerIMG.'" width="100%" border="0" /></td>
     </tr>
-  </table><br>
-  <p style="font-size:12px;"><strong><u>เงื่อนไขการชำระเงิน</u></strong></p>
+  </table><br>';
+
+  if(!empty($_POST["remark"])){
+    $form .='
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tb1" >
+    <tr>
+      <td style="border:0px solid #000;font-size:12px;"><strong>หมายเหตุ : </strong>'.$_POST["remark"].'</td>
+    </tr>
+  </table><br>';
+  }
+
+  $form .='<p style="font-size:12px;"><strong><u>เงื่อนไขการชำระเงิน</u></strong></p>
   <p style="font-size:12px;">1. '.$_POST['paycon1'].'</p>
   <p style="font-size:12px;">2. ชำระค่าบริการขนส่ง/ติดตั้ง และ'.$_POST['spro2'].' ณ วันอนุมัติสั่งซื้อสินค้าหรือตามเงื่อนไขการขาย</p>
   <p style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;ชำระค่าเช่าวันที่ '.$_POST['paysad'].' ของทุกๆ เดือน</p><br>
@@ -248,27 +258,18 @@ $form = '
   
   <p style="font-size:12px;">1. ราคาดังกล่าวข้างต้น '.$_POST['paycon2'].' ภาษีมูลค่าเพิ่ม '.$_POST['paycon3'].' ตามที่สรรพากรกำหนดเรียบร้อยแล้ว</p>
   <p style="font-size:12px;">2. การรับประกันสินค้า : รับประกันตัวเครื่อง อะไหล่และบริการหลังการขายฟรี '.$_POST['paycon4'].' ปี '.$_POST['paycon5'].' เดือนหรือตามที่ตกลงกัน</p>
-  <p style="font-size:12px;">3. ตลอดระยะเวลาการรับประกัน : บริษัทฯ กำหนดให้ลูกค้าต้องใช้น้ำยาของบริษัท โอเมก้า แมชชีนเนอรี่ (1999) จำกัด เท่านั้น</p>
-  <p style="font-size:12px;">4. บริษัทฯ ขอสงวนสิทธ์ในการกำหนดให้ลูกค้าใช้น้ำยาสำหรับเครื่องทุกชนิดของบริษัท โอเมก้า แมชชีนเนอรี่ (1999) จำกัด เท่านั้น ตลอดอายุสัญญาเช่า</p>
-  <p style="font-size:12px;">5. จัดส่งสินค้าภายใน '.$_POST['guaran2'].' วัน หลังจากลูกค้าชำระเงินประกันสินค้า/ค่าเช่าล่วงหน้าและค่าบริการขนส่ง/ติดตั้ง</p>';
+  <p style="font-size:12px;">3. บริษัทฯ ขอสงวนสิทธ์ในการกำหนดให้ลูกค้าใช้น้ำยาสำหรับเครื่องทุกชนิดของบริษัท โอเมก้า แมชชีนเนอรี่ (1999) จำกัด เท่านั้น ตลอดอายุสัญญาเช่า</p>
+  <p style="font-size:12px;">4. จัดส่งสินค้าภายใน '.$_POST['guaran2'].' วัน หลังจากลูกค้าชำระเงินประกันสินค้า/ค่าเช่าล่วงหน้าและค่าบริการขนส่ง/ติดตั้ง</p>';
 
   if($_POST['type_electric'] != "no"){
-	  $form .='<p style="font-size:12px;">6. ลูกค้าเป็นผู้ตรียมระบบไฟฟ้า '.$_POST['type_electric'].' ท่อน้ำดี ขนาด 6 หุน น้ำทิ้ง ขนาด 2 นิ้ว ระยะไม่เกิน 5 เมตร จากตำแหน่งติดตั้ง</p>
-    <p style="font-size:12px;">7. กำหนดยืนราคา '.$_POST['giveprice'].' วัน</p>
-    <p style="font-size:12px;">8. ทางบริษัทฯ ขอสงวนสิทธ์ในกรณีที่ลูกค้าเช็นอนุมัติใบเสนอราคาแล้วนั้น หากมีการยกเลิกสัญญา หรือ การเปลี่ยนแปลงใดๆเกิดขึ้นระหว่าง ดำเนินการ ทางลูกค้าต้องเป็นผู้รับผิดชอบต่อความเสียหายและค่าใช้จ่ายที่เกิดขึ้น</p>';
+	  $form .='<p style="font-size:12px;">5. ลูกค้าเป็นผู้ตรียมระบบไฟฟ้า '.$_POST['type_electric'].' ท่อน้ำดี ขนาด 6 หุน น้ำทิ้ง ขนาด 2 นิ้ว ระยะไม่เกิน 5 เมตร จากตำแหน่งติดตั้ง</p>
+    <p style="font-size:12px;">6. กำหนดยืนราคา '.$_POST['giveprice'].' วัน</p>
+    <p style="font-size:12px;">7. ทางบริษัทฯ ขอสงวนสิทธ์ในกรณีที่ลูกค้าเช็นอนุมัติใบเสนอราคาแล้วนั้น หากมีการยกเลิกสัญญา หรือ การเปลี่ยนแปลงใดๆเกิดขึ้นระหว่าง ดำเนินการ ทางลูกค้าต้องเป็นผู้รับผิดชอบต่อความเสียหายและค่าใช้จ่ายที่เกิดขึ้น</p>';
   }else{
-	   $form .='<p style="font-size:12px;">7. กำหนดยืนราคา '.$_POST['giveprice'].' วัน</p>
-     <p style="font-size:12px;">8. ทางบริษัทฯ ขอสงวนสิทธ์ในกรณีที่ลูกค้าเช็นอนุมัติใบเสนอราคาแล้วนั้น หากมีการยกเลิกสัญญา หรือ การเปลี่ยนแปลงใดๆ เกิดขึ้นระหว่าง ดำเนินการ ทางลูกค้าต้องเป็นผู้รับผิดชอบต่อความเสียหายและค่าใช้จ่ายที่เกิดขึ้น</p>';
+	   $form .='<p style="font-size:12px;">6. กำหนดยืนราคา '.$_POST['giveprice'].' วัน</p>
+     <p style="font-size:12px;">7. ทางบริษัทฯ ขอสงวนสิทธ์ในกรณีที่ลูกค้าเช็นอนุมัติใบเสนอราคาแล้วนั้น หากมีการยกเลิกสัญญา หรือ การเปลี่ยนแปลงใดๆ เกิดขึ้นระหว่าง ดำเนินการ ทางลูกค้าต้องเป็นผู้รับผิดชอบต่อความเสียหายและค่าใช้จ่ายที่เกิดขึ้น</p>';
   }
 
-  if(!empty($_POST["remark"])){
-    $form .='<br>
-  <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tb1" >
-    <tr>
-      <td style="border:0px solid #000;font-size:11px;font-size:11px;font-family:Verdana, Geneva, sans-serif;"><strong>หมายเหตุ : </strong>'.$_POST["remark"].'</td>
-    </tr>
-  </table>';
-  }
 
   $form .='<br>
   <p style="font-size:12px;"><strong>จึงเรียนมาเพื่อโปรดพิจารณาอนุมัติ บริษัทฯหวังเป็นอย่างยิ่งว่าจะได้รับโอกาสให้บริการในเร็ววันนี้<br>ขอแสดงความนับถือ</strong></p>

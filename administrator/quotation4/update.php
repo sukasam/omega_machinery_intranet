@@ -497,9 +497,9 @@ function submitForm() {
       </select><a href="javascript:void(0);" onClick="windowOpener('400', '500', '', 'search_pod.php?protype=pro_pod1');"><img src="../images/icon2/mark_f2.png" width="25" height="25" alt="" style="vertical-align:middle;padding-left:5px;"></a>
       </td>
       <td style="border:1px solid #000000;padding:5;text-align:center;" >
-        <input type="text" name="pro_sn1" value="<?php  echo $pro_sn1;?>" id="pro_sn1" class="inpfoder" style="width:100%;text-align:center;"></td>
+        <input type="text" name="pro_sn1" value="<?php  echo number_format($pro_sn1, 2, '.', '');?>" id="pro_sn1" class="inpfoder" style="width:100%;text-align:center;"></td>
       <td style="border:1px solid #000000;padding:5;text-align:center;">
-      	<input type="text" name="camount1" value="<?php  echo $camount1;?>" id="camount1" class="inpfoder" style="width:100%;text-align:center;">
+      	<input type="text" name="camount1" value="<?php  echo number_format($camount1, 2, '.', '');?>" id="camount1" class="inpfoder" style="width:100%;text-align:center;">
       </td>
 <!--
       <td style="border:1px solid #000000;padding:5;text-align:center;">
@@ -529,10 +529,10 @@ function submitForm() {
       </select><a href="javascript:void(0);" onClick="windowOpener('400', '500', '', 'search_pod.php?protype=pro_pod2');"><img src="../images/icon2/mark_f2.png" width="25" height="25" alt="" style="vertical-align:middle;padding-left:5px;"></a>
       </td>
       <td style="border:1px solid #000000;padding:5;text-align:center;">
-      	<input type="text" name="pro_sn2" value="<?php  echo $pro_sn2;?>" id="pro_sn2" class="inpfoder" style="width:100%;text-align:center;">
+      	<input type="text" name="pro_sn2" value="<?php  echo number_format($pro_sn2, 2, '.', '');?>" id="pro_sn2" class="inpfoder" style="width:100%;text-align:center;">
       </td>
       <td style="border:1px solid #000000;padding:5;text-align:center;">
-      	<input type="text" name="camount2" value="<?php  echo $camount2;?>" id="camount2" class="inpfoder" style="width:100%;text-align:center;">
+      	<input type="text" name="camount2" value="<?php  echo number_format($camount2, 2, '.', '');?>" id="camount2" class="inpfoder" style="width:100%;text-align:center;">
       </td>
 <!--
       <td style="border:1px solid #000000;padding:5;text-align:center;">

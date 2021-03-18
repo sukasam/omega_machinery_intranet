@@ -381,6 +381,10 @@ function submitForm() {
 
             </select>
 
+			&nbsp;&nbsp; 
+
+			<strong> วันที่ :</strong> <input type="text" name="date_forder" readonly value="<?php  if($date_forder==""){echo date("d/m/Y");}else{ echo $date_forder;}?>" class="inpfoder"/><script language="JavaScript">new tcal ({'formname': 'form1','controlname': 'date_forder'});</script>
+
             </td>
 
           </tr>
@@ -428,7 +432,14 @@ function submitForm() {
 
            	</td>
 
-            <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;"><strong> วันที่ :</strong> <input type="text" name="date_forder" readonly value="<?php  if($date_forder==""){echo date("d/m/Y");}else{ echo $date_forder;}?>" class="inpfoder"/><script language="JavaScript">new tcal ({'formname': 'form1','controlname': 'date_forder'});</script></td>
+            <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;">
+			<strong>สถานนะลูกค้า </strong> 
+			<input type="radio" name="status_cus" value="3" <?php if($status_cus === '3'){echo "checked";}?>>โทรศัพท์
+			<input type="radio" name="status_cus" value="2" <?php if($status_cus === '2'){echo "checked";}?>>เข้าพบ
+			<input type="radio" name="status_cus" value="1" <?php if($status_cus === '1'){echo "checked";}?>>สำรวจตลาด
+			<input type="radio" name="status_cus" value="0" <?php if($status_cus === '0' || $status_cus === ''){echo "checked";}?>>อื่นๆ&nbsp;&nbsp;
+			<input type="text" name="status_cus_other" value="<?php  echo $status_cus_other;?>" id="status_cus_other" class="inpfoder" style="    width: 200px;">
+			</td>
 
           </tr>
 
@@ -482,6 +493,7 @@ function submitForm() {
 				?>
 
 				</select>
+				&nbsp;&nbsp; คาดหวัง <input type="text" name="hope_cus" value="<?php  echo $hope_cus;?>" id="hope_cus" class="inpfoder" style="width: 50px;"> (%)
 </td>
 
           </tr>
