@@ -196,7 +196,7 @@
                   function dotSize() {
                       return (this.minWidth + this.maxWidth) / 2;
                   };
-          this.penColor = options.penColor || 'black';
+          this.penColor = options.penColor || 'blue';
           this.backgroundColor = options.backgroundColor || 'rgba(0,0,0,0)';
           this.onBegin = options.onBegin;
           this.onEnd = options.onEnd;

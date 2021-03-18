@@ -95,7 +95,7 @@ function saveImage(dataURL) {
   }
   ajax.send("imgData=" + canvasData);
   signaturePad.clear();
-  opener.location.reload();
+  window.location.reload();
   window.close();
  
 	
