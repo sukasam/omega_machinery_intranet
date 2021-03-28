@@ -140,31 +140,31 @@ if($_POST['cpro5'] != ""){
 }
 
 
-// if($_POST['cpro6'] != ""){
-//   if($_POST['pro_sn6'] == ""){
-//     $_POST['pro_sn6'] = 1;
-//   }
-//   $totalSub6 = $_POST['pro_sn6'] * $_POST['camount6'];
-//   if($_POST['cprice6'] != ""){$totalSub6 = $totalSub6 - $_POST['cprice6'];
-//   }else{$_POST['cprice6'] = "";}
-//   $sumTotal = $sumTotal+$totalSub6;
-//   if($totalSub6 != "" || $totalSub6 != 0){
-//     $totalSub6s = number_format($totalSub6);
-//   }
-// }
+if($_POST['cpro6'] != ""){
+  if($_POST['pro_sn6'] == ""){
+    $_POST['pro_sn6'] = 1;
+  }
+  $totalSub6 = $_POST['pro_sn6'] * $_POST['camount6'];
+  if($_POST['cprice6'] != ""){$totalSub6 = $totalSub6 - $_POST['cprice6'];
+  }else{$_POST['cprice6'] = "";}
+  $sumTotal = $sumTotal+$totalSub6;
+  if($totalSub6 != "" || $totalSub6 != 0){
+    $totalSub6s = number_format($totalSub6);
+  }
+}
 
-// if($_POST['cpro7'] != ""){
-//   if($_POST['pro_sn7'] == ""){
-//     $_POST['pro_sn7'] = 1;
-//   }
-//   $totalSub7 = $_POST['pro_sn7'] * $_POST['camount7'];
-//   if($_POST['cprice7'] != ""){$totalSub7 = $totalSub7 - $_POST['cprice7'];
-//   }else{$_POST['cprice7'] = "";}
-//   $sumTotal = $sumTotal+$totalSub7;
-//   if($totalSub7 != "" || $totalSub7 != 0){
-//     $totalSub7s = number_format($totalSub7);
-//   }
-// }
+if($_POST['cpro7'] != ""){
+  if($_POST['pro_sn7'] == ""){
+    $_POST['pro_sn7'] = 1;
+  }
+  $totalSub7 = $_POST['pro_sn7'] * $_POST['camount7'];
+  if($_POST['cprice7'] != ""){$totalSub7 = $totalSub7 - $_POST['cprice7'];
+  }else{$_POST['cprice7'] = "";}
+  $sumTotal = $sumTotal+$totalSub7;
+  if($totalSub7 != "" || $totalSub7 != 0){
+    $totalSub7s = number_format($totalSub7);
+  }
+}
 
 $sumprice  = $sumTotal;
 $sumpricevat = ($sumprice * 7) / 100;
@@ -376,31 +376,31 @@ $sumtotalsSet = $sumpriceSet + $sumpricevatSet;
       }
     }
     
-    // if($cpro6 != ""){
-    //   if($pro_sn6 == ""){
-    //     $pro_sn6 = 1;
-    //   }
-    //   $totalSub6 = $pro_sn6 * $camount6;
-    //   if($cprice6 != ""){$totalSub6 = $totalSub6 - $cprice6;
-    //   }else{$cprice6 = "";}
-    //   $sumTotal = $sumTotal+$totalSub6;
-    //   if($totalSub6 != "" || $totalSub6 != 0){
-    //     $totalSub6s = number_format($totalSub6);
-    //   }
-    // }
+    if($cpro6 != ""){
+      if($pro_sn6 == ""){
+        $pro_sn6 = 1;
+      }
+      $totalSub6 = $pro_sn6 * $camount6;
+      if($cprice6 != ""){$totalSub6 = $totalSub6 - $cprice6;
+      }else{$cprice6 = "";}
+      $sumTotal = $sumTotal+$totalSub6;
+      if($totalSub6 != "" || $totalSub6 != 0){
+        $totalSub6s = number_format($totalSub6);
+      }
+    }
     
-    // if($cpro7 != ""){
-    //   if($pro_sn7 == ""){
-    //     $pro_sn7 = 1;
-    //   }
-    //   $totalSub7 = $pro_sn7 * $camount7;
-    //   if($cprice7 != ""){$totalSub7 = $totalSub7 - $cprice7;
-    //   }else{$cprice7 = "";}
-    //   $sumTotal = $sumTotal+$totalSub7;
-    //   if($totalSub7 != "" || $totalSub7 != 0){
-    //     $totalSub7s = number_format($totalSub7);
-    //   }
-    // }
+    if($cpro7 != ""){
+      if($pro_sn7 == ""){
+        $pro_sn7 = 1;
+      }
+      $totalSub7 = $pro_sn7 * $camount7;
+      if($cprice7 != ""){$totalSub7 = $totalSub7 - $cprice7;
+      }else{$cprice7 = "";}
+      $sumTotal = $sumTotal+$totalSub7;
+      if($totalSub7 != "" || $totalSub7 != 0){
+        $totalSub7s = number_format($totalSub7);
+      }
+    }
     
     $sumprice  = $sumTotal;
     $sumpricevat = ($sumprice * 7) / 100;
@@ -999,12 +999,12 @@ function submitForm() {
 
         1. ราคาดังกล่าวข้างต้น <input type="text" name="paycon2" value="<?php echo $paycon2;?>" style="text-align: center;width: 100px;"> ภาษีมูลค่าเพิ่ม <input type="text" name="paycon3" value="<?php echo $paycon3;?>" style="text-align: center;width: 50px;"> ตามที่สรรพากรกำหนดเรียบร้อยแล้ว<br>
         2. การรับประกันสินค้า ในกรณีเช่า : ทางบริษัทฯ รับประกันเครื่อง, อะไหล่และบริการหลังการขาย ฟรีตลอดอายุสัญญาเช่า<br>
-        3. ระยะเวลาเช่า <input type="text" name="paycon4" value="<?php echo $paycon4;?>" style="text-align: center;width: 50px;"> เดือน โดยสัญญาเช่าจะเริ่มต้อนเมื่อทางบริษัทฯ ทำการส่งมอบสินค้าเรียบร้อยแล้ว<br>
+        3. ระยะเวลาเช่า <input type="text" name="paycon4" value="<?php echo $paycon4;?>" style="text-align: center;width: 50px;"> เดือน โดยสัญญาเช่าจะเริ่มต้นเมื่อทางบริษัทฯ ทำการส่งมอบสินค้าเรียบร้อยแล้ว<br>
         4. บริษัทฯ ขอสงวนสิทธ์ในการกำหนดให้ลูกค้าใช้น้ำยาสำหรับเครื่องทุกชนิดของบริษัท โอเมก้า แมชชีนเนอรี่ (1999) จำกัด เท่านั้น ตลอดอายุสัญญาเช่า<br>
         5. จัดส่งสินค้าภายใน <input type="text" name="guaran2" value="<?php echo $guaran2;?>" style="text-align: center;width: 50px;"> วัน หลังจากลูกค้าชำระเงินประกันสินค้า/ค่าเช่าล่วงหน้าและค่าบริการขนส่ง/ติดตั้ง<br>
         6. ลูกค้าเป็นผู้ตรียมระบบไฟฟ้า <select name="type_electric" id="type_electric" class="inputselect">
       <option value="no" <?php  if($type_electric == "no"){echo 'selected';}?>>ไม่เลือก</option>
-      <option value="3 เฟส (380V.) เบรกเกอร์ 32A" <?php  if($type_electric == "3 เฟส (380V.) เบรกเกอร์ 32A"){echo 'selected';}?>>3 เฟส (380V.) เบรกเกอร์ 32A</option>
+      <option value="3 เฟส (380V.) เบรกเกอร์ 30A" <?php  if($type_electric == "3 เฟส (380V.) เบรกเกอร์ 30A"){echo 'selected';}?>>3 เฟส (380V.) เบรกเกอร์ 30A</option>
       <option value="3 เฟส (380V.) เบรกเกอร์ 80A" <?php  if($type_electric == "3 เฟส (380V.) เบรกเกอร์ 80A"){echo 'selected';}?>>3 เฟส (380V.) เบรกเกอร์ 80A</option>
       <option value="1 เฟส (220V.) เบรกเกอร์ 20A" <?php  if($type_electric == "1 เฟส (220V.) เบรกเกอร์ 20A"){echo 'selected';}?>>1 เฟส (220V.) เบรกเกอร์ 20A</option>
       <option value="1 เฟส (220V.) เบรกเกอร์ 30A" <?php  if($type_electric == "1 เฟส (220V.) เบรกเกอร์ 30A"){echo 'selected';}?>>1 เฟส (220V.) เบรกเกอร์ 30A</option>
@@ -1027,7 +1027,7 @@ function submitForm() {
 			3. จัดส่งสินค้าภายใน <input type="text" name="guaran2" value="<?php echo $guaran2;?>" style="text-align: center;width: 50px;"> วัน หลังจากลูกชำระเงินประกันสินค้า/ค่าเช่าล่วงหน้าและค่าบริการขนส่ง/ติดตั้ง<br>	
 			4. ลูกค้าเป็นผู้ตรียมระบบไฟฟ้า <select name="type_electric" id="type_electric" class="inputselect">
       <option value="no" <?php  if($type_electric == "no"){echo 'selected';}?>>ไม่เลือก</option>
-      <option value="3 เฟส (380V.) เบรกเกอร์ 32A" <?php  if($type_electric == "3 เฟส (380V.) เบรกเกอร์ 32A"){echo 'selected';}?>>3 เฟส (380V.) เบรกเกอร์ 32A</option>
+      <option value="3 เฟส (380V.) เบรกเกอร์ 30A" <?php  if($type_electric == "3 เฟส (380V.) เบรกเกอร์ 30A"){echo 'selected';}?>>3 เฟส (380V.) เบรกเกอร์ 30A</option>
       <option value="3 เฟส (380V.) เบรกเกอร์ 80A" <?php  if($type_electric == "3 เฟส (380V.) เบรกเกอร์ 80A"){echo 'selected';}?>>3 เฟส (380V.) เบรกเกอร์ 80A</option>
       <option value="1 เฟส (220V.) เบรกเกอร์ 20A" <?php  if($type_electric == "1 เฟส (220V.) เบรกเกอร์ 20A"){echo 'selected';}?>>1 เฟส (220V.) เบรกเกอร์ 20A</option>
       <option value="1 เฟส (220V.) เบรกเกอร์ 30A" <?php  if($type_electric == "1 เฟส (220V.) เบรกเกอร์ 30A"){echo 'selected';}?>>1 เฟส (220V.) เบรกเกอร์ 30A</option>

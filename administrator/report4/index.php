@@ -471,6 +471,10 @@ if ($_GET["action"] == "chksum") {
                               ประเภทสินค้า
                               <input name="sh5" type="checkbox" id="sh46" value="1" checked>
                               วันที่นัดลูกค้า
+                              <input name="sh8" type="checkbox" id="sh48" value="1" checked>
+                              สถานะลูกค้า
+                              <input name="sh9" type="checkbox" id="sh50" value="1" checked>
+                              คาดหวัง
                               <input name="sh6" type="checkbox" id="sh47" value="1" checked>
                               รายละเอียด
                               

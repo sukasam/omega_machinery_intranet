@@ -80,18 +80,20 @@
 	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="tbreport">
 	  <tr>
 	    <th colspan="2" style="text-align:left;font-size:12px;">บริษัท โอเมก้า แมชชีนเนอรี่ (1999) จำกัด<br />
-        รายงานตารางงานฝ่ายขาย</th>
+        รายงานตารางงานฝ่ายขาย <?php if($cs_sale != ""){echo ": ".getsalename($conn, $cs_sale);}?></th>
 	    <th colspan="6" style="text-align:right;font-size:11px;"><?php  echo $dateshow;?></th>
       </tr>
       <tr>
-        <?php  if($_REQUEST['sh1'] == 1){?><th width="15%">ชื่อลูกค้า / บริษัท + เบอร์โทร</th><?php  }?>
+        <?php  if($_REQUEST['sh1'] == 1){?><th width="15%">ชื่อลูกค้า / ที่อยู่ /บริษัท + เบอร์โทร</th><?php  }?>
         <?php  if($_REQUEST['sh2'] == 1){?><th width="15%">กลุ่มลูกค้า</th><?php  }?>
         <?php  if($_REQUEST['sh3'] == 1){?><th width="15%">ประเภทลูกค้า</th><?php  }?>
 		<?php  if($_REQUEST['sh4'] == 1){?><th width="15%">ประเภทสินค้า</th><?php  }?>
         <?php  if($_REQUEST['sh5'] == 1 || $_REQUEST['sh6'] == 1){?><th><table width="100%" border="0" cellpadding="0" cellspacing="0" class="tbreport">
           <tr>
-            <?php  if($_REQUEST['sh5'] == 1){?><th style="border:0;" width="50%">วันที่นัดลูกค้า</th><?php  }?>
-            <?php  if($_REQUEST['sh6'] == 1){?><th style="border:0;" width="50%">รายละเอียด</th><?php  }?>
+            <?php  if($_REQUEST['sh5'] == 1){?><th style="border:0;" width="25%">วันที่นัดลูกค้า</th><?php  }?>
+			<?php  if($_REQUEST['sh8'] == 1){?><th style="border:0;" width="25%"><center>สถานะลูกค้า</center></th><?php  }?>
+			<?php  if($_REQUEST['sh9'] == 1){?><th style="border:0;" width="25%"><center>คาดหวัง</center></th><?php  }?>
+            <?php  if($_REQUEST['sh6'] == 1){?><th style="border:0;" width="25%">รายละเอียด</th><?php  }?>
           </tr><?php  }?>
         </table></th>
         <?php  if($_REQUEST['sh7'] == 1){?><th width="10%">ผู้ขาย</th><?php  }?>
@@ -105,7 +107,9 @@
 			?>
 			<tr>
               <?php  if($_REQUEST['sh1'] == 1){?><td><?php  echo $row_fr['cd_name'];?><br />
-              <?php  echo "เบอร์โทร : ".$row_fr['cd_tel'];?></td><?php  }?>
+			  <?php echo "<strong>ที่อยู่ : </strong>".$row_fr['cd_address'];?>
+			  <br />
+              <?php  echo "<strong>เบอร์โทร : </strong>".$row_fr['cd_tel'];?></td><?php  }?>
               <?php  if($_REQUEST['sh2'] == 1){?><td><?php  echo get_groupcusname($conn, $row_fr['cg_type']);?></td><?php  }?>
               <?php  if($_REQUEST['sh3'] == 1){?><td><?php  echo getcustom_type($conn,$row_fr['ctype']);?></td><?php  }?>
 			  <?php  if($_REQUEST['sh4'] == 1){?><td><?php  echo protype_name($conn,$row_fr['pro_type']);?></td><?php  }?>
@@ -117,8 +121,10 @@
 						while($row_sale = @mysqli_fetch_array($qu_Sale)){
 					?>
 					<tr>
-						<?php  if($_REQUEST['sh5'] == 1){?><td style="border:0;padding-bottom:0;" width="34%"><?php  echo format_date_th ($row_sale['group_date'],7)." / ".$row_sale['group_time']. ' น.';?></td><?php  }?>
-						<?php  if($_REQUEST['sh6'] == 1){?> <td style="border:0;padding-bottom:0;" width="32%"><?php  echo $row_fr['group_detail'];?>&nbsp;&nbsp;&nbsp;</td><?php  }?>
+						<?php  if($_REQUEST['sh5'] == 1){?><td style="border:0;padding-bottom:0;" width="25%"><?php  echo format_date_th ($row_sale['group_date'],7)." / ".$row_sale['group_time']. ' น.';?></td><?php  }?>
+						<?php  if($_REQUEST['sh8'] == 1){?> <td style="border:0;padding-bottom:0;" width="25%"><center><?php  if($row_fr['status_cus'] == 3){echo "โทรศัพท์";}else if($row_fr['status_cus'] == 2){echo "เข้าพบ";}else if($row_fr['status_cus'] == 1){echo "สำรวจตลาด";}else{echo $row_fr['status_cus_other'];}?></center></td><?php  }?>
+						<?php  if($_REQUEST['sh9'] == 1){?> <td style="border:0;padding-bottom:0;" width="25%"><center><?php  echo $row_fr['hope_cus'];?>%</center></td><?php  }?>
+						<?php  if($_REQUEST['sh6'] == 1){?> <td style="border:0;padding-bottom:0;" width="25%"><?php  echo $row_fr['group_detail'];?>&nbsp;&nbsp;&nbsp;</td><?php  }?>
 					</tr>
 					<?php
 						}
