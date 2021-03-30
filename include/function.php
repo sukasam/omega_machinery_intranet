@@ -2208,7 +2208,7 @@ function get_sale_schedule($conn, $ymd, $loc, $ctype)
                 $jobOpen = "";
             }
 
-            $scstatus = "<span style=\"color:green;\">" . $numR . "." . $row_dea['cd_name'] . $jobOpen . "</span>";
+            $scstatus = "<span style=\"color:green;\">" . $numR . "." . $row_dea['cd_name'] . $jobOpen . " (".getsalename($conn, $row_dea['cs_sale']).")</span>";
 
             //$res .= "&nbsp;<a href=\"../../upload/service_report_open/".$chaf.".pdf\" target=\"_blank\"><strong>".$scstatus."</strong></a>\n<br>\n";
             $res .= "&nbsp;<a href=\"../job_tracking/index.php?tab=sale_schedule&fo_id=".$row_dea['fo_id']."\" target=\"_blank\"><strong>" . $scstatus . "</strong></a>\n<br>\n";
