@@ -341,7 +341,7 @@ if($_GET['month'] == 2){
 		  
 			  $getFileSH = getScheduleFile($conn,$_GET['loccontact'],$_GET['month']-1,$rowSched['fs_id']);
 
-			echo $rowSched['fs_id']." | ".getCheckProGen($conn,$rowSched['cpro1'],$rowSched['fs_id'])."<br>";
+			//echo $rowSched['fs_id']." | ".getCheckProGen($conn,$rowSched['cpro1'],$rowSched['fs_id'])."<br>";
 			//   exit();
 
 			  if(getCheckProGen($conn,$rowSched['cpro1'],$rowSched['fs_id']) == 1){
