@@ -419,7 +419,8 @@ function submitForm() {
             </td>
             <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;">
             	<strong>เลขที่ใบเสนอราคาสัญญาบริการ:</strong> 
-            <input type="text" name="fs_id" value="<?php  if($fs_id == ""){echo check_quotation4($conn);}else{echo $fs_id;};?>" id="fs_id" class="inpfoder" style="border: 0px;"> 
+            <input type="text" value="<?php  if($fs_id == ""){echo check_quotation4($conn);}else{echo $fs_id;};?>" class="inpfoder" readonly style="border: 0px;"> 
+            <input type="hidden" name="fs_id" value="<?php  if($fs_id == ""){echo check_quotation4($conn);}else{echo $fs_id;};?>" id="fs_id" class="inpfoder" style="border: 0px;"> 
             </td>
 
           </tr>

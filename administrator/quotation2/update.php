@@ -570,7 +570,8 @@ function submitForm() {
             <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;"><strong>ที่อยู่ :</strong> <input type="text" name="cd_address" value="<?php  echo $cd_address;?>" id="cd_address" class="inpfoder" style="width:80%;"></td>
             <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;">
             <strong>เลขที่ใบเสนอราคา:</strong> 
-            <input type="text" name="fs_id" value="<?php  if($fs_id == ""){echo check_quotation2($conn);}else{echo $fs_id;};?>" id="fs_id" class="inpfoder" > 
+            <input type="text" value="<?php  if($fs_id == ""){echo check_quotation2($conn);}else{echo $fs_id;};?>" class="inpfoder" readonly style="border: none;"> 
+            <input type="hidden" name="fs_id" value="<?php  if($fs_id == ""){echo check_quotation2($conn);}else{echo $fs_id;};?>" id="fs_id" class="inpfoder" > 
             </td>
           </tr>
           <tr>
