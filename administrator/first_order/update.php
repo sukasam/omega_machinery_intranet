@@ -35,6 +35,9 @@
 	
 		$a_sdate=explode("/",$_POST['date_qut']);
     $_POST['date_qut']=$a_sdate[2]."-".$a_sdate[1]."-".$a_sdate[0];
+
+    $a_sdate=explode("/",$_POST['date_qut_old']);
+    $_POST['date_qut_old']=$a_sdate[2]."-".$a_sdate[1]."-".$a_sdate[0];
     
     $a_sdate=explode("/",$_POST['sign_date1']);
     $_POST['sign_date1']=$a_sdate[2]."-".$a_sdate[1]."-".$a_sdate[0];
@@ -110,12 +113,24 @@
 
 		if ($_POST["mode"] == "update" ) { 
 
+      // if($_POST['date_qut_old'] !== ''){
+      //   // echo "date_qut_old !== '' && date_qut_old = ".$_POST['date_qut_old']."<br>";
+      //   if($_POST['date_qut_old'] !== $_POST['date_qut']){
+      //     $_POST['approve'] = 0;
+      //     $_POST['approve2'] = 0;
+      //     // echo "date_qut_old !== date_qut";
+      //   }else{
+      //     // echo "date_qut_old === date_qut";
+      //   }
+      // }else{
+      //   // echo "date_qut_old === ''";
+      // }
+
 				include ("../include/m_update.php");
 
 				$id = $_REQUEST[$PK_field];			
 
-				
-
+			
 				include_once("../mpdf54/mpdf.php");
 
 				include_once("form_firstorder.php");
@@ -1610,6 +1625,7 @@ Vat 7%</strong></td>
       <input name="st_setting" type="hidden" id="st_setting" value="<?php  echo $st_setting;?>">
       <input name="approve" type="hidden" id="approve" value="<?php  echo $approve;?>">
       <input name="approve2" type="hidden" id="approve2" value="<?php  echo $approve2;?>">
+      <!-- <input name="date_qut_old" type="hidden" id="date_qut_old" value="<?php  echo $date_qut;?>"> -->
       <input name="<?php  echo $PK_field;?>" type="hidden" id="<?php  echo $PK_field;?>" value="<?php  echo $_GET[$PK_field];?>">
 
     </div>

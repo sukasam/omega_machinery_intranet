@@ -159,13 +159,23 @@ function check_select(frm){
 					
 					while ($rec = @mysqli_fetch_array ($query)) { 
 					$counter++;
+
+          if($rec['approve'] === '1' && $rec['approve2'] === '0'){
+            $GMApprove = 'color: #f456ff;';
+          }else if(($rec['approve'] === '1' && $rec['approve2'] === '1') || ($rec['approve'] === '0' && $rec['approve2'])){
+            $GMApprove = 'color: #0018ff;';
+          }else{
+            $GMApprove ='';
+          }
+
 				   ?>
+           
         <TR>
-          <TD style="vertical-align: middle;"><span class="text"><?php     echo sprintf("%04d",$counter); ?></span></TD>
-          <TD style="vertical-align: middle;"><?php $chaf = preg_replace("/\//","-",$rec["fs_id"]); ?><span class="text"><a href="../../upload/work_noti/<?php     echo $chaf;?>.pdf" target="_blank"><?php     echo $rec["fs_id"] ; ?></a></span></TD>
-          <TD style="vertical-align: middle;"> <span class="text"><?php     echo $rec["cd_name"] ; ?></span></TD>
-          <TD style="vertical-align: middle;"> <span class="text"><?php echo $rec["loc_name"] ; ?></span></TD>
-          <TD style="vertical-align: middle;"> <span class="text"><?php echo getsalename($conn,$rec["sign_work1"]); ?></span></TD>
+          <TD style="vertical-align: middle;"><span class="text" style="<?php echo $GMApprove;?>"><?php     echo sprintf("%04d",$counter); ?></span></TD>
+          <TD style="vertical-align: middle; <?php echo $GMApprove;?>"><?php $chaf = preg_replace("/\//","-",$rec["fs_id"]); ?><span class="text"><a href="../../upload/work_noti/<?php     echo $chaf;?>.pdf" target="_blank" style="<?php echo $GMApprove;?>"><?php     echo $rec["fs_id"] ; ?></a></span></TD>
+          <TD style="vertical-align: middle; <?php echo $GMApprove;?>"> <span class="text"><?php     echo $rec["cd_name"] ; ?></span></TD>
+          <TD style="vertical-align: middle; <?php echo $GMApprove;?>"> <span class="text"><?php echo $rec["loc_name"] ; ?></span></TD>
+          <TD style="vertical-align: middle; <?php echo $GMApprove;?>"> <span class="text"><?php echo getsalename($conn,$rec["sign_work1"]); ?></span></TD>
           <TD nowrap style="vertical-align:middle"><div align="center">
             <?php if($rec["status"]== "1") {?>
             <a href="../work_noti/?bb=<?php     echo $rec[$PK_field]; ?>&ss=<?php echo $rec["status"]; ?>&page=<?php     echo $_GET['page']; ?>&<?php     echo $FK_field; ?>=<?php echo $_REQUEST["$FK_field"];?>"><img src="../icons/status_on.gif" width="10" height="10"></a>

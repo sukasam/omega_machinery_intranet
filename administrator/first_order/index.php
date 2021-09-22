@@ -158,7 +158,7 @@ function check_select(frm){
             &nbsp;</TH>
           <TH width="12%">First Order ID</TH>
           <TH width="35%">ชื่อลูกค้า</TH>
-          <!-- <TH width="18%"><strong></strong></TH> -->
+          <TH width="18%">พนักงานขาย</TH>
           <TH width="5%" ><div align="center"><img src="../icons/favorites_use.png" width="15" height="15"> ใช้งาน <br><img src="../icons/favorites_stranby.png" width="15" height="15"> Standby <br> <img src="../icons/favorites_close.png" width="15" height="15"> ยกเลิก  <br><img src="../icons/favorites_service.png" width="15" height="15"> Service</div></TH>
           <TH width="5%" nowrap ><div align="center"><a> Open / </a><a> Close</a></div></TH>
           <TH width="5%" nowrap ><div align="center"><a>Setting</a></div></TH>
@@ -220,7 +220,7 @@ function check_select(frm){
             <span class="text"><?php  echo $rec["cd_name"] ; ?></span><br>
             <?php  echo "<strong style=\"".$GMApprove."\">สถานที่ติดตั้ง:</strong> ".$rec["loc_name"] ; ?></span
           </TD>
-          <!-- <TD style="vertical-align: middle;"><span class="text"><?php  echo $rec["loc_name"] ; ?></span></TD> -->
+          <TD style="vertical-align: middle;"><span class="text"><?php  echo getsalename($conn,$rec["cs_sell"]); ?></span></TD>
           <TD nowrap style="vertical-align:middle"><div align="center">
             <?php  if($rec["status_use"]==0) {?>
             <img src="../icons/favorites_use.png" width="15" height="15">
