@@ -144,7 +144,7 @@ $form = '
   <td width="20%" style="font-weight: bold;font-size:10px;"><u>วันที่เข้าบริการ / นัดหมาย</u></td>
 </tr>
 <tr>
-  <td ><img src="../images/'.$workList1.'" width="10" height="10" border="0" alt="" style="vertical-align: middle"/>&nbsp;ติดตั้งเครื่องป้อนน้ำยา</td>
+  <td ><img src="../images/'.$workList1.'" width="10" height="10" border="0" alt="" style="vertical-align: middle"/>&nbsp;ถอดเครื่อง : '.$_POST['work_detail6'].'</td>
   <td><img src="../images/'.$workList2.'" width="10" height="10" border="0" alt="" style="vertical-align: middle"/>&nbsp;เพิ่อเขียนแบบ : '.$_POST['work_detail1'].'</td>
   <td>วันที่ : '.$dateW1.'</td>
 </tr>
@@ -154,7 +154,7 @@ $form = '
   <td>วันที่ : '.$dateW2.'</td>
 </tr>
 <tr>
-  <td><img src="../images/'.$workList5.'" width="10" height="10" border="0" alt="" style="vertical-align: middle"/>&nbsp;ย้ายเครื่อง / ถอดเครื่อง</td>
+  <td><img src="../images/'.$workList5.'" width="10" height="10" border="0" alt="" style="vertical-align: middle"/>&nbsp;ย้ายเครื่อง</td>
   <td><img src="../images/'.$workList6.'" width="10" height="10" border="0" alt="" style="vertical-align: middle"/>&nbsp;เพื่อแจ้งซ่อม / บริการ : '.$_POST['work_detail2'].'</td>
   <td>วันที่ : '.$dateW3.'</td>
 </tr>

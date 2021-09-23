@@ -577,7 +577,7 @@ function checkMobileSale(){
                 <th style="font-weight: bold;"><u>วันที่เข้าบริการ / นัดหมาย</u></th>
           </tr>
           <tr>
-                <td><input type="checkbox" name="work_list1[]" value="1" <?php if(in_array(1,$work_list)){echo 'checked';}?>> ติดตั้งเครื่องป้อนน้ำยา</td>
+                <td><input type="checkbox" name="work_list1[]" value="1" <?php if(in_array(1,$work_list)){echo 'checked';}?>> ถอดเครื่อง : <input type="text" name="work_detail6" value="<?php echo $work_detail6;?>" id="work_detail6" class="inpfoder" style="width: 250px;"></td>
                 <td><input type="checkbox" name="work_list1[]" value="2" <?php if(in_array(2,$work_list)){echo 'checked';}?>> เพิ่อเขียนแบบ : <input type="text" name="work_detail1" value="<?php echo $work_detail1;?>" id="work_detail1" class="inpfoder"></td>
                 <td>วันที่ : <input type="text" name="date_work1" value="<?php if($date_work1==""){}else{ echo $date_work1;}?>" class="inpfoder"/><script language="JavaScript">new tcal ({'formname': 'form1','controlname': 'date_work1'});</script></td>
           </tr>
@@ -587,7 +587,7 @@ function checkMobileSale(){
                 <td>วันที่ : <input type="text" name="date_work2" value="<?php if($date_work2==""){}else{ echo $date_work2;}?>" class="inpfoder"/><script language="JavaScript">new tcal ({'formname': 'form1','controlname': 'date_work2'});</script></td>
           </tr>
           <tr>
-                <td><input type="checkbox" name="work_list1[]" value="5" <?php if(in_array(5,$work_list)){echo 'checked';}?>> ย้ายเครื่อง / ถอดเครื่อง</td>
+                <td><input type="checkbox" name="work_list1[]" value="5" <?php if(in_array(5,$work_list)){echo 'checked';}?>> ย้ายเครื่อง</td>
                 <td><input type="checkbox" name="work_list1[]" value="6" <?php if(in_array(6,$work_list)){echo 'checked';}?>> เพื่อแจ้งซ่อม / บริการ : <input type="text" name="work_detail2" value="<?php echo $work_detail2;?>" id="work_detail2" class="inpfoder"></td>
                 <td>วันที่ : <input type="text" name="date_work3" value="<?php if($date_work3==""){}else{ echo $date_work3;}?>" class="inpfoder"/><script language="JavaScript">new tcal ({'formname': 'form1','controlname': 'date_work3'});</script></td>
           </tr>

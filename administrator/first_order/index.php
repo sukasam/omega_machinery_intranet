@@ -220,7 +220,7 @@ function check_select(frm){
             <span class="text"><?php  echo $rec["cd_name"] ; ?></span><br>
             <?php  echo "<strong style=\"".$GMApprove."\">สถานที่ติดตั้ง:</strong> ".$rec["loc_name"] ; ?></span
           </TD>
-          <TD style="vertical-align: middle;"><span class="text"><?php  echo getsalename($conn,$rec["cs_sell"]); ?></span></TD>
+          <TD style="vertical-align: middle;"><span class="text"><?php  echo getsalename($conn,$rec["cs_company"]); ?></span></TD>
           <TD nowrap style="vertical-align:middle"><div align="center">
             <?php  if($rec["status_use"]==0) {?>
             <img src="../icons/favorites_use.png" width="15" height="15">

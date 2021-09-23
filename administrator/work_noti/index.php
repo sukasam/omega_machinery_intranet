@@ -163,7 +163,12 @@ function check_select(frm){
           if($rec['approve'] === '1' && $rec['approve2'] === '0'){
             $GMApprove = 'color: #f456ff;';
           }else if(($rec['approve'] === '1' && $rec['approve2'] === '1') || ($rec['approve'] === '0' && $rec['approve2'])){
-            $GMApprove = 'color: #0018ff;';
+            $listWork = explode(',',$rec['work_list']);
+            if(in_array('1',$listWork)){
+              $GMApprove = 'color: #059418;';
+            }else{
+              $GMApprove = 'color: #0018ff;';
+            }
           }else{
             $GMApprove ='';
           }
