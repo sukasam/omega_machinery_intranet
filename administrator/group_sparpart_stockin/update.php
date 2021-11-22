@@ -18,6 +18,8 @@
 
 		$_POST['sub_comment'] = addslashes(nl2br($_POST['sub_comment']));
 
+		$headerIMG = '../images/form/header-sparpart-stockin.png';
+
 		
 		if ($_POST["mode"] == "add") { 
 			
@@ -44,10 +46,28 @@
 					}
 				}
 			
+			if($_POST["sub_option"] == 2){
+				$sebOption = 'ค่าใช้จ่าย / เงินสดย่อย';
+			}else{
+				$sebOption = 'อะไหล่แผนกช่าง';
+			}
+
+			$textTitle = '<table width="100%" border="0" cellspacing="0" cellpadding="0" style="text-align:center;margin-top:5px;">
+			<tr>
+				<td width="50%" style="vertical-align: middle;line-height: 35px;text-align: left;">
+					<p><h3 style="font-size: 20px;">รายการรับเข้าสต็อค ('.$sebOption.')</h3></p>
+				</td>
+				<td width="50%" style="vertical-align: top;text-align: right;">
+					<img src="'.$headerIMG.'"/>
+				</td>
+			</tr>
+			</table>';
+
 			include_once("../mpdf54/mpdf.php");
 			include_once("form_stockin.php");
-			$mpdf=new mPDF('UTF-8'); 
+			$mpdf=new mPDF('UTF-8', 'A4', '', '', '15', '15', '20', '40'); 
 			$mpdf->SetAutoFont();
+			$mpdf->SetHTMLHeader('<div>'.$textTitle.'</div>');
 			$mpdf->WriteHTML($form);
 			$chaf = preg_replace("/\//","-",$id); 
 			$mpdf->Output('../../upload/stockin/'.$chaf.'.pdf','F');
@@ -84,10 +104,28 @@
 					}
 				}
 
+			if($_POST["sub_option"] == 2){
+				$sebOption = 'ค่าใช้จ่าย / เงินสดย่อย';
+			}else{
+				$sebOption = 'อะไหล่แผนกช่าง';
+			}
+
+			$textTitle = '<table width="100%" border="0" cellspacing="0" cellpadding="0" style="text-align:center;margin-top:5px;">
+			<tr>
+			  <td width="50%" style="vertical-align: middle;line-height: 35px;text-align: left;">
+			  	<p><h3 style="font-size: 20px;">รายการรับเข้าสต็อค ('.$sebOption.')</h3></p>
+			  </td>
+			  <td width="50%" style="vertical-align: top;text-align: right;">
+			  	<img src="'.$headerIMG.'"/>
+			  </td>
+			</tr>
+		  </table>';
+
 			include_once("../mpdf54/mpdf.php");
 			include_once("form_stockin.php");
-			$mpdf=new mPDF('UTF-8'); 
+			$mpdf=new mPDF('UTF-8', 'A4', '', '', '15', '15', '20', '40'); 
 			$mpdf->SetAutoFont();
+			$mpdf->SetHTMLHeader('<div>'.$textTitle.'</div>');
 			$mpdf->WriteHTML($form);
 			$chaf = preg_replace("/\//","-",$id); 
 			$mpdf->Output('../../upload/stockin/'.$chaf.'.pdf','F');

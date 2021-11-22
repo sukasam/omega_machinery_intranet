@@ -83,7 +83,6 @@ if($_POST["sub_option"] == 2){
 }
 
 $form = '
-<p><h3>รายการรับเข้าสต็อค ('.$sebOption.')</h3></p>
 <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border:1px solid #000000;">
           <tr>
             <td width="57%" valign="top" style="font-size:10px;font-family:Verdana, Geneva, sans-serif;padding:5px;"><strong>ผู้จำหน่าย / ส่งสินค้า :</strong> '.$_POST["sub_name"].'<strong><br />

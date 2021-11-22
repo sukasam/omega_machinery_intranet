@@ -601,7 +601,8 @@ function submitForm() {
             </td>
           </tr>
 </table>
-
+<br>
+<p>ทางบริษัท โอเมก้า แมชชีนเนอรี่ (1999) จำกัด มีความยินดีขอเสนอราคา <textarea name="c_title_detail" id="c_title_detail" style="height:25px;"><?php  echo $c_title_detail;?></textarea> <br>ให้พิจารณา ดังนี</p>
   <br>
 <table width="100%" cellspacing="0" cellpadding="0" style="font-size:12px;text-align:center;">
     <tr>

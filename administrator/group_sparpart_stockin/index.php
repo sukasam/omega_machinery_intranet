@@ -147,6 +147,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
           <TH width="12%">เลขที่บิล</TH>
           <TH width="35%">ผู้จำหน่าย / ส่งสินค้า</TH>
           <TH width="18%">วันที่รับเข้า</TH>
+		  <TH width="5%"><div align="center"><a>เอกสาร</a></div></TH>
 		  <TH width="8%"><div align="center"><a>การยืนยัน</a></div></TH>
 		  <TH width="8%"><div align="center"><a>Open / Close</a></div></TH>
           <TH width="5%">ดาวน์โหลด</TH>
@@ -193,12 +194,21 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 					
 					while ($rec = @mysqli_fetch_array ($query)) { 
 					$counter++;
+					
+					if($rec["sub_option"] == 2){
+						$suboption = 'color: #f911c5;';
+					}else if($rec["sub_option"] == 1){
+						$suboption = 'color: #0018ff;';
+					}else{
+						$suboption = 'color: #000000;';
+					}
 				   ?>
         <TR>
-          <TD><span class="text"><?php     echo sprintf("%04d",$counter); ?></span></TD>
-          <TD><span class="text"><?php   echo $rec["sub_billnum"];?></span></TD>
-          <TD><span class="text"><?php     echo $rec["sub_name"] ; ?></span></TD>
-          <TD><span class="text"><?php     echo format_date($rec["stock_date"]); ?></span></TD>
+          <TD><span class="text" style="<?php echo $suboption;?>"><?php     echo sprintf("%04d",$counter); ?></span></TD>
+          <TD><span class="text" style="<?php echo $suboption;?>"><?php   echo $rec["sub_billnum"];?></span></TD>
+          <TD><span class="text" style="<?php echo $suboption;?>"><?php     echo $rec["sub_name"] ; ?></span></TD>
+          <TD><span class="text" style="<?php echo $suboption;?>"><?php     echo format_date($rec["stock_date"]); ?></span></TD>
+		  <TD style="vertical-align: middle;"><div align="center"><a href="../document_sparpart_stockin/?fo_id=<?php echo $rec["sub_id"];?>"><img src="../images/document.png" width="30" height="30" border="0" alt=""></a></div></TD>
 		  <TD style="vertical-align:middle"><?php  if($rec["approve"] == 1){?>
             <IMG src="../images/icons/yes_approve.png" height="28" title="อนุมัติ">
             <?php  }else if($rec["approve"] == 2){?>

@@ -73,7 +73,7 @@ $form = '
 			</td>
           </tr>
 </table>
-  <p style="font-size:12px;"><strong>ทางบริษัท โอเมก้า แมชชีนเนอรี่ (1999) จำกัด มีความยินดีขอเสนอราคาอะไหล่' . $typeS . 'ให้พิจารณา ดังนี้</strong></p>
+  <p style="font-size:12px;font-weight: normal;"><strong>ทางบริษัท โอเมก้า แมชชีนเนอรี่ (1999) จำกัด มีความยินดีขอเสนอราคา' . $_POST['c_title_detail'] . 'ให้พิจารณา ดังนี้</strong></p>
 <table width="100%" border="0" cellspacing="0" cellpadding="0" style="font-size:11px;text-align:center;">
     <tr>
       <td width="5%" style="border:1px solid #000;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;"><strong>ลำดับ</strong></td>
