@@ -17,6 +17,7 @@
 		$_POST['group_price'] = preg_replace("/,/","",$_POST['group_price']);
 
 		$_POST['group_name'] = addslashes($_POST['group_name']);
+		$_POST['group_name_en'] = addslashes($_POST['group_name_en']);
 		$_POST['group_location'] = addslashes($_POST['group_location']);
 		
 		if ($_POST["mode"] == "add") { 
@@ -65,8 +66,12 @@ function confirmDelete(delUrl,text) {
 //----------------------------------------------------------
 function check(frm){
 		if (frm.group_name.value.length==0){
-			alert ('Please enter group name !!');
+			alert ('Please enter group name (thai)!!');
 			frm.group_name.focus(); return false;
+		}
+		if (frm.group_name_en.value.length==0){
+			alert ('Please enter group name (english)!!');
+			frm.group_name_en.focus(); return false;
 		}		
 }	
 	
@@ -83,6 +88,7 @@ $( document ).ready(function() {
 				
 				$("#group_spar_id")[0].disabled = true;
 				$("#group_name")[0].disabled = true;
+				$("#group_name_en")[0].disabled = true;
 				$("#group_namecall")[0].disabled = true;
 
 
@@ -96,6 +102,7 @@ $( document ).ready(function() {
 						if(obj.status === 'yes'){
 							$("#group_id").val(obj.group_id);
 							$("#group_name").val(obj.group_name);
+							$("#group_name_en").val(obj.group_name_en);
 							$("#group_location").val(obj.group_location);
 							$("#group_namecall").val(obj.group_namecall);
 							$("#group_type").val(obj.group_type);
@@ -114,6 +121,7 @@ $( document ).ready(function() {
 						}else{
 							$("#mode").val('add');
 							$("#group_name").val('');
+							$("#group_name_en").val('');
 							$("#group_location").val('');
 							$("#group_namecall").val('');
 							$("#group_spar_id2").val(group_spar_id);
@@ -122,6 +130,7 @@ $( document ).ready(function() {
 
 						$("#group_spar_id")[0].disabled = true;
 						$("#group_name")[0].disabled = false;
+						$("#group_name_en")[0].disabled = false;
 						$("#group_namecall")[0].disabled = false;
 						$("#edit_spar_id")[0].disabled = false;
 						//$("#group_name").focus();
@@ -170,6 +179,7 @@ $( document ).ready(function() {
 							if(obj.status === 'yes'){
 								$("#group_id").val(obj.group_id);
 								$("#group_name").val(obj.group_name);
+								$("#group_name_en").val(obj.group_name_en);
 								$("#group_location").val(obj.group_location);
 								$("#group_namecall").val(obj.group_namecall);
 								$("#group_type").val(obj.group_type);
@@ -188,6 +198,7 @@ $( document ).ready(function() {
 							}else{
 								$("#mode").val('add');
 								//$("#group_name").val('');
+								$("#group_name_en").val('');
 								$("#group_location").val('');
 								$("#group_namecall").val('');
 								$("#group_spar_id2").val(group_spar_id);
@@ -196,6 +207,7 @@ $( document ).ready(function() {
 
 							$("#group_spar_id")[0].disabled = true;
 							$("#group_name")[0].disabled = false;
+							$("#group_name_en")[0].disabled = false;
 							$("#group_namecall")[0].disabled = false;
 							$("#edit_spar_id")[0].disabled = false;
 							//$("#group_name").focus();
@@ -268,8 +280,12 @@ function submitForm(){
                 </td>
               </tr>
               <tr >
-                <td nowrap class="name">ชื่ออะไหล่</td>
+                <td nowrap class="name">ชื่ออะไหล่ (ไทย)</td>
                 <td><input name="group_name" type="text" id="group_name"  value="<?php     echo $group_name; ?>" size="60"></td>
+              </tr>
+			  <tr >
+                <td nowrap class="name">ชื่ออะไหล่ (อังกฤษ)</td>
+                <td><input name="group_name_en" type="text" id="group_name_en"  value="<?php     echo $group_name_en; ?>" size="60"></td>
               </tr>
               <tr >
                 <td nowrap class="name">สถานที่จัดเก็บ</td>
@@ -309,11 +325,11 @@ function submitForm(){
                 <td><input type="radio" name="typespar" value="1" id="typespar1">อะไหล่สินค้า&nbsp;&nbsp;&nbsp;<input type="radio" name="typespar" value="2" id="typespar2">สินค้าอื่นๆ</td>
               </tr>
               
-<!--
+
               <tr>
               	<td></td><td></td>
               </tr>
--->
+
               
               <?php     if ($_GET["mode"] == "add") { ?>
               <?php     } ?>

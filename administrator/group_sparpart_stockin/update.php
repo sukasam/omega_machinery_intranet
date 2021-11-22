@@ -267,6 +267,12 @@ function submitForm() {
 			<tr>
 				<td>
 					<table class="formFields" cellspacing="0" width="100%">
+					 <tr >
+						<td nowrap class="name" colspan="2">
+							<input name="sub_option" type="radio" id="sub_option1" value="1" <?php   if($sub_option == 1 || $sub_option == ""){echo 'checked';}?>>อะไหล่แผนกช่าง&nbsp;
+							<input name="sub_option" type="radio" id="sub_option2" value="2" <?php   if($sub_option == 2 ){echo 'checked';}?>>ค่าใช้จ่าย / เงินสดย่อย
+						</td>
+					  </tr>
 					  <tr >
 						<td nowrap class="name">ผู้จำหน่าย / ส่งสินค้า</td>
 						  <td><input name="sub_name" type="text" id="sub_name"  value="<?php     echo $sub_name; ?>" size="60"> 
@@ -283,6 +289,11 @@ function submitForm() {
 					  <tr >
 						<td nowrap class="name">วันที่รับเข้า</td>
 						<td><input type="text" name="stock_date" readonly value="<?php     if($stock_date==""){echo date("d/m/Y");}else{ echo $stock_date;}?>" class="inpfoder"/><script language="JavaScript">new tcal ({'formname': 'form1','controlname': 'stock_date'});</script>
+						</td>
+					  </tr>
+					  <tr >
+						<td nowrap class="name"></td>
+						<td>
 						</td>
 					  </tr>
 				  </table>

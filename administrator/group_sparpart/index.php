@@ -150,7 +150,7 @@ function check_select(frm){
 <!--          <TD><INPUT type=checkbox name="del[]" value="<?php     echo $rec[$PK_field]; ?>" ></TD>-->
           <TD><span class="text"><?php     echo sprintf("%04d",$counter); ?></span></TD>
           <TD style="text-align: center;"><span class="text"><?php     echo $rec["group_spar_id"] ; ?></span></TD>
-          <TD><span class="text"><?php     echo $rec["group_name"] ; ?></span></TD>
+          <TD><span class="text"><strong>(ไทย) :</strong> <?php     echo $rec["group_name"] ; ?><br><strong>(อังกฤษ) : </strong><?php     echo $rec["group_name_en"] ; ?></span></TD>
           <TD><span class="text"><?php     echo $rec["group_location"] ; ?></span></TD>
           <TD style="text-align: center;"><span class="text"><?php     echo number_format($rec["group_stock"]); ?></span></TD>
           <TD style="text-align: center;"><span class="text"><?php     echo $rec["group_type"] ; ?></span></TD>

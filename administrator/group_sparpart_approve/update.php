@@ -222,6 +222,12 @@ function checkTotal(key){
 			<tr>
 				<td>
 					<table class="formFields" cellspacing="0" width="100%">
+					<tr >
+						<td nowrap class="name" colspan="2">
+							<input name="sub_option" type="radio" id="sub_option1" value="1" <?php   if($sub_option == 1 || $sub_option == ""){echo 'checked';}?>>อะไหล่แผนกช่าง&nbsp;
+							<input name="sub_option" type="radio" id="sub_option2" value="2" <?php   if($sub_option == 2 ){echo 'checked';}?>>ค่าใช้จ่าย / เงินสดย่อย
+						</td>
+					  </tr>
 					  <tr >
 						<td nowrap class="name">ผู้จำหน่าย / ส่งสินค้า</td>
 						  <td><input name="sub_name" type="text" id="sub_name"  value="<?php     echo $sub_name; ?>" size="60"> 

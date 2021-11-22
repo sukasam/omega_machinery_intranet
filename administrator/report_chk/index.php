@@ -95,13 +95,15 @@ function check9(frm){
 
 <UL class=shortcut-buttons-set>
   <LI><A class=shortcut-button href="../report/?mid=16"><SPAN><IMG  alt=icon src="../images/icons/icon-48-category.png"><BR>
-        <strong>First Order</strong></SPAN></A></LI>
+        <strong>First Order<br>Report</strong></SPAN></A></LI>
   <LI><A class=shortcut-button href="../report2/?mid=16"><SPAN><IMG  alt=icon src="../images/icons/icon-48-section.png"><BR>
-        <strong>Service Report</strong></SPAN></A></LI>
+        <strong>Service<br>Report</strong></SPAN></A></LI>
   <LI><A class=shortcut-button href="../report3/?mid=16"><SPAN><IMG  alt=icon src="../images/icons/icon-48-module.png"><BR>
-        <strong>Stock Machine</strong></SPAN></A></LI>
+        <strong>Stock<br>Machine</strong></SPAN></A></LI>
 <LI><A class=shortcut-button href="../report4/?mid=16"><SPAN><IMG  alt=icon src="../images/icons/icon-48-article.png"><BR>
-        <strong>Sale Report</strong></SPAN></A></LI>
+        <strong>Sale<br>Report</strong></SPAN></A></LI>
+<LI><A class=shortcut-button href="../report5/?mid=16"><SPAN><IMG  alt=icon src="../images/icons/icon-48-component.png"><BR>
+        <strong>Quotation<br>Report</strong></SPAN></A></LI>
 </UL>
   
   <!-- End .shortcut-buttons-set -->
