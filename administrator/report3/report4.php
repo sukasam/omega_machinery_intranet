@@ -49,6 +49,10 @@
 		$condition .= " AND (st.sub_option = '1')";
 	}
 
+	if($_REQUEST['stock_admin'] != ""){
+		$condition .= " AND (st.stock_admin = '".$_REQUEST['stock_admin']."')";
+	}
+
 
 ?>
 

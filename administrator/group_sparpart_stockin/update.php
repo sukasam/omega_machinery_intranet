@@ -359,7 +359,7 @@ function submitForm() {
 						<td nowrap class="name">
 						<select name="stock_admin" id="stock_admin" class="inputselect" style="width:50%;">
 							<?php   
-								$qu_custec = @mysqli_query($conn,"SELECT * FROM s_group_technician WHERE 1 AND (group_id = 12 OR group_id = 30 OR group_id = 28)  ORDER BY group_name ASC");
+								$qu_custec = @mysqli_query($conn,"SELECT * FROM s_group_technician WHERE 1 AND (group_id = 12 OR group_id = 30 OR group_id = 10 OR group_id = 16)  ORDER BY group_name ASC");
 								while($row_custec = @mysqli_fetch_array($qu_custec)){
 									?>
 							<option value="<?php   echo $row_custec['group_id'];?>" <?php   if($row_custec['group_id'] == $stock_admin){echo 'selected';}?>><?php   echo $row_custec['group_name']. " (Tel : ".$row_custec['group_tel'].")";?></option>
