@@ -477,6 +477,31 @@ $( document ).ready(function() {
 
                           <tr>
 
+                            <td nowrap class="name">ใบเสนอราคาซ่อม</td>
+
+                            <td><span class="name">
+
+                              <input name="type_service" type="radio" value="0" checked>
+
+                              ทั้งหมด&nbsp;
+
+                              <input name="type_service" type="radio" value="1">
+
+                              เครื่องล้างจาน&nbsp;
+
+                              <input name="type_service" type="radio" value="2">
+
+                              เครื่องล้างแก้ว</span>
+
+                              <input name="type_service" type="radio" value="3">
+
+                              เครื่องผลิตน้ำแข็ง</span>
+                            </td>
+
+                          </tr>
+
+                          <tr>
+
                             <td nowrap class="name">&nbsp;</td>
 
                             <td><span class="name">
@@ -553,9 +578,9 @@ $( document ).ready(function() {
 
                           </tr>
 
-                          <!-- <tr>
+                           <tr>
                             <td></td>
-                          </tr> -->
+                          </tr> 
 
                         </table></td>
 

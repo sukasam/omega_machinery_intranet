@@ -77,7 +77,7 @@ if($_POST['cpro1'] != ""){
   }else{$_POST['cprice1'] = "";}
   $sumTotal = $sumTotal+$totalSub1;
   if($totalSub1 != "" || $totalSub1 != 0){
-    $totalSub1s = number_format($totalSub1);
+    $totalSub1s = number_format($totalSub1,2);
   }
 }
 
@@ -90,7 +90,7 @@ if($_POST['cpro2'] != ""){
   }else{$_POST['cprice2'] = "";}
   $sumTotal = $sumTotal+$totalSub2;
   if($totalSub2 != "" || $totalSub2 != 0){
-    $totalSub2s = number_format($totalSub2);
+    $totalSub2s = number_format($totalSub2,2);
   }
 }
 
@@ -103,7 +103,7 @@ if($_POST['cpro3'] != ""){
   }else{$_POST['cprice3'] = "";}
   $sumTotal = $sumTotal+$totalSub3;
   if($totalSub3 != "" || $totalSub3 != 0){
-    $totalSub3s = number_format($totalSub3);
+    $totalSub3s = number_format($totalSub3,2);
   }
 }
 
@@ -116,7 +116,7 @@ if($_POST['cpro4'] != ""){
   }else{$_POST['cprice4'] = "";}
   $sumTotal = $sumTotal+$totalSub4;
   if($totalSub4 != "" || $totalSub4 != 0){
-    $totalSub4s = number_format($totalSub4);
+    $totalSub4s = number_format($totalSub4,2);
   }
 }
 
@@ -129,7 +129,7 @@ if($_POST['cpro5'] != ""){
   }else{$_POST['cprice5'] = "";}
   $sumTotal = $sumTotal+$totalSub5;
   if($totalSub5 != "" || $totalSub5 != 0){
-    $totalSub5s = number_format($totalSub5);
+    $totalSub5s = number_format($totalSub5,2);
   }
 }
 
@@ -142,7 +142,7 @@ if($_POST['cpro6'] != ""){
   }else{$_POST['cprice6'] = "";}
   $sumTotal = $sumTotal+$totalSub6;
   if($totalSub6 != "" || $totalSub6 != 0){
-    $totalSub6s = number_format($totalSub6);
+    $totalSub6s = number_format($totalSub6,2);
   }
 }
 
@@ -155,7 +155,7 @@ if($_POST['cpro7'] != ""){
   }else{$_POST['cprice7'] = "";}
   $sumTotal = $sumTotal+$totalSub7;
   if($totalSub7 != "" || $totalSub7 != 0){
-    $totalSub7s = number_format($totalSub7);
+    $totalSub7s = number_format($totalSub7,2);
   }
 }
 
@@ -168,7 +168,7 @@ if($_POST['cpro8'] != ""){
   }else{$_POST['cprice8'] = "";}
   $sumTotal = $sumTotal+$totalSub8;
   if($totalSub8 != "" || $totalSub8 != 0){
-    $totalSub8s = number_format($totalSub8);
+    $totalSub8s = number_format($totalSub8,2);
   }
 }
 
@@ -181,7 +181,7 @@ if($_POST['cpro9'] != ""){
   }else{$_POST['cprice9'] = "";}
   $sumTotal = $sumTotal+$totalSub9;
   if($totalSub9 != "" || $totalSub9 != 0){
-    $totalSub9s = number_format($totalSub9);
+    $totalSub9s = number_format($totalSub9,2);
   }
 }
 
@@ -194,7 +194,7 @@ if($_POST['cpro10'] != ""){
   }else{$_POST['cprice10'] = "";}
   $sumTotal = $sumTotal+$totalSub10;
   if($totalSub10 != "" || $totalSub10 != 0){
-    $totalSub10s = number_format($totalSub10);
+    $totalSub10s = number_format($totalSub10,2);
   }
 }
 
@@ -340,7 +340,7 @@ if($cpro1 != ""){
   }else{$cprice1 = "";}
   $sumTotal = $sumTotal+$totalSub1;
   if($totalSub1 != "" || $totalSub1 != 0){
-    $totalSub1s = number_format($totalSub1);
+    $totalSub1s = number_format($totalSub1,2);
   }
 }
 
@@ -353,7 +353,7 @@ if($cpro2 != ""){
   }else{$cprice2 = "";}
   $sumTotal = $sumTotal+$totalSub2;
   if($totalSub2 != "" || $totalSub2 != 0){
-    $totalSub2s = number_format($totalSub2);
+    $totalSub2s = number_format($totalSub2,2);
   }
 }
 
@@ -366,7 +366,7 @@ if($cpro3 != ""){
   }else{$cprice3 = "";}
   $sumTotal = $sumTotal+$totalSub3;
   if($totalSub3 != "" || $totalSub3 != 0){
-    $totalSub3s = number_format($totalSub3);
+    $totalSub3s = number_format($totalSub3,2);
   }
 }
 
@@ -379,7 +379,7 @@ if($cpro4 != ""){
   }else{$cprice4 = "";}
   $sumTotal = $sumTotal+$totalSub4;
   if($totalSub4 != "" || $totalSub4 != 0){
-    $totalSub4s = number_format($totalSub4);
+    $totalSub4s = number_format($totalSub4,2);
   }
 }
 
@@ -392,7 +392,7 @@ if($cpro5 != ""){
   }else{$cprice5 = "";}
   $sumTotal = $sumTotal+$totalSub5;
   if($totalSub5 != "" || $totalSub5 != 0){
-    $totalSub5s = number_format($totalSub5);
+    $totalSub5s = number_format($totalSub5,2);
   }
 }
 
@@ -405,7 +405,7 @@ if($cpro6 != ""){
   }else{$cprice6 = "";}
   $sumTotal = $sumTotal+$totalSub6;
   if($totalSub6 != "" || $totalSub6 != 0){
-    $totalSub6s = number_format($totalSub6);
+    $totalSub6s = number_format($totalSub6,2);
   }
 }
 
@@ -418,7 +418,7 @@ if($cpro7 != ""){
   }else{$cprice7 = "";}
   $sumTotal = $sumTotal+$totalSub7;
   if($totalSub7 != "" || $totalSub7 != 0){
-    $totalSub7s = number_format($totalSub7);
+    $totalSub7s = number_format($totalSub7,2);
   }
 }
 
@@ -431,7 +431,7 @@ if($cpro8 != ""){
   }else{$cprice8 = "";}
   $sumTotal = $sumTotal+$totalSub8;
   if($totalSub8 != "" || $totalSub8 != 0){
-    $totalSub8s = number_format($totalSub8);
+    $totalSub8s = number_format($totalSub8,2);
   }
 }
 
@@ -444,7 +444,7 @@ if($cpro9 != ""){
   }else{$cprice9 = "";}
   $sumTotal = $sumTotal+$totalSub9;
   if($totalSub9 != "" || $totalSub9 != 0){
-    $totalSub9s = number_format($totalSub9);
+    $totalSub9s = number_format($totalSub9,2);
   }
 }
 
@@ -458,7 +458,7 @@ if($cpro10 != ""){
   }else{$cprice10 = "";}
   $sumTotal = $sumTotal+$totalSub10;
   if($totalSub10 != "" || $totalSub10 != 0){
-    $totalSub10s = number_format($totalSub10);
+    $totalSub10s = number_format($totalSub10,2);
   }
 }
 
@@ -586,7 +586,7 @@ function submitForm() {
             <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;">
             	<strong>ใบเสนอราคาซ่อม :</strong> <input type="radio" name="type_service" value="1" <?php if($type_service == '1' || $type_service == '0'){echo 'checked';}?>> เครื่องล้างจาน
 				&nbsp;&nbsp;<input type="radio" name="type_service" value="2" <?php if($type_service == '2'){echo 'checked';}?>> เครื่องล้างแก้ว
-				<!-- &nbsp;&nbsp;<input type="radio" name="type_service" value="3" <?php if($type_service == '3'){echo 'checked';}?>> เครื่องผลิตน้ำแข็ง -->
+				&nbsp;&nbsp;<input type="radio" name="type_service" value="3" <?php if($type_service == '3'){echo 'checked';}?>> เครื่องผลิตน้ำแข็ง
             </td>
           </tr>
           <tr>

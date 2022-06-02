@@ -15,6 +15,7 @@
 	// $sr_ctype = $_REQUEST['sr_ctype'];		
 	$cd_name = $_REQUEST['cd_name'];
 	$cs_technic = $_REQUEST['cs_technic'];
+	$type_service = $_REQUEST['type_service'];
 	//$opentake = $_REQUEST['opentake'];
 
 	
@@ -35,9 +36,9 @@
 
 	$condition = "";
 
-	// if($cpro != ""){
-	// 	$condition = "AND (bl2.lists = '".$cpro."')";
-	// }
+	if($type_service != "0"){
+		$condition .= " AND `type_service` = '".$type_service."'";
+	}
 
 	// if($sr_ctype2 != ""){
 	// 	$condition .= " AND bl.sr_ctype2 = '".$sr_ctype2."'";
@@ -90,7 +91,7 @@
 	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="tbreport">
 	  <tr>
 	    <th colspan="3" style="text-align:left;font-size:12px;">บริษัท โอเมก้า แมชชีนเนอรี่ (1999) จำกัด<br />
-รายงานใบเสนอราคางานซ่อม</th>
+รายงานใบเสนอราคางานซ่อม (<?php if($type_service === '1'){echo "เครื่องล้างจาน";}else if($type_service === '2'){echo "เครื่องล้างแก้ว";}else if($type_service === '3'){echo "เครื่องผลิตน้ำแข็ง";}else{echo "ทั้งหมด";}?>)</th>
 	    <th colspan="4" style="text-align:right;font-size:11px;"><?php  echo $dateshow;?></th>
       </tr>
       <tr>
@@ -144,8 +145,8 @@
 					?>
 				<tr>
 					<?php  if($_REQUEST['sh4'] == 1){?><td style="border-bottom:none;" width="50%"><?php  echo get_procode2($conn,$row_fr[$proList[$i]]).' | '.get_proname2($conn,$row_fr[$proList[$i]]);?></td><?php  }?>
-					<?php  if($_REQUEST['sh5'] == 1){?><td align="center" style="border-bottom:none;" width="25%"><?php  echo number_format($row_fr[$amountList[$i]]);?></td><?php  }?>
-					<?php  if($_REQUEST['sh8'] == 1){?><td align="right" style="border-bottom:none;" width="25%"><?php  echo number_format($row_fr[$priceList[$i]]);?></td><?php  }?>
+					<?php  if($_REQUEST['sh5'] == 1){?><td align="center" style="border-bottom:none;" width="25%"><?php  echo number_format($row_fr[$amountList[$i]],2);?></td><?php  }?>
+					<?php  if($_REQUEST['sh8'] == 1){?><td align="right" style="border-bottom:none;" width="25%"><?php  echo number_format($row_fr[$priceList[$i]],2);?></td><?php  }?>
 				</tr>
 						<?php }}?>
 				</table>
