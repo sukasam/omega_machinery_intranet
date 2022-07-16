@@ -20,6 +20,7 @@
 	$sr_ctype = $_REQUEST['sr_ctype'];		
 	$ctype = $_REQUEST['ctype2'];
 	$cd_name = $_REQUEST['cd_name'];
+	$cd_id = $_REQUEST['cd_id'];
 	$loc_contact = $_REQUEST['loc_contact'];
 	// $opentake = $_REQUEST['opentake'];
 
@@ -97,7 +98,9 @@
 
 	if($cd_name != ""){
 
-		$condition .= " AND fr.cd_name LIKE '%".$cd_name."%'";
+		$condition .= " AND (fr.cd_name LIKE '%".$cd_name."%' OR fr.loc_name LIKE '%".$cd_name."%')";
+		// $condition .= " AND (fr.fo_id = ".$cd_id.")";
+		
 
 	}
 

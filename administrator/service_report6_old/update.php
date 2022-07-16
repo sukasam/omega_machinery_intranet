@@ -16,9 +16,6 @@
 		
 		$a_sdate=explode("/",$_POST['job_open']);
 		$_POST['job_open']=$a_sdate[2]."-".$a_sdate[1]."-".$a_sdate[0];
-
-		$a_sdate=explode("/",$_POST['job_out']);
-		$_POST['job_out']=$a_sdate[2]."-".$a_sdate[1]."-".$a_sdate[0];
 		
 		$a_sdate=explode("/",$_POST['job_close']);
 		$_POST['job_close']=$a_sdate[2]."-".$a_sdate[1]."-".$a_sdate[0];
@@ -175,14 +172,6 @@
 		$a_sdate=explode("-",$job_open);
 		$job_open=$a_sdate[2]."/".$a_sdate[1]."/".$a_sdate[0];
 		
-		if(empty($job_out)){
-			$job_out=date('d')."/".date('m')."/".date('Y');
-		}else{
-			$a_sdate=explode("-",$job_out);
-			$job_out=$a_sdate[2]."/".$a_sdate[1]."/".$a_sdate[0];
-		}
-		
-		
 		$a_sdate=explode("-",$job_close);
 		$job_close=$a_sdate[2]."/".$a_sdate[1]."/".$a_sdate[0];
 		
@@ -206,12 +195,6 @@
 		$ckf_list = explode(',',$ckf_list);
 		
 		$totalMoneyTec = $money1+$money2+$money3+$money4+$money5+$money6;
-
-		if(!empty($cus_id)){
-			$cus_name = $finfo['cd_name'];
-			$cus_location = $finfo['loc_name'];
-		}
-		
 		
 	}
 	
@@ -407,7 +390,7 @@ function check(frm){
 	
 	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tb1">
           <tr>
-            <td style="width:40%;"><strong>ชื่อลูกค้า :</strong> 
+            <td><strong>ชื่อลูกค้า :</strong> 
             	<!--<select name="cus_id" id="cus_id" onChange="checkfirstorder(this.value,'cusadd','cusprovince','custel','cusfax','contactid','datef','datet','cscont','cstel','sloc_name','sevlast','prolist');" style="width:300px;">
                 	<option value="">กรุณาเลือก</option>
                 	<?php    
@@ -419,26 +402,12 @@ function check(frm){
 						}
 					?>
                 </select>-->
-                <input name="cus_name" type="text" id="cus_name"  value="<?php echo $cus_name;?>" style="width:80%;"><br><br>
-				<strong>ถอดมาจาก : <input name="takeout" type="text" id="takeout"  value="<?php echo $takeout;?>" style="width:80%;"></strong> 
-                <!-- <span id="rsnameid"><input type="hidden" name="cus_id" value="<?php   echo $cus_id;?>"></span><a href="javascript:void(0);" onClick="windowOpener('400', '500', '', 'search.php');"><img src="../images/icon2/mark_f2.png" width="25" height="25" border="0" alt="" style="vertical-align:middle;padding-left:5px;"></a> -->
+                <input name="cd_names" type="text" id="cd_names"  value="<?php    echo get_customername($conn,$cus_id);?>" style="width:50%;" readonly>
+                <span id="rsnameid"><input type="hidden" name="cus_id" value="<?php   echo $cus_id;?>"></span><a href="javascript:void(0);" onClick="windowOpener('400', '500', '', 'search.php');"><img src="../images/icon2/mark_f2.png" width="25" height="25" border="0" alt="" style="vertical-align:middle;padding-left:5px;"></a>
             </td>
-            <td>
-
-				<strong>ประเภทบริการ :</strong> <input type="radio" name="type_service" value="1" <?php if($type_service == '1' || $type_service == '0'){echo 'checked';}?>> เครื่องล้างจาน
-				&nbsp;&nbsp;<input type="radio" name="type_service" value="2" <?php if($type_service == '2'){echo 'checked';}?>> เครื่องล้างแก้ว
-				&nbsp;&nbsp;<input type="radio" name="type_service" value="3" <?php if($type_service == '3'){echo 'checked';}?>> เครื่องผลิตน้ำแข็ง
-				<br><br><strong>สถานะเครื่อง :</strong> 
-            	<select name="status_type" id="status_type">
-                	<!-- <option value="">กรุณาเลือก</option> -->
-					<option value="1" <?php   if($status_type === '1'){echo 'selected';}?>><?php   echo 'พร้อมใช้';?></option>
-					<option value="2" <?php   if($status_type === '2'){echo 'selected';}?>><?php   echo 'รอล้าง/ทำความสะอาด';?></option>
-					<option value="3" <?php   if($status_type === '3'){echo 'selected';}?>><?php   echo 'ซ่อมหนัก (รอตัดซาก)';?></option>
-					<option value="4" <?php   if($status_type === '4'){echo 'selected';}?>><?php   echo 'นำไปติดตั้งแล้ว';?></option>
-                </select>
-				<!-- <strong>ประเภทบริการลูกค้า :</strong> 
+            <td><strong>ประเภทบริการลูกค้า :</strong> 
             	<select name="sr_ctype" id="sr_ctype">
-                	<option value="">กรุณาเลือก</option>
+                	<!--<option value="">กรุณาเลือก</option>-->
                 	<?php   
 						$qu_cusftype = @mysqli_query($conn,"SELECT * FROM s_group_service ORDER BY group_name ASC");
 						while($row_cusftype = @mysqli_fetch_array($qu_cusftype)){
@@ -450,7 +419,7 @@ function check(frm){
                 </select>
 				<strong>ประเภทลูกค้า :</strong>
             	<select name="sr_ctype2" id="sr_ctype2">
-            	  <option value="">กรุณาเลือก</option>
+            	  <!--<option value="">กรุณาเลือก</option>-->
             	  <?php   
 						$qu_cusftype2 = @mysqli_query($conn,"SELECT * FROM s_group_custommer ORDER BY group_name ASC");
 						while($row_cusftype2 = @mysqli_fetch_array($qu_cusftype2)){
@@ -461,50 +430,34 @@ function check(frm){
 							}
 						}
 					?>
-          	  </select> -->
+          	  </select>
             	</td>
           </tr>
           <tr>
-            <td><strong>ที่อยู่ :</strong> <input name="cus_address" type="text" id="cus_address"  value="<?php echo $cus_address;?>" style="width:80%;"></td>
+            <td><strong>ที่อยู่ :</strong> <span id="cusadd"><?php   echo $finfo['cd_address'];?></span></td>
             <td><strong>เลขที่บริการ</strong> :
 <input type="text" name="sv_id" value="<?php   if($sv_id == ""){echo check_servicerepair($conn);}else{echo $sv_id;};?>" id="sv_id" class="inpfoder" style="border:0;">
-&nbsp;&nbsp;<strong>เลขที่ FO ที่ยกเลิก</strong> : 
+&nbsp;&nbsp;<strong>เลขที่ใบงาน</strong> : 
 <input type="text" name="srid" value="<?php   echo $srid;?>" id="srid" class="inpfoder">
 </td>
           </tr>
           <tr>
-            <td><strong>จังหวัด :</strong> 
-			<select name="cus_province" id="cus_province" class="inputselect">
-
-				<?php 
-					$quprovince = @mysqli_query($conn,"SELECT * FROM s_province ORDER BY province_id ASC");
-				while($row_province = @mysqli_fetch_array($quprovince)){
-					?>
-					<option value="<?php  echo $row_province['province_id'];?>" <?php  if($cus_province == $row_province['province_id']){echo 'selected';}?>><?php  echo $row_province['province_name'];?></option>
-					<?php 	
-				}
-						?>
-
-				</select>
-		    </td>
+            <td><strong>จังหวัด :</strong> <span id="cusprovince"><?php   echo province_name($conn,$finfo['cd_province']);?></span></td>
             <td><strong>วันที่เบิกอะไหล่  :</strong> <span id="datef"></span>
-              <input type="text" name="job_open" readonly value="<?php  if($job_open==""){echo date("d/m/Y");}else{ echo $job_open;}?>" class="inpfoder"/><script language="JavaScript">new tcal ({'formname': 'form1','controlname': 'job_open'});</script>
-			  &nbsp;&nbsp;<strong>วันที่ถอดเครื่อง  :</strong> <span id="dateout"></span>
-              <input type="text" name="job_out" readonly value="<?php  if(empty($job_out)){echo date("d/m/Y");}else{ echo $job_out;}?>" class="inpfoder"/><script language="JavaScript">new tcal ({'formname': 'form1','controlname': 'job_out'});</script>
-			</td>
+              <input type="text" name="job_open" readonly value="<?php  if($job_open==""){echo date("d/m/Y");}else{ echo $job_open;}?>" class="inpfoder"/><script language="JavaScript">new tcal ({'formname': 'form1','controlname': 'job_open'});</script></td>
           </tr>
           <tr>
-            <td><strong>โทรศัพท์ :</strong> <input name="cus_tel" type="text" id="cus_tel"  value="<?php echo $cus_tel;?>" style="width:30%;"><strong>&nbsp;&nbsp;&nbsp;&nbsp;แฟกซ์ :</strong> <input name="cus_fax" type="text" id="cus_fax"  value="<?php echo $cus_fax;?>" style="width:30%;"></td>
+            <td><strong>โทรศัพท์ :</strong> <span id="custel"><?php   echo $finfo['cd_tel'];?></span><strong>&nbsp;&nbsp;&nbsp;&nbsp;แฟกซ์ :</strong> <span id="cusfax"><?php   echo $finfo['cd_fax'];?></span></td>
             <td><!--<strong>บริการครั้งล่าสุด : </strong> <span id="sevlast"><?php   echo get_lastservice_f($conn,$cus_id,$sv_id);?></span> &nbsp;&nbsp;&nbsp;&nbsp;--><strong>กำหนดคืนอะไหล่ :</strong> <span id="datet"></span>
               <input type="text" name="job_balance" readonly value="<?php  if($job_balance==""){echo date("d/m/Y");}else{ echo $job_balance;}?>" class="inpfoder"/>
               <script language="JavaScript">new tcal ({'formname': 'form1','controlname': 'job_balance'});</script>
-              <input type="hidden" name="job_close" value="<?php  if($job_close==""){echo date("d/m/Y");}else{ echo $job_close;}?>" class="inpfoder"/>&nbsp;&nbsp;<strong>วันที่ซ่อมเสร็จ  :</strong><span style="font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;">
+              <input type="hidden" name="job_close" value="<?php  if($job_close==""){echo date("d/m/Y");}else{ echo $job_close;}?>" class="inpfoder"/>&nbsp;&nbsp;<strong>วันที่คืนอะไหล่  :</strong><span style="font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;">
               <input type="text" name="sr_stime" readonly value="<?php  if($sr_stime==""){echo date("d/m/Y");}else{ echo $sr_stime;}?>" class="inpfoder"/>
               <script language="JavaScript">new tcal ({'formname': 'form1','controlname': 'sr_stime'});</script>
             </span></td>
           </tr>
           <tr>
-            <td><strong>ชื่อผู้ติดต่อ :</strong> <input name="cus_con" type="text" id="cus_con"  value="<?php echo $cus_con;?>" style="width:30%;">&nbsp;&nbsp;&nbsp;&nbsp;<strong>เบอร์โทร :</strong > <input name="cus_con_tel" type="text" id="cus_con_tel"  value="<?php echo $cus_con_tel;?>" style="width:30%;"></td>
+            <td><strong>ชื่อผู้ติดต่อ :</strong> <span id="cscont"><?php   echo $finfo['c_contact'];?></span>&nbsp;&nbsp;&nbsp;&nbsp;<strong>เบอร์โทร :</strong> <span id="cstel"><?php   echo $finfo['c_tel'];?></span></td>
             <td><strong>อ้างอิงใบยืม </strong>: <strong>
               <input type="text" name="srid2" value="<?php   echo $srid2;?>" id="srid2" class="inpfoder">
             </strong>&nbsp;&nbsp;<strong>วันที่ :</strong><span style="font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;">
@@ -515,10 +468,10 @@ function check(frm){
 	</table>
 	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tb1">
       <tr>
-        <td width="50%"><strong>สถานที่จะไปติดตั้ง: </strong><input name="cus_location" type="text" id="cus_location"  value="<?php echo $cus_location;?>" style="width:60%;"><br />
+        <td width="50%"><strong>สถานที่ติดตั้ง / ส่งสินค้า : </strong><span id="sloc_name"><?php   echo $finfo['loc_name'];?></span><br />
           <br>
           <strong>เลือกสินค้า :</strong>
-          <!-- <span id="prolist">
+          <span id="prolist">
           		<?php   
 				$prolist = get_profirstorder($conn,$cus_id);
 				//$lispp = explode(",",$prolist);
@@ -530,15 +483,15 @@ function check(frm){
 				}	
 				echo $plid .=	 "</select>";
 						?>
-          </span> 
+          </span>
           <br>
-          <br />-->
+          <br />
             <strong>เครื่องล้างจาน / ยี่ห้อ : </strong><span style="font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;" id="lpa1">
             <input type="text" name="loc_pro" value="<?php   echo $loc_pro;?>" id="loc_pro" class="inpfoder" style="width:50%;">
             </span><br>
             <br />
             <strong>รุ่นเครื่อง : </strong><span id="lpa2"><input type="text" name="loc_seal" value="<?php   echo $loc_seal;?>" id="loc_seal" class="inpfoder" style="width:20%;"></span>&nbsp;&nbsp;&nbsp;<strong>S/N</strong>&nbsp;<span id="lpa3"><input type="text" name="loc_sn" value="<?php   echo $loc_sn;?>" id="loc_sn" class="inpfoder" style="width:20%;"></span><br /><br />
-            <strong>ชื่อร้านค้า/ชื่อเรียก : </strong><input type="text" name="loc_clean" value="<?php   echo $loc_clean;?>" id="loc_clean" class="inpfoder" style="width:50%;"><br />
+            <strong>เครื่องป้อนน้ำยา : </strong><input type="text" name="loc_clean" value="<?php   echo $loc_clean;?>" id="loc_clean" class="inpfoder" style="width:50%;"><br />
             <br>
             <strong>ช่างบริการประจำ :</strong>
             <select name="loc_contact" id="loc_contact">

@@ -167,27 +167,25 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 	?>
             <?php      Show_Sort_new ("user_id", "ลำดับ.", $orderby, $sortby,$page,$param2);?>
             &nbsp;</TH>
-          <TH width="10%"><div align="center"><a>RP ID</a></div></TH>
-          <TH width="15%"><a>รุ่นเครื่อง / SN</a></TH>
-          <TH width="20%"><a>ชื่อลูกค้า / ถอดมาจาก</a></TH>
-          <TH width="20%"><a>สถานที่จะไปติดตั้ง</a></TH>
-          <!-- <TH width="7%"><div align="center"><a></a></div></TH> -->
-          <!-- <TH width="15%"><div align="left"><a>ช่างเบิก</a></div></TH> -->
-          <TH width="15%"><div align="left"><a>สถานะเครื่อง</a></div></TH>
-          <TH width="10%"><div align="center"><a>การยืนยัน</a></div></TH>
-          <TH width="10%"><div align="center"><a>จ่ายอะไหล่</a></div></TH>
-          <TH width="5%"><div align="center"><a>Open / Close</a></div></TH>
-          <TH width="5%"><div align="center"><a>แก้ไข | ลบ</a></div></TH>
+          <TH width="9%"><div align="center"><a>RP ID</a></div></TH>
+          <TH width="22%"><a>ชื่อลูกค้า</a></TH>
+          <TH width="25%"><a>สถานที่ติดตั้ง</a></TH>
+          <TH width="16%"><div align="left"><a>ช่างเบิก</a></div></TH>
+          <TH width="8%"><div align="center"><a>การยืนยัน</a></div></TH>
+          <TH width="8%"><div align="center"><a>จ่ายอะไหล่</a></div></TH>
+          <TH width="8%"><div align="center"><a>Open / Close</a></div></TH>
+          <TH width="7%"><div align="center"><a>แก้ไข</a></div></TH>
+          <TH width="3%"><div align="center"><a>ลบ</a></div></TH>
           </TR>
       </THEAD>
       <TFOOT>
         </TFOOT>
       <TBODY>
         <?php     
-					if($orderby=="") $orderby = $PK_field;
+					if($orderby=="") $orderby = "sr.".$PK_field;
 					if ($sortby =="") $sortby ="DESC";
 					
-				   	$sql = "SELECT * FROM $tbl_name  WHERE 1 = 1";
+				   	$sql = "SELECT sr . * , fd.cd_name FROM $tbl_name AS sr, s_first_order AS fd WHERE sr.cus_id = fd.fo_id";
 					if ($_GET[$PK_field] <> "") $sql .= " and ($PK_field  = '" . $_GET[$PK_field] . " ' ) ";					
 					if ($_GET[$FR_field] <> "") $sql .= " and ($FR_field  = '" . $_GET[$FR_field] . " ' ) ";					
  					if ($_GET["keyword"] <> "") { 
@@ -195,63 +193,39 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 						if (count ($search_key) > 0) { 
 							$search_text = " and ( " ;
 							foreach ($search_key as $key=>$value) { 
-									$subtext .= " or " . $value  . " like '%" . $_GET["keyword"] . "%'";
+									$subtext .= "or " . $value  . " like '%" . $_GET["keyword"] . "%'";
 							}	
 						}
 						$sql .=  $subtext . " ) ";
 					} 
 					
 					if ($_GET['app_id'] <> "") { 
-						$sql .= " and ( approve = '$_GET[app_id]' ";
+						$sql .= " and ( sr.approve = '$_GET[app_id]' ";
 						$sql .=  $subtext . " ) ";
 					}else{
-						$sql .= " and ( approve = '0' ";
+						$sql .= " and ( sr.approve = '0' ";
 						$sql .=  $subtext . " ) ";
 					}
 					
 					if ($orderby <> "") $sql .= " order by " . $orderby;
 					if ($sortby <> "") $sql .= " " . $sortby;
 					include ("../include/page_init.php");
-					// echo $sql;
-					// exit();
+					/*echo $sql;
+					break;*/
 					$query = @mysqli_query($conn,$sql);
 					if($_GET["page"] == "") $_GET["page"] = 1;
 					$counter = ($_GET["page"]-1)*$pagesize;
 					
 					while ($rec = @mysqli_fetch_array ($query)) { 
 					$counter++;
-          if(!empty($rec['cus_id'])){
-            $finfo = get_firstorder($conn,$rec['cus_id']);
-            $rec["cus_name"] = $finfo['cd_name'];
-			      $rec["cus_location"] = $finfo['loc_name'];
-          }
 				   ?>
         <TR>
           <TD style="vertical-align:middle;"><INPUT type=checkbox name="del[]" value="<?php     echo $rec[$PK_field]; ?>" ></TD>
           <TD style="vertical-align:middle;"><span class="text"><?php     echo sprintf("%04d",$counter); ?></span></TD>
-          <TD style="vertical-align:middle;"><?php     $chaf = preg_replace("/\//","-",$rec["sv_id"]); ?><div align="center"><span class="text"><a href="../../upload/service_report_open/<?php     echo $chaf;?>.pdf" target="_blank" style="color: #0054ff;"><?php     echo $rec["sv_id"] ; ?></a></span></div></TD>
-          <TD style="vertical-align:middle;"><strong>รุ่น: </strong><span class="text"><?php echo $rec["loc_seal"]; ?></span><br>
-          <strong>S/N: </strong><?php echo $rec["loc_sn"]; ?>
-        </TD>
-          <TD style="vertical-align:middle;"><span class="text"><?php echo $rec["cus_name"]; ?></span><br>
-          <strong>ถอดมาจาก: </strong><?php echo $rec["takeout"]; ?>
-        </TD>
-          <TD style="vertical-align:middle;"><span class="text"><?php echo $rec["cus_location"]; ?></span></TD>
-          <!-- <TD style="vertical-align:middle;"><?php     echo get_technician_name($conn,$rec["loc_contact2"]);?></TD> -->
-          <TD style="vertical-align:middle;">
-          <?php 
-          if($rec['status_type'] === '2'){
-            $status_type = 'รอล้าง/ทำความสะอาด';
-          }else if($rec['status_type'] === '3'){
-            $status_type = 'ซ่อมหนัก (รอตัดซาก)';
-          }else if($rec['status_type'] === '4'){
-            $status_type = 'นำไปติดตั้งแล้ว';
-          }else{
-            $status_type = 'พร้อมใช้';
-          }
-          echo $status_type;
-          ?>
-        </TD>
+          <TD style="vertical-align:middle;"><?php     $chaf = preg_replace("/\//","-",$rec["sv_id"]); ?><div align="center"><span class="text"><a href="../../upload/service_report_open/<?php     echo $chaf;?>.pdf" target="_blank"><?php     echo $rec["sv_id"] ; ?></a></span></div></TD>
+          <TD style="vertical-align:middle;"><span class="text"><?php     echo get_customername($conn,$rec["cus_id"]); ?></span></TD>
+          <TD style="vertical-align:middle;"><span class="text"><?php     echo get_localsettingname($conn,$rec["cus_id"]); ?></span></TD>
+          <TD style="vertical-align:middle;"><?php     echo get_technician_name($conn,$rec["loc_contact2"]);?></TD>
           <TD style="vertical-align:middle"><?php     if($rec["approve"] == 1){?>
             <IMG src="../images/icons/yes_approve.png" height="28" title="อนุมัติ">
             <?php     }else if($rec["approve"] == 2){?>
@@ -273,12 +247,9 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
             <a href="../service_report6/?b=<?php     echo $rec[$PK_field]; ?>&s=<?php     echo $rec["st_setting"]; ?>&page=<?php     echo $_GET['page']; ?>&<?php     echo $FK_field; ?>=<?php     echo $_REQUEST["$FK_field"];?>"><img src="../icons/status_off.gif" width="10" height="10"></a>
             <?php     }?>
           </div></TD>
-          <TD style="vertical-align:middle;white-space: nowrap;">
-            <div align="center">
-              <A title=Edit href="update.php?mode=update&<?php     echo $PK_field; ?>=<?php     echo $rec[$PK_field]; if($param <> "") {?>&<?php     echo $param; }?>"><IMG src="../images/icons/paper_content_pencil_48.png" alt=Edit width="20" height="20" title="แก้ไขรายงานแจ้งซ่อม"></A> | 
-              <A title=Delete  href="#"><IMG alt=Delete src="../images/cross.png" style="width: 20px;" onClick="confirmDelete('?action=delete&<?php     echo $PK_field; ?>=<?php     echo $rec[$PK_field];?>','Group  <?php     echo $rec[$PK_field];?> : <?php     echo $rec["group_name"];?>')"></A>
-              <!-- <a href="../../upload/service_report_open/<?php     echo $chaf;?>.pdf" target="_blank"><img src="../images/icon2/backup.png" width="25" height="25" title="ดาวน์โหลดรายงานช่างซ่ิอม" style="margin-left:10px;"></a></div></TD> -->
-          <!-- <TD style="vertical-align:middle;"><div align="center"></div></TD> -->
+          <TD style="vertical-align:middle;"><!-- Icons -->
+            <div align="center"><A title=Edit href="update.php?mode=update&<?php     echo $PK_field; ?>=<?php     echo $rec[$PK_field]; if($param <> "") {?>&<?php     echo $param; }?>"><IMG src="../images/icons/paper_content_pencil_48.png" alt=Edit width="25" height="25" title="แก้ไขรายงานแจ้งซ่อม"></A><a href="../../upload/service_report_open/<?php     echo $chaf;?>.pdf" target="_blank"><img src="../images/icon2/backup.png" width="25" height="25" title="ดาวน์โหลดรายงานช่างซ่ิอม" style="margin-left:10px;"></a></div></TD>
+          <TD style="vertical-align:middle;"><div align="center"><A title=Delete  href="#"><IMG alt=Delete src="../images/cross.png" onClick="confirmDelete('?action=delete&<?php     echo $PK_field; ?>=<?php     echo $rec[$PK_field];?>','Group  <?php     echo $rec[$PK_field];?> : <?php     echo $rec["group_name"];?>')"></A></div></TD>
           </TR>  
 		<?php     }?>
       </TBODY>

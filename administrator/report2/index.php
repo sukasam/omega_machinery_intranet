@@ -1749,7 +1749,7 @@ if ($_GET["action"] == "chksum") {
                                     <td nowrap class="name">ชื่อลูกค้า</td>
   
                                     <td><input name="cd_name" type="text" id="cd_name" value="" style="width:40%;">
-  
+                                    <input name="cd_id" type="hidden" id="cd_id" value="" style="width:40%;">
                                       <a href="javascript:void(0);" onClick="windowOpener('400', '500', '', 'search.php');"><img src="../images/icon2/mark_f2.png" width="25" height="25" border="0" alt="" style="vertical-align:middle;padding-left:5px;"></a></td>
   
                                   </tr>
@@ -5324,7 +5324,7 @@ if ($_GET["action"] == "chksum") {
 
 -->
 
-                                <tr>
+                                <!-- <tr>
 
                                   <td nowrap class="name">ชื่อช่างยืม</td>
 
@@ -5352,7 +5352,7 @@ if ($_GET["action"] == "chksum") {
 
                                     </select></td>
 
-                                </tr>
+                                </tr> -->
 
                                 <!--
 
@@ -5375,6 +5375,64 @@ if ($_GET["action"] == "chksum") {
                           </tr>
 
 -->
+
+
+                              <tr>
+
+                                  <td nowrap class="name">หมายเลข S/N</td>
+
+                                  <td><input name="loc_sn" type="text" id="loc_sn" value="" style="width:40%;">
+
+                                  </td>
+
+                                </tr>
+
+                                <tr>
+
+                              <td width="10%" nowrap class="name">ประเภทบริการ</td>
+
+                              <td width="90%">
+                              <select name="type_service" id="type_service">
+                                <option value="">กรุณาเลือก</option>
+                                <option value="1"><?php   echo 'เครื่องล้างจาน';?></option>
+                                <option value="2"><?php   echo 'เครื่องล้างแก้ว';?></option>
+                                <option value="3"><?php   echo 'เครื่องผลิตน้ำแข็ง';?></option>
+                              
+                                    </select>
+                              </td>
+
+                              </tr>
+                              <tr>
+
+                              <td width="10%" nowrap class="name">สถานะเครื่อง</td>
+
+                              <td width="90%">
+                              <select name="status_type" id="status_type">
+                                <option value="">กรุณาเลือก</option>
+                                <option value="1"><?php   echo 'พร้อมใช้';?></option>
+                                <option value="2"><?php   echo 'รอล้าง/ทำความสะอาด';?></option>
+                                <option value="3"><?php   echo 'ซ่อมหนัก (รอตัดซาก)';?></option>
+                                <option value="4"><?php   echo 'นำไปติดตั้งแล้ว';?></option>
+                                    </select>
+                              </td>
+
+                              </tr>
+
+                              <tr>
+
+                              <td width="10%" nowrap class="name">ตามวันที่ซ่อมเสร็จ</td>
+
+                              <td width="90%"><input type="text" name="sr_stime" readonly value="" class="inpfoder" />
+                                <script language="JavaScript">
+                                  new tcal({
+                                    'formname': 'form1',
+                                    'controlname': 'sr_stime'
+                                  });
+                                </script>
+                              </td>
+
+                              </tr>
+
 
                                 <tr>
 
@@ -5432,11 +5490,11 @@ if ($_GET["action"] == "chksum") {
 
                                     <input name="sh1" type="checkbox" id="sh1" value="1" checked>
 
-                                    ชื่อลูกค้า / บริษัท + เบอร์โทร
+                                    ชื่อลูกค้า / บริษัท + เบอร์โทร / สถานที่ติดตั้ง
 
-                                    <input name="sh2" type="checkbox" id="sh12" value="1" checked>
+                                    <!-- <input name="sh2" type="checkbox" id="sh12" value="1" checked>
 
-                                    ชื่อร้าน / สถานที่ติดตั้ง
+                                    ชื่อร้าน / สถานที่ติดตั้ง -->
 
                                     <input name="sh3" type="checkbox" id="sh13" value="1" checked>
 
@@ -5462,7 +5520,7 @@ if ($_GET["action"] == "chksum") {
 
                                     <input name="sh7" type="checkbox" id="sh18" value="1" checked>
 
-                                    วันที่คืน
+                                    วันที่ถอดเครื่อง
 
                                     <input name="sh9" type="checkbox" id="sh29" value="1" checked>
 
@@ -5470,7 +5528,7 @@ if ($_GET["action"] == "chksum") {
 
                                 </tr>
 
-                                <tr>
+                                <!-- <tr>
 
                                   <td>
 
@@ -5478,7 +5536,7 @@ if ($_GET["action"] == "chksum") {
 
                                   </td>
 
-                                </tr>
+                                </tr> -->
 
                               </table>
                             </td>

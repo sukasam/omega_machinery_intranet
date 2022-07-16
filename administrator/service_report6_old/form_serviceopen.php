@@ -7,24 +7,6 @@
 	$chk = get_fixlist($_POST['ckf_list']);
 	
 	$tecinfos = get_technician($conn,$_POST['loc_contact']);
-
-	if($_POST['type_service'] === '2'){
-		$type_service = 'เครื่องล้างแก้ว';
-	}else if($_POST['type_service'] === '3'){
-		$type_service = 'เครื่องผลิตน้ำแข็ง';
-	}else{
-		$type_service = 'เครื่องล้างจาน';
-	}
-
-	if($_POST['status_type'] === '2'){
-		$status_type = 'รอล้าง/ทำความสะอาด';
-	}else if($_POST['status_type'] === '3'){
-		$status_type = 'ซ่อมหนัก (รอตัดซาก)';
-	}else if($_POST['status_type'] === '4'){
-		$status_type = 'นำไปติดตั้งแล้ว';
-	}else{
-		$status_type = 'พร้อมใช้';
-	}
 	
 	foreach($chk as $vals){
 		$sfix .= '
@@ -130,34 +112,32 @@
 	</table>
 <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tb1">
           <tr>
-            <td width="57%" valign="top"><strong>ชื่อลูกค้า :</strong> '.$_POST['cus_name'].' <br /><br />
-			<strong>ถอดมาจาก :</strong> '.$_POST['takeout'].' <br /><br />
-            <strong>ที่อยู่ :</strong> '.$_POST['cus_address'].'&nbsp;'.province_name($conn,$_POST['cus_province']).'<strong><br />
+            <td width="57%" valign="top"><strong>ชื่อลูกค้า :</strong> '.$finfos['cd_name'].' <br />              <strong><br />
+            ที่อยู่ :</strong> '.$finfos['cd_address'].'&nbsp;'.province_name($conn,$finfos['cd_province']).'<strong><br />
             <br />
-            โทรศัพท์ :</strong> '.$_POST['cus_tel'].'&nbsp;&nbsp;&nbsp;&nbsp;<strong>แฟกซ์ :</strong> '.$_POST['cus_fax'].'<br />
+            โทรศัพท์ :</strong> '.$finfos['cd_tel'].'&nbsp;&nbsp;&nbsp;&nbsp;<strong>แฟกซ์ :</strong> '.$finfos['cd_fax'].'<br />
             <br />
-            <strong>ชื่อผู้ติดต่อ :</strong> '.$_POST['cus_con'].' <strong>&nbsp;&nbsp;&nbsp;&nbsp;เบอร์โทร :</strong> '.$_POST['cus_con_tel'].'
-            </td>
-            <td width="43%"><strong>เลขที่ FO ที่ยกเลิก  :</strong> '.$_POST['srid'].' <strong><br>
+            <strong>ชื่อผู้ติดต่อ :</strong> '.$finfos['c_contact'].' <strong>&nbsp;&nbsp;&nbsp;&nbsp;<br>
             <br>
-            ประเภทบริการ :</strong> '.$type_service.' <strong><br />
+            เบอร์โทร :</strong> '.$finfos['c_tel'].'</td>
+            <td width="43%"><strong>ประเภทบริการลูกค้า :</strong> '.get_servicename($conn,$_POST['sr_ctype']).' <strong><br>
+            <br>
+            ประเภทลูกค้า :</strong> '.custype_name($conn,$_POST['sr_ctype2']).' <strong><br />
               <br />
-            </strong><strong>วันที่เบิกอะไหล่  :</strong> '.format_date($_POST['job_open']).' &nbsp;&nbsp;<strong>วันที่ถอดเครื่อง :</strong> '.format_date($_POST['job_out']).'<strong><br />
+            </strong><strong>วันที่เบิกอะไหล่  :</strong> '.format_date($_POST['job_open']).' <strong>&nbsp;&nbsp;เลขที่ใบงาน  :</strong> '.$_POST['srid'].' <strong><br />
             <br />
-            กำหนดคืนอะไหล่ :</strong> '.format_date($_POST['job_balance']).' &nbsp;<strong>วันที่ซ่อมเสร็จ :</strong> '.format_date($_POST['sr_stime']).'<br /><br />
+            กำหนดคืนอะไหล่ :</strong> '.format_date($_POST['job_balance']).' &nbsp;<strong>วันที่คืนอะไหล่ :</strong> '.format_date($_POST['sr_stime']).'<br /><br />
             <strong>อ้างอิงใบยืม :</strong> '.$_POST['srid2'].'&nbsp;&nbsp;<strong>วันที่ :</strong> '.format_date($_POST['ref_date']).'</td>
           </tr>
     </table>
 	<br>
 	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tb2">
       <tr>
-        <td width="53%"><strong>สถานที่จะไปติดตั้ง : </strong>'.$_POST['cus_location'].'<br /><br />
+        <td width="53%"><strong>สถานที่ติดตั้ง / ส่งสินค้า : </strong>'.$finfos['loc_name'].'<br /><br />
             <strong>เครื่องล้างจาน / ยี่ห้อ : </strong> '.$_POST['loc_pro'].'<br /><br />
             <strong>รุ่นเครื่อง : </strong> '.$_POST['loc_seal'].' <strong> S/N : </strong> '.$_POST['loc_sn'].'<br /><br />
-            <strong>ชื่อร้านค้า/ชื่อเรียก : </strong> '.$_POST['loc_clean'].'<br /><br />
-            <strong>ช่างบริการประจำ : </strong> '.$tecinfos['group_name'].'&nbsp;&nbsp;&nbsp;<strong> เบอร์โทร : </strong> '.$tecinfos['group_tel'].'<br /><br />
-			<strong>สถานะเครื่อง : </strong> '.$status_type.'
-			</td>
+            <strong>เครื่องป้อนน้ำยา : </strong> '.$_POST['loc_clean'].'<br /><br />
+            <strong>ช่างบริการประจำ : </strong> '.$tecinfos['group_name'].'&nbsp;&nbsp;&nbsp;<strong> เบอร์โทร : </strong> '.$tecinfos['group_tel'].'</td>
         <td width="47%" valign="top">
 		<table width="100%" border="0" cellspacing="0" cellpadding="0">
 			<tr>

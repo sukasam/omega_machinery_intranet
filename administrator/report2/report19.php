@@ -28,7 +28,11 @@
 
 	$opentake = $_REQUEST['opentake'];
 
-	
+	$status_type = $_REQUEST['status_type'];
+
+	$type_service = $_REQUEST['type_service'];
+
+	$loc_sn = $_REQUEST['loc_sn'];
 
 	$a_sdate=explode("/",$_REQUEST['date_fm']);
 
@@ -38,11 +42,16 @@
 
 	$date_to=$a_sdate[2]."-".$a_sdate[1]."-".$a_sdate[0];
 
+	if(!empty($_REQUEST['sr_stime'])){
+		$a_sdate=explode("/",$_REQUEST['sr_stime']);
+		$sr_stime = $a_sdate[2]."-".$a_sdate[1]."-".$a_sdate[0];
+	}
+	
 	
 
 	if($_REQUEST['priod'] == 0){
 
-		$daterriod = " AND `sr_stime`  between '".$date_fm."' and '".$date_to."'"; 
+		$daterriod = " AND `ref_date`  between '".$date_fm."' and '".$date_to."'"; 
 
 		$dateshow = "เริ่มวันที่ : ".format_date($date_fm)."&nbsp;&nbsp;ถึงวันที่ : ".format_date($date_to); 
 
@@ -83,23 +92,31 @@
 //	}
 
 //	
+	if($sr_stime != ""){
 
-//	if($sr_ctype != ""){
+		$condition .= " AND sv.sr_stime = '".$sr_stime."'";
 
-//		$condition .= " AND sv.sr_ctype = '".$sr_ctype."'";
+	}
 
-//	}
+	if($loc_sn != ""){
 
-//	
+		$condition .= " AND sv.loc_sn = '".$loc_sn."'";
 
-//	if($ctype != ""){
+	}
 
-//		$condition .= " AND sv.sr_ctype2 = '".$ctype."'";
+	if($status_type != ""){
 
-//	}
+		$condition .= " AND sv.status_type = '".$status_type."'";
+
+	}
+
+	if($type_service != ""){
+
+		$condition .= " AND sv.type_service = '".$type_service."'";
+
+	}
 
 	
-
 //	if($cd_name != ""){
 
 //		$condition .= " AND fr.cd_name LIKE '%".$cd_name."%'";
@@ -168,13 +185,13 @@
 
 	  <tr>
 
-	    <th colspan="4" style="text-align:left;font-size:12px;">บริษัท โอเมก้า แมชชีนเนอรี่ (1999) จำกัด<br />
+	    <th colspan="5" style="text-align:left;font-size:12px;">บริษัท โอเมก้า แมชชีนเนอรี่ (1999) จำกัด<br />
 
 รายงานซ่อมเครื่องเก่า<br />
 
 ประเภทใบบริการ  : ใบงานซ่อมเครื่องเก่า</th>
 
-	    <th colspan="5" style="text-align:right;font-size:11px;"><?php  echo $dateshow;?></th>
+	    <th colspan="7" style="text-align:right;font-size:11px;"><?php  echo $dateshow;?></th>
 
       </tr>
 
@@ -182,19 +199,27 @@
 
         <?php  if($_REQUEST['sh16'] == 1){?><th width="5%">เลขที่ใบซ่อมเครื่อเก่า</th><?php  }?>
 
-        <?php  if($_REQUEST['sh1'] == 1){?><th width="16%">ชื่อลูกค้า / บริษัท + เบอร์โทร</th><?php  }?>
+		<th width="5%">รุ่นเครื่อง / SN</th>
 
-        <?php  if($_REQUEST['sh2'] == 1){?><th width="15%">ชื่อร้าน / สถานที่ติดตั้ง</th><?php  }?>
+        <?php  if($_REQUEST['sh1'] == 1){?><th width="15%">ชื่อร้าน / ถอดจาก<br>สถานที่จะไปติดตั้ง</th><?php  }?>
+
+		<th width="5%">FO ที่ยกเลิก</th>
+
+        <?php   /*if($_REQUEST['sh2'] == 1){?><th width="15%">ชื่อร้าน | สถานที่ติดตั้ง</th><?php  }*/?>
 
         <?php  if($_REQUEST['sh3'] == 1){?><th width="10%">รายละเอียดการเปลี่ยน</th><?php  }?>
+
+		
 
         <?php  if($_REQUEST['sh4'] == 1 || $_REQUEST['sh5'] == 1){?><th width="30%"><table width="100%" border="0" cellpadding="0" cellspacing="0" class="tbreport">
 
           <tr>
 
-            <?php  if($_REQUEST['sh4'] == 1){?><td style="border-bottom:none;" width="75%"><strong>รายการอะไหล่</strong></td><?php  }?>
+            <?php  if($_REQUEST['sh4'] == 1){?><td style="border-bottom:none;" width="45%"><strong>รหัสอะไหล่ / รายการอะไหล่</strong></td><?php  }?>
 
-            <?php  if($_REQUEST['sh5'] == 1){?><td style="border-bottom:none;" width="25%"><strong>จำนวน</strong></td><?php  }?>
+            <?php  if($_REQUEST['sh5'] == 1){?><td style="border-bottom:none;" width="30%"><strong>จำนวน / ต่อหน่วย</strong></td><?php  }?>
+
+			<td style="border-bottom:none;" width="20%"><strong>ยอดเงิน</strong></td>
 
 <!--            <?php  if($_REQUEST['sh8'] == 1){?><td style="border-bottom:none;" width="25%"><strong>รวมมูลค่า</strong></td><?php  }?>-->
 
@@ -202,13 +227,17 @@
 
         </table></th><?php  }?>
 
-        <?php  if($_REQUEST['sh8'] == 1){?><th width="6%"><strong>รวมมูลค่า</strong></th><?php  }?>
+        <?php  if($_REQUEST['sh8'] == 1){?><th width="5%"><strong>รวมมูลค่า</strong></th><?php  }?>
 
-        <?php  if($_REQUEST['sh6'] == 1){?><th width="6%"><strong>วันที่เบิก</strong></th><?php  }?>
+		<th width="5%">สถานะเครื่อง</th>
 
-        <?php  if($_REQUEST['sh7'] == 1){?><th width="6%"><strong>วันที่คืน</strong></th><?php  }?>
+        <?php  if($_REQUEST['sh6'] == 1){?><th width="5%"><strong>วันที่เบิก</strong></th><?php  }?>
 
-        <?php  if($_REQUEST['sh9'] == 1){?><th width="8%"><strong>ผุ้เบิก</strong></th><?php  }?>
+        <?php  if($_REQUEST['sh7'] == 1){?><th width="5%"><strong>วันที่ถอดเครื่อง</strong></th><?php  }?>
+
+		<?php  if($_REQUEST['sh7'] == 1){?><th width="5%"><strong>วันที่ซ่อมเสร็จ</strong></th><?php  }?>
+
+        <?php  if($_REQUEST['sh9'] == 1){?><th width="5%"><strong>ผุ้เบิก</strong></th><?php  }?>
 
       </tr>
 
@@ -224,7 +253,7 @@
 
 	  
 
-		$sql = "SELECT * FROM s_first_order as fr, ".$dbservice." as sv, ".$dbservicesub." as sv2 WHERE sv.cus_id = fr.fo_id AND sv.sr_id = sv2.sr_id ".$condition." ".$daterriod." GROUP BY sv.sr_id ORDER BY sv.sr_id DESC";
+		$sql = "SELECT * FROM ".$dbservice." as sv, ".$dbservicesub." as sv2 WHERE sv.sr_id = sv2.sr_id ".$condition." ".$daterriod." GROUP BY sv.sr_id ORDER BY sv.sr_id DESC";
 
 	  	$qu_fr = @mysqli_query($conn,$sql);
 
@@ -243,22 +272,30 @@
 			$moneyTC = $row_fr['money1']+$row_fr['money2']+$row_fr['money3']+$row_fr['money4']+$row_fr['money5']+$row_fr['money6'];
 
 			
+			if(!empty($row_fr['cus_id'])){
+				$finfo = get_firstorder($conn,$row_fr['cus_id']);
+				$row_fr['cus_name'] =  $finfo['cd_name'];
+				$row_fr['cus_location'] = $finfo['loc_name'];
+			}
 
-			
-
+		
 			?>
 
 			<tr>
 
               <?php  if($_REQUEST['sh16'] == 1){?><td><?php  echo $row_fr['sv_id'];?></td><?php  }?>
 
-              <?php  if($_REQUEST['sh1'] == 1){?><td><?php  echo $row_fr['cd_name'];?><br />
+			  <td><?php  echo $row_fr['loc_seal'];?> / <?php  echo $row_fr['loc_sn'];?></td>
 
-              <?php  echo $row_fr['cd_tel'];?></td><?php  }?>
+              <?php  if($_REQUEST['sh1'] == 1){?><td><strong>ชื่อร้าน: </strong><?php  echo $row_fr['cus_name'];?><br />
+			<strong>ถอดจาก: </strong><?php  echo $row_fr['takeout'];?><br>
+			<strong>สถานที่จะไปติดตั้ง: </strong><?php echo $row_fr['loc_address']?></td><?php  }?>
 
-              <?php  if($_REQUEST['sh2'] == 1){?><td><?php  echo $row_fr['loc_name'];?><br />
+              <?php  /*if($_REQUEST['sh2'] == 1){?><td><?php  echo $row_fr['cus_location'];?><br />
 
-              <?php  echo $row_fr['loc_address'];?></td><?php  }?>
+              <?php  echo $row_fr['loc_address'];?></td><?php  }*/?>
+
+			  <td><?php  echo $row_fr['srid'];?></td>
 
               <?php  if($_REQUEST['sh3'] == 1){?><td><?php  echo $row_fr['detail_recom'];?></td><?php  }?>
 
@@ -292,8 +329,10 @@
 
 					  <?php  if($_REQUEST['sh4'] == 1){?><td style="border-bottom:none;" width="50%"><?php  echo get_sparpart_id($conn,$row['lists']).' | '.get_sparpart_name($conn,$row['lists']);?></td><?php  }?>
 
-					  <?php  if($_REQUEST['sh5'] == 1){?><td align="center" style="border-bottom:none;" width="25%"><?php  echo $row['opens'];?></td><?php  }?>
+					  <?php  if($_REQUEST['sh5'] == 1){?><td align="center" style="border-bottom:none;" width="25%"><?php  echo $row['opens'];?> * (<?php echo $row['prices'];?>)</td><?php  }?>
 
+
+					  <td align="right" style="border-bottom:none;" width="25%"><?php  echo number_format($row['opens']*$row['prices']);?></td>
 <!--					  <?php  if($_REQUEST['sh8'] == 1){?><td align="right" style="border-bottom:none;" width="25%"><?php  echo number_format($total,2);?></td><?php  }?>-->
 
 					</tr>
@@ -320,11 +359,27 @@
 
               </td><?php  }?>
 
-              <?php  if($_REQUEST['sh8'] == 1){?><td style="padding:0;"><?php  echo number_format($totalTA+$moneyTC,2);?></td><?php  }?>
+              <?php  if($_REQUEST['sh8'] == 1){?><td style="padding:0;font-size: 11px;"><strong><?php  echo number_format($totalTA+$moneyTC,2);?></strong></td><?php  }?>
+
+			  <td>
+			 <?php 
+			 if($row_fr['status_type'] === '2'){
+				echo $status_type = 'รอล้าง/ทำความสะอาด';
+			}else if($row_fr['status_type'] === '3'){
+				echo $status_type = 'ซ่อมหนัก (รอตัดซาก)';
+			}else if($row_fr['status_type'] === '4'){
+				echo $status_type = 'นำไปติดตั้งแล้ว';
+			}else{
+				echo $status_type = 'พร้อมใช้';
+			}
+			 ?> 
+			 </td>
 
               <?php  if($_REQUEST['sh6'] == 1){?><td style="padding:0;"><?php  echo format_date($row_fr['job_open']);?></td><?php  }?>
 
-              <?php  if($_REQUEST['sh7'] == 1){?><td style="padding:0;"><?php  echo format_date($row_fr['sr_stime']);?></td><?php  }?>
+              <?php  if($_REQUEST['sh7'] == 1){?><td style="padding:0;"><?php  echo format_date($row_fr['job_out']);?></td><?php  }?>
+
+			  <?php  if($_REQUEST['sh7'] == 1){?><td style="padding:0;"><?php  echo format_date($row_fr['sr_stime']);?></td><?php  }?>
 
               <?php  if($_REQUEST['sh9'] == 1){?><td style="padding:0;"><?php  echo get_technician_name($conn,$row_fr['loc_contact']);?></td><?php  }?>
 
@@ -342,19 +397,19 @@
 
       <tr>
 
-			  <td colspan="9" style="text-align:right;"> <strong>จำนวน<?php  if($_POST['sr_stock'] == "s_service_report6"){echo 'ใบซ่อมเครื่อเก่า';}else{echo "ใบซ่อมเครื่อเก่า";}?>ทั้งหมด&nbsp;&nbsp;<?php  echo $sum;?>&nbsp;&nbsp;รายการ&nbsp;&nbsp;</strong></td>
+			  <td colspan="12" style="text-align:right;"> <strong>จำนวน<?php  if($_POST['sr_stock'] == "s_service_report6"){echo 'ใบซ่อมเครื่อเก่า';}else{echo "ใบซ่อมเครื่อเก่า";}?>ทั้งหมด&nbsp;&nbsp;<?php  echo $sum;?>&nbsp;&nbsp;รายการ&nbsp;&nbsp;</strong></td>
 
 	  </tr>
 
       <tr>
 
-			  <td colspan="9" style="text-align:right;"> <strong>รวมอะไหล่ที่เบิก&nbsp;&nbsp;<?php  echo $totals;?>&nbsp;&nbsp;รายการ&nbsp;&nbsp;</strong></td>
+			  <td colspan="12" style="text-align:right;"> <strong>รวมอะไหล่ที่เบิก&nbsp;&nbsp;<?php  echo $totals;?>&nbsp;&nbsp;รายการ&nbsp;&nbsp;</strong></td>
 
 	  </tr>
 
 	  <tr>
 
-			  <td colspan="9" style="text-align:right;"> <strong>คิดเป็นมูลค่ารวมทั้งสิ้น&nbsp;&nbsp;<?php  echo number_format($sumTotalAll+$moneyTCTota,2);?>&nbsp;&nbsp;บาท&nbsp;&nbsp;</strong></td>
+			  <td colspan="12" style="text-align:right;"> <strong>คิดเป็นมูลค่ารวมทั้งสิ้น&nbsp;&nbsp;<?php  echo number_format($sumTotalAll+$moneyTCTota,2);?>&nbsp;&nbsp;บาท&nbsp;&nbsp;</strong></td>
 
 	  </tr>
 
