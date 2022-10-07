@@ -44,8 +44,8 @@
 <script type="text/javascript">
 	function get_customer(cid,cname){
 		var sCustomerName = self.opener.document.getElementById("cd_name");
-		var sCustomerId = self.opener.document.getElementById("cd_id");
-		sCustomerId.value = cid;
+		// var sCustomerId = self.opener.document.getElementById("cd_id");
+		// sCustomerId.value = cid;
 		sCustomerName.value = cname;
 		window.close();
 	}

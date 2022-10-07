@@ -1749,7 +1749,7 @@ if ($_GET["action"] == "chksum") {
                                     <td nowrap class="name">ชื่อลูกค้า</td>
   
                                     <td><input name="cd_name" type="text" id="cd_name" value="" style="width:40%;">
-                                    <input name="cd_id" type="hidden" id="cd_id" value="" style="width:40%;">
+                                    <!-- <input name="cd_id" type="hidden" id="cd_id" value="" style="width:40%;"> -->
                                       <a href="javascript:void(0);" onClick="windowOpener('400', '500', '', 'search.php');"><img src="../images/icon2/mark_f2.png" width="25" height="25" border="0" alt="" style="vertical-align:middle;padding-left:5px;"></a></td>
   
                                   </tr>
