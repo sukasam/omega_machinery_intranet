@@ -225,30 +225,36 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
             $rec["cus_name"] = $finfo['cd_name'];
 			      $rec["cus_location"] = $finfo['loc_name'];
           }
-				   ?>
-        <TR>
-          <TD style="vertical-align:middle;"><INPUT type=checkbox name="del[]" value="<?php     echo $rec[$PK_field]; ?>" ></TD>
-          <TD style="vertical-align:middle;"><span class="text"><?php     echo sprintf("%04d",$counter); ?></span></TD>
-          <TD style="vertical-align:middle;"><?php     $chaf = preg_replace("/\//","-",$rec["sv_id"]); ?><div align="center"><span class="text"><a href="../../upload/service_report_open/<?php     echo $chaf;?>.pdf" target="_blank" style="color: #0054ff;"><?php     echo $rec["sv_id"] ; ?></a></span></div></TD>
-          <TD style="vertical-align:middle;"><strong>รุ่น: </strong><span class="text"><?php echo $rec["loc_seal"]; ?></span><br>
-          <strong>S/N: </strong><?php echo $rec["loc_sn"]; ?>
-        </TD>
-          <TD style="vertical-align:middle;"><span class="text"><?php echo $rec["cus_name"]; ?></span><br>
-          <strong>ถอดมาจาก: </strong><?php echo $rec["takeout"]; ?>
-        </TD>
-          <TD style="vertical-align:middle;"><span class="text"><?php echo $rec["cus_location"]; ?></span></TD>
-          <!-- <TD style="vertical-align:middle;"><?php     echo get_technician_name($conn,$rec["loc_contact2"]);?></TD> -->
-          <TD style="vertical-align:middle;">
-          <?php 
+
+          $status_type_color = '';
+
           if($rec['status_type'] === '2'){
             $status_type = 'รอล้าง/ทำความสะอาด';
           }else if($rec['status_type'] === '3'){
             $status_type = 'ซ่อมหนัก (รอตัดซาก)';
           }else if($rec['status_type'] === '4'){
             $status_type = 'นำไปติดตั้งแล้ว';
+            $status_type_color = 'color:#d767db;';
           }else{
             $status_type = 'พร้อมใช้';
+            $status_type_color = 'color:blue;';
           }
+
+				   ?>
+        <TR style="<?php echo $status_type_color;?>">
+          <TD style="vertical-align:middle;"><INPUT type=checkbox name="del[]" value="<?php     echo $rec[$PK_field]; ?>" ></TD>
+          <TD style="vertical-align:middle;"><span class="text"><?php     echo sprintf("%04d",$counter); ?></span></TD>
+          <TD style="vertical-align:middle;"><?php     $chaf = preg_replace("/\//","-",$rec["sv_id"]); ?><div align="center"><span class="text"><a style="<?php echo $status_type_color;?>" href="../../upload/service_report_open/<?php     echo $chaf;?>.pdf" target="_blank" style="color: #0054ff;"><?php     echo $rec["sv_id"] ; ?></a></span></div></TD>
+          <TD style="vertical-align:middle;"><strong style="<?php echo $status_type_color;?>">รุ่น: </strong><span class="text"><?php echo $rec["loc_seal"]; ?></span><br>
+          <strong style="<?php echo $status_type_color;?>">S/N: </strong><?php echo $rec["loc_sn"]; ?>
+        </TD>
+          <TD style="vertical-align:middle;"><span class="text"><?php echo $rec["cus_name"]; ?></span><br>
+          <strong style="<?php echo $status_type_color;?>">ถอดมาจาก: </strong><?php echo $rec["takeout"]; ?>
+        </TD>
+          <TD style="vertical-align:middle;"><span class="text"><?php echo $rec["cus_location"]; ?></span></TD>
+          <!-- <TD style="vertical-align:middle;"><?php     echo get_technician_name($conn,$rec["loc_contact2"]);?></TD> -->
+          <TD style="vertical-align:middle;">
+          <?php 
           echo $status_type;
           ?>
         </TD>

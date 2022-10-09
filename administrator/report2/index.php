@@ -5379,13 +5379,23 @@ if ($_GET["action"] == "chksum") {
 
                               <tr>
 
-                                  <td nowrap class="name">หมายเลข S/N</td>
+                                  <td nowrap class="name">รุ่นเครื่อง</td>
 
-                                  <td><input name="loc_sn" type="text" id="loc_sn" value="" style="width:40%;">
+                                  <td><input name="loc_seal" type="text" id="loc_seal" value="" style="width:30%;">
 
                                   </td>
 
                                 </tr>
+
+                                <tr>
+
+                                  <td nowrap class="name">หมายเลข S/N</td>
+
+                                  <td><input name="loc_sn" type="text" id="loc_sn" value="" style="width:30%;">
+
+                                  </td>
+
+                                  </tr>
 
                                 <tr>
 
@@ -5528,7 +5538,7 @@ if ($_GET["action"] == "chksum") {
 
                                 </tr>
 
-                                <!-- <tr>
+                                <tr>
 
                                   <td>
 
@@ -5536,7 +5546,7 @@ if ($_GET["action"] == "chksum") {
 
                                   </td>
 
-                                </tr> -->
+                                </tr>
 
                               </table>
                             </td>

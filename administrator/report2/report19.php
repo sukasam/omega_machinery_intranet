@@ -32,6 +32,8 @@
 
 	$type_service = $_REQUEST['type_service'];
 
+	$loc_seal = $_REQUEST['loc_seal'];
+
 	$loc_sn = $_REQUEST['loc_sn'];
 
 	$a_sdate=explode("/",$_REQUEST['date_fm']);
@@ -98,6 +100,12 @@
 
 	}
 
+	if($loc_seal != ""){
+
+		$condition .= " AND sv.loc_seal = '".$loc_seal."'";
+
+	}
+
 	if($loc_sn != ""){
 
 		$condition .= " AND sv.loc_sn = '".$loc_sn."'";
@@ -128,8 +136,6 @@
 		$condition .= " AND sv.loc_contact2 LIKE '%".$loc_contact."%'";
 
 	}
-
-	
 
 ?>
 
@@ -188,8 +194,7 @@
 	    <th colspan="5" style="text-align:left;font-size:12px;">บริษัท โอเมก้า แมชชีนเนอรี่ (1999) จำกัด<br />
 
 รายงานซ่อมเครื่องเก่า<br />
-
-ประเภทใบบริการ  : ใบงานซ่อมเครื่องเก่า</th>
+ประเภทใบบริการ  : <?php if($type_service == 2){echo 'เครื่องล้างแก้ว';}else if($type_service == 3){echo 'เครื่องผลิตน้ำแข็ง';}else if($type_service == 1){echo 'เครื่องล้างจาน';}else{echo 'ทั้งหมด';}?></th>
 
 	    <th colspan="7" style="text-align:right;font-size:11px;"><?php  echo $dateshow;?></th>
 
@@ -278,10 +283,19 @@
 				$row_fr['cus_location'] = $finfo['loc_name'];
 			}
 
+			$status_type_color = '';
+
+			if($row_fr['status_type'] === '2'){
+			}else if($row_fr['status_type'] === '3'){
+			}else if($row_fr['status_type'] === '4'){
+				$status_type_color = 'color:#d767db;';
+			}else{
+				$status_type_color = 'color:blue;';
+			}
 		
 			?>
 
-			<tr>
+			<tr style="<?php echo $status_type_color;?>">
 
               <?php  if($_REQUEST['sh16'] == 1){?><td><?php  echo $row_fr['sv_id'];?></td><?php  }?>
 
@@ -325,7 +339,7 @@
 
 					?>
 
-					<tr>
+					<tr style="<?php echo $status_type_color;?>">
 
 					  <?php  if($_REQUEST['sh4'] == 1){?><td style="border-bottom:none;" width="50%"><?php  echo get_sparpart_id($conn,$row['lists']).' | '.get_sparpart_name($conn,$row['lists']);?></td><?php  }?>
 
