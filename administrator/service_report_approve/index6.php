@@ -90,7 +90,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
     ใบเบิกอะไหล่</SPAN></A></LI>
     <LI><A class=shortcut-button href="../service_report_approve/index3.php"><SPAN><IMG  alt=icon src="../images/icons/icon-48-section.png"><BR>
     ใบยืมอะไหล่</SPAN></A></LI>
-    <LI><A class=shortcut-button href="../service_report_approve/index6.php"><SPAN><IMG  alt=icon src="../images/icons/icon-48-section.png"><BR>
+    <LI><A class=shortcut-button href="../service_report_approve/index5.php"><SPAN><IMG  alt=icon src="../images/icons/icon-48-section.png"><BR>
     ใบคืนอะไหล่</SPAN></A></LI>
     <LI><A class=shortcut-button href="../service_report_approve/index6.php"><SPAN><IMG  alt=icon src="../images/icons/icon-48-section.png"><BR>
     ใบซ่อมเครื่องเก่า</SPAN></A></LI>
@@ -164,10 +164,10 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
         </TFOOT>
       <TBODY>
         <?php  
-					if($orderby=="") $orderby = "sr.".$PK_field;
+					if($orderby=="") $orderby = $PK_field;
 					if ($sortby =="") $sortby ="DESC";
 					
-				   	$sql = "SELECT sr . * , fd.cd_name FROM $tbl_name AS sr, s_first_order AS fd WHERE sr.cus_id = fd.fo_id";
+				   	$sql = "SELECT * FROM $tbl_name WHERE 1=1";
 					if ($_GET[$PK_field] <> "") $sql .= " and ($PK_field  = '" . $_GET[$PK_field] . " ' ) ";					
 					if ($_GET[$FR_field] <> "") $sql .= " and ($FR_field  = '" . $_GET[$FR_field] . " ' ) ";					
  					if ($_GET["keyword"] <> "") { 
@@ -182,16 +182,17 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 					} 
 					
 					if ($_GET['app_id'] <> "") { 
-						$sql .= " and ( sr.approve = '".$_GET["app_id"]."' ";
+						$sql .= " and ( approve = '".$_GET["app_id"]."' ";
 						$sql .=  $subtext . " ) ";
 					}else{
-						$sql .= " and ( sr.approve = '0' ";
+						$sql .= " and ( approve = '0' ";
 						$sql .=  $subtext . " ) ";
 					}
 					
 					if ($orderby <> "") $sql .= " order by " . $orderby;
 					if ($sortby <> "") $sql .= " " . $sortby;
 					include ("../include/page_init.php");
+					// echo $sql;
 					/*echo $sql;
 					break;*/
 					$query = @mysqli_query($conn,$sql);
@@ -205,8 +206,8 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
           <TD style="vertical-align:middle;"><INPUT type=checkbox name="del[]" value="<?php  echo $rec[$PK_field]; ?>" ></TD>
           <TD style="vertical-align:middle;"><span class="text"><?php  echo sprintf("%04d",$counter); ?></span></TD>
           <TD style="vertical-align:middle;"><?php  $chaf = preg_replace("/\//","-",$rec["sv_id"]); ?><div align="center"><span class="text"><a href="../../upload/service_report_open/<?php  echo $chaf;?>.pdf" target="_blank"><?php  echo $rec["sv_id"] ; ?></a></span></div></TD>
-          <TD style="vertical-align:middle;"><span class="text"><?php  echo get_customername($conn,$rec["cus_id"]); ?></span></TD>
-          <TD style="vertical-align:middle;"><span class="text"><?php  echo get_localsettingname($conn,$rec["cus_id"]); ?></span></TD>
+          <TD style="vertical-align:middle;"><span class="text"><?php  echo $rec["cus_name"]; ?></span></TD>
+          <TD style="vertical-align:middle;"><span class="text"><?php  echo $rec["cus_location"]; ?></span></TD>
           <TD style="vertical-align:middle;"><?php  echo get_technician_name($conn,$rec["loc_contact2"]);?></TD>
           <TD style="vertical-align:middle"><select name="jumpMenu" id="jumpMenu" onChange="MM_jumpMenu('parent',this,0)" style=" <?php  if($rec["approve"] == "0"){echo "background:#FF0;color:#000;";}elseif($rec["approve"] == "1"){echo "background:#090;color:#FFF;";}elseif($rec["approve"] == "3"){echo "background:#C60;color:#FFF;";}else{echo "background:#F00;color:#FFF;";}?>">
             <option value="index6.php?action=apps&cc=0&sr_id=<?php  echo $rec["sr_id"];?>&page=<?php  echo $_GET["page"];?>" <?php  if($rec["approve"] == "0"){echo 'selected="selected"';}?> style="background:#FFF;color:#000;">รอการอนุมัติ</option>
