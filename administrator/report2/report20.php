@@ -118,15 +118,19 @@
 
             <?php  if($_REQUEST['sh4'] == 1){?><td style="border-bottom:none;" width="25%"><strong>รหัสอะไหล่</strong></td><?php  }?>
 
-            <?php  if($_REQUEST['sh5'] == 1){?><td style="border-bottom:none;" width="50%"><center><strong>รายการอะไหล่</strong></center></td><?php  }?>
+            <?php  if($_REQUEST['sh5'] == 1){?><td align="left" style="border-bottom:none;" width="25%"><strong>รายการอะไหล่</strong></td><?php  }?>
 
-           <?php  if($_REQUEST['sh6'] == 1){?><td style="border-bottom:none;" width="25%"><strong>ราคาซื้อ</strong></td><?php  }?>
+			<?php  if($_REQUEST['sh6'] == 1){?><td align="left" style="border-bottom:none;" width="12%"><strong>จำนวน</strong></td><?php  }?>
+
+           <?php  if($_REQUEST['sh6'] == 1){?><td align="left" style="border-bottom:none;" width="18%"><strong>ราคาซื้อ/หน่วย</strong></td><?php  }?>
+
+		   <?php  if($_REQUEST['sh6'] == 1){?><td align="left" style="border-bottom:none;" width="18%"><strong>รวมราคาซื้อ/หน่วย</strong></td><?php  }?>
 
           </tr>
 
         </table></th><?php  }?>
 
-        <?php  if($_REQUEST['sh7'] == 1){?><th width="6%"><strong>รวมราคาซื้ิอ</strong></th><?php  }?>
+        <?php  if($_REQUEST['sh7'] == 1){?><th width="6%"><strong>รวมราคาซื้อ</strong></th><?php  }?>
 
         <?php  if($_REQUEST['sh8'] == 1){?><th width="6%"><strong>ผู้รับสินค้าเข้า</strong></th><?php  }?>
 
@@ -202,11 +206,15 @@
 
 					<tr>
 
-					  <?php  if($_REQUEST['sh4'] == 1){?><td style="border-bottom:none;" width="25%"><?php  echo get_sparpart_id($conn,$row['sparpart_id']);?></td><?php  }?>
+					  <?php  if($_REQUEST['sh4'] == 1){?><td style="border-bottom:none;" width="20%"><?php  echo get_sparpart_id($conn,$row['sparpart_id']);?></td><?php  }?>
 
-					  <?php  if($_REQUEST['sh5'] == 1){?><td align="left" style="border-bottom:none;" width="50%"><?php  echo get_sparpart_name($conn,$row['sparpart_id']);?></td><?php  }?>
+					  <?php  if($_REQUEST['sh5'] == 1){?><td align="left" style="border-bottom:none;" width="30%"><?php  echo get_sparpart_name($conn,$row['sparpart_id']);?></td><?php  }?>
 
-					  <?php  if($_REQUEST['sh6'] == 1){?><td align="right" style="border-bottom:none;" width="25%"><?php  echo number_format($row['sparpart_unit_price'],2);?></td><?php  }?>
+					  <?php  if($_REQUEST['sh6'] == 1){?><td align="left" style="border-bottom:none;" width="10%"><?php  echo $row['sparpart_qty'];?></td><?php  }?>
+					  
+					  <?php  if($_REQUEST['sh6'] == 1){?><td align="right" style="border-bottom:none;" width="12%"><?php  echo number_format($row['sparpart_unit_price'],2);?></td><?php  }?>
+
+					  <?php  if($_REQUEST['sh6'] == 1){?><td align="right" style="border-bottom:none;" width="13%"><?php  echo number_format($row['sparpart_unit_price'] * $row['sparpart_qty'],2);?></td><?php  }?>
 
 					</tr>
 
