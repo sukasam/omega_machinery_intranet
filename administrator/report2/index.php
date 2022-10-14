@@ -5420,6 +5420,7 @@ if ($_GET["action"] == "chksum") {
                               <select name="status_type" id="status_type">
                                 <option value="">กรุณาเลือก</option>
                                 <option value="1"><?php   echo 'พร้อมใช้';?></option>
+                                <option value="5"><?php   echo 'พร้อมใช้ / จองแล้ว';?></option>
                                 <option value="2"><?php   echo 'รอล้าง/ทำความสะอาด';?></option>
                                 <option value="3"><?php   echo 'ซ่อมหนัก (รอตัดซาก)';?></option>
                                 <option value="4"><?php   echo 'นำไปติดตั้งแล้ว';?></option>

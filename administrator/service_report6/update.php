@@ -512,6 +512,7 @@ function check(frm){
       <tr>
         <td width="50%"><strong>สถานที่จะไปติดตั้ง: </strong><input name="cus_location" type="text" id="cus_location"  value="<?php echo $cus_location;?>" style="width:60%;"><br />
           <br>
+		  <strong>เลขที่ FO ติดตั้งใหม่ : </strong><input type="text" name="loc_clean" value="<?php   echo $loc_clean;?>" id="loc_clean" class="inpfoder" style="width:50%;"><br /><br>
           <strong>เลือกสินค้า :</strong>
           <!-- <span id="prolist">
           		<?php   
@@ -533,8 +534,6 @@ function check(frm){
             </span><br>
             <br />
             <strong>รุ่นเครื่อง : </strong><span id="lpa2"><input type="text" name="loc_seal" value="<?php   echo $loc_seal;?>" id="loc_seal" class="inpfoder" style="width:20%;"></span>&nbsp;&nbsp;&nbsp;<strong>S/N</strong>&nbsp;<span id="lpa3"><input type="text" name="loc_sn" value="<?php   echo $loc_sn;?>" id="loc_sn" class="inpfoder" style="width:20%;"></span><br /><br />
-            <strong>ชื่อร้านค้า/ชื่อเรียก : </strong><input type="text" name="loc_clean" value="<?php   echo $loc_clean;?>" id="loc_clean" class="inpfoder" style="width:50%;"><br />
-            <br>
             <strong>ช่างบริการประจำ :</strong>
             <select name="loc_contact" id="loc_contact">
                 	<option value="">กรุณาเลือก</option>

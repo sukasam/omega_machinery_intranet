@@ -162,9 +162,9 @@
 	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tb2">
       <tr>
         <td width="53%"><strong>สถานที่จะไปติดตั้ง : </strong>'.$_POST['cus_location'].'<br /><br />
+			<strong>เลขที่ FO ติดตั้งใหม่ : </strong> '.$_POST['loc_clean'].'<br /><br />
             <strong>เครื่องล้างจาน / ยี่ห้อ : </strong> '.$_POST['loc_pro'].'<br /><br />
             <strong>รุ่นเครื่อง : </strong> '.$_POST['loc_seal'].' <strong> S/N : </strong> '.$_POST['loc_sn'].'<br /><br />
-            <strong>ชื่อร้านค้า/ชื่อเรียก : </strong> '.$_POST['loc_clean'].'<br /><br />
             <strong>ช่างบริการประจำ : </strong> '.$tecinfos['group_name'].'&nbsp;&nbsp;&nbsp;<strong> เบอร์โทร : </strong> '.$tecinfos['group_tel'].'<br /><br />
 			<strong>สถานะเครื่อง : </strong> '.$status_type.' &nbsp;&nbsp;<strong>สต็อกเครื่อง : </strong> '.$sr_stock.' 
 			</td>
