@@ -432,23 +432,18 @@ function check(frm){
             	<select name="status_type" id="status_type">
                 	<!-- <option value="">กรุณาเลือก</option> -->
 					<option value="1" <?php   if($status_type === '1'){echo 'selected';}?>><?php   echo 'พร้อมใช้';?></option>
+					<option value="5" <?php   if($status_type === '5'){echo 'selected';}?>><?php   echo 'พร้อมใช้ / จองแล้ว';?></option>
 					<option value="2" <?php   if($status_type === '2'){echo 'selected';}?>><?php   echo 'รอล้าง/ทำความสะอาด';?></option>
 					<option value="3" <?php   if($status_type === '3'){echo 'selected';}?>><?php   echo 'ซ่อมหนัก (รอตัดซาก)';?></option>
 					<option value="4" <?php   if($status_type === '4'){echo 'selected';}?>><?php   echo 'นำไปติดตั้งแล้ว';?></option>
                 </select>
-				<!-- <strong>ประเภทบริการลูกค้า :</strong> 
-            	<select name="sr_ctype" id="sr_ctype">
+				&nbsp;&nbsp;<strong>สต็อกเครื่อง :</strong> 
+            	<select name="sr_stock" id="sr_stock">
                 	<option value="">กรุณาเลือก</option>
-                	<?php   
-						$qu_cusftype = @mysqli_query($conn,"SELECT * FROM s_group_service ORDER BY group_name ASC");
-						while($row_cusftype = @mysqli_fetch_array($qu_cusftype)){
-							?>
-							<option value="<?php   echo $row_cusftype['group_id'];?>" <?php   if($row_cusftype['group_id'] == $sr_ctype){echo 'selected';}?>><?php   echo $row_cusftype['group_name'];?></option>
-							<?php  
-						}
-					?>
+                	<option value="1" <?php   if($sr_stock === '1'){echo 'selected';}?>><?php   echo 'ออฟฟิต สุขาภิบาล5';?></option>
+					<option value="2" <?php   if($sr_stock === '2'){echo 'selected';}?>><?php   echo 'โรงงานลาดหลุมแก้ว';?></option>
                 </select>
-				<strong>ประเภทลูกค้า :</strong>
+				<!--<strong>ประเภทลูกค้า :</strong>
             	<select name="sr_ctype2" id="sr_ctype2">
             	  <option value="">กรุณาเลือก</option>
             	  <?php   

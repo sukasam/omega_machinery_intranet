@@ -16,12 +16,22 @@
 		$type_service = 'เครื่องล้างจาน';
 	}
 
+	if($_POST['sr_stock'] === '1'){
+		$sr_stock = 'ออฟฟิต สุขาภิบาล5';
+	}else if($_POST['sr_stock'] === '2'){
+		$sr_stock = 'โรงงานลาดหลุมแก้ว';
+	}else{
+		$sr_stock = '-';
+	}
+
 	if($_POST['status_type'] === '2'){
 		$status_type = 'รอล้าง/ทำความสะอาด';
 	}else if($_POST['status_type'] === '3'){
 		$status_type = 'ซ่อมหนัก (รอตัดซาก)';
 	}else if($_POST['status_type'] === '4'){
 		$status_type = 'นำไปติดตั้งแล้ว';
+	}else if($_POST['status_type'] === '5'){
+		$status_type = 'พร้อมใช้ / จองแล้ว';
 	}else{
 		$status_type = 'พร้อมใช้';
 	}
@@ -156,7 +166,7 @@
             <strong>รุ่นเครื่อง : </strong> '.$_POST['loc_seal'].' <strong> S/N : </strong> '.$_POST['loc_sn'].'<br /><br />
             <strong>ชื่อร้านค้า/ชื่อเรียก : </strong> '.$_POST['loc_clean'].'<br /><br />
             <strong>ช่างบริการประจำ : </strong> '.$tecinfos['group_name'].'&nbsp;&nbsp;&nbsp;<strong> เบอร์โทร : </strong> '.$tecinfos['group_tel'].'<br /><br />
-			<strong>สถานะเครื่อง : </strong> '.$status_type.'
+			<strong>สถานะเครื่อง : </strong> '.$status_type.' &nbsp;&nbsp;<strong>สต็อกเครื่อง : </strong> '.$sr_stock.' 
 			</td>
         <td width="47%" valign="top">
 		<table width="100%" border="0" cellspacing="0" cellpadding="0">

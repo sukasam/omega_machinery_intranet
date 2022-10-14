@@ -30,6 +30,8 @@
 
 	$status_type = $_REQUEST['status_type'];
 
+	$sr_stock = $_REQUEST['sr_stock'];
+
 	$type_service = $_REQUEST['type_service'];
 
 	$loc_seal = $_REQUEST['loc_seal'];
@@ -118,6 +120,12 @@
 
 	}
 
+	if($sr_stock != ""){
+
+		$condition .= " AND sv.sr_stock = '".$sr_stock."'";
+
+	}
+
 	if($type_service != ""){
 
 		$condition .= " AND sv.type_service = '".$type_service."'";
@@ -196,7 +204,7 @@
 รายงานซ่อมเครื่องเก่า<br />
 ประเภทใบบริการ  : <?php if($type_service == 2){echo 'เครื่องล้างแก้ว';}else if($type_service == 3){echo 'เครื่องผลิตน้ำแข็ง';}else if($type_service == 1){echo 'เครื่องล้างจาน';}else{echo 'ทั้งหมด';}?></th>
 
-	    <th colspan="7" style="text-align:right;font-size:11px;"><?php  echo $dateshow;?></th>
+	    <th colspan="8" style="text-align:right;font-size:11px;"><?php  echo $dateshow;?></th>
 
       </tr>
 
@@ -235,6 +243,8 @@
         <?php  if($_REQUEST['sh8'] == 1){?><th width="5%"><strong>รวมมูลค่า</strong></th><?php  }?>
 
 		<th width="5%">สถานะเครื่อง</th>
+
+		<th width="5%">สต็อกเครื่อง</th>
 
         <?php  if($_REQUEST['sh6'] == 1){?><th width="5%"><strong>วันที่เบิก</strong></th><?php  }?>
 
@@ -287,6 +297,7 @@
 
 			if($row_fr['status_type'] === '2'){
 			}else if($row_fr['status_type'] === '3'){
+			}else if($row_fr['status_type'] === '5'){
 			}else if($row_fr['status_type'] === '4'){
 				$status_type_color = 'color:#d767db;';
 			}else{
@@ -383,8 +394,22 @@
 				echo $status_type = 'ซ่อมหนัก (รอตัดซาก)';
 			}else if($row_fr['status_type'] === '4'){
 				echo $status_type = 'นำไปติดตั้งแล้ว';
+			}else if($row_fr['status_type'] === '5'){
+				echo $status_type = 'พร้อมใช้ / จองแล้ว';
 			}else{
 				echo $status_type = 'พร้อมใช้';
+			}
+			 ?> 
+			 </td>
+
+			 <td>
+			 <?php 
+			 if($row_fr['sr_stock'] === '1'){
+				echo $sr_stock = 'ออฟฟิต สุขาภิบาล5';
+			}else if($row_fr['sr_stock'] === '2'){
+				echo $sr_stock = 'โรงงานลาดหลุมแก้ว	';
+			}else{
+				echo $sr_stock = '-';
 			}
 			 ?> 
 			 </td>
@@ -411,19 +436,19 @@
 
       <tr>
 
-			  <td colspan="12" style="text-align:right;"> <strong>จำนวน<?php  if($_POST['sr_stock'] == "s_service_report6"){echo 'ใบซ่อมเครื่อเก่า';}else{echo "ใบซ่อมเครื่อเก่า";}?>ทั้งหมด&nbsp;&nbsp;<?php  echo $sum;?>&nbsp;&nbsp;รายการ&nbsp;&nbsp;</strong></td>
+			  <td colspan="13" style="text-align:right;"> <strong>จำนวน<?php  if($_POST['sr_stock'] == "s_service_report6"){echo 'ใบซ่อมเครื่อเก่า';}else{echo "ใบซ่อมเครื่อเก่า";}?>ทั้งหมด&nbsp;&nbsp;<?php  echo $sum;?>&nbsp;&nbsp;รายการ&nbsp;&nbsp;</strong></td>
 
 	  </tr>
 
       <tr>
 
-			  <td colspan="12" style="text-align:right;"> <strong>รวมอะไหล่ที่เบิก&nbsp;&nbsp;<?php  echo $totals;?>&nbsp;&nbsp;รายการ&nbsp;&nbsp;</strong></td>
+			  <td colspan="13" style="text-align:right;"> <strong>รวมอะไหล่ที่เบิก&nbsp;&nbsp;<?php  echo $totals;?>&nbsp;&nbsp;รายการ&nbsp;&nbsp;</strong></td>
 
 	  </tr>
 
 	  <tr>
 
-			  <td colspan="12" style="text-align:right;"> <strong>คิดเป็นมูลค่ารวมทั้งสิ้น&nbsp;&nbsp;<?php  echo number_format($sumTotalAll+$moneyTCTota,2);?>&nbsp;&nbsp;บาท&nbsp;&nbsp;</strong></td>
+			  <td colspan="13" style="text-align:right;"> <strong>คิดเป็นมูลค่ารวมทั้งสิ้น&nbsp;&nbsp;<?php  echo number_format($sumTotalAll+$moneyTCTota,2);?>&nbsp;&nbsp;บาท&nbsp;&nbsp;</strong></td>
 
 	  </tr>
 

@@ -160,20 +160,21 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
     <TABLE>
       <THEAD>
         <TR>
-          <TH width="5%"><INPUT class=check-all type=checkbox name="ca" value="true" onClick="chkAll(this.form, 'del[]', this.checked)"></TH>
-          <TH width="5%" <?php     Show_Sort_bg ("user_id", $orderby) ?>> <?php    
+          <!-- <TH width="5%"><INPUT class=check-all type=checkbox name="ca" value="true" onClick="chkAll(this.form, 'del[]', this.checked)"></TH> -->
+          <!-- <TH width="5%" <?php     Show_Sort_bg ("user_id", $orderby) ?>> <?php    
 		$a_not_exists = array('orderby','sortby');
 		$param2 = get_param($a_param,$a_not_exists);
 	?>
             <?php      Show_Sort_new ("user_id", "ลำดับ.", $orderby, $sortby,$page,$param2);?>
-            &nbsp;</TH>
+            &nbsp;</TH> -->
           <TH width="10%"><div align="center"><a>RP ID</a></div></TH>
           <TH width="15%"><a>รุ่นเครื่อง / SN</a></TH>
-          <TH width="20%"><a>ชื่อลูกค้า / ถอดมาจาก</a></TH>
-          <TH width="20%"><a>สถานที่จะไปติดตั้ง</a></TH>
+          <TH width="17%"><a>ชื่อลูกค้า / ถอดมาจาก</a></TH>
+          <TH width="17%"><a>สถานที่จะไปติดตั้ง</a></TH>
           <!-- <TH width="7%"><div align="center"><a></a></div></TH> -->
           <!-- <TH width="15%"><div align="left"><a>ช่างเบิก</a></div></TH> -->
-          <TH width="15%"><div align="left"><a>สถานะเครื่อง</a></div></TH>
+          <TH width="13%"><div align="left"><a>สถานะเครื่อง</a></div></TH>
+          <TH width="13%"><div align="left"><a>สต็อกเครื่อง</a></div></TH>
           <TH width="10%"><div align="center"><a>การยืนยัน</a></div></TH>
           <TH width="10%"><div align="center"><a>จ่ายอะไหล่</a></div></TH>
           <TH width="5%"><div align="center"><a>Open / Close</a></div></TH>
@@ -235,15 +236,26 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
           }else if($rec['status_type'] === '4'){
             $status_type = 'นำไปติดตั้งแล้ว';
             $status_type_color = 'color:#d767db;';
+          }else if($rec['status_type'] === '5'){
+            $status_type = 'พร้อมใช้ / จองแล้ว';
           }else{
             $status_type = 'พร้อมใช้';
             $status_type_color = 'color:blue;';
           }
 
+          $sr_stock = '';
+          if($rec['sr_stock'] === '1'){
+            $sr_stock = 'ออฟฟิต สุขาภิบาล5';
+          }else if($rec['sr_stock'] === '2'){
+            $sr_stock = 'โรงงานลาดหลุมแก้ว';
+          }else{
+            $sr_stock = '-';
+          }
+
 				   ?>
         <TR style="<?php echo $status_type_color;?>">
-          <TD style="vertical-align:middle;"><INPUT type=checkbox name="del[]" value="<?php     echo $rec[$PK_field]; ?>" ></TD>
-          <TD style="vertical-align:middle;"><span class="text"><?php     echo sprintf("%04d",$counter); ?></span></TD>
+          <!-- <TD style="vertical-align:middle;"><INPUT type=checkbox name="del[]" value="<?php     echo $rec[$PK_field]; ?>" ></TD> -->
+          <!-- <TD style="vertical-align:middle;"><span class="text"><?php     echo sprintf("%04d",$counter); ?></span></TD> -->
           <TD style="vertical-align:middle;"><?php     $chaf = preg_replace("/\//","-",$rec["sv_id"]); ?><div align="center"><span class="text"><a style="<?php echo $status_type_color;?>" href="../../upload/service_report_open/<?php     echo $chaf;?>.pdf" target="_blank" style="color: #0054ff;"><?php     echo $rec["sv_id"] ; ?></a></span></div></TD>
           <TD style="vertical-align:middle;"><strong style="<?php echo $status_type_color;?>">รุ่น: </strong><span class="text"><?php echo $rec["loc_seal"]; ?></span><br>
           <strong style="<?php echo $status_type_color;?>">S/N: </strong><?php echo $rec["loc_sn"]; ?>
@@ -256,6 +268,11 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
           <TD style="vertical-align:middle;">
           <?php 
           echo $status_type;
+          ?>
+        </TD>
+        <TD style="vertical-align:middle;">
+          <?php 
+          echo $sr_stock;
           ?>
         </TD>
           <TD style="vertical-align:middle"><?php     if($rec["approve"] == 1){?>
@@ -290,7 +307,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
       </TBODY>
     </TABLE>
     <br><br>
-    <DIV class="bulk-actions align-left">
+    <DIV class="bulk-actions align-left" style="display:none;">
             <SELECT name="choose_action" id="choose_action">
               <OPTION selected value="">กรุณาเลือก...</OPTION>
               <OPTION value="del">ลบ</OPTION>

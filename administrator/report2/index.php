@@ -5430,6 +5430,20 @@ if ($_GET["action"] == "chksum") {
 
                               <tr>
 
+                              <td width="10%" nowrap class="name">สต็อกเครื่อง</td>
+
+                              <td width="90%">
+                              <select name="sr_stock" id="sr_stock">
+                                <option value="">กรุณาเลือก</option>
+                                <option value="1"><?php   echo 'ออฟฟิต สุขาภิบาล5';?></option>
+                                <option value="2"><?php   echo 'โรงงานลาดหลุมแก้ว';?></option>
+                                    </select>
+                              </td>
+
+                              </tr>
+
+                              <tr>
+
                               <td width="10%" nowrap class="name">ตามวันที่ซ่อมเสร็จ</td>
 
                               <td width="90%"><input type="text" name="sr_stime" readonly value="" class="inpfoder" />
@@ -5538,7 +5552,7 @@ if ($_GET["action"] == "chksum") {
 
                                 </tr>
 
-                                <tr>
+                                <!-- <tr>
 
                                   <td>
 
@@ -5546,7 +5560,7 @@ if ($_GET["action"] == "chksum") {
 
                                   </td>
 
-                                </tr>
+                                </tr> -->
 
                               </table>
                             </td>
