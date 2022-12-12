@@ -100,11 +100,11 @@ function submitForm() {
           <tr>
             <td><table class="formFields" cellspacing="0" width="100%">
               <tr >
-                <td nowrap class="name">รหัสรายการช่าง</td>
+                <td nowrap class="name">รหัสช่าง</td>
                 <td><input name="group_cus_id" type="text" id="group_cus_id"  value="<?php  echo $group_cus_id; ?>" size="60"></td>
               </tr>
               <tr >
-                <td nowrap class="name">ชื่่อรายการช่าง</td>
+                <td nowrap class="name">ชื่อช่าง</td>
                 <td><input name="group_name" type="text" id="group_name"  value="<?php  echo $group_name; ?>" size="60"></td>
               </tr>
                <tr >
@@ -127,7 +127,16 @@ function submitForm() {
 				</select>
             	 </td>
               </tr>
-             
+			  <tr >
+                <td nowrap class="name">ผู้จ่ายอ่ะไหล่</td>
+                <td>
+			 	 	<select name="user_service" id="user_service" class="inputselect" style="width:50%;">
+			 	 		<option value="0" <?php if($user_service === '0'){echo 'selected';}?>>No</option>
+					    <option value="1" <?php if($user_service === '1'){echo 'selected';}?>>Yes</option>
+					</select>
+            	 </td>
+              </tr>
+			  <tr><td></td></tr>
           </table></td>
           </tr>
         </table>

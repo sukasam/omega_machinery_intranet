@@ -314,7 +314,7 @@
 
               <?php  if($_REQUEST['sh1'] == 1){?><td><strong>ชื่อร้าน: </strong><?php  echo $row_fr['cus_name'];?><br />
 			<strong>ถอดจาก: </strong><?php  echo $row_fr['takeout'];?><br>
-			<strong>สถานที่จะไปติดตั้ง: </strong><?php echo $row_fr['loc_address']?></td><?php  }?>
+			<strong>สถานที่จะไปติดตั้ง: </strong><?php echo $row_fr['cus_location']?></td><?php  }?>
 
               <?php  /*if($_REQUEST['sh2'] == 1){?><td><?php  echo $row_fr['cus_location'];?><br />
 

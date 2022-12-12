@@ -22,10 +22,52 @@
 		
 		if ($_POST["mode"] == "add") { 
 			include "../include/m_add.php";
+
+			if ($_FILES['group_imgNew']['name'] != "") { 
+				$mname="";
+				$mname=gen_random_num(5);
+				$a_size = array('100');	
+				$filename = "";
+				foreach($a_size as $key => $value) {
+					$path = "../../upload/sparpart/";
+					$quality = 80;
+					if($filename == "")
+						$name_data=explode(".",$_FILES['group_imgNew']['name']);
+						$type=$name_data[1];
+						$filename =$mname.".".$type;
+						list($width, $height) = getimagesize($_FILES['group_imgNew']['name']);
+						//$sizes = $value;
+						uploadfile($path,$filename,$_FILES['group_imgNew']['tmp_name'],$width, $quality);
+				} // end foreach				
+					$sql = "update $tbl_name set group_img  = '".$filename."' where $PK_field = '$id' ";
+					@mysqli_query($conn,$sql);				
+				} // end if ($_FILES[group_img][name] != "")	
+
 			header ("location:index.php?" . $param); 
 		}
 		if ($_POST["mode"] == "update" ) { 
 			include ("../include/m_update.php");
+
+			if ($_FILES['group_imgNew']['name'] != "") { 
+				$mname="";
+				$mname=gen_random_num(5);
+				$a_size = array('100');				
+				$filename = "";
+				foreach($a_size as $key => $value) {
+					$path = "../../upload/sparpart/";
+					@unlink($path.$_POST['group_img']);
+					$quality = 80;
+					if($filename == "")
+						$name_data=explode(".",$_FILES['group_imgNew']['name']);
+						$type=$name_data[1];
+						$filename =$mname.".".$type;
+						list($width, $height) = getimagesize($_FILES['group_imgNew']['name']);
+						uploadfile($path,$filename,$_FILES['group_imgNew']['tmp_name'],$width, $quality);
+				} // end foreach				
+				$sql = "update $tbl_name set group_img = '".$filename."' where $PK_field = '".$_POST[$PK_field]."' ";
+				@mysqli_query($conn,$sql);				
+			} // end if ($_FILES[group_img][name] != "")
+
 			header ("location:index.php?" . $param); 
 		}
 	}
@@ -108,6 +150,12 @@ $( document ).ready(function() {
 							$("#group_type").val(obj.group_type);
 							$("#group_unit_price").val(obj.group_unit_price);
 							$("#group_price").val(obj.group_price);
+							$("#group_img").val(obj.group_img);
+
+							if(obj.group_img != ''){
+								$("#group_imgjs").html('<img src="../../upload/sparpart/'+obj.group_img+'" width="155">');
+							}
+
 							//$("#typespar").val(obj.typespar);
 							
 							if(obj.typespar == 2){
@@ -185,6 +233,10 @@ $( document ).ready(function() {
 								$("#group_type").val(obj.group_type);
 								$("#group_unit_price").val(obj.group_unit_price);
 								$("#group_price").val(obj.group_price);
+								$("#group_img").val(obj.group_img);
+								if(obj.group_img != ''){
+									$("#group_imgjs").html('<img src="../../upload/sparpart/'+obj.group_img+'" width="155">');
+								}
 								//$("#typespar").val(obj.typespar);
 								
 								if(obj.typespar == 2){
@@ -317,18 +369,28 @@ function submitForm(){
               
               <tr>
                 <td nowrap class="name">ราคาขาย</td>
-                <td><input name="group_price" type="text" id="group_price"  value="<?php     echo  number_format($group_price); ?>" size="60"></td>
+                <td><input name="group_price" type="text" id="group_price"  value="<?php  echo  number_format($group_price); ?>" size="60"></td>
               </tr>
               
               <tr style="display: none;">
                 <td nowrap class="name">ประเภทอะไหล่</td>
                 <td><input type="radio" name="typespar" value="1" id="typespar1">อะไหล่สินค้า&nbsp;&nbsp;&nbsp;<input type="radio" name="typespar" value="2" id="typespar2">สินค้าอื่นๆ</td>
               </tr>
+
+			  <tr>
+                <td nowrap class="name">รูปภาพ<br>
+                  <small>Size 155px x 155px</small></td>
+                <td><input name="group_imgNew" type="file" id="group_imgNew" value="">
+                  <br>
+                  <div id="group_imgjs"></div>
+                  <input name="group_img" type="hidden" id="group_img" value="">
+                  </td>
+              </tr>
               
 
-              <tr>
+              <!-- <tr>
               	<td></td><td></td>
-              </tr>
+              </tr> -->
 
               
               <?php     if ($_GET["mode"] == "add") { ?>

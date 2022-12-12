@@ -501,7 +501,7 @@ function check(frm){
        <!-- <td width="9%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;text-align:center;"><strong>จำนวนคงเหลือ</strong></td>-->
         </tr>
         <?php   
-		 $qu = @mysqli_query($conn,"SELECT * FROM s_service_report3sub WHERE sr_id = '".$sr_id."' ORDER BY r_id ASC");
+		 $qu = @mysqli_query($conn,"SELECT * FROM s_service_report3sub WHERE sr_id = '".$sr_id."' AND sr_id != '0'  ORDER BY r_id ASC");
 		 while($row_sub = @mysqli_fetch_array($qu)){
 			 $brid[] = $row_sub['r_id'];
 			 $bcodes[] = $row_sub['codes'];
@@ -585,7 +585,7 @@ function check(frm){
                 <td style="border-bottom:1px solid #000000;padding-bottom:10px;font-size:12px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>
 				  <select name="cs_sell" id="cs_sell" class="inputselect" style="width:50%;">
                     <?php   
-						$qu_custec = @mysqli_query($conn,"SELECT * FROM s_group_technician WHERE 1 AND (group_id = 12 OR group_id = 30 OR group_id = 28)  ORDER BY group_name ASC");
+						$qu_custec = @mysqli_query($conn,"SELECT * FROM s_group_technician WHERE 1 AND user_service='1'  ORDER BY group_name ASC");
 						while($row_custec = @mysqli_fetch_array($qu_custec)){
 							?>
                     <option value="<?php   echo $row_custec['group_id'];?>" <?php   if($row_custec['group_id'] == $cs_sell){echo 'selected';}?>><?php   echo $row_custec['group_name']. " (Tel : ".$row_custec['group_tel'].")";?></option>

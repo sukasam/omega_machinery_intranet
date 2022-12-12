@@ -161,12 +161,12 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
       <THEAD>
         <TR>
           <!-- <TH width="5%"><INPUT class=check-all type=checkbox name="ca" value="true" onClick="chkAll(this.form, 'del[]', this.checked)"></TH> -->
-          <!-- <TH width="5%" <?php     Show_Sort_bg ("user_id", $orderby) ?>> <?php    
+          <TH width="5%" <?php     Show_Sort_bg ("user_id", $orderby) ?>> <?php    
 		$a_not_exists = array('orderby','sortby');
 		$param2 = get_param($a_param,$a_not_exists);
 	?>
             <?php      Show_Sort_new ("user_id", "ลำดับ.", $orderby, $sortby,$page,$param2);?>
-            &nbsp;</TH> -->
+            &nbsp;</TH>
           <TH width="10%"><div align="center"><a>RP ID</a></div></TH>
           <TH width="15%"><a>รุ่นเครื่อง / SN</a></TH>
           <TH width="17%"><a>ชื่อลูกค้า / ถอดมาจาก</a></TH>
@@ -255,7 +255,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 				   ?>
         <TR style="<?php echo $status_type_color;?>">
           <!-- <TD style="vertical-align:middle;"><INPUT type=checkbox name="del[]" value="<?php     echo $rec[$PK_field]; ?>" ></TD> -->
-          <!-- <TD style="vertical-align:middle;"><span class="text"><?php     echo sprintf("%04d",$counter); ?></span></TD> -->
+          <TD style="vertical-align:middle;"><span class="text"><?php     echo sprintf("%04d",$counter); ?></span></TD>
           <TD style="vertical-align:middle;"><?php     $chaf = preg_replace("/\//","-",$rec["sv_id"]); ?><div align="center"><span class="text"><a style="<?php echo $status_type_color;?>" href="../../upload/service_report_open/<?php     echo $chaf;?>.pdf" target="_blank" style="color: #0054ff;"><?php     echo $rec["sv_id"] ; ?></a></span></div></TD>
           <TD style="vertical-align:middle;"><strong style="<?php echo $status_type_color;?>">รุ่น: </strong><span class="text"><?php echo $rec["loc_seal"]; ?></span><br>
           <strong style="<?php echo $status_type_color;?>">S/N: </strong><?php echo $rec["loc_sn"]; ?>

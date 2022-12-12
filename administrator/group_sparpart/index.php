@@ -104,11 +104,12 @@ function check_select(frm){
         <TR>
 <!--          <TH width="4%"><INPUT class=check-all type=checkbox name="ca" value="true" onClick="chkAll(this.form, 'del[]', this.checked)"></TH>-->
           <TH width="5%"><a>ลำดับ</a></TH>
-          <TH width="10%"><a>รหัสอะไหล่</a></TH>
+          <TH width="6%"><a>รหัสอะไหล่</a></TH>
+          <TH width="15%"><a>รูปอะไหล่</a></TH>
           <TH width="20%"><a>ชื่ออะไหล่</a></TH>
-          <TH width="10%"><a>สถานที่จัดเก็บ</a></TH>
+          <TH width="6%"><a>ชนิดสินค้า</a></TH>
           <TH width="10%"><a>คงเหลือ</a></TH>
-          <TH width="10%"><a>ชนิดสินค้า</a></TH>
+          <TH width="6%"><a>สถานที่จัดเก็บ</a></TH>
           <TH width="10%"><a>ราคาต้นทุนสินค้า</a></TH>
           <TH width="10%"><a>รวมราคาต้นทุนสินค้า</a></TH>
           <TH width="10%"><a>ราคาขาย</a></TH>
@@ -150,10 +151,11 @@ function check_select(frm){
 <!--          <TD><INPUT type=checkbox name="del[]" value="<?php     echo $rec[$PK_field]; ?>" ></TD>-->
           <TD><span class="text"><?php     echo sprintf("%04d",$counter); ?></span></TD>
           <TD style="text-align: center;"><span class="text"><?php     echo $rec["group_spar_id"] ; ?></span></TD>
+          <TD style="text-align: center;vertical-align: middle;"><span class="text"><?php if($rec['group_img'] != ''){echo '<a href="../../upload/sparpart/'.$rec['group_img'].'" target="_blank"><img src="../../upload/sparpart/'.$rec['group_img'].'" width="155"></a>';}?></span></TD>
           <TD><span class="text"><strong>(ไทย) :</strong> <?php     echo $rec["group_name"] ; ?><br><strong>(อังกฤษ) : </strong><?php     echo $rec["group_name_en"] ; ?></span></TD>
-          <TD><span class="text"><?php     echo $rec["group_location"] ; ?></span></TD>
-          <TD style="text-align: center;"><span class="text"><?php     echo number_format($rec["group_stock"]); ?></span></TD>
           <TD style="text-align: center;"><span class="text"><?php     echo $rec["group_type"] ; ?></span></TD>
+          <TD style="text-align: center;"><span class="text"><?php     echo number_format($rec["group_stock"]); ?></span></TD>
+          <TD><span class="text"><?php     echo $rec["group_location"] ; ?></span></TD>
           <TD style="text-align: right;"><span class="text"><?php     echo number_format($rec["group_unit_price"],2); ?></span></TD>
           <TD style="text-align: right;"><span class="text"><?php     echo number_format($rec["group_stock"]*$rec["group_unit_price"],2) ; ?></span></TD>
           <TD style="text-align: right;"><span class="text"><?php     echo number_format($rec["group_price"],2); ?></span></TD>
