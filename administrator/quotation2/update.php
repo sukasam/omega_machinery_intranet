@@ -223,6 +223,68 @@ $sumtotalsSet = $sumpriceSet + $sumpricevatSet;
 				$id = mysqli_insert_id($conn);
 			
 				//require_once("genpdf.php");
+        if ($_FILES['pro_img1s']['name'] != "") { 
+          $mname="";
+          $mname=gen_random_num(5);
+          $a_size = array('250');	
+          $filename = "";
+          foreach($a_size as $key => $value) {
+            $path = "../../upload/quotation/";
+            $quality = 80;
+            if($filename == "")
+              $name_data=explode(".",$_FILES['pro_img1s']['name']);
+              $type=$name_data[1];
+              $filename =$mname.".".$type;
+              list($width, $height) = getimagesize($_FILES['pro_img1s']['name']);
+              //$sizes = $value;
+              uploadfile($path,$filename,$_FILES['pro_img1s']['tmp_name'],$width, $quality);
+          } // end foreach				
+            $sql = "update $tbl_name set pro_img1  = '".$filename."' where $PK_field = '".$id."' ";
+            @mysqli_query($conn,$sql);	
+            $pro_img1 = $filename;
+          } // end if ($_FILES[ufimages][name] != "")	
+
+          if ($_FILES['pro_img2s']['name'] != "") { 
+            $mname="";
+            $mname=gen_random_num(5);
+            $a_size = array('250');	
+            $filename = "";
+            foreach($a_size as $key => $value) {
+              $path = "../../upload/quotation/";
+              $quality = 80;
+              if($filename == "")
+                $name_data=explode(".",$_FILES['pro_img2s']['name']);
+                $type=$name_data[1];
+                $filename =$mname.".".$type;
+                list($width, $height) = getimagesize($_FILES['pro_img2s']['name']);
+                //$sizes = $value;
+                uploadfile($path,$filename,$_FILES['pro_img2s']['tmp_name'],$width, $quality);
+            } // end foreach				
+              $sql = "update $tbl_name set pro_img2  = '".$filename."' where $PK_field = '".$id."' ";
+              @mysqli_query($conn,$sql);			
+              $pro_img2 = $filename;	
+            } // end if ($_FILES[ufimages][name] != "")	
+
+            if ($_FILES['pro_img3s']['name'] != "") { 
+              $mname="";
+              $mname=gen_random_num(5);
+              $a_size = array('250');	
+              $filename = "";
+              foreach($a_size as $key => $value) {
+                $path = "../../upload/quotation/";
+                $quality = 80;
+                if($filename == "")
+                  $name_data=explode(".",$_FILES['pro_img3s']['name']);
+                  $type=$name_data[1];
+                  $filename =$mname.".".$type;
+                  list($width, $height) = getimagesize($_FILES['pro_img3s']['name']);
+                  //$sizes = $value;
+                  uploadfile($path,$filename,$_FILES['pro_img3s']['tmp_name'],$width, $quality);
+              } // end foreach				
+                $sql = "update $tbl_name set pro_img3  = '".$filename."' where $PK_field = '".$id."' ";
+                @mysqli_query($conn,$sql);				
+                $pro_img3 = $filename;
+              } // end if ($_FILES[ufimages][name] != "")	
 
 				include_once("../mpdf54/mpdf.php");
 				include_once("form_quotation.php");
@@ -248,6 +310,79 @@ $sumtotalsSet = $sumpriceSet + $sumpricevatSet;
 			@mysqli_query($conn,"UPDATE `s_quotation2` SET `process` = '0' WHERE `s_quotation2`.`qu_id` = ".$id.";");
 			@mysqli_query($conn,"DELETE FROM `s_approve` WHERE tag_db = '".$tbl_name."' AND t_id = '".$id."'");
 			
+
+      if ($_FILES['pro_img1s']['name'] != "") { 
+        $mname="";
+        $mname=gen_random_num(5);
+        $a_size = array('250');				
+        $filename = "";
+        foreach($a_size as $key => $value) {
+          $path = "../../upload/quotation/";
+          @unlink($path.$_POST['pro_img1']);
+          $quality = 80;
+          if($filename == "")
+            $name_data=explode(".",$_FILES['pro_img1s']['name']);
+            $type=$name_data[1];
+            $filename =$mname.".".$type;
+            list($width, $height) = getimagesize($_FILES['pro_img1s']['name']);
+            uploadfile($path,$filename,$_FILES['pro_img1s']['tmp_name'],$width, $quality);
+        } // end foreach				
+        $sql = "update $tbl_name set pro_img1 = '".$filename."' where $PK_field = '".$_POST[$PK_field]."' ";
+        @mysqli_query($conn,$sql);		
+        $pro_img1 = $filename;		
+      } // end if ($_FILES[ufimages][name] != "")
+      else{
+        $pro_img1 = $_POST['pro_img1'];
+      }
+
+      if ($_FILES['pro_img2s']['name'] != "") { 
+        $mname="";
+        $mname=gen_random_num(5);
+        $a_size = array('250');				
+        $filename = "";
+        foreach($a_size as $key => $value) {
+          $path = "../../upload/quotation/";
+          @unlink($path.$_POST['pro_img2']);
+          $quality = 80;
+          if($filename == "")
+            $name_data=explode(".",$_FILES['pro_img2s']['name']);
+            $type=$name_data[1];
+            $filename =$mname.".".$type;
+            list($width, $height) = getimagesize($_FILES['pro_img2s']['name']);
+            uploadfile($path,$filename,$_FILES['pro_img2s']['tmp_name'],$width, $quality);
+        } // end foreach				
+        $sql = "update $tbl_name set pro_img2 = '".$filename."' where $PK_field = '".$_POST[$PK_field]."' ";
+        @mysqli_query($conn,$sql);	
+        $pro_img2 = $filename;			
+      } // end if ($_FILES[ufimages][name] != "")
+      else{
+        $pro_img2 = $_POST['pro_img2'];
+      }
+
+      if ($_FILES['pro_img3s']['name'] != "") { 
+        $mname="";
+        $mname=gen_random_num(5);
+        $a_size = array('250');				
+        $filename = "";
+        foreach($a_size as $key => $value) {
+          $path = "../../upload/quotation/";
+          @unlink($path.$_POST['pro_img3']);
+          $quality = 80;
+          if($filename == "")
+            $name_data=explode(".",$_FILES['pro_img3s']['name']);
+            $type=$name_data[1];
+            $filename =$mname.".".$type;
+            list($width, $height) = getimagesize($_FILES['pro_img3s']['name']);
+            uploadfile($path,$filename,$_FILES['pro_img3s']['tmp_name'],$width, $quality);
+        } // end foreach				
+        $sql = "update $tbl_name set pro_img3 = '".$filename."' where $PK_field = '".$_POST[$PK_field]."' ";
+        @mysqli_query($conn,$sql);			
+        $pro_img3 = $filename;	
+      } // end if ($_FILES[ufimages][name] != "")
+      else{
+        $pro_img3 = $_POST['pro_img3'];
+      }
+      
         include_once("../mpdf54/mpdf.php");
 				include_once("form_quotation.php");
 				$mpdf=new mPDF('UTF-8');
@@ -567,7 +702,9 @@ function submitForm() {
 
           </tr>
           <tr>
-            <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;"><strong>ที่อยู่ :</strong> <input type="text" name="cd_address" value="<?php  echo $cd_address;?>" id="cd_address" class="inpfoder" style="width:80%;"></td>
+            <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;">
+            <strong>ชื่อร้าน :</strong> <input type="text" name="customer_name" value="<?php  echo $customer_name;?>" id="customer_name" class="inpfoder" style="width:70%;">
+            </td>
             <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;">
             <strong>เลขที่ใบเสนอราคา:</strong> 
             <input type="text" value="<?php  if($fs_id == ""){echo check_quotation2($conn);}else{echo $fs_id;};?>" class="inpfoder" readonly style="border: none;"> 
@@ -575,7 +712,16 @@ function submitForm() {
             </td>
           </tr>
           <tr>
-            <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;"><strong>จังหวัด :</strong>
+            <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;">
+            <strong>ที่อยู่ :</strong> <input type="text" name="cd_address" value="<?php  echo $cd_address;?>" id="cd_address" class="inpfoder" style="width:80%;">
+           	</td>
+            <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;">
+            	<strong> วันที่ :</strong> <input type="text" name="date_forder" readonly value="<?php  if($date_forder==""){echo date("d/m/Y");}else{ echo $date_forder;}?>" class="inpfoder"/><script language="JavaScript">new tcal ({'formname': 'form1','controlname': 'date_forder'});</script>
+            </td>
+          </tr>
+          <tr>
+            <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;">
+            <strong>จังหวัด :</strong>
             <select name="cd_province" id="cd_province" class="inputselect">
                 <?php
                 	$quprovince = @mysqli_query($conn,"SELECT * FROM s_province ORDER BY province_id ASC");
@@ -585,21 +731,34 @@ function submitForm() {
 					  <?php
 					}
 				?>
-            </select>
-           	</td>
-            <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;">
-            	<strong> วันที่ :</strong> <input type="text" name="date_forder" readonly value="<?php  if($date_forder==""){echo date("d/m/Y");}else{ echo $date_forder;}?>" class="inpfoder"/><script language="JavaScript">new tcal ({'formname': 'form1','controlname': 'date_forder'});</script>
-            </td>
-          </tr>
-          <tr>
-            <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;"><strong>โทรศัพท์ :</strong> <input type="text" name="cd_tel" value="<?php  echo $cd_tel;?>" id="cd_tel" class="inpfoder">
-              <strong>อีเมล์ :</strong>
-              <input type="text" name="cd_fax" value="<?php  echo $cd_fax;?>" id="cd_fax" class="inpfoder"></td>
+            </select>    
+          </td>
             <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;">
             	<strong>ชื่อผู้ติดต่อ :</strong>
               <input type="text" name="c_contact" value="<?php  echo $c_contact;?>" id="c_contact" class="inpfoder">
               <strong>เบอร์โทร :</strong>
               <input type="text" name="c_tel" value="<?php  echo $c_tel;?>" id="c_tel" class="inpfoder">
+            </td>
+          </tr>
+          <tr>
+            <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;">
+            <strong>โทรศัพท์ :</strong> <input type="text" name="cd_tel" value="<?php  echo $cd_tel;?>" id="cd_tel" class="inpfoder">
+              <strong>อีเมล์ :</strong>
+              <input type="text" name="cd_fax" value="<?php  echo $cd_fax;?>" id="cd_fax" class="inpfoder">
+             </td>
+            <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;">
+            <strong>ชื่อพนักงานขาย :</strong>
+            <select name="cs_sell2" id="cs_sell2" class="inputselect">
+            <option value="<?php echo $row_saletype['group_id']; ?>">กรุณาเลือกพนักงานขาย</option>
+                <?php
+$qusaletype = @mysqli_query($conn, "SELECT * FROM s_group_sale ORDER BY group_name ASC");
+while ($row_saletype = @mysqli_fetch_array($qusaletype)) {
+    ?>
+					  	<option value="<?php echo $row_saletype['group_id']; ?>" <?php if ($cs_sell2 == $row_saletype['group_id']) {echo 'selected';}?>><?php echo $row_saletype['group_name']." Tel : ". $row_saletype['group_tel']; ?></option>
+					  <?php
+}
+?>
+            </select>
             </td>
           </tr>
 </table>
@@ -967,12 +1126,12 @@ function submitForm() {
                 <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;"><input type="text" name="cs_pro2" value="<?php  echo $cs_pro2;?>" id="cs_pro2" class="inpfoder" style="width:90%;height:27px;"></td>
                 <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;text-align:center;"><input type="text" name="cs_amount2" value="<?php  echo $cs_amount2;?>" id="cs_amount2" class="inpfoder" style="width:90%;text-align:center;height:27px;"></td>
               </tr>
-              <tr>
+              <!--<tr>
                 <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;text-align:center;">3</td>
                 <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;"><input type="text" name="cs_pro3" value="<?php  echo $cs_pro3;?>" id="cs_pro3" class="inpfoder" style="width:90%;height:27px;"></td>
                 <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;text-align:center;"><input type="text" name="cs_amount3" value="<?php  echo $cs_amount3;?>" id="cs_amount3" class="inpfoder" style="width:90%;text-align:center;height:27px;"></td>
               </tr>
-              <!-- <tr>
+               <tr>
                 <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;text-align:center;">4</td>
                 <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;"><input type="text" name="cs_pro4" value="<?php  echo $cs_pro4;?>" id="cs_pro4" class="inpfoder" style="width:90%;height:27px;"></td>
                 <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;text-align:center;"><input type="text" name="cs_amount4" value="<?php  echo $cs_amount4;?>" id="cs_amount4" class="inpfoder" style="width:90%;text-align:center;height:27px;"></td>
@@ -986,6 +1145,50 @@ function submitForm() {
           </tr>
         </table>
   <br>
+  <br>
+  <table width="100%" cellspacing="0" cellpadding="0" style="text-align:center;">
+      <tr>
+        <td width="33%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;text-align:center;padding-top:10px;padding-bottom:10px;"><strong>รูปภาพประกอบที่ 1 (Size 250px x 150px)</strong></td>
+        <td width="33%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;text-align:center;padding-top:10px;padding-bottom:10px;"><strong>รูปภาพประกอบที่ 2 (Size 250px x 150px)</strong></td>
+        <td width="33%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;text-align:center;padding-top:10px;padding-bottom:10px;"><strong>รูปภาพประกอบที่ 3 (Size 250px x 150px)</strong></td>
+    </tr>
+    <tr>
+        <td width="33%" style="border:1px solid #000000;text-align:center;">
+        <input type="file" name="pro_img1s"> 
+        <?php 
+         if($pro_img1 != ""){
+          ?><br><br>
+           <img src="../../upload/quotation/<?php  echo $pro_img1;?>" height="150">
+          <?php
+         }
+        ?>
+        <input name="pro_img1" type="hidden" value="<?php  echo $pro_img1; ?>">
+      </td>
+        <td width="33%" style="border:1px solid #000000;text-align:center;">
+        <input type="file" name="pro_img2s">
+        <?php 
+         if($pro_img2 != ""){
+          ?><br><br>
+           <img src="../../upload/quotation/<?php  echo $pro_img2;?>" height="150">
+          <?php
+         }
+        ?>
+         <input name="pro_img2" type="hidden" value="<?php  echo $pro_img2; ?>">
+      </td>
+        <td width="33%" style="border:1px solid #000000;text-align:center;">
+        <input type="file" name="pro_img3s">
+        <?php 
+         if($pro_img1 != ""){
+          ?><br><br>
+           <img src="../../upload/quotation/<?php  echo $pro_img3;?>" height="150">
+          <?php
+         }
+        ?>
+        <input name="pro_img3" type="hidden" value="<?php  echo $pro_img3; ?>">
+      </td>
+    </tr>
+  </table>
+  <br/><br/>
 	<table width="100%" border="0" cellspacing="0" cellpadding="0" style="text-align:center;">
       <tr>
         <td width="33%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;text-align:left;padding-top:10px;padding-bottom:10px;">

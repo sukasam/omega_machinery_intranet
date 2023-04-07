@@ -49,8 +49,46 @@
 		$_POST["cprice7"] = preg_replace("/,/","",$_POST["cprice7"]);*/
 
 		
-	
+		if ($_POST["mode"] == "add") { 
+			
+		
+				$_POST['fs_id'] = get_snprojectorders($conn,$_POST['fs_id']);
+        $_POST['status_use'] = 1;
+        $_POST['approve'] = 0;
+				$_POST['approve2'] = 0;
+        $_POST['discount'] = preg_replace("/,/","",$_POST['discount']);
+				
+				include "../include/m_add.php";
+				$id = mysqli_insert_id($conn);
+			
+				for($i=0;$i<=count($_POST['cpro']);$i++){
+					if($_POST['cpro'][$i] != ""){
+						
+						
+						$_POST['cprice'][$i] = preg_replace("/,/","",$_POST['cprice'][$i]);
+						$_POST['ccost'][$i] = preg_replace("/,/","",$_POST['ccost'][$i]);
+						$_POST['cdisc'][$i] = preg_replace("/,/","",$_POST['cdisc'][$i]);
+						$_POST['ccost'][$i] = $_POST['camount'][$i] * $_POST['ccost'][$i];
+						
+						@mysqli_query($conn,"INSERT INTO `s_project_product` (`id`, `fo_id`, `ccode`, `cpro`, `cpod`, `csn`, `camount`, `cprice`, `ccost`, `cdisc`) VALUES ('NULL','".$id."', '".$_POST['ccode'][$i]."', '".$_POST['cpro'][$i]."', '".$_POST['cpod'][$i]."', '".$_POST['csn'][$i]."', '".$_POST['camount'][$i]."', '".$_POST['cprice'][$i]."', '".$_POST['ccost'][$i]."', '".$_POST['cdisc'][$i]."');");
+					}
+				}
+			
+				
+				include_once("../mpdf54/mpdf.php");
+				include_once("../project_order/form_projectorder.php");
+				$mpdf=new mPDF('UTF-8'); 
+				$mpdf->SetAutoFont();
+				$mpdf->WriteHTML($form);
+				$chaf = preg_replace("/\//","-",$_POST['fs_id']); 
+				$mpdf->Output('../../upload/project_order/'.$chaf.'.pdf','F');
+				
+			header ("location:index.php?" . $param); 
+		}
 		if ($_POST["mode"] == "update" ) { 
+
+        $_POST['discount'] = preg_replace("/,/","",$_POST['discount']);
+
 				include ("../include/m_update.php");
 				$id = $_REQUEST[$PK_field];	
 			
@@ -63,6 +101,8 @@
 						
 						$_POST['cprice'][$i] = preg_replace("/,/","",$_POST['cprice'][$i]);
 						$_POST['ccost'][$i] = preg_replace("/,/","",$_POST['ccost'][$i]);
+            $_POST['cdisc'][$i] = preg_replace("/,/","",$_POST['cdisc'][$i]);
+            
 						
 						if($_POST['ccostH'][$i] != $_POST['ccost'][$i]){
 							$_POST['ccost'][$i] = $_POST['camount'][$i] * $_POST['ccost'][$i];
@@ -73,11 +113,11 @@
 						}					
 						
 						
-						@mysqli_query($conn,"INSERT INTO `s_project_product` (`fo_id`, `ccode`, `cpro`, `cpod`, `csn`, `camount`, `cprice`, `ccost`) VALUES ('".$id."', '".$_POST['ccode'][$i]."', '".$_POST['cpro'][$i]."', '".$_POST['cpod'][$i]."', '".$_POST['csn'][$i]."', '".$_POST['camount'][$i]."', '".$_POST['cprice'][$i]."', '".$_POST['ccost'][$i]."');");
+						@mysqli_query($conn,"INSERT INTO `s_project_product` (`fo_id`, `ccode`, `cpro`, `cpod`, `csn`, `camount`, `cprice`, `ccost`, `cdisc`) VALUES ('".$id."', '".$_POST['ccode'][$i]."', '".$_POST['cpro'][$i]."', '".$_POST['cpod'][$i]."', '".$_POST['csn'][$i]."', '".$_POST['camount'][$i]."', '".$_POST['cprice'][$i]."', '".$_POST['ccost'][$i]."', '".$_POST['cdisc'][$i]."');");
 					}
 				}
 			
-				$_POST['discount'] = preg_replace("/,/","",$_POST['discount']);
+
 				
 				include_once("../mpdf54/mpdf.php");
 				include_once("../project_order/form_projectorder.php");
@@ -221,7 +261,7 @@ function submitForm() {
   
 </DIV></DIV><!-- End .content-box-header -->
 <div><center><img src="../images/waiting.gif" width="450"></center></div>
-<DIV class="content-box-content" style="display:none;">
+<DIV class=content-box-content style="display:none;">
 <DIV id=tab1 class="tab-content default-tab">
   <form action="update.php" method="post" enctype="multipart/form-data" name="form1" id="form1"  onSubmit="return check(this)">
     <div class="formArea">
@@ -419,13 +459,13 @@ Vat 7%</strong></td>
     <tr>
       <td width="3%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;text-align:center;"><strong>ลำดับ</strong></td>
       <td width="5%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;text-align:center;"><strong>Code</strong></td>
-      <td width="30%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;text-align:center;"><strong>รายการ</strong></td>
-      <td width="19%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;text-align:center;"><strong>รุ่น / แบรนด์</strong></td>
-      <td width="11%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;text-align:center;"><strong>ขนาด</strong></td>
-      <td width="10%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;text-align:center;"><strong>จำนวน</strong></td>
-      <td width="11%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;text-align:center;"><strong>ราคา / ต่อหน่วย</strong></td>
-      <td width="11%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;text-align:center;"><strong>ต้นทุนสินค้า 1/ต่อหน่วย</strong></td>
-      
+      <td width="25%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;text-align:center;"><strong>รายการ</strong></td>
+      <td width="8%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;text-align:center;"><strong>รุ่น / แบรนด์</strong></td>
+      <td width="8%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;text-align:center;"><strong>ขนาด</strong></td>
+      <td width="5%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;text-align:center;"><strong>จำนวน</strong></td>
+      <td width="8%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;text-align:center;"><strong>ต้นทุนสินค้า 1</strong></td>
+      <td width="8%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;text-align:center;"><strong>ราคา / หน่วย</strong></td>
+      <td width="8%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;text-align:center;"><strong>ส่วนลด (ราคา/หน่อย)</strong></td>
       
     </tr>
     <tbody id="exp" name="exp">
@@ -465,17 +505,21 @@ Vat 7%</strong></td>
 				<input type="hidden" name="camountH[]" value="<?php  echo $rowPro['camount'];?>">
 			  </td>
 			  <td style="border:1px solid #000000;padding:5;text-align:center;">
-				<input type="text" name="cprice[]" value="<?php  echo number_format($rowPro['cprice']);?>" id="cprice<?php  echo $rowCal;?>" class="inpfoder" style="width:100%;text-align:center;" onkeypress="return isNumberKey(event)">
-			  </td>
-			  <td style="border:1px solid #000000;padding:5;text-align:center;">
 				<input type="text" name="ccost[]" value="<?php  echo number_format($rowPro['ccost']);?>" id="ccost<?php  echo $rowCal;?>" class="inpfoder" style="width:100%;text-align:center;" onkeypress="return isNumberKey(event)">
 				<input type="hidden" name="ccostH[]" value="<?php  echo $rowPro['ccost'];?>">
+			  </td>
+        <td style="border:1px solid #000000;padding:5;text-align:center;">
+				<input type="text" name="cprice[]" value="<?php  echo number_format($rowPro['cprice']);?>" id="cprice<?php  echo $rowCal;?>" class="inpfoder" style="width:100%;text-align:center;" onkeypress="return isNumberKey(event)">
+			  </td>
+        <td style="border:1px solid #000000;padding:5;text-align:center;">
+				<input type="text" name="cdisc[]" value="<?php  echo number_format($rowPro['cdisc']);?>" id="cdisc<?php  echo $rowCal;?>" class="inpfoder" style="width:100%;text-align:center;" onkeypress="return isNumberKey(event)">
 			  </td>
 
 			</tr>
 			<?php 
 			$sumPrice = $sumPrice+($rowPro['camount']*$rowPro['cprice']);
 			$sumCost  = $sumCost +$rowPro['ccost'];
+      $sumDisc = $sumDisc+$rowPro['cdisc'];
 			$rowCal++;
 		}
 	?>
@@ -485,25 +529,26 @@ Vat 7%</strong></td>
     
     <tr>
       <td colspan="2" style="text-align:left;border:1px solid #000000;padding:5;vertical-align:middle;padding-top:15px;">
-		<div id="discount"><strong>ส่วนลด</strong>
+		   <div id="discount"><strong>ส่วนลด</strong>
               <input type="text" name="discount" value="<?php  if($discount != ""){echo $discount;}else{echo '0';}?>" id="discount" class="inpfoder" style="width:50%;">
               <br><br></div>	
       </td>
-      <td colspan="4" style="text-align: right;border: 1px solid #000000;padding: 5;vertical-align: middle;font-size: 15px;font-weight: bold;">รวมยอดขาย / ยอดต้นทุนสินค้า 1</td>
-      <td style="text-align: left;border: 1px solid #000000;padding: 5;vertical-align: middle;text-align: right;font-size: 15px;font-weight: bold;"><?php  echo number_format($sumPrice,2);?></td>
+      <td colspan="4" style="text-align: right;border: 1px solid #000000;padding: 5;vertical-align: middle;font-size: 15px;font-weight: bold;">ยอดต้นทุนสินค้า 1 / รวมยอดขาย / ส่วนลด</td>
       <td style="text-align: left;border: 1px solid #000000;padding: 5;vertical-align: middle;text-align: right;font-size: 15px;font-weight: bold;"><?php  echo number_format($sumCost,2);?></td>
+      <td style="text-align: left;border: 1px solid #000000;padding: 5;vertical-align: middle;text-align: right;font-size: 15px;font-weight: bold;"><?php  echo number_format($sumPrice,2);?></td>
+      <td style="text-align: left;border: 1px solid #000000;padding: 5;vertical-align: middle;text-align: right;font-size: 15px;font-weight: bold;"><?php  echo number_format($sumDisc,2);?></td>
     </tr>
     
     <tr>
       <td colspan="2" style="text-align:left;border:1px solid #000000;padding:5;vertical-align:middle;"></td>
-      <td colspan="4" style="text-align: right;border: 1px solid #000000;padding: 5;vertical-align: middle;font-size: 15px;font-weight: bold;">ยอดรวมกำไรขั้นต้น</td>
-      <td  style="text-align: left;border: 1px solid #000000;padding: 5;vertical-align: middle;text-align: right;font-size: 15px;font-weight: bold;">กำไร <?php  if($sumPrice > 0){echo number_format((($sumPrice-$sumCost)*(100))/$sumPrice,2);}else{echo "0.00";};?>%</td>
-      <td  style="text-align: left;border: 1px solid #000000;padding: 5;vertical-align: middle;text-align: right;font-size: 15px;font-weight: bold;"><?php  echo number_format($sumPrice-$sumCost,2);?></td>
+      <td colspan="5" style="text-align: right;border: 1px solid #000000;padding: 5;vertical-align: middle;font-size: 15px;font-weight: bold;">ยอดรวมกำไรขั้นต้น</td>
+      <td  style="text-align: left;border: 1px solid #000000;padding: 5;vertical-align: middle;text-align: right;font-size: 15px;font-weight: bold;">กำไร <?php  if($sumPrice > 0){echo number_format(((($sumPrice-$sumCost)-$sumDisc)*(100))/$sumCost,2);}else{echo "0.00";};?>%</td>
+      <td  style="text-align: left;border: 1px solid #000000;padding: 5;vertical-align: middle;text-align: right;font-size: 15px;font-weight: bold;"><?php  echo number_format(($sumPrice-$sumCost)-$sumDisc,2);?></td>
       
     </tr>
      
      <tr>
-      <td colspan="8" style="text-align:left;border:1px solid #000000;padding:5;vertical-align:top;padding-top:15px;"><strong>หมายเหตุ :</strong><br><textarea name="ccomment" id="ccomment" ><?php  echo strip_tags($ccomment);?></textarea><br></td>
+      <td colspan="9" style="text-align:left;border:1px solid #000000;padding:5;vertical-align:top;padding-top:15px;"><strong>หมายเหตุ :</strong><br><textarea name="ccomment" id="ccomment" ><?php  echo strip_tags($ccomment);?></textarea><br></td>
     </tr>
     
     </table>
@@ -538,9 +583,11 @@ Vat 7%</strong></td>
       				filedMore += '	<td style="border:1px solid #000000;padding:5;text-align:center;">';
       				filedMore += '		<input type="text" name="camount[]" value="" id="camount'+countBox+'" class="inpfoder" style="width:100%;text-align:center;"></td>';
       				filedMore += '	<td style="border:1px solid #000000;padding:5;text-align:center;">';
-      				filedMore += '		<input type="text" name="cprice[]" value="" id="cprice'+countBox+'" class="inpfoder" style="width:100%;text-align:center;" onkeypress="return isNumberKey(event)"></td>';
-		 			filedMore += '	<td style="border:1px solid #000000;padding:5;text-align:center;">';
       				filedMore += '		<input type="text" name="ccost[]" value="" id="ccost'+countBox+'" class="inpfoder" style="width:100%;text-align:center;" onkeypress="return isNumberKey(event)"></td>';
+              filedMore += '	<td style="border:1px solid #000000;padding:5;text-align:center;">';
+      				filedMore += '		<input type="text" name="cprice[]" value="" id="cprice'+countBox+'" class="inpfoder" style="width:100%;text-align:center;" onkeypress="return isNumberKey(event)"></td>';
+              filedMore += '	<td style="border:1px solid #000000;padding:5;text-align:center;">';
+      				filedMore += '		<input type="text" name="cdisc[]" value="" id="cdisc'+countBox+'" class="inpfoder" style="width:100%;text-align:center;" onkeypress="return isNumberKey(event)"></td>';
      				filedMore += '</tr>';
 	
 

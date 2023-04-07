@@ -35,6 +35,9 @@
 	
 		$a_sdate=explode("/",$_POST['date_qut']);
     $_POST['date_qut']=$a_sdate[2]."-".$a_sdate[1]."-".$a_sdate[0];
+
+    $a_sdate=explode("/",$_POST['date_qut_old']);
+    $_POST['date_qut_old']=$a_sdate[2]."-".$a_sdate[1]."-".$a_sdate[0];
     
     $a_sdate=explode("/",$_POST['sign_date1']);
     $_POST['sign_date1']=$a_sdate[2]."-".$a_sdate[1]."-".$a_sdate[0];
@@ -55,9 +58,7 @@
 
 		
 
-		$_POST['separate'] = 0;
-
-		
+    $_POST['separate'] = 0;		
 
 		$_POST["cprice1"] = str_replace($vowels,"",$_POST["cprice1"]);
 
@@ -73,22 +74,63 @@
 
 		$_POST["cprice7"] = str_replace($vowels,"",$_POST["cprice7"]);
 
-		
-
+	
 		$_POST["money_garuntree"] = str_replace($vowels,"",$_POST["money_garuntree"]);
-
 		$_POST["money_setup"] = str_replace($vowels,"",$_POST["money_setup"]);
 
 
 
+		if ($_POST["mode"] == "add") { 
+
+        $_POST['st_setting'] = 0;
+        $_POST['approve'] = 0;
+        $_POST['approve2'] = 0;
+				$_POST['fs_id'] = get_snfirstorders($conn,$_POST['fs_id']);
+				$_POST['status_use'] = 1;
+
+
+				include "../include/m_add.php";
+
+				$id = mysqli_insert_id($conn);
+
+				include_once("../mpdf54/mpdf.php");
+				include_once("../first_order/form_firstorder.php");
+				$mpdf=new mPDF('UTF-8'); 
+
+				$mpdf->SetAutoFont();
+
+				$mpdf->WriteHTML($form);
+
+				$chaf = preg_replace("/\//","-",$_POST['fs_id']); 
+
+				$mpdf->Output('../../upload/first_order/'.$chaf.'.pdf','F');
+
+				
+
+			header ("location:index.php?" . $param); 
+
+		}
+
 		if ($_POST["mode"] == "update" ) { 
+
+      // if($_POST['date_qut_old'] !== ''){
+      //   // echo "date_qut_old !== '' && date_qut_old = ".$_POST['date_qut_old']."<br>";
+      //   if($_POST['date_qut_old'] !== $_POST['date_qut']){
+      //     $_POST['approve'] = 0;
+      //     $_POST['approve2'] = 0;
+      //     // echo "date_qut_old !== date_qut";
+      //   }else{
+      //     // echo "date_qut_old === date_qut";
+      //   }
+      // }else{
+      //   // echo "date_qut_old === ''";
+      // }
 
 				include ("../include/m_update.php");
 
 				$id = $_REQUEST[$PK_field];			
 
-				
-
+			
 				include_once("../mpdf54/mpdf.php");
 
 				include_once("../first_order/form_firstorder.php");
@@ -345,7 +387,7 @@ function submitForm() {
 
 </DIV></DIV><!-- End .content-box-header -->
 <div><center><img src="../images/waiting.gif" width="450"></center></div>
-<DIV class="content-box-content" style="display:none;">
+<DIV class=content-box-content style="display:none;">
 
 <DIV id=tab1 class="tab-content default-tab">
 
@@ -373,7 +415,17 @@ function submitForm() {
 
             <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;"><strong>ชื่อลูกค้า :</strong> <input type="text" name="cd_name" value="<?php  echo $cd_name;?>" id="cd_name" class="inpfoder" style="width:70%;"></td>
 
-            <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;"><strong>กลุ่มลูกค้า :</strong> 
+            <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;">
+
+            <input name="fastwork" type="radio" id="radio21" value="1" <?php  if($fastwork == 1){echo 'checked';}?>>
+
+            <strong>งานด่วนพิเศษ</strong>
+
+            <input name="fastwork" type="radio" id="radio21" value="2" <?php  if($fastwork == 2){echo 'checked';}?>>
+
+            <strong>งานด่วน</strong> &nbsp;&nbsp;&nbsp;&nbsp;
+
+            <strong>กลุ่มลูกค้า :</strong> 
 
             <select name="cg_type" id="cg_type" class="inputselect">
 
@@ -395,7 +447,17 @@ function submitForm() {
 
             </select>
 
-             <strong>ประเภทลูกค้า :</strong> 
+              </td>
+
+          </tr>
+
+          <tr>
+
+            <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;"><strong>ที่อยู่ :</strong> <input type="text" name="cd_address" value="<?php  echo $cd_address;?>" id="cd_address" class="inpfoder" style="width:80%;"></td>
+
+            <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;">
+            
+            <strong>ประเภทลูกค้า :</strong> 
 
              <select name="ctype" id="ctype" class="inputselect" onChange="chksign(this.value);">
 
@@ -419,15 +481,9 @@ function submitForm() {
 
 				?>
 
-            </select> </td>
+            </select>
 
-          </tr>
-
-          <tr>
-
-            <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;"><strong>ที่อยู่ :</strong> <input type="text" name="cd_address" value="<?php  echo $cd_address;?>" id="cd_address" class="inpfoder" style="width:80%;"></td>
-
-            <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;"><strong>ประเภทสินค้า :</strong> 	
+            &nbsp;&nbsp;<strong>ประเภทสินค้า :</strong> 	
 
             <select name="pro_type" id="pro_type" class="inputselect">
 
@@ -640,7 +696,62 @@ Vat 7%</strong></td>
               <input type="text" name="feeder_type2" value="<?php  echo $feeder_type2;?>" id="feeder_type2" class="inpfoder" >
 
             </strong></td>
+          </tr>
 
+          <tr>
+          <td style="font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;white-space: nowrap;"><strong>เครื่องกรองน้ำ : 
+          <br>
+
+          <input name="kongw" type="radio" id="radio12" value="1" <?php  if($kongw == 1){echo 'checked';}?>>
+
+          3 ขั้นตอน   &nbsp;&nbsp;&nbsp;   
+
+          <input name="kongw_type" type="radio" id="radio14" value="1" <?php  if($kongw_type == 1){echo 'checked';}?>>
+
+          10 นิ้ว    &nbsp;&nbsp;&nbsp;
+
+          <input name="kongw_type" type="radio" id="radio15" value="2" <?php  if($kongw_type == 2){echo 'checked';}?>>
+
+          20 นิ้ว    &nbsp;&nbsp;&nbsp;
+
+          <br>
+
+          <input name="kongw" type="radio" id="radio13" value="2" <?php  if($kongw == 2){echo 'checked';}?>>
+
+          2 ขั้นตอน  &nbsp;&nbsp;&nbsp;   
+
+          <input name="kongw_type2" type="radio" id="radio16" value="1" <?php  if($kongw_type2 == 1){echo 'checked';}?>>
+
+          10 นิ้ว    &nbsp;&nbsp;&nbsp;
+
+          <input name="kongw_type2" type="radio" id="radio17" value="2" <?php  if($kongw_type2 == 2){echo 'checked';}?>>
+
+          20 นิ้ว    &nbsp;&nbsp;&nbsp;
+
+          </strong></td>
+
+          </tr>
+
+          <tr>
+          <td style="font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;white-space: nowrap;"><strong>สต็อกเครื่อง : 
+
+          <br>
+
+          <input name="stockm" type="radio" id="radio10" value="1" <?php  if($stockm == 1){echo 'checked';}?>>
+
+          สต็อกเครื่องใหม่ :
+
+          <input type="text" name="stockm_type" value="<?php  echo $stockm_type;?>" id="stockm_type1" class="inpfoder" >
+
+          <br>
+
+          <input name="stockm" type="radio" id="radio11" value="2" <?php  if($stockm == 2){echo 'checked';}?>>
+
+          สต็อกเครื่องเก่า :
+
+          <input type="text" name="stockm_type2" value="<?php  echo $stockm_type2;?>" id="stockm_type2" class="inpfoder" >
+
+          </strong></td>
           </tr>
 
     </table></td>
@@ -1481,27 +1592,6 @@ Vat 7%</strong></td>
                     <input type="hidden" name="cs_sell" value="<?php echo $cs_sell;?>">
                 <!-- <input type="text" name="cs_sell" value="<?php  echo $cs_sell;?>" id="cs_sell" class="inpfoder" style="width:50%;text-align:center;"> -->
 
-<!--
-                <select name="cs_sell" id="cs_sell" class="inputselect" style="width:50%;">
-
-                <?php 
-
-                	$qusaletype = @mysqli_query($conn,"SELECT * FROM s_group_sale ORDER BY group_name ASC");
-
-					while($row_saletype = @mysqli_fetch_array($qusaletype)){
-
-					  ?>
-
-					  	<option value="<?php  echo $row_saletype['group_id'];?>" <?php  if($cs_sell == $row_saletype['group_id']){echo 'selected';}?>><?php  echo $row_saletype['group_name'];?></option>
-
-					  <?php 	
-
-					}
-
-				?>
-
-            </select>
--->
               </strong></td>
 
               </tr>
@@ -1604,7 +1694,7 @@ Vat 7%</strong></td>
       <input name="st_setting" type="hidden" id="st_setting" value="<?php  echo $st_setting;?>">
       <input name="approve" type="hidden" id="approve" value="<?php  echo $approve;?>">
       <input name="approve2" type="hidden" id="approve2" value="<?php  echo $approve2;?>">
-
+      <!-- <input name="date_qut_old" type="hidden" id="date_qut_old" value="<?php  echo $date_qut;?>"> -->
       <input name="<?php  echo $PK_field;?>" type="hidden" id="<?php  echo $PK_field;?>" value="<?php  echo $_GET[$PK_field];?>">
 
     </div>

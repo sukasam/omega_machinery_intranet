@@ -274,12 +274,15 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
             <?php   Show_Sort_new ("user_id", "ลำดับ.", $orderby, $sortby,$page,$param2);?>
             &nbsp;</TH>
           <TH width="12%">QA ID</TH>
-          <TH width="35%">ชื่อลูกค้า</TH>
+		  <TH width="10%">วันที่ออกใบ<br>เสนอราคา</TH>
+          <TH width="25%">ชื่อลูกค้า</TH>
 <!--          <TH width="18%"><strong>สถานที่ติดตั้ง</strong></TH>-->
 <!--          <TH width="5%" nowrap ><div align="center"><img src="../icons/favorites_use.png" width="15" height="15"> ใช้งาน / <img src="../icons/favorites_stranby.png" width="15" height="15"> Standby / <img src="../icons/favorites_close.png" width="15" height="15"> ยกเลิก</div></TH>-->
 		  <!-- <TH width="5%" nowrap ><div align="center"><a>ใบแจ้งงาน</a></div></TH>
           <TH width="5%" nowrap ><div align="center"><a>เปิด QA เช่า</a></div></TH> 
           <TH width="5%" nowrap ><div align="center"><a>สร้าง FO</a></div></TH> -->
+		  <TH width="10%">ชื่อร้าน</TH>
+		  <TH width="10%">พนักงานขาย</TH>
           <TH width="5%" style="white-space: nowrap;"><div align="center"><a>ดาวโหลด</a></div></TH>
           <TH width="5%"><a>แก้ไข</a></TH>
           <TH width="5%"><a>ลบ</a></TH>
@@ -362,7 +365,8 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
           </TD> -->
 		  <TD><span class="text"><?php  echo sprintf("%04d",$counter); ?></span></TD>
           <TD><?php  $chaf = str_replace("/","-",$rec["fs_id"]); ?><span class="text"><a href="../../upload/quotation/<?php  echo $chaf;?>.pdf" target="_blank"><?php  echo $rec["fs_id"] ; ?></a></span></TD>
-          <TD>          <span class="text"><?php  echo $rec["cd_name"] ; ?></span></TD>
+		  <TD><span class="text"><?php echo format_date($rec["date_forder"]);?></span></TD>
+		  <TD>          <span class="text"><?php  echo $rec["cd_name"] ; ?></span></TD>
 			  <!-- <td>
 			  	<center><a href="../quotation_jobcard/?tab=1&id=<?php  echo $rec[$PK_field]; ?>"><img src="../images/hammer_screwdriver.png" width="20" height="20"></a></center>
 			  </td>
@@ -417,6 +421,8 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
             <a href="../quotation/?b=<?php  echo $rec[$PK_field]; ?>&s=<?php  echo $rec["st_setting"]; ?>&page=<?php  echo $_GET['page']; ?>&<?php  echo $FK_field; ?>=<?php  echo $_REQUEST["$FK_field"];?>"><img src="../icons/status_on.gif" width="10" height="10"></a>
             <?php  }?>
           </div></TD>
+		  <TD><span class="text"><?php  echo $rec["customer_name"] ; ?></span></TD>
+		  <TD><span class="text"><?php  echo getsalename($conn,$rec["cs_sell2"]); ?></span></TD>
           <TD><div align="center"><a href="../../upload/quotation/<?php  echo $chaf;?>.pdf" target="_blank"><img src="../images/icon2/download_f2.png" width="20" height="20" border="0" alt=""></a></div></TD>
           <TD><!-- Icons -->
             <A title=Edit href="update.php?mode=update&<?php  echo $PK_field; ?>=<?php  echo $rec[$PK_field]; if($param <> "") {?>&<?php  echo $param; }?>"><IMG alt=Edit src="../images/pencil.png"></A> <A title=Delete  href="#"></A></TD>

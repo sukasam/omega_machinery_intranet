@@ -2543,6 +2543,12 @@ function getsalename($conn, $val)
     return $row_dea['group_name'];
 }
 
+function getsaletel($conn, $val)
+{
+    $row_dea = @mysqli_fetch_array(@mysqli_query($conn, "SELECT * FROM s_group_sale WHERE group_id = '" . $val . "'"));
+    return $row_dea['group_tel'];
+}
+
 function getcustom_type($conn, $val)
 {
     $row_dea = @mysqli_fetch_array(@mysqli_query($conn, "SELECT * FROM s_group_custommer WHERE group_id = '" . $val . "'"));

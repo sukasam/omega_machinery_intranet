@@ -415,7 +415,17 @@ function submitForm() {
 
             <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;"><strong>ชื่อลูกค้า :</strong> <input type="text" name="cd_name" value="<?php  echo $cd_name;?>" id="cd_name" class="inpfoder" style="width:70%;"></td>
 
-            <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;"><strong>กลุ่มลูกค้า :</strong> 
+            <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;">
+
+            <input name="fastwork" type="radio" id="radio21" value="1" <?php  if($fastwork == 1){echo 'checked';}?>>
+
+            <strong>งานด่วนพิเศษ</strong>
+
+            <input name="fastwork" type="radio" id="radio21" value="2" <?php  if($fastwork == 2){echo 'checked';}?>>
+
+            <strong>งานด่วน</strong> &nbsp;&nbsp;&nbsp;&nbsp;
+
+            <strong>กลุ่มลูกค้า :</strong> 
 
             <select name="cg_type" id="cg_type" class="inputselect">
 
@@ -437,7 +447,17 @@ function submitForm() {
 
             </select>
 
-             <strong>ประเภทลูกค้า :</strong> 
+              </td>
+
+          </tr>
+
+          <tr>
+
+            <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;"><strong>ที่อยู่ :</strong> <input type="text" name="cd_address" value="<?php  echo $cd_address;?>" id="cd_address" class="inpfoder" style="width:80%;"></td>
+
+            <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;">
+            
+            <strong>ประเภทลูกค้า :</strong> 
 
              <select name="ctype" id="ctype" class="inputselect" onChange="chksign(this.value);">
 
@@ -461,15 +481,9 @@ function submitForm() {
 
 				?>
 
-            </select> </td>
+            </select>
 
-          </tr>
-
-          <tr>
-
-            <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;"><strong>ที่อยู่ :</strong> <input type="text" name="cd_address" value="<?php  echo $cd_address;?>" id="cd_address" class="inpfoder" style="width:80%;"></td>
-
-            <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;"><strong>ประเภทสินค้า :</strong> 	
+            &nbsp;&nbsp;<strong>ประเภทสินค้า :</strong> 	
 
             <select name="pro_type" id="pro_type" class="inputselect">
 
@@ -682,7 +696,62 @@ Vat 7%</strong></td>
               <input type="text" name="feeder_type2" value="<?php  echo $feeder_type2;?>" id="feeder_type2" class="inpfoder" >
 
             </strong></td>
+          </tr>
 
+          <tr>
+          <td style="font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;white-space: nowrap;"><strong>เครื่องกรองน้ำ : 
+          <br>
+
+          <input name="kongw" type="radio" id="radio12" value="1" <?php  if($kongw == 1){echo 'checked';}?>>
+
+          3 ขั้นตอน   &nbsp;&nbsp;&nbsp;   
+
+          <input name="kongw_type" type="radio" id="radio14" value="1" <?php  if($kongw_type == 1){echo 'checked';}?>>
+
+          10 นิ้ว    &nbsp;&nbsp;&nbsp;
+
+          <input name="kongw_type" type="radio" id="radio15" value="2" <?php  if($kongw_type == 2){echo 'checked';}?>>
+
+          20 นิ้ว    &nbsp;&nbsp;&nbsp;
+
+          <br>
+
+          <input name="kongw" type="radio" id="radio13" value="2" <?php  if($kongw == 2){echo 'checked';}?>>
+
+          2 ขั้นตอน  &nbsp;&nbsp;&nbsp;   
+
+          <input name="kongw_type2" type="radio" id="radio16" value="1" <?php  if($kongw_type2 == 1){echo 'checked';}?>>
+
+          10 นิ้ว    &nbsp;&nbsp;&nbsp;
+
+          <input name="kongw_type2" type="radio" id="radio17" value="2" <?php  if($kongw_type2 == 2){echo 'checked';}?>>
+
+          20 นิ้ว    &nbsp;&nbsp;&nbsp;
+
+          </strong></td>
+
+          </tr>
+
+          <tr>
+          <td style="font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;white-space: nowrap;"><strong>สต็อกเครื่อง : 
+
+          <br>
+
+          <input name="stockm" type="radio" id="radio10" value="1" <?php  if($stockm == 1){echo 'checked';}?>>
+
+          สต็อกเครื่องใหม่ :
+
+          <input type="text" name="stockm_type" value="<?php  echo $stockm_type;?>" id="stockm_type1" class="inpfoder" >
+
+          <br>
+
+          <input name="stockm" type="radio" id="radio11" value="2" <?php  if($stockm == 2){echo 'checked';}?>>
+
+          สต็อกเครื่องเก่า :
+
+          <input type="text" name="stockm_type2" value="<?php  echo $stockm_type2;?>" id="stockm_type2" class="inpfoder" >
+
+          </strong></td>
           </tr>
 
     </table></td>

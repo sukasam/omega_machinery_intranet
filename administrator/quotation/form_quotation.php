@@ -91,6 +91,18 @@ if($chkProcess == '5'){
 
 }
 
+if(!empty($pro_img1)){
+  $pro_img1s = '<br><img src="../../upload/quotation/'.$pro_img1.'" height="150"  border="0" style="border-radius: 15px;"/>';
+}
+if(!empty($pro_img2)){
+  $pro_img2s = '<br><img src="../../upload/quotation/'.$pro_img2.'" height="150" border="0" style="border-radius: 15px;"/>';
+}
+if(!empty($pro_img3)){
+  $pro_img3s = '<br><img src="../../upload/quotation/'.$pro_img3.'" height="150"  border="0" style="border-radius: 15px;"/>';
+}
+
+//<img src="../../upload/quotation/'.$pro_img1.'" width="30%"  border="0" />
+
 //$userCreate = getCreatePaper($conn, $tbl_name, " AND `qu_id`=" . $_POST['qu_id']);
 $headerIMG = "../images/form/header-qab.png";
 
@@ -102,9 +114,11 @@ $form = '
 </table>
 <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border:1px solid #000;">
           <tr>
-            <td width="57%" valign="top" style="font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;"><strong>ชื่อลูกค้า :</strong> '.$_POST["cd_name"].'<strong><br />
+            <td width="57%" valign="top" style="font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;"><strong>ชื่อลูกค้า :</strong> '.$_POST["cd_name"].'<br />
+              <br /> 
+              <strong>ชื่อร้าน :</strong> '.$_POST["customer_name"].'<br />
               <br />
-            ที่อยู่ :</strong> '.$_POST["cd_address"].'<br />
+              <strong>ที่อยู่ :</strong> '.$_POST["cd_address"].'<br />
             <br />
             <strong>โทรศัพท์ :</strong> '.$_POST["cd_tel"].'<strong>&nbsp;&nbsp;&nbsp;อีเมล์ :</strong> '.$_POST["cd_fax"].'<br /><br />
             <strong>ชื่อผู้ติดต่อ : </strong>'.$_POST["c_contact"].'<strong>&nbsp;&nbsp;&nbsp;เบอร์โทร :</strong> '.$_POST["c_tel"].' </td>
@@ -112,6 +126,8 @@ $form = '
             <strong>วันที่ :</strong> '.format_date($_POST["date_forder"]).'<br /><br />
             <strong>เลขที่เสนอราคา :</strong>'.$_POST["fs_id"].'<br /><br />
             <strong>ประเภทสินค้า :</strong> '.protype_name($conn,$_POST["pro_type"]).'<br /><br />
+            <strong>พนักงานขาย :</strong> '.getsalename($conn,$_POST["cs_sell2"]).'<br/><br />
+            <strong>เบอร์โทร :</strong> '.getsaletel($conn,$_POST["cs_sell2"]).'<br/><br />
 			</td>
           </tr>
 </table>
@@ -199,9 +215,32 @@ $form = '
       <td style="border:1px solid #000;border-right:0px solid #000;padding:9px 5px;"><strong>ราคารวมทั้งสิ้น</strong></td>
       <td style="border:1px solid #000;padding:9px 5px;text-align:right;">'.number_format($sumtotals,2).'&nbsp;&nbsp;</td>
     </tr>
-</table><br>
+</table><br><br>';
+
+if(empty($pro_img1s) && empty($pro_img2s) && empty($pro_img3s)){
+  $form .= '<br><br><br><br><br><br><br><br><br><br>';
+}else{
+  $form .= '<table width="100%" border="0" cellspacing="0" cellpadding="0" style="font-size:11px;">
+    <tr>
+        <th width="33%" style=""><strong>รูปภาพประกอบที่ 1</strong></th>
+        <th width="33%" style=""><strong>รูปภาพประกอบที่ 2</strong></th>
+        <th width="33%" style=""><strong>รูปภาพประกอบที่ 3</strong></th>
+    </tr>
+    <tr>
+      <th width="33%" style="text-align:center;padding:10px;">'.$pro_img1s.'</th>
+      <th width="33%" style="text-align:center;padding:10px">'.$pro_img2s.'</th>
+      <th width="33%" style="text-align:center;padding:10px">'.$pro_img3s.'</th>
+  </tr>
+   </table><br><br><br><br><br>';
+}
+
+$form .= '<table width="100%" border="0" cellspacing="0" cellpadding="0">
+    <tr>
+      <td style="padding-bottom:5px;"><img src="'.$headerIMG.'" width="100%" border="0" /></td>
+    </tr>
+  </table><br>
 <p style="font-size:12px;"><strong><u>รายการของแถม</u></strong></p>
-<table width="100%" border="0" cellspacing="0" cellpadding="0" style="font-size:11px;">
+   <table width="100%" border="0" cellspacing="0" cellpadding="0" style="font-size:11px;">
     <tr>
         <th width="10%" style="border:1px solid #000;border-right:0px solid #000;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;"><strong>ลำดับ</strong></th>
         <th width="75%" style="border:1px solid #000;border-right:0px solid #000;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;"><strong>รายการสินค้า</strong></th>
@@ -213,32 +252,26 @@ $form = '
       <td style="border-left:1px solid #000;border-right:1px solid #000;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;">'.$_POST["cs_amount1"].'</td>
     </tr>
     <tr>
-      <td style="border-left:1px solid #000;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;">'.$profree2.'</td>
-      <td style="border-left:1px solid #000;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;">'.$_POST["cs_pro2"].'</td>
-      <td style="border-left:1px solid #000;border-right:1px solid #000;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;">'.$_POST["cs_amount2"].'</td>
-    </tr>
-    <tr>
-      <td style="border-left:1px solid #000;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;">'.$profree3.'</td>
-      <td style="border-left:1px solid #000;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;">'.$_POST["cs_pro3"].'</td>
-      <td style="border-left:1px solid #000;border-right:1px solid #000;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;">'.$_POST["cs_amount3"].'</td>
-    </tr>
-    <tr>
-      <td style="border-left:1px solid #000;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;">'.$profree4.'</td>
-      <td style="border-left:1px solid #000;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;">'.$_POST["cs_pro4"].'</td>
-      <td style="border-left:1px solid #000;border-right:1px solid #000;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;">'.$_POST["cs_amount4"].'</td>
-    </tr>
-    <tr>
-      <td style="border:1px solid #000;border-top:0px solid #000;border-right:0px solid #000;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;">'.$profree5.'</td>
-      <td style="border:1px solid #000;border-top:0px solid #000;border-right:0px solid #000;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;">'.$_POST["cs_pro5"].'</td>
-      <td style="border:1px solid #000;border-top:0px solid #000;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;">'.$_POST["cs_amount5"].'</td>
-    </tr>
-  </table>
-  <br><br><br><br><br><br><br>
-  <table width="100%" border="0" cellspacing="0" cellpadding="0">
-    <tr>
-      <td style="padding-bottom:5px;"><img src="'.$headerIMG.'" width="100%" border="0" /></td>
-    </tr>
-  </table><br>';
+      <td style="border:1px solid #000;border-top:0px solid #000;border-right:0px solid #000;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;">'.$profree2.'</td>
+      <td style="border:1px solid #000;border-top:0px solid #000;border-right:0px solid #000;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;">'.$_POST["cs_pro2"].'</td>
+      <td style="border:1px solid #000;border-top:0px solid #000;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;">'.$_POST["cs_amount2"].'</td>
+    </tr>';
+    // <tr>
+    //   <td style="border-left:1px solid #000;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;">'.$profree3.'</td>
+    //   <td style="border-left:1px solid #000;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;">'.$_POST["cs_pro3"].'</td>
+    //   <td style="border-left:1px solid #000;border-right:1px solid #000;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;">'.$_POST["cs_amount3"].'</td>
+    // </tr>
+    // <tr>
+    //   <td style="border-left:1px solid #000;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;">'.$profree4.'</td>
+    //   <td style="border-left:1px solid #000;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;">'.$_POST["cs_pro4"].'</td>
+    //   <td style="border-left:1px solid #000;border-right:1px solid #000;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;">'.$_POST["cs_amount4"].'</td>
+    // </tr>
+    // <tr>
+    //   <td style="border:1px solid #000;border-top:0px solid #000;border-right:0px solid #000;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;">'.$profree5.'</td>
+    //   <td style="border:1px solid #000;border-top:0px solid #000;border-right:0px solid #000;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;">'.$_POST["cs_pro5"].'</td>
+    //   <td style="border:1px solid #000;border-top:0px solid #000;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;">'.$_POST["cs_amount5"].'</td>
+    // </tr>
+    $form .= '</table><br>';
 
   if(!empty($_POST["remark"])){
     $form .='

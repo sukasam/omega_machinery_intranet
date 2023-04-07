@@ -72,15 +72,65 @@ $dataApprove2 = '';
   $hGMSaleName = getsalename($conn,$_POST['cs_aceep']);
   $GMSaleSignature = '<img src="../../upload/user/signature/'.get_sale_signature($conn,$_POST['cs_aceep']).'" height="50" border="0" />';
 
+  if($_POST["fastwork"] == 1){
+    $headImg = '<img src="../images/form/header-first-order1.png" width="100%" border="0" />';
+  }else if($_POST["fastwork"] == 2){
+    $headImg = '<img src="../images/form/header-first-order2.png" width="100%" border="0" />';
+  }else{
+    $headImg = '<img src="../images/form/header-first-order.png" width="100%" border="0" />';
+  }
+
+
+
+if($_POST['kongw_type'] == 1){
+  $kongwTypeTxt1 = ' 10 นิ้ว';
+}else if($_POST['kongw_type'] == 2){
+  $kongwTypeTxt1 = ' 20 นิ้ว';
+}else{
+  $kongwTypeTxt1 = '';
+}
+
+if($_POST['kongw_type2'] == 1){
+  $kongwTypeTxt2 = ' 10 นิ้ว';
+}else if($_POST['kongw_type2'] == 2){
+  $kongwTypeTxt2 = ' 20 นิ้ว';
+}else{
+  $kongwTypeTxt2 = '';
+}
+
+
+
+if($_POST['kongw'] == 1){
+  $kongwTxt = '<br><br><strong>เครื่องกรองน้ำ</strong> : 3 ขั้นตอน '.$kongwTypeTxt1;
+  $checkkongw = '&nbsp;&nbsp;&nbsp;';
+}else if($_POST['kongw'] == 2){
+  $kongwTxt = '<br><br><strong>เครื่องกรองน้ำ</strong> : 2 ขั้นตอน '.$kongwTypeTxt2;
+  $checkkongw = '&nbsp;&nbsp;&nbsp;';
+}else{
+  $kongwTxt = '';
+  $checkkongw = '<br><br>';
+}
+
+if($_POST['stockm'] == 1){
+  $stockmTxt = $checkkongw.'<strong>สต็อกเครื่องใหม่</strong> : '.$_POST['stockm_type'];
+}else if($_POST['stockm'] == 2){
+  $stockmTxt = $checkkongw.'<strong>สต็อกเครื่องเก่า</strong> : '.$_POST['stockm_type2'];
+}else{
+  $stockmTxt = '';
+}
+
+  
 $form = '
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td style="padding-bottom:5px;"><img src="../images/form/header-first-order.png" width="100%" border="0" /></td>
+    <td style="padding-bottom:5px;">
+    '.$headImg.'
+    </td>
   </tr>
 </table>
 <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border:1px solid #000000;">
           <tr>
-            <td width="57%" valign="top" style="font-size:10px;font-family:Verdana, Geneva, sans-serif;padding:5px;"><strong>ชื่อลูกค้า :</strong> '.$_POST["cd_name"].'<strong><br />
+            <td width="57%" valign="top" style="font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:5px;"><strong>ชื่อลูกค้า :</strong> '.$_POST["cd_name"].'<strong><br />
               <br />
             ที่อยู่ :</strong> '.$_POST["cd_address"].'<br />
             <br />
@@ -100,11 +150,11 @@ $form = '
 </table>
 <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tb2" style="border:1px solid #000000;margin-top:10px;">
           <tr>
-            <td style="font-size:10px;font-family:Verdana, Geneva, sans-serif;padding:5px;width:70%">
+            <td style="font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:5px;width:70%">
               <strong>สถานที่ติดตั้ง / ส่งสินค้า :</strong> '.$_POST["loc_name"].'<br />
                <br /><strong>ที่อยู่ :</strong> '.$_POST["loc_address"].'<br /><br />
                <strong>ชื่อผู้ติดต่อ :</ strong> '.$_POST['loc_cname'].'&nbsp;&nbsp;&nbsp;&nbsp;<strong>เบอร์โทร :</ strong> '.$_POST['loc_ctel'].'<br /><br />
-               <strong>ขนส่งโดย :</strong> '.$_POST["loc_shopping"].'&nbsp;&nbsp;&nbsp;&nbsp;<strong>เครื่องป้อนน้ำยา :</strong> '.$feeder.'
+               <strong>ขนส่งโดย :</strong> '.$_POST["loc_shopping"].'&nbsp;&nbsp;&nbsp;&nbsp;<strong>เครื่องป้อนน้ำยา :</strong> '.$feeder.$kongwTxt.$stockmTxt.'
             </td>
             <td style="vertical-align:top;font-size:10px;padding:5px;width:30%">
             	<table width="100%" border="0" cellspacing="0" cellpadding="0" style="border:none;font-size:10px;font-family:Verdana, Geneva, sans-serif;">
@@ -206,7 +256,7 @@ $form = '
       <td style="border:1px solid #000000;padding:5;text-align:right;">'.$prspro7.'&nbsp;&nbsp;</td>
     </tr>
     <tr>
-      <td colspan="5" rowspan="3" style="text-align:left;border:1px solid #000000;padding:5;vertical-align:top;padding-top:15px;"><strong>หมายเหตุ :</strong> '.nl2br($_POST['ccomment']).'<br>
+      <td colspan="5" rowspan="3" style="text-align:left;border:1px solid #000000;padding:5;vertical-align:top;padding-top:15px;font-size:11px"><strong>หมายเหตุ :</strong> '.nl2br($_POST['ccomment']).'<br>
 </td>
       <td style="border:1px solid #000000;padding:5;"><strong>รวมทั้งหมด</strong></td>
       <td style="border:1px solid #000000;padding:5;text-align:right;">'.number_format($sumprice,2).'&nbsp;&nbsp;</td>
@@ -256,7 +306,7 @@ $form = '
               </tr>
             </table></td>
             <td style="border:0;padding:0;width:40%;vertical-align:top;padding-left:5px;font-size:10px;border:1px solid #000000;padding-top:10px;">';
-			
+			      
 			  //if($_POST['ctype'] != 1){
             $form .= '<strong>เลขที่สัญญา : </strong> ' .$_POST["r_id"]. '&nbsp;&nbsp;<strong>เลขที่สัญญาเช่า</strong> '.$_POST["r_idrent"].' <strong>เดือน</strong><br><br />';
 					 if($_POST["garun_id"]){ 
@@ -267,10 +317,10 @@ $form = '
 					
 					 
 				  if(($_POST["date_quf"] == date("Y-m-d")) && ($_POST["date_qut"] == date("Y-m-d"))){
-					  $form .= '<strong>วันเริ่ม : </strong> - <strong>&nbsp;สิ้นสุด : </strong> - <br><br>';
+					  $form .= '<p style="font-size:11px"><strong>วันเริ่ม : </strong> - <strong>&nbsp;สิ้นสุด : </strong> - </p><br>';
 				  }else{
-					  $form .= '<strong>วันเริ่ม : </strong>'.format_date($_POST["date_quf"]).' <strong>&nbsp;สิ้นสุดสัญญา : </strong>'.format_date($_POST["date_qut"]).'
-			  <br><br>';  
+					  $form .= '<p style="font-size:11px"><strong>วันเริ่ม : </strong>'.format_date($_POST["date_quf"]).' <strong>&nbsp;สิ้นสุดสัญญา : </strong>'.format_date($_POST["date_qut"]).'</p>
+			  <br>';  
 				  }
 				  
 				  
@@ -282,12 +332,12 @@ $form = '
               <br><br></div>';
 			  }
 			  $form .='
-              <strong>เงื่อนไขการชำระเงิน :</strong> '.nl2br($_POST["qucomment"]).'
+        <p style="font-size:11px"><strong>เงื่อนไขการชำระเงิน :</strong> '.nl2br($_POST["qucomment"]).'</p>
 		   </td>
           </tr>
 </table>
 
-  <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top:0px;">
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top:10px;">
     <tr>
       <td width="50%" style="border:1px solid #000000;font-size:10px;font-family:Verdana, Geneva, sans-serif;padding:5px;"><strong>บุคคลติดต่อทางด้านการเงิน : '.$_POST["cs_contact"].'</strong></td>
       <td width="50%" style="border:1px solid #000000;font-size:10px;font-family:Verdana, Geneva, sans-serif;padding:5px;"> <strong>โทรศัพท์ : </strong>'.$_POST["cs_tel"].'</td>
