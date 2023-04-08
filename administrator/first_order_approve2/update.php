@@ -126,6 +126,15 @@
       //   // echo "date_qut_old === ''";
       // }
 
+      if($_POST['kongw'] == ''){
+        $_POST['kongw_type'] = '';
+        $_POST['kongw_type2'] = '';
+      }
+      if($_POST['stockm'] == ''){
+        $_POST['stockm_type'] = '';
+        $_POST['stockm_type2'] = '';
+      }
+
 				include ("../include/m_update.php");
 
 				$id = $_REQUEST[$PK_field];			
@@ -385,7 +394,7 @@ function submitForm() {
 
   
 
-</DIV></DIV><!-- End .content-box-header -->
+</DIV></DIV><!-- end .content-box-header -->
 <div><center><img src="../images/waiting.gif" width="450"></center></div>
 <DIV class=content-box-content style="display:none;">
 
@@ -417,13 +426,17 @@ function submitForm() {
 
             <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;">
 
+            <input name="fastwork" type="radio" id="radio21" value="" <?php  if(empty($fastwork)){echo 'checked';}?>>
+
+            <strong>งานปกติ</strong>
+
             <input name="fastwork" type="radio" id="radio21" value="1" <?php  if($fastwork == 1){echo 'checked';}?>>
 
             <strong>งานด่วนพิเศษ</strong>
 
             <input name="fastwork" type="radio" id="radio21" value="2" <?php  if($fastwork == 2){echo 'checked';}?>>
 
-            <strong>งานด่วน</strong> &nbsp;&nbsp;&nbsp;&nbsp;
+            <strong>งานด่วน</strong> &nbsp; | &nbsp;
 
             <strong>กลุ่มลูกค้า :</strong> 
 
@@ -699,7 +712,7 @@ Vat 7%</strong></td>
           </tr>
 
           <tr>
-          <td style="font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;white-space: nowrap;"><strong>เครื่องกรองน้ำ : 
+          <td style="font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;white-space: nowrap;"><strong>เครื่องกรองน้ำ : <input name="kongw" type="radio" id="radio12" value="" <?php  if(empty($kongw)){echo 'checked';}?>> 
           <br>
 
           <input name="kongw" type="radio" id="radio12" value="1" <?php  if($kongw == 1){echo 'checked';}?>>
@@ -733,7 +746,7 @@ Vat 7%</strong></td>
           </tr>
 
           <tr>
-          <td style="font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;white-space: nowrap;"><strong>สต็อกเครื่อง : 
+          <td style="font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;white-space: nowrap;"><strong>สต็อกเครื่อง : <input name="stockm" type="radio" id="radio10" value="" <?php  if(empty($stockm)){echo 'checked';}?>> 
 
           <br>
 

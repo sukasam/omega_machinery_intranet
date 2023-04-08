@@ -75,7 +75,7 @@ for($i=0;$i<=count($_POST['cpro']);$i++){
 		
 		$sumprice += $_POST['camount'][$i]*$_POST['cprice'][$i];
 		$sumpriceNot += $_POST['cprice'][$i];
-		$sumCost += $_POST['ccost'][$i];
+		$sumCost += $_POST['camount'][$i]*$_POST['ccost'][$i];
 		
 		$projectPro .= '<tr>
 		<td style="border:1px solid #000000;padding:5;">'.($i+1).'</td>
@@ -166,8 +166,8 @@ $form = '
       </td>
       <td style="border:1px solid #000000;padding:5;font-size:13px;"><strong>รวมทั้งหมด</strong></td>
       <td style="border:1px solid #000000;padding:5;text-align:right;font-size:13px;"><strong>'.number_format($sumpriceNot,2).'</strong>&nbsp;&nbsp;</td>
-	  <td style="border:1px solid #000000;padding:5;text-align:right;font-size:13px;"><strong>'.number_format($sumCost,2).'</strong>&nbsp;&nbsp;</td>
-	  <td style="border:1px solid #000000;padding:5;text-align:right;font-size:13px;"><strong>'.number_format($sumprice,2).'</strong>&nbsp;&nbsp;</td>
+	    <td style="border:1px solid #000000;padding:5;text-align:right;font-size:13px;"><strong>'.number_format($sumCost,2).'</strong>&nbsp;&nbsp;</td>
+	    <td style="border:1px solid #000000;padding:5;text-align:right;font-size:13px;"><strong>'.number_format($sumprice,2).'</strong>&nbsp;&nbsp;</td>
     </tr>
 	<tr>
       <td style="border:1px solid #000000;padding:5;font-size:13px;"><strong>ส่วนลด</strong></td>

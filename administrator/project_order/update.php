@@ -104,13 +104,13 @@
             $_POST['cdisc'][$i] = preg_replace("/,/","",$_POST['cdisc'][$i]);
             
 						
-						if($_POST['ccostH'][$i] != $_POST['ccost'][$i]){
-							$_POST['ccost'][$i] = $_POST['camount'][$i] * $_POST['ccost'][$i];
-						}
+						// if($_POST['ccostH'][$i] != $_POST['ccost'][$i]){
+						// 	$_POST['ccost'][$i] = $_POST['camount'][$i] * $_POST['ccost'][$i];
+						// }
 						
-						if($_POST['camountH'][$i] != $_POST['camount'][$i]){
-							$_POST['ccost'][$i] = $_POST['camount'][$i] * ($_POST['ccost'][$i]/$_POST['camountH'][$i]);
-						}					
+						// if($_POST['camountH'][$i] != $_POST['camount'][$i]){
+						// 	$_POST['ccost'][$i] = $_POST['camount'][$i] * ($_POST['ccost'][$i]/$_POST['camountH'][$i]);
+						// }					
 						
 						
 						@mysqli_query($conn,"INSERT INTO `s_project_product` (`fo_id`, `ccode`, `cpro`, `cpod`, `csn`, `camount`, `cprice`, `ccost`, `cdisc`) VALUES ('".$id."', '".$_POST['ccode'][$i]."', '".$_POST['cpro'][$i]."', '".$_POST['cpod'][$i]."', '".$_POST['csn'][$i]."', '".$_POST['camount'][$i]."', '".$_POST['cprice'][$i]."', '".$_POST['ccost'][$i]."', '".$_POST['cdisc'][$i]."');");
@@ -462,9 +462,9 @@ Vat 7%</strong></td>
       <td width="8%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;text-align:center;"><strong>รุ่น / แบรนด์</strong></td>
       <td width="8%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;text-align:center;"><strong>ขนาด</strong></td>
       <td width="5%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;text-align:center;"><strong>จำนวน</strong></td>
-      <td width="8%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;text-align:center;"><strong>ต้นทุนสินค้า 1</strong></td>
+      <td width="8%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;text-align:center;"><strong>ต้นทุนสินค้า 1 / หน่วย</strong></td>
       <td width="8%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;text-align:center;"><strong>ราคา / หน่วย</strong></td>
-      <td width="8%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;text-align:center;"><strong>ส่วนลด (ราคา/หน่อย)</strong></td>
+      <td width="8%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;text-align:center;"><strong>ส่วนลด (ราคา/หน่วย)</strong></td>
       
     </tr>
     <tbody id="exp" name="exp">
@@ -517,7 +517,7 @@ Vat 7%</strong></td>
 			</tr>
 			<?php 
 			$sumPrice = $sumPrice+($rowPro['camount']*$rowPro['cprice']);
-			$sumCost  = $sumCost +$rowPro['ccost'];
+			$sumCost  = $sumCost +($rowPro['ccost']*$rowPro['camount']);
       $sumDisc = $sumDisc+$rowPro['cdisc'];
 			$rowCal++;
 		}
@@ -541,7 +541,7 @@ Vat 7%</strong></td>
     <tr>
       <td colspan="2" style="text-align:left;border:1px solid #000000;padding:5;vertical-align:middle;"></td>
       <td colspan="5" style="text-align: right;border: 1px solid #000000;padding: 5;vertical-align: middle;font-size: 15px;font-weight: bold;">ยอดรวมกำไรขั้นต้น</td>
-      <td  style="text-align: left;border: 1px solid #000000;padding: 5;vertical-align: middle;text-align: right;font-size: 15px;font-weight: bold;">กำไร <?php  if($sumPrice > 0){echo number_format(((($sumPrice-$sumCost)-$sumDisc)*(100))/$sumCost,2);}else{echo "0.00";};?>%</td>
+      <td  style="text-align: left;border: 1px solid #000000;padding: 5;vertical-align: middle;text-align: right;font-size: 15px;font-weight: bold;">กำไร <?php  if($sumPrice > 0){echo number_format(((($sumPrice-$sumCost)-$sumDisc)*(100))/$sumPrice,2);}else{echo "0.00";};?>%</td>
       <td  style="text-align: left;border: 1px solid #000000;padding: 5;vertical-align: middle;text-align: right;font-size: 15px;font-weight: bold;"><?php  echo number_format(($sumPrice-$sumCost)-$sumDisc,2);?></td>
       
     </tr>
