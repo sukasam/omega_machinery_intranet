@@ -382,6 +382,28 @@ $sumtotalsSet = $sumpriceSet + $sumpricevatSet;
       else{
         $pro_img3 = $_POST['pro_img3'];
       }
+
+      $paths = "../../upload/quotation/";
+
+      if($_POST['deleteimg1'] === '1'){
+        @unlink($paths.$_POST['pro_img1']);
+        $sql = "update $tbl_name set pro_img1 = '' where $PK_field = '".$_POST[$PK_field]."' ";
+        @mysqli_query($conn,$sql);			
+        $pro_img3 = "";
+      }
+      if($_POST['deleteimg2'] === '1'){
+        @unlink($paths.$_POST['pro_img2']);
+        $sql = "update $tbl_name set pro_img2 = '' where $PK_field = '".$_POST[$PK_field]."' ";
+        @mysqli_query($conn,$sql);			
+        $pro_img2 = "";
+      }
+      if($_POST['deleteimg3'] === '1'){
+        @unlink($paths.$_POST['pro_img3']);
+        $sql = "update $tbl_name set pro_img3 = '' where $PK_field = '".$_POST[$PK_field]."' ";
+        @mysqli_query($conn,$sql);			
+        $pro_img3 = "";
+      }
+
       
         include_once("../mpdf54/mpdf.php");
 				include_once("form_quotation.php");
@@ -1159,6 +1181,8 @@ while ($row_saletype = @mysqli_fetch_array($qusaletype)) {
          if($pro_img1 != ""){
           ?><br><br>
            <img src="../../upload/quotation/<?php  echo $pro_img1;?>" height="150">
+           <br>
+           <input type="checkbox" id="deleteimg1" name="deleteimg1" value="1"> Delete
           <?php
          }
         ?>
@@ -1170,6 +1194,8 @@ while ($row_saletype = @mysqli_fetch_array($qusaletype)) {
          if($pro_img2 != ""){
           ?><br><br>
            <img src="../../upload/quotation/<?php  echo $pro_img2;?>" height="150">
+           <br>
+           <input type="checkbox" id="deleteimg2" name="deleteimg2" value="1"> Delete
           <?php
          }
         ?>
@@ -1178,9 +1204,11 @@ while ($row_saletype = @mysqli_fetch_array($qusaletype)) {
         <td width="33%" style="border:1px solid #000000;text-align:center;">
         <input type="file" name="pro_img3s">
         <?php 
-         if($pro_img1 != ""){
+         if($pro_img3 != ""){
           ?><br><br>
            <img src="../../upload/quotation/<?php  echo $pro_img3;?>" height="150">
+           <br>
+           <input type="checkbox" id="deleteimg3" name="deleteimg3" value="1"> Delete
           <?php
          }
         ?>

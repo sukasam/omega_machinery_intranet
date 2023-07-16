@@ -2549,6 +2549,12 @@ function getsaletel($conn, $val)
     return $row_dea['group_tel'];
 }
 
+function getsaleline($conn, $val)
+{
+    $row_dea = @mysqli_fetch_array(@mysqli_query($conn, "SELECT * FROM s_group_sale WHERE group_id = '" . $val . "'"));
+    return $row_dea['line_id'];
+}
+
 function getcustom_type($conn, $val)
 {
     $row_dea = @mysqli_fetch_array(@mysqli_query($conn, "SELECT * FROM s_group_custommer WHERE group_id = '" . $val . "'"));
@@ -3614,4 +3620,23 @@ function getDesc($value,$n) {
 	$value = str_replace('&ndash;','' , $value);
 	$result = mb_strimwidth(trim(strip_tags($value)), 0, $n , "...", "UTF-8");
 	return $result;
+}
+
+function checkBoxFO($conn,$cusID){
+    $qu = @mysqli_query($conn, "SELECT sr . * , fd.cd_name FROM s_service_report4 AS sr, s_first_order AS fd WHERE sr.cus_id = fd.fo_id AND sr.cus_id ='".$cusID."' order by sr.sr_id");
+    $numSV = mysqli_num_rows($result);
+    $statusCheckBox = 0;
+    while ($row = @mysqli_fetch_array($qu)) {
+        if($row["st_setting"] != 0){
+            if($row["sr_ctype"] == 23 || $row["sr_ctype"] == 36 || $row["sr_ctype"] == 45 || $row["sr_ctype"] == 47){
+                $statusCheckBox = 1;
+            }else if($row["sr_ctype"] == 24 || $row["sr_ctype"] == 55 || $row["sr_ctype"] == 89){
+                $statusCheckBox = 2;
+            }else{
+                $statusCheckBox = 0;
+            }
+            
+        }
+    }
+    return $statusCheckBox;
 }

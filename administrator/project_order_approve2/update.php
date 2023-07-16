@@ -519,7 +519,7 @@ Vat 7%</strong></td>
 			<?php 
 			$sumPrice = $sumPrice+($rowPro['camount']*$rowPro['cprice']);
 			$sumCost  = $sumCost +($rowPro['ccost']*$rowPro['camount']);
-      $sumDisc = $sumDisc+$rowPro['cdisc'];
+      $sumDisc = $sumDisc+($rowPro['cdisc']*$rowPro['camount']);
 			$rowCal++;
 		}
 	?>

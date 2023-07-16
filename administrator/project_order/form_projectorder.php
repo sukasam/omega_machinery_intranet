@@ -80,7 +80,7 @@ for($i=0;$i<=count($_POST['cpro']);$i++){
 		$sumprice += $_POST['camount'][$i]*$_POST['cprice'][$i];
 		$sumpriceNot += $_POST['cprice'][$i];
 		$sumCost += $_POST['ccost'][$i] * $_POST['camount'][$i];
-    $sumDics += $_POST['cdisc'][$i];
+    $sumDics += $_POST['cdisc'][$i] * $_POST['camount'][$i];
 		
 		$projectPro .= '<tr>
 		<td style="border:1px solid #000000;padding:5;font-size:13px;">'.($i+1).'</td>
@@ -91,8 +91,8 @@ for($i=0;$i<=count($_POST['cpro']);$i++){
 		  <td style="border:1px solid #000000;padding:5;font-size:13px;">'.$_POST['camount'][$i].'</td>
 		  <td style="border:1px solid #000000;padding:5;text-align:right;font-size:13px;">'.number_format($_POST['ccost'][$i]).'&nbsp;&nbsp;</td>
 		  <td style="border:1px solid #000000;padding:5;text-align:right;font-size:13px;">'.number_format($_POST['cprice'][$i]).'&nbsp;&nbsp;</td>
-      <td style="border:1px solid #000000;padding:5;text-align:right;font-size:13px;">'.number_format($_POST['cdisc'][$i]).'&nbsp;&nbsp;</td>
-      <td style="border:1px solid #000000;padding:5;text-align:right;font-size:13px;">'.number_format(($_POST['camount'][$i] * $_POST['cprice'][$i])-$_POST['cdisc'][$i]).'&nbsp;&nbsp;</td>
+      <td style="border:1px solid #000000;padding:5;text-align:right;font-size:13px;">'.number_format($_POST['cdisc'][$i]* $_POST['camount'][$i]).'&nbsp;&nbsp;</td>
+      <td style="border:1px solid #000000;padding:5;text-align:right;font-size:13px;">'.number_format(($_POST['camount'][$i] * $_POST['cprice'][$i])-($_POST['cdisc'][$i]* $_POST['camount'][$i])).'&nbsp;&nbsp;</td>
 		</tr>';
 		
 	}
@@ -195,7 +195,7 @@ $form = '
     </tr>
 	<tr>
       <td style="border:1px solid #000000;padding:5;font-size:13px;"><strong>ยอดรวมกำไรขั้นต้น</strong></td>
-      <td colspan="3"  style="border:1px solid #000000;padding:5;text-align:right;font-size:14px;"><strong>กำไร '.number_format(((($sumremainTotal-$sumCost) - $sumDics)*(100))/$sumremainTotal,2).'%</strong>&nbsp;&nbsp;</td>
+      <td colspan="3"  style="border:1px solid #000000;padding:5;text-align:right;font-size:14px;"><strong>กำไร '.number_format(((($sumremainTotal-$sumCost) - $sumDics)*(100))/($sumremainTotal-$sumDics),2).'%</strong>&nbsp;&nbsp;</td>
 	  <td colspan=""  style="border:1px solid #000000;padding:5;text-align:right;font-size:13px;"><strong>'.number_format(($sumremainTotal - $sumCost) - $sumDics,2).'</strong>&nbsp;&nbsp;</td>
     </tr>
 </table>

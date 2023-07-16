@@ -109,6 +109,10 @@ function submitForm() {
                 <td nowrap class="name">เบอร์โทรศัพท์</td>
                 <td><input name="group_tel" type="text" id="group_tel"  value="<?php  echo $group_tel; ?>" size="60"></td>
               </tr>
+			  <tr >
+                <td nowrap class="name">Line ID</td>
+                <td><input name="line_id" type="text" id="line_id"  value="<?php  echo $line_id; ?>" size="60"></td>
+              </tr>
              <tr >
                 <td nowrap class="name">ชื่อเข้าใช้ระบบ</td>
                 <td>
@@ -125,6 +129,9 @@ function submitForm() {
 				</select>
             	 </td>
               </tr>
+			  <tr>
+				<td></td>
+			  </tr>
           </table></td>
           </tr>
         </table>

@@ -374,6 +374,27 @@ if ($_POST['mode'] != "") {
           $pro_img3 = $_POST['pro_img3'];
         }
 
+        $paths = "../../upload/quotation/";
+
+        if($_POST['deleteimg1'] === '1'){
+          @unlink($paths.$_POST['pro_img1']);
+          $sql = "update $tbl_name set pro_img1 = '' where $PK_field = '".$_POST[$PK_field]."' ";
+          @mysqli_query($conn,$sql);			
+          $pro_img3 = "";
+        }
+        if($_POST['deleteimg2'] === '1'){
+          @unlink($paths.$_POST['pro_img2']);
+          $sql = "update $tbl_name set pro_img2 = '' where $PK_field = '".$_POST[$PK_field]."' ";
+          @mysqli_query($conn,$sql);			
+          $pro_img2 = "";
+        }
+        if($_POST['deleteimg3'] === '1'){
+          @unlink($paths.$_POST['pro_img3']);
+          $sql = "update $tbl_name set pro_img3 = '' where $PK_field = '".$_POST[$PK_field]."' ";
+          @mysqli_query($conn,$sql);			
+          $pro_img3 = "";
+        }
+
 
         include_once "../mpdf54/mpdf.php";
         include_once "form_quotation.php";
@@ -1030,7 +1051,8 @@ while ($row_qupros7 = @mysqli_fetch_array($qupros7)) {
         <?php 
          if($pro_img1 != ""){
           ?><br><br>
-           <img src="../../upload/quotation/<?php  echo $pro_img1;?>" height="150">
+           <img src="../../upload/quotation/<?php  echo $pro_img1;?>" height="150"><br>
+           <input type="checkbox" id="deleteimg1" name="deleteimg1" value="1"> Delete
           <?php
          }
         ?>
@@ -1041,7 +1063,8 @@ while ($row_qupros7 = @mysqli_fetch_array($qupros7)) {
         <?php 
          if($pro_img2 != ""){
           ?><br><br>
-           <img src="../../upload/quotation/<?php  echo $pro_img2;?>" height="150">
+           <img src="../../upload/quotation/<?php  echo $pro_img2;?>" height="150"><br>
+           <input type="checkbox" id="deleteimg2" name="deleteimg2" value="1"> Delete
           <?php
          }
         ?>
@@ -1050,9 +1073,10 @@ while ($row_qupros7 = @mysqli_fetch_array($qupros7)) {
         <td width="33%" style="border:1px solid #000000;text-align:center;">
         <input type="file" name="pro_img3s">
         <?php 
-         if($pro_img1 != ""){
+         if($pro_img3 != ""){
           ?><br><br>
-           <img src="../../upload/quotation/<?php  echo $pro_img3;?>" height="150">
+           <img src="../../upload/quotation/<?php  echo $pro_img3;?>" height="150"><br>
+           <input type="checkbox" id="deleteimg3" name="deleteimg3" value="1"> Delete
           <?php
          }
         ?>
@@ -1104,29 +1128,35 @@ while ($rowTec = @mysqli_fetch_array($qusTec)) {
         <p><strong>เงื่อนไขการชำระเงิน</strong></p> 
         <p>
         1. <input type="text" name="paycon1" value="<?php echo $paycon1;?>" style="text-align: left;width: 60%;"><br>
-        2. ชำระเงินประกันเครื่อง/ค่าบริการขนส่งติดตั้ง ณ วันที่อนุมัติสั่งซื้อ ก่อนติดตั้งเครื่อง หรือตามเงื่อนไขการขายที่ตกลง<br>
-			     ชำระค่าเช่าวันที่ <input type="text" name="paysad" value="<?php echo $paysad;?>" style="text-align: center;width: 100px;"> ของทุกๆเดือน
+        2. บัญชีสำหรับโอนเงิน ชำระค่าสินค้า<br>
+        &nbsp;&nbsp;&nbsp;<strong style="color: #077d0c;"> ธนาคารกสิกรไทย : สาขาสุขาภิบาล 5 <br>
+        &nbsp;&nbsp;&nbsp;&nbsp;บัญชีออมทรัพย์ : บจก.โอเมก้า แมชชีนเนอรี่ (1999)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;เลขที่บัญชี : 026-1-810689<br></strong>
+          
+         <input type="text" name="paysad" value="<?php echo $paysad;?>" style="text-align: center;width: 100px;display:none;">
         </p>    
         <p><strong>เงื่อนไขการรับประกันและการส่งสินค้า</strong></p>
 
         <p>
 
         1. ราคาดังกล่าวข้างต้น <input type="text" name="paycon2" value="<?php echo $paycon2;?>" style="text-align: center;width: 100px;"> ภาษีมูลค่าเพิ่ม <input type="text" name="paycon3" value="<?php echo $paycon3;?>" style="text-align: center;width: 50px;"> ตามที่สรรพากรกำหนดเรียบร้อยแล้ว<br>
-        2. การรับประกันสินค้า : รับประกันตัวเครื่อง อะไหล่และบริการหลังการขายฟรี <input type="text" name="paycon4" value="<?php echo $paycon4;?>" style="text-align: center;width: 50px;"> ปี <input type="text" name="paycon5" value="<?php echo $paycon5;?>" style="text-align: center;width: 50px;"> เดือนหรือตามที่ตกลงกัน<br>
-        <!-- 3. ตลอดระยะเวลาการรับประกัน : บริษัทฯ กำหนดให้ลูกค้าต้องใช้น้ำยาของบริษัท โอเมก้า แมชชีนเนอรี่ (1999) จำกัด เท่านั้น<br> -->
+        2. การรับประกันสินค้า : <input type="text" name="paycon4" value="<?php echo $paycon4;?>" style="text-align: left;width: 70%;"> <br>
+    
+        <!-- <input type="text" name="paycon5" value="<?php //echo $paycon5;?>" style="text-align: center;width: 50px;">
+        3. ตลอดระยะเวลาการรับประกัน : บริษัทฯ กำหนดให้ลูกค้าต้องใช้น้ำยาของบริษัท โอเมก้า แมชชีนเนอรี่ (1999) จำกัด เท่านั้น<br> -->
         <!-- 2. การรับประกันสินค้า ในกรณีเช่า : ทางบริษัทฯ รับประกันเครื่อง, อะไหล่และบริการหลังการขาย ฟรีตลอดอายุสัญญาเช่า<br>
         3. ระยะเวลาเช่า <input type="text" name="paycon4" value="<?php echo $paycon4;?>" style="text-align: center;width: 50px;"> เดือน โดยสัญญาเช่าจะเริ่มต้อนเมื่อทางบริษัทฯ ทำการส่งมอบสินค้าเรียบร้อยแล้ว<br> -->
-        3. บริษัทฯ ขอสงวนสิทธ์ในการกำหนดให้ลูกค้าใช้น้ำยาสำหรับเครื่องทุกชนิดของบริษัท โอเมก้า แมชชีนเนอรี่ (1999) จำกัด เท่านั้น ตลอดอายุสัญญาเช่า<br>
-        4. จัดส่งสินค้าภายใน <input type="text" name="guaran2" value="<?php echo $guaran2;?>" style="text-align: center;width: 50px;"> วัน หลังจากลูกค้าชำระเงินประกันสินค้า/ค่าเช่าล่วงหน้าและค่าบริการขนส่ง/ติดตั้ง<br>
-        5. ลูกค้าเป็นผู้ตรียมระบบไฟฟ้า <select name="type_electric" id="type_electric" class="inputselect">
+        <!-- 3. บริษัทฯ ขอสงวนสิทธ์ในการกำหนดให้ลูกค้าใช้น้ำยาสำหรับเครื่องทุกชนิดของบริษัท โอเมก้า แมชชีนเนอรี่ (1999) จำกัด เท่านั้น ตลอดอายุสัญญาเช่า<br> -->
+        3. จัดส่งสินค้าภายใน <input type="text" name="guaran2" value="<?php echo $guaran2;?>" style="text-align: center;width: 50px;"> วัน <input type="text" name="paycon5" value="<?php echo $paycon5;?>" style="text-align: left;width: 70%;"> <br>
+        4. ลูกค้าเป็นผู้ตรียมระบบไฟฟ้า <select name="type_electric" id="type_electric" class="inputselect">
       <option value="no" <?php  if($type_electric == "no"){echo 'selected';}?>>ไม่เลือก</option>
       <option value="3 เฟส (380V.) เบรกเกอร์ 30A" <?php  if($type_electric == "3 เฟส (380V.) เบรกเกอร์ 30A"){echo 'selected';}?>>3 เฟส (380V.) เบรกเกอร์ 30A</option>
       <option value="3 เฟส (380V.) เบรกเกอร์ 80A" <?php  if($type_electric == "3 เฟส (380V.) เบรกเกอร์ 80A"){echo 'selected';}?>>3 เฟส (380V.) เบรกเกอร์ 80A</option>
       <option value="1 เฟส (220V.) เบรกเกอร์ 20A" <?php  if($type_electric == "1 เฟส (220V.) เบรกเกอร์ 20A"){echo 'selected';}?>>1 เฟส (220V.) เบรกเกอร์ 20A</option>
       <option value="1 เฟส (220V.) เบรกเกอร์ 30A" <?php  if($type_electric == "1 เฟส (220V.) เบรกเกอร์ 30A"){echo 'selected';}?>>1 เฟส (220V.) เบรกเกอร์ 30A</option>
-      </select> ท่อน้ำดี ขนาด 6 หุน น้ำทิ้ง ขนาด 2 นิ้ว ระยะไม่เกิน 5 เมตร จากตำแหน่งติดตั้ง<br>
-        6. กำหนดยืนราคา <input type="text" name="giveprice" value="<?php echo $giveprice;?>" style="text-align: center;width: 50px;"> วัน<br>
-        7. ทางบริษัทฯ ขอสงวนสิทธ์ในกรณีที่ลูกค้าเช็นอนุมัติใบเสนอราคาแล้วนั้น หากมีการยกเลิกสัญญา หรือ การเปลี่ยนแปลงใดๆเกิดขึ้นระหว่างดำเนินการ ทางลูกค้าต้องเป็นผู้รับผิดชอบต่อความเสียหายและค่าใช้จ่ายที่เกิดขึ้น<br>
+      </select> <input type="text" name="paycon6" value="<?php echo $paycon6;?>" style="text-align: left;width: 50%;"><br>
+        5. กำหนดยืนราคา <input type="text" name="giveprice" value="<?php echo $giveprice;?>" style="text-align: center;width: 50px;"> วัน<br>
+        6. ทางบริษัทฯ ขอสงวนสิทธ์ในกรณีที่ลูกค้าเช็นอนุมัติใบเสนอราคาแล้วนั้น หากมีการยกเลิกสัญญา หรือ การเปลี่ยนแปลงใดๆเกิดขึ้นระหว่างดำเนินการ ทางลูกค้าต้องเป็นผู้รับผิดชอบต่อความเสียหายและค่าใช้จ่ายที่เกิดขึ้น<br>
 
 
         </td>

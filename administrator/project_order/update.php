@@ -518,7 +518,7 @@ Vat 7%</strong></td>
 			<?php 
 			$sumPrice = $sumPrice+($rowPro['camount']*$rowPro['cprice']);
 			$sumCost  = $sumCost +($rowPro['ccost']*$rowPro['camount']);
-      $sumDisc = $sumDisc+$rowPro['cdisc'];
+      $sumDisc = $sumDisc+($rowPro['cdisc']*$rowPro['camount']);
 			$rowCal++;
 		}
 	?>
@@ -542,7 +542,7 @@ Vat 7%</strong></td>
       <td colspan="2" style="text-align:left;border:1px solid #000000;padding:5;vertical-align:middle;"></td>
       <td colspan="5" style="text-align: right;border: 1px solid #000000;padding: 5;vertical-align: middle;font-size: 15px;font-weight: bold;">ยอดรวมกำไรขั้นต้น</td>
       <td  style="text-align: left;border: 1px solid #000000;padding: 5;vertical-align: middle;text-align: right;font-size: 15px;font-weight: bold;">กำไร <?php  if($sumPrice > 0){echo number_format(((($sumPrice-$sumCost)-$sumDisc)*(100))/$sumPrice,2);}else{echo "0.00";};?>%</td>
-      <td  style="text-align: left;border: 1px solid #000000;padding: 5;vertical-align: middle;text-align: right;font-size: 15px;font-weight: bold;"><?php  echo number_format(($sumPrice-$sumCost)-$sumDisc,2);?></td>
+      <td  style="text-align: left;border: 1px solid #000000;padding: 5;vertical-align: middle;text-align: right;font-size: 15px;font-weight: bold;"><?php  echo number_format((($sumPrice-$sumCost)-$sumDisc)-$discount,2);?></td>
       
     </tr>
      

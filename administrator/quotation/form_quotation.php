@@ -59,6 +59,13 @@ if($_POST['type_service'] == 6){
   $checkService = 4;
 }
 
+$sale_line = getsaleline($conn,$_POST["cs_sell2"]);
+if(!empty($sale_line)){
+  $imgsaleLine =  '<div style="position: absolute;right: 65px;top: 260px;"><img src="https://omega-intranet.com/machinery/qrcode_gen/qrcode2.php?val=https://line.me/ti/p/~'.$sale_line.'" height="60" border="0" /></div>';
+}else{
+  $imgsaleLine = '';
+}
+
 if($_POST['paym3'] != "" && $_POST['paym3'] != "0"){
   $paym3g = '&nbsp;&nbsp;&nbsp;เครดิต '.$_POST['paym3'].' วัน';
 }else{
@@ -91,13 +98,13 @@ if($chkProcess == '5'){
 
 }
 
-if(!empty($pro_img1)){
+if($pro_img1 != ""){
   $pro_img1s = '<br><img src="../../upload/quotation/'.$pro_img1.'" height="150"  border="0" style="border-radius: 15px;"/>';
 }
-if(!empty($pro_img2)){
+if($pro_img2 != ""){
   $pro_img2s = '<br><img src="../../upload/quotation/'.$pro_img2.'" height="150" border="0" style="border-radius: 15px;"/>';
 }
-if(!empty($pro_img3)){
+if($pro_img3 != ""){
   $pro_img3s = '<br><img src="../../upload/quotation/'.$pro_img3.'" height="150"  border="0" style="border-radius: 15px;"/>';
 }
 
@@ -106,7 +113,7 @@ if(!empty($pro_img3)){
 //$userCreate = getCreatePaper($conn, $tbl_name, " AND `qu_id`=" . $_POST['qu_id']);
 $headerIMG = "../images/form/header-qab.png";
 
-$form = '
+$form = $imgsaleLine.'
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td style="padding-bottom:5px;"><img src="'.$headerIMG.'" width="100%" border="0" /></td>
@@ -128,6 +135,7 @@ $form = '
             <strong>ประเภทสินค้า :</strong> '.protype_name($conn,$_POST["pro_type"]).'<br /><br />
             <strong>พนักงานขาย :</strong> '.getsalename($conn,$_POST["cs_sell2"]).'<br/><br />
             <strong>เบอร์โทร :</strong> '.getsaletel($conn,$_POST["cs_sell2"]).'<br/><br />
+            
 			</td>
           </tr>
 </table>
@@ -217,8 +225,8 @@ $form = '
     </tr>
 </table><br><br>';
 
-if(empty($pro_img1s) && empty($pro_img2s) && empty($pro_img3s)){
-  $form .= '<br><br><br><br><br><br><br><br><br><br>';
+if($pro_img1s == ""){
+  $form .= '<br><br><br><br><br><br><br><br><br><br><br><br><br><br>';
 }else{
   $form .= '<table width="100%" border="0" cellspacing="0" cellpadding="0" style="font-size:11px;">
     <tr>
@@ -284,28 +292,27 @@ $form .= '<table width="100%" border="0" cellspacing="0" cellpadding="0">
 
   $form .='<p style="font-size:12px;"><strong><u>เงื่อนไขการชำระเงิน</u></strong></p>
   <p style="font-size:12px;">1. '.$_POST['paycon1'].'</p>
-  <p style="font-size:12px;">2. ชำระค่าบริการขนส่ง/ติดตั้ง และ'.$_POST['spro2'].' ณ วันอนุมัติสั่งซื้อสินค้าหรือตามเงื่อนไขการขาย</p>
-  <p style="font-size:12px;">&nbsp;&nbsp;&nbsp;&nbsp;ชำระค่าเช่าวันที่ '.$_POST['paysad'].' ของทุกๆ เดือน</p><br>
+  <p style="font-size:12px;">2. บัญชีสำหรับโอนเงิน ชำระค่าสินค้า <br>
+  &nbsp;&nbsp;&nbsp;&nbsp;ธนาคารกสิกรไทย : สาขาสุขาภิบาล 5<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;บัญชีออมทรัพย์ : บจก.โอเมก้า แมชชีนเนอรี่ (1999)<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;เลขที่บัญชี : 026-1-810689</p>
   <p style="font-size:12px;"><strong><u>เงื่อนไขการรับประกันและการส่งสินค้า</u></strong></p>
 
-  
   <p style="font-size:12px;">1. ราคาดังกล่าวข้างต้น '.$_POST['paycon2'].' ภาษีมูลค่าเพิ่ม '.$_POST['paycon3'].' ตามที่สรรพากรกำหนดเรียบร้อยแล้ว</p>
-  <p style="font-size:12px;">2. การรับประกันสินค้า : รับประกันตัวเครื่อง อะไหล่และบริการหลังการขายฟรี '.$_POST['paycon4'].' ปี '.$_POST['paycon5'].' เดือนหรือตามที่ตกลงกัน</p>
-  <p style="font-size:12px;">3. บริษัทฯ ขอสงวนสิทธ์ในการกำหนดให้ลูกค้าใช้น้ำยาสำหรับเครื่องทุกชนิดของบริษัท โอเมก้า แมชชีนเนอรี่ (1999) จำกัด เท่านั้น ตลอดอายุสัญญาเช่า</p>
-  <p style="font-size:12px;">4. จัดส่งสินค้าภายใน '.$_POST['guaran2'].' วัน หลังจากลูกค้าชำระเงินประกันสินค้า/ค่าเช่าล่วงหน้าและค่าบริการขนส่ง/ติดตั้ง</p>';
+  <p style="font-size:12px;">2. การรับประกันสินค้า : '.$_POST['paycon4'].'</p>
+  <p style="font-size:12px;">3. จัดส่งสินค้าภายใน '.$_POST['guaran2'].' วัน '.$_POST['paycon5'].'</p>';
 
   if($_POST['type_electric'] != "no"){
-	  $form .='<p style="font-size:12px;">5. ลูกค้าเป็นผู้ตรียมระบบไฟฟ้า '.$_POST['type_electric'].' ท่อน้ำดี ขนาด 6 หุน น้ำทิ้ง ขนาด 2 นิ้ว ระยะไม่เกิน 5 เมตร จากตำแหน่งติดตั้ง</p>
-    <p style="font-size:12px;">6. กำหนดยืนราคา '.$_POST['giveprice'].' วัน</p>
-    <p style="font-size:12px;">7. ทางบริษัทฯ ขอสงวนสิทธ์ในกรณีที่ลูกค้าเช็นอนุมัติใบเสนอราคาแล้วนั้น หากมีการยกเลิกสัญญา หรือ การเปลี่ยนแปลงใดๆเกิดขึ้นระหว่าง ดำเนินการ ทางลูกค้าต้องเป็นผู้รับผิดชอบต่อความเสียหายและค่าใช้จ่ายที่เกิดขึ้น</p>';
+	  $form .='<p style="font-size:12px;">4. ลูกค้าเป็นผู้ตรียมระบบไฟฟ้า '.$_POST['type_electric'].' '.$_POST['paycon5'].'</p>
+    <p style="font-size:12px;">5. กำหนดยืนราคา '.$_POST['giveprice'].' วัน</p>
+    <p style="font-size:12px;">6. ทางบริษัทฯ ขอสงวนสิทธ์ในกรณีที่ลูกค้าเช็นอนุมัติใบเสนอราคาแล้วนั้น หากมีการยกเลิกสัญญา หรือ การเปลี่ยนแปลงใดๆเกิดขึ้นระหว่าง ดำเนินการ ทางลูกค้าต้องเป็นผู้รับผิดชอบต่อความเสียหายและค่าใช้จ่ายที่เกิดขึ้น</p>';
   }else{
-	   $form .='<p style="font-size:12px;">6. กำหนดยืนราคา '.$_POST['giveprice'].' วัน</p>
-     <p style="font-size:12px;">7. ทางบริษัทฯ ขอสงวนสิทธ์ในกรณีที่ลูกค้าเช็นอนุมัติใบเสนอราคาแล้วนั้น หากมีการยกเลิกสัญญา หรือ การเปลี่ยนแปลงใดๆ เกิดขึ้นระหว่าง ดำเนินการ ทางลูกค้าต้องเป็นผู้รับผิดชอบต่อความเสียหายและค่าใช้จ่ายที่เกิดขึ้น</p>';
+	   $form .='<p style="font-size:12px;">4. กำหนดยืนราคา '.$_POST['giveprice'].' วัน</p>
+     <p style="font-size:12px;">5. ทางบริษัทฯ ขอสงวนสิทธ์ในกรณีที่ลูกค้าเช็นอนุมัติใบเสนอราคาแล้วนั้น หากมีการยกเลิกสัญญา หรือ การเปลี่ยนแปลงใดๆ เกิดขึ้นระหว่าง ดำเนินการ ทางลูกค้าต้องเป็นผู้รับผิดชอบต่อความเสียหายและค่าใช้จ่ายที่เกิดขึ้น</p>';
   }
 
 
-  $form .='<br>
-  <p style="font-size:12px;"><strong>จึงเรียนมาเพื่อโปรดพิจารณาอนุมัติ บริษัทฯหวังเป็นอย่างยิ่งว่าจะได้รับโอกาสให้บริการในเร็ววันนี้<br>ขอแสดงความนับถือ</strong></p>
+  $form .='<p style="font-size:12px;"><strong>จึงเรียนมาเพื่อโปรดพิจารณาอนุมัติ บริษัทฯหวังเป็นอย่างยิ่งว่าจะได้รับโอกาสให้บริการในเร็ววันนี้<br>ขอแสดงความนับถือ</strong></p>
   ';
 
  $form .='

@@ -107,6 +107,8 @@ function check_select(frm){
             &nbsp;</TH>
           <TH width="17%"> <?php   Show_Sort_new ("group_tel", "เบอร์โทรศัพท์", $orderby, $sortby,$page,$param2);?>
   &nbsp;</TH>
+  <TH width="17%"> <?php   Show_Sort_new ("line_id", "line ID", $orderby, $sortby,$page,$param2);?>
+  &nbsp;</TH>
           <TH width="8%"><a>แก้ไข</a></TH>
           <TH width="6%"><a>ลบ</a></TH>
         </TR>
@@ -148,6 +150,7 @@ function check_select(frm){
           <TD><span class="text"><?php  echo $rec["group_cus_id"] ; ?></span></TD>
           <TD><span class="text"><?php  echo $rec["group_name"] ; ?></span></TD>
           <TD><span class="text"><?php  echo $rec["group_tel"] ; ?></span></TD>
+          <TD><span class="text"><?php  echo $rec["line_id"] ; ?></span></TD>
           <TD><!-- Icons -->
             <A title=Edit href="update.php?mode=update&<?php  echo $PK_field; ?>=<?php  echo $rec["$PK_field"]; if($param <> "") {?>&<?php  echo $param; }?>"><IMG alt=Edit src="../images/pencil.png"></A> <A title=Delete  href="#"></A></TD>
           <TD><A title=Delete  href="#"><IMG alt=Delete src="../images/cross.png" onClick="confirmDelete('?action=delete&<?php  echo $PK_field; ?>=<?php  echo $rec[$PK_field];?>','Group  <?php  echo $rec[$PK_field];?> : <?php  echo $rec["group_name"];?>')"></A></TD>

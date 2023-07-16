@@ -65,6 +65,13 @@ if($_POST['paym3'] != "" && $_POST['paym3'] != "0"){
   $paym3g = '';
 }
 
+$sale_line = getsaleline($conn,$_POST["cs_sell2"]);
+if(!empty($sale_line)){
+  $imgsaleLine =  '<div style="position: absolute;right: 65px;top: 285px;"><img src="https://omega-intranet.com/machinery/qrcode_gen/qrcode2.php?val=https://line.me/ti/p/~'.$sale_line.'" height="60" border="0" /></div>';
+}else{
+  $imgsaleLine = '';
+}
+
 $chkProcess = checkProcess($conn,$tbl_name,$PK_field,$id);
 
 $saleSignature = '<img src="../../upload/user/signature/'.get_sale_signature($conn,$_POST['cs_sell']).'" height="50" border="0" />';
@@ -92,20 +99,21 @@ if($chkProcess == '5'){
 }
 
 
-if(!empty($pro_img1)){
+if($pro_img1 != ""){
   $pro_img1s = '<br><img src="../../upload/quotation/'.$pro_img1.'" height="150"  border="0" style="border-radius: 15px;"/>';
 }
-if(!empty($pro_img2)){
+if($pro_img2 != ""){
   $pro_img2s = '<br><img src="../../upload/quotation/'.$pro_img2.'" height="150" border="0" style="border-radius: 15px;"/>';
 }
-if(!empty($pro_img3)){
+if($pro_img3 != ""){
   $pro_img3s = '<br><img src="../../upload/quotation/'.$pro_img3.'" height="150"  border="0" style="border-radius: 15px;"/>';
 }
+
 
 //$userCreate = getCreatePaper($conn, $tbl_name, " AND `qu_id`= ".$_POST['qu_id']);
 $headerIMG = "../images/form/header-qah.png";
 
-$form = '
+$form = $imgsaleLine.'
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td style="padding-bottom:5px;"><img src="'.$headerIMG.'" width="100%" border="0" /></td>
@@ -218,22 +226,22 @@ $form = '
 </table>
 <br><br>';
 
-  if(empty($pro_img1s) && empty($pro_img2s) && empty($pro_img3s)){
-    $form .= '<br><br><br><br><br><br><br><br><br><br>';
-  }else{
-    $form .= '<table width="100%" border="0" cellspacing="0" cellpadding="0" style="font-size:11px;">
-      <tr>
-          <th width="33%" style=""><strong>รูปภาพประกอบที่ 1</strong></th>
-          <th width="33%" style=""><strong>รูปภาพประกอบที่ 2</strong></th>
-          <th width="33%" style=""><strong>รูปภาพประกอบที่ 3</strong></th>
-      </tr>
-      <tr>
-        <th width="33%" style="text-align:center;padding:10px;">'.$pro_img1s.'</th>
-        <th width="33%" style="text-align:center;padding:10px">'.$pro_img2s.'</th>
-        <th width="33%" style="text-align:center;padding:10px">'.$pro_img3s.'</th>
+if($pro_img1s == ""){
+  $form .= '<br><br><br><br><br><br><br><br><br><br><br><br><br><br>';
+}else{
+  $form .= '<table width="100%" border="0" cellspacing="0" cellpadding="0" style="font-size:11px;">
+    <tr>
+        <th width="33%" style=""><strong>รูปภาพประกอบที่ 1</strong></th>
+        <th width="33%" style=""><strong>รูปภาพประกอบที่ 2</strong></th>
+        <th width="33%" style=""><strong>รูปภาพประกอบที่ 3</strong></th>
     </tr>
-     </table><br><br><br><br>';
-  }
+    <tr>
+      <th width="33%" style="text-align:center;padding:10px;">'.$pro_img1s.'</th>
+      <th width="33%" style="text-align:center;padding:10px">'.$pro_img2s.'</th>
+      <th width="33%" style="text-align:center;padding:10px">'.$pro_img3s.'</th>
+  </tr>
+   </table><br><br><br><br><br>';
+}
   
   $form .='<table width="100%" border="0" cellspacing="0" cellpadding="0">
     <tr>

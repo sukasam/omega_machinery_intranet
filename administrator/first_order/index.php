@@ -211,6 +211,16 @@ function check_select(frm){
           }else{
             $GMApprove = '';
           }
+          $numSVcheck = checkBoxFO($conn,$rec["fo_id"]);
+          $boxSV = '';
+          if($numSVcheck == 1){
+            $boxSV = '-blue';
+          }else if($numSVcheck == 2){
+            $boxSV = '-red';
+          }else{
+            $boxSV = '';
+          }
+
 				   ?>
         <TR>
           <TD style="vertical-align: middle;"><INPUT type=checkbox name="del[]" value="<?php  echo $rec[$PK_field]; ?>" ></TD>
@@ -218,7 +228,7 @@ function check_select(frm){
           <TD style="vertical-align: middle;"><?php  $chaf = preg_replace("/\//","-",$rec["fs_id"]); ?><span class="text"><a href="../../upload/first_order/<?php  echo $chaf;?>.pdf" target="_blank" style="<?php echo $GMApprove;?>"><?php  echo $rec["fs_id"] ; ?></a></span></TD>
           <TD style="vertical-align: middle;<?php echo $GMApprove;?>">          
             <span class="text"><?php  echo $rec["cd_name"] ; ?></span><br>
-            <?php  echo "<strong style=\"".$GMApprove."\">สถานที่ติดตั้ง:</strong> ".$rec["loc_name"] ; ?></span
+            <?php  echo "<strong style=\"".$GMApprove."\">สถานที่ติดตั้ง:</strong> ".$rec["loc_name"];?><span style="display: none;"><?php echo " - ".$numSVcheck;?></span></span
           </TD>
           <TD style="vertical-align: middle;"><span class="text"><?php  echo getsalename($conn,$rec["cs_company"]); ?></span></TD>
           <TD nowrap style="vertical-align:middle"><div align="center">
@@ -246,7 +256,7 @@ function check_select(frm){
             <div align="center"><a href="../../upload/service_report_close/<?php  echo get_srreport($conn,$rec["fs_id"]);?>.pdf" target="_blank"><p style="background:#999;color:#FFFFFF;padding:2px;"><?php  echo get_srreport($conn,$rec["fo_id"]);?></p></a></div>
             <?php  }?>
           </div>-->
-          <div align="center"><A href="service_close.php?fo_id=<?php  echo $rec["fo_id"];?>"><IMG  alt=icon src="../images/icons/icon-48-install.png"></A></div>
+          <div align="center"><A href="service_close.php?fo_id=<?php  echo $rec["fo_id"];?>"><IMG  alt=icon src="../images/icons/icon-48-install<?php echo $boxSV;?>.png"></A></div>
           </TD>
           <TD nowrap style="vertical-align:middle"><div align="center">
             <?php  if($rec["st_setting"]==0) {?>
