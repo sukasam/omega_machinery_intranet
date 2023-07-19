@@ -120,12 +120,12 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
     <TABLE>
       <THEAD>
         <TR>
-         <TH width="4%" <?php  Show_Sort_bg ("user_id", $orderby) ?>> <?php 
+         <!-- <TH width="4%" <?php  Show_Sort_bg ("user_id", $orderby) ?>> <?php 
 		$a_not_exists = array('orderby','sortby');
 		$param2 = get_param($a_param,$a_not_exists);
 	?>
             <?php   Show_Sort_new ("user_id", "ลำดับ.", $orderby, $sortby,$page,$param2);?>
-            &nbsp;</TH>
+            &nbsp;</TH> -->
           <TH width="8%"><div align="center"><a>ID</a></div></TH>
           <TH width="24%"><a>ชื่อลูกค้า</a></TH>
           <TH width="23%"><a>สถานที่ติดตั้ง</a></TH>
@@ -177,7 +177,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 					$counter++;
 				   ?>
         <TR>
-          <TD style="vertical-align:middle;"><span class="text"><?php  echo sprintf("%04d",$counter); ?></span></TD>
+          <!-- <TD style="vertical-align:middle;"><span class="text"><?php  echo sprintf("%04d",$counter); ?></span></TD> -->
           <TD style="vertical-align:middle;"><?php  $chaf = preg_replace("/\//","-",$rec["sv_id"]); ?><div align="center"><span class="text"><a href="../../upload/service_report_open/<?php  echo $chaf;?>.pdf" target="_blank"><?php  echo $rec["sv_id"] ; ?></a></span></div></TD>
           <TD style="vertical-align:middle;"><span class="text"><?php  echo get_customername($conn,$rec["cus_id"]); ?></span></TD>
           <TD style="vertical-align:middle;"><span class="text"><?php  echo get_localsettingname($conn,$rec["cus_id"]); ?></span></TD>
@@ -203,7 +203,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 			if(!empty($SVF)){
 				?>
 		<TR>
-          <TD style="vertical-align:middle;"><span class="text"><?php  echo sprintf("%04d",$counter); ?></span></TD>
+          <!-- <TD style="vertical-align:middle;"><span class="text"><?php  echo sprintf("%04d",$counter); ?></span></TD> -->
           <TD style="vertical-align:middle;"><?php  $chaf = preg_replace("/\//","-",$SVF["sv_id"]); ?><div align="center"><span class="text"><a href="../../upload/service_report_close/<?php  echo $chaf;?>.pdf" target="_blank"><?php  echo $SVF["sv_id"] ; ?></a></span></div></TD>
           <TD style="vertical-align:middle;"><span class="text"><?php  echo get_customername($conn,$SVF["cus_id"]); ?></span></TD>
           <TD style="vertical-align:middle;"><span class="text"><?php  echo get_localsettingname($conn,$SVF["cus_id"]); ?></span></TD>
@@ -229,7 +229,33 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 			// var_dump($SVF);
 			// exit();
 		  ?>
-		<?php  }?>
+		<?php  }
+    $SVF2 = @mysqli_fetch_array(@mysqli_query($conn,"select * from s_service_report WHERE cus_id ='".$_GET['fo_id']."' and (sr_ctype = '24' OR sr_ctype = '55' OR sr_ctype = '89') order by sr_id DESC"));
+    if(!empty($SVF)){
+    ?>
+        <TR>
+          <!-- <TD style="vertical-align:middle;"><span class="text"><?php  echo sprintf("%04d",$counter); ?></span></TD> -->
+          <TD style="vertical-align:middle;"><?php  $chaf = preg_replace("/\//","-",$SVF2["sv_id"]); ?><div align="center"><span class="text"><a href="../../upload/service_report_close/<?php  echo $chaf;?>.pdf" target="_blank"><?php  echo $SVF2["sv_id"] ; ?></a></span></div></TD>
+          <TD style="vertical-align:middle;"><span class="text"><?php  echo get_customername($conn,$SVF2["cus_id"]); ?></span></TD>
+          <TD style="vertical-align:middle;"><span class="text"><?php  echo get_localsettingname($conn,$SVF2["cus_id"]); ?></span></TD>
+          <TD style="vertical-align:middle;"><?php  echo get_technician_name($conn,$SVF2["loc_contact"]);?></TD>
+          <TD style="vertical-align:middle"><?php  if($SVF2["approve"] == 1){?>
+            <IMG src="../images/icons/yes_approve.png" height="28" title="อนุมัติ">
+            <?php  }else if($SVF2["approve"] == 2){?>
+            <IMG src="../images/icons/no_approve.png" height="28" title="ไม่อนุมัติ">
+            <?php  }else{?>
+            <IMG src="../images/icons/wait_approve.png" height="28" title="รออนุมัติ">
+            <?php  }?></TD>
+          <TD style="vertical-align:middle"><div align="center">
+            <?php  if($SVF2["st_setting"]==0) {?>
+           <img src="../icons/status_on.gif" width="10" height="10">
+            <?php  } else{?>
+            <img src="../icons/status_off.gif" width="10" height="10">
+            <?php  }?>
+          </div></TD>
+          <TD style="vertical-align:middle;"><div align="center"><a href="../../upload/service_report_close/<?php  echo $chaf;?>.pdf" target="_blank"><img src="../images/icon2/backup.png" alt="" width="25" height="25" style="margin-left:10px;" title="ดาวน์โหลดรายงานช่างซ่ิอม"></a></div></TD>
+          </TR> 
+          <?php }?>
       </TBODY>
     </TABLE>
     <br><br>

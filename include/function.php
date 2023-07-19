@@ -3638,5 +3638,12 @@ function checkBoxFO($conn,$cusID){
             
         }
     }
+
+    $qu2 = @mysqli_query($conn, "SELECT * FROM s_service_report WHERE cus_id ='".$cusID."' and (sr_ctype = '24' OR sr_ctype = '55' OR sr_ctype = '89') order by sr_id DESC");
+    while ($row = @mysqli_fetch_array($qu2)) {
+        if($row["st_setting"] != 0){
+            $statusCheckBox = 2;
+        }
+    }
     return $statusCheckBox;
 }
