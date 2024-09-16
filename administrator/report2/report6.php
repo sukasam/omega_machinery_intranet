@@ -25,6 +25,10 @@
 	// $opentake = $_REQUEST['opentake'];
 
 	
+	// 0 = รวม IT, SR, และ RO, 1 = IT, 2 = SR, 3 = RO
+	$dataFroms = $_REQUEST['dataFroms'];
+
+	
 
 	$a_sdate=explode("/",$_REQUEST['date_fm']);
 
@@ -110,6 +114,25 @@
 
 	}
 
+	if($dataFroms != ""){
+
+		$coDataFrom = '';
+
+		if($dataFroms == 1){
+			$condition .= " AND sv.srid LIKE 'IT%'";
+			$coDataFrom = "(IT)";
+		}else if($dataFroms == 1){
+			$condition .= " AND sv.srid LIKE 'SR%'";
+			$coDataFrom = "(SR)";
+		}else if($dataFroms == 3){
+			$condition .= " AND sv.srid LIKE RO%'";
+			$coDataFrom = "(RO)";
+		}else{
+			$condition .= " AND (sv.srid LIKE 'IT%' OR sv.srid LIKE 'SR%' OR sv.srid LIKE 'RO%')";
+			$coDataFrom = "";
+		}
+	}
+
 	
 
 ?>
@@ -128,7 +151,7 @@
 
  .tbreport{
 
- 	font-size:10px;
+ 	font-size:14px;
 
  }
 
@@ -166,13 +189,13 @@
 
 	  <tr>
 
-	    <th colspan="4" style="text-align:left;font-size:12px;">บริษัท โอเมก้า แมชชีนเนอรี่ (1999) จำกัด<br />
+	    <th colspan="4" style="text-align:left;">บริษัท โอเมก้า แมชชีนเนอรี่ (1999) จำกัด<br />
 
 เลือกตามการใช้อะไหล่<br />
 
 ประเภทใบบริการ  : <?php if($ctype != ""){echo getcustom_type($conn,$ctype);}else{echo 'ทั้งหมด';}?> <?php  if($cpro != ""){echo "(".get_sparpart_id($conn,$cpro).' | '.get_sparpart_name($conn,$cpro).")";}?></th>
 
-	    <th colspan="5" style="text-align:right;font-size:11px;"><?php  echo $dateshow;?></th>
+	    <th colspan="5" style="text-align:right;"><?php  echo $dateshow;?></th>
 
       </tr>
 
@@ -234,13 +257,13 @@
 
 		while($row_fr = @mysqli_fetch_array($qu_fr)){
 
-						
-
 			?>
 
 			<tr>
 
-              <?php  if($_REQUEST['sh16'] == 1){?><td><a href="../../upload/service_report_close/<?php echo $row_fr['srid'];?>.pdf" target="_blank"><?php  echo $row_fr['sv_id'];?></a></td><?php  }?>
+              <?php  if($_REQUEST['sh16'] == 1){?><td style="text-wrap: nowrap;"><a href="../../upload/service_report_close/<?php echo $row_fr['srid'];?>.pdf" target="_blank"><?php  echo $row_fr['sv_id'];?></a> <?php echo $coDataFrom;?>
+				<!-- <br><a href="../../upload/service_report_close/<?php echo $row_fr['srid'];?>.pdf" target="_blank"><?php echo $row_fr['srid'];?></a> -->
+			</td><?php  }?>
 
               <?php  if($_REQUEST['sh1'] == 1){?><td><?php  echo $row_fr['cd_name'];?><br />
 
@@ -327,11 +350,23 @@
 
 					$totals += $totalamount
 
-					
+
+					?>
+					<tr>
+						
+						<?php  if($_REQUEST['sh4'] == 1){?><td style="border-bottom:none;" width="50%"><strong>รวม (ราคาต้นทุน / ราคาอะไหล่)</strong></td><?php  }?>
+
+						<?php  if($_REQUEST['sh5'] == 1){?><td align="center" style="border-bottom:none;" width="25%"></td><?php  }?>
+
+						<?php  if($_REQUEST['sh8'] == 1){?><td align="right" style="border-bottom:none;" width="25%"><strong><?php echo number_format($totalTA,2);?></strong></td><?php  }?>
+
+					</tr>
+					<?php
 
 				?>
 
                 </table>
+
 
               </td><?php  }?>
 

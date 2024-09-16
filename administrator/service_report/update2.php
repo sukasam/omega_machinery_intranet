@@ -555,7 +555,13 @@ $v = date("YmdHis");
 															'controlname': 'sr_stime'
 														});
 													</script>
-												</span></td>
+												</span>
+												<div style="padding-top: 9px;" id="chkrConfirm" class="<?php if(substr($sv_id, 0, 2) !== "IT"){echo 'hide';}?>">
+													<input type="radio" id="chkConfirm1" name="chkConfirm" value="0" <?php if($chkConfirm === '' || $chkConfirm === '0'){echo 'checked';}?>> <strong>ไม่เลือก</strong>
+													<input type="radio" id="chkConfirm2" name="chkConfirm" value="1" <?php if($chkConfirm === '1'){echo 'checked';}?>> <strong>รอคอนเฟิร์ม</strong>
+													<input type="radio" id="chkConfirm3" name="chkConfirm" value="2" <?php if($chkConfirm === '2'){echo 'checked';}?>> <strong>คอนเฟิร์มติดตั้งแล้ว</strong>
+												</div>
+											</td>
 										</tr>
 									</table>
 									<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tb2">

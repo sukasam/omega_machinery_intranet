@@ -101,7 +101,7 @@ if ($loc_seal != "") {
 	<style type="text/css">
 		.tbreport {
 
-			font-size: 10px;
+			font-size: 14px;
 
 		}
 
@@ -138,7 +138,7 @@ if ($loc_seal != "") {
 
 		<tr>
 
-			<th colspan="3" style="text-align:left;font-size:12px;">บริษัท โอเมก้า แมชชีนเนอรี่ (1999) จำกัด<br />
+			<th colspan="3" style="text-align:left;">บริษัท โอเมก้า แมชชีนเนอรี่ (1999) จำกัด<br />
 
 				รายงาน Installation<br />
 
@@ -150,7 +150,7 @@ if ($loc_seal != "") {
 					echo "ทั้งหมด";
 				} ?></th>
 
-			<th colspan="4" style="text-align:right;font-size:11px;"><?php echo $dateshow; ?></th>
+			<th colspan="4" style="text-align:right;"><?php echo $dateshow; ?></th>
 
 		</tr>
 
@@ -177,7 +177,7 @@ if ($loc_seal != "") {
 
 							<?php if ($_REQUEST['sh10'] == 1) { ?><td style="border-bottom:none;" align="<?php if($_REQUEST['sh6'] == 1 && $_REQUEST['sh10'] == 1){echo "center";}else{echo "right";}?>" width="25%"><strong>ราคาต้นทุน</strong></td><?php  } ?>
 
-							<?php if ($_REQUEST['sh6'] == 1) { ?><td style="border-bottom:none;" align="<?php if($_REQUEST['sh6'] == 1 && $_REQUEST['sh10'] == 1){echo "center";}else{echo "right";}?>" width="25%"><strong>ราคาขาย</strong></td><?php  } ?>
+							<?php if ($_REQUEST['sh6'] == 1) { ?><td style="border-bottom:none;text-wrap: nowrap;" align="<?php if($_REQUEST['sh6'] == 1 && $_REQUEST['sh10'] == 1){echo "center";}else{echo "right";}?>" width="25%"><strong>ราคาขาย</strong></td><?php  } ?>
 
 							
 
@@ -188,9 +188,9 @@ if ($loc_seal != "") {
 
 			<?php if ($_REQUEST['sh7'] == 1) { ?>
 
-				<th width="10%"><strong>วันที่ส่งงาน</strong></th><?php  } ?>
+				<th width="10%" style="text-wrap: nowrap;text-align: center;"><strong>วันที่ส่งงาน</strong></th><?php  } ?>
 
-			<?php if ($_REQUEST['sh8'] == 1) { ?><th width="5%"><strong>ผู้เบิก</strong></th><?php  } ?>
+			<?php if ($_REQUEST['sh8'] == 1) { ?><th width="5%" style="text-align: center;"><strong>ผู้เบิก</strong></th><?php  } ?>
 
 		</tr>
 
@@ -374,7 +374,7 @@ if ($loc_seal != "") {
 
 					</td><?php  } ?>
 
-				<?php if ($_REQUEST['sh7'] == 1) { ?><td style="padding:0;"><?php echo format_date($row_fr['sr_stime']); ?></td><?php  } ?>
+				<?php if ($_REQUEST['sh7'] == 1) { ?><td style="padding:0;text-align: center;"><?php echo format_date($row_fr['sr_stime']); ?></td><?php  } ?>
 
 				<?php if ($_REQUEST['sh8'] == 1) { ?><td style="padding:0;"><?php echo get_technician_name($conn, $row_fr['loc_contact']); ?></td><?php  } ?>
 

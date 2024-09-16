@@ -206,17 +206,25 @@ if ($_GET[mode] == "update") {
 				sv_id = sv_id.replace(/SR/g, 'RP');
 				document.getElementById("sv_id").value = sv_id;
 			} else {
-				var serTypeList = ["45", "47", "36", "23", "31", "48", "89", "55", "24", "87", "88", "105", "108"];
+				var serTypeList = ["45", "47", "36", "23", "31", "48", "89", "55", "24", "87", "88", "105", "108","112","113","114","115"];
 				var nChk = serTypeList.includes(d);
 
 				if (nChk === true) {
 					console.log(nChk, d);
 					sv_id = sv_id.replace(/SR/g, 'IT');
 					document.getElementById("sv_id").value = sv_id;
+
+					var element = document.getElementById("chkrConfirm");
+  					element.classList.remove("hide");
+					
+
 				} else {
 					console.log(nChk, d);
 					sv_id = sv_id.replace(/IT/g, 'SR');
 					document.getElementById("sv_id").value = sv_id;
+
+					var element = document.getElementById("chkrConfirm");
+  					element.classList.add("hide");
 				}
 			}
 		}
@@ -473,7 +481,14 @@ if ($_GET[mode] == "update") {
 																		'controlname': 'sr_stime'
 																	});
 																</script>
-															</span></td>
+															</span>
+															
+														<div style="padding-top: 9px;" id="chkrConfirm" class="<?php if(substr($sv_id, 0, 2) !== "IT"){echo 'hide';}?>">
+														<input type="radio" id="chkConfirm1" name="chkConfirm" value="0" <?php if($chkConfirm === '' || $chkConfirm === '0'){echo 'checked';}?>> <strong>ไม่เลือก</strong>
+														<input type="radio" id="chkConfirm2" name="chkConfirm" value="1" <?php if($chkConfirm === '1'){echo 'checked';}?>> <strong>รอคอนเฟิร์ม</strong>
+														<input type="radio" id="chkConfirm3" name="chkConfirm" value="2" <?php if($chkConfirm === '2'){echo 'checked';}?>> <strong>คอนเฟิร์มติดตั้งแล้ว</strong>
+														</div>
+														</td>
 													</tr>
 												</table>
 												<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tb2">

@@ -231,7 +231,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 		  ?>
 		<?php  }
     $SVF2 = @mysqli_fetch_array(@mysqli_query($conn,"select * from s_service_report WHERE cus_id ='".$_GET['fo_id']."' and (sr_ctype = '24' OR sr_ctype = '55' OR sr_ctype = '89') order by sr_id DESC"));
-    if(!empty($SVF)){
+    if(!empty($SVF2)){
     ?>
         <TR>
           <!-- <TD style="vertical-align:middle;"><span class="text"><?php  echo sprintf("%04d",$counter); ?></span></TD> -->

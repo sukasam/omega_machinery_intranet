@@ -144,7 +144,7 @@ function MM_openBrWindow(theURL,winName,features) { //v2.0
       <select name="sr_ctype" id="sr_ctype" id="jumpMenu" onchange="MM_jumpMenu('parent',this,0)" style="height:30px;">
                 <option value="index.php?month=<?php  echo $monthStart;?>&year=<?php  echo $yesrStart;?><?php  echo $paramLoc;?>"><== กรุณาเลือกประเภทบริการลูกค้า ==></option>
 					<?php  
-						$serTypeList = array("45", "47", "36", "23", "31", "48", "89", "55", "24", "87", "88", "105", "108");
+						$serTypeList = array("45", "47", "36", "23", "31", "48", "89", "55", "24", "87", "88", "105", "108", "112", "113", "114", "115");
 						$qu_cusftype = @mysqli_query($conn,"SELECT * FROM s_group_service ORDER BY group_name ASC");
 						while($row_cusftype = @mysqli_fetch_array($qu_cusftype)){
 							if(in_array($row_cusftype['group_id'], $serTypeList)){

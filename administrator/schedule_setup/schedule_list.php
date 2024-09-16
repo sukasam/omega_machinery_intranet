@@ -61,7 +61,7 @@
 		$ctype .= " AND sr_ctype = '".$_GET['sr_ctype']."'";
 	}else{
 
-		$serTypeList = array("45", "47", "36", "23", "31", "48", "89", "55", "24", "87", "88", "105", "108");
+		$serTypeList = array("45", "47", "36", "23", "31", "48", "89", "55", "24", "87", "88", "105", "108", "112", "113", "114", "115");
 	
 		$ctype .= " AND (";
 
@@ -80,6 +80,12 @@
 	$chaf = preg_replace("/\//","-",$row_serv["sv_id"]);
 	$finfo = get_firstorder($conn,$row_serv['cus_id']);
 	
+	if($row_serv['chkConfirm'] === '2'){
+		$rowTrColor = "background-color: yellow;";
+	}else{
+		$rowTrColor = "";
+	}
+		
 	// if($row_serv['st_setting'] == 0){
 	// 	$scstatus = "<a href=\"../../upload/service_report_open/".$chaf.".pdf\" target=\"_blank\" style=\"text-decoration: none;\"><span style=\"color:green;\">".$row_serv['sv_id']."</span></a>";
 	// }else{
@@ -93,7 +99,7 @@
 	}else if($row_serv['sr_ctype'] == '24' || $row_serv['sr_ctype'] == '55' || $row_serv['sr_ctype'] == '89'){
 		$rowColor = "red";
 		//$scstatus = "<a href=\"../../upload/service_report_open/".$chaf.".pdf\" target=\"_blank\" style=\"text-decoration: none;\"><span style=\"color:red;\">".$row_serv['sv_id']."</span></a>";
-	}else if($row_serv['sr_ctype'] == '23' || $row_serv['sr_ctype'] == '36' || $row_serv['sr_ctype'] == '45' || $row_serv['sr_ctype'] == '47'){
+	}else if($row_serv['sr_ctype'] == '23' || $row_serv['sr_ctype'] == '36' || $row_serv['sr_ctype'] == '45' || $row_serv['sr_ctype'] == '47' || $row_serv['sr_ctype'] == '112' || $row_serv['sr_ctype'] == '113' || $row_serv['sr_ctype'] == '114' || $row_serv['sr_ctype'] == '115'){
 		$rowColor = "blue";
 		//$scstatus = "<a href=\"../../upload/service_report_open/".$chaf.".pdf\" target=\"_blank\" style=\"text-decoration: none;\"><span style=\"color:blue;\">".$row_serv['sv_id']."</span></a>";
 	}else{
@@ -118,8 +124,24 @@
   ?>  
   <tr>
     <td style="text-align:center;color:<?php echo $rowColor;?>"><?php  echo sprintf("%03d",$romn);?></td>
-    <td style="text-align:center;color:<?php echo $rowColor;?>"><?php  echo $scstatus;?></td>
-    <td style="padding-left:10px;padding-right:10px;color:<?php echo $rowColor;?>"><?php  echo $finfo['loc_name'];?></td>
+    <td style="text-align:center;color:<?php echo $rowColor;?>">
+    <?php 
+	if($row_serv['chkConfirm'] === '2'){
+		echo "<mark>".$scstatus."</mark>";
+	}else{
+		echo $scstatus;
+	}
+	?>
+    </td>
+    <td style="padding-left:10px;padding-right:10px;color:<?php echo $rowColor;?>">
+	<?php 
+	if($row_serv['chkConfirm'] === '2'){
+		echo "<mark>".$finfo['loc_name']."</mark>";
+	}else{
+		echo $finfo['loc_name'];
+	}
+	?>
+    </td>
     <td style="text-align:center;color:<?php echo $rowColor;?>"><?php  echo $finfo['c_contact']."/".$finfo['c_tel'];?></td>
 	<td style="text-align:center;color:<?php echo $rowColor;?>"><?php  echo $row_serv["loc_seal"];?></td>
 	<td style="text-align:center;color:<?php echo $rowColor;?>"><?php  echo $row_serv['job_opentime'];?></td>

@@ -1846,6 +1846,28 @@ if ($_GET["action"] == "chksum") {
                                       </select></td>
   
                                   </tr>
+
+                                  <tr>
+  
+                                    <td nowrap class="name">จากข้อมูล</td>
+
+                                    <td><span class="name">
+
+                                        <input name="dataFroms" type="radio" value="0" checked>
+                                        รวม IT, SR, และ RO&nbsp;
+
+                                        <input name="dataFroms" type="radio" value="1">
+                                        IT เท่านั้น&nbsp;
+
+                                        <input name="dataFroms" type="radio" value="2">
+                                        SR เท่านั้น&nbsp;
+
+                                        <input name="dataFroms" type="radio" value="3">
+                                        RO เท่านั้น&nbsp;
+
+                                      </span></td>
+
+                                  </tr>
   
                                   <tr>
   
@@ -1940,11 +1962,11 @@ if ($_GET["action"] == "chksum") {
                                     ผู้เบิก</td>
   
                                   </tr>
-                                  <tr>
+                                  <!-- <tr>
                                     <td></td>
                                     <td></td>
                                   </tr>
-  
+   -->
                                 </table>
                               </td>
   
@@ -6629,7 +6651,7 @@ if ($_GET["action"] == "chksum") {
   
                                         $qu_cusftype = @mysqli_query($conn, "SELECT * FROM s_group_service ORDER BY group_name ASC");
 
-                                        $listC = array(88,105,106,45,47,79,36,23,57,51,89,55,24,87,31,48);
+                                        $listC = array(88,105,106,45,47,79,36,23,57,51,89,55,24,87,31,48,112,113,114,115);
   
                                         while ($row_cusftype = @mysqli_fetch_array($qu_cusftype)) {
 

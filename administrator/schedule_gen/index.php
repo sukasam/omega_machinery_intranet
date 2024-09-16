@@ -333,7 +333,7 @@ if($_GET['month'] == 2){
 	  $runRow = 1;
 	  while($rowSched = mysqli_fetch_array($quSched)){
 
-		 // echo $rowSched['fs_id']."<br>";
+		//  echo $rowSched['fs_id']."<br>";
 
 		//  getScheduleService($rowSched['service_month'],$getMonth,$rowSched['service_type']);
 		  

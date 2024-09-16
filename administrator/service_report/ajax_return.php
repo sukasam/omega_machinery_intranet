@@ -44,6 +44,7 @@ if ($_GET["action"] == 'getcusfirsh') {
 	$plid .=	 "</select>";
 
 	$qu_cusftype2 = @mysqli_query($conn, "SELECT * FROM s_group_custommer ORDER BY group_name ASC");
+	$ctyp = "";
 	while ($row_cusftype2 = @mysqli_fetch_array($qu_cusftype2)) {
 		$ctyp .= "<option value=" . $row_cusftype2['group_id'] . " ";
 		if ($row_cusftype2['group_id'] == $rowcus['ctype']) {

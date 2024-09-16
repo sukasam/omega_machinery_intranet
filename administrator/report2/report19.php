@@ -161,7 +161,7 @@
 
  .tbreport{
 
- 	font-size:10px;
+ 	font-size:14px;
 
  }
 
@@ -199,12 +199,12 @@
 
 	  <tr>
 
-	    <th colspan="5" style="text-align:left;font-size:12px;">บริษัท โอเมก้า แมชชีนเนอรี่ (1999) จำกัด<br />
+	    <th colspan="5" style="text-align:left;">บริษัท โอเมก้า แมชชีนเนอรี่ (1999) จำกัด<br />
 
 รายงานซ่อมเครื่องเก่า<br />
 ประเภทใบบริการ  : <?php if($type_service == 2){echo 'เครื่องล้างแก้ว';}else if($type_service == 3){echo 'เครื่องผลิตน้ำแข็ง';}else if($type_service == 1){echo 'เครื่องล้างจาน';}else{echo 'ทั้งหมด';}?></th>
 
-	    <th colspan="8" style="text-align:right;font-size:11px;"><?php  echo $dateshow;?></th>
+	    <th colspan="8" style="text-align:right;"><?php  echo $dateshow;?></th>
 
       </tr>
 
@@ -240,7 +240,7 @@
 
         </table></th><?php  }?>
 
-        <?php  if($_REQUEST['sh8'] == 1){?><th width="5%"><strong>รวมมูลค่า</strong></th><?php  }?>
+        <?php  /*if($_REQUEST['sh8'] == 1){?><th width="5%"><strong>รวมมูลค่า</strong></th><?php  }*/?>
 
 		<th width="5%">สถานะเครื่อง</th>
 
@@ -252,7 +252,7 @@
 
 		<?php  if($_REQUEST['sh7'] == 1){?><th width="5%"><strong>วันที่ซ่อมเสร็จ</strong></th><?php  }?>
 
-        <?php  if($_REQUEST['sh9'] == 1){?><th width="5%"><strong>ผุ้เบิก</strong></th><?php  }?>
+        <?php  if($_REQUEST['sh9'] == 1){?><th width="5%" style="text-wrap: nowrap;"><strong>ผู้เบิก</strong></th><?php  }?>
 
       </tr>
 
@@ -380,11 +380,21 @@
 
 				?>
 
+				<tr style="<?php echo $status_type_color;?>">
+
+				<?php  if($_REQUEST['sh4'] == 1){?><td style="border-bottom:none;" width="50%"><strong>รวม (ราคาต้นทุน / ราคาอะไหล่)</strong></td><?php  }?>
+
+				<?php  if($_REQUEST['sh5'] == 1){?><td align="center" style="border-bottom:none;" width="25%"></td><?php  }?>
+
+				<td align="right" style="border-bottom:none;" width="25%"><strong><?php  echo number_format($totalTA+$moneyTC,2);?></strong></td>
+
+				</tr>
+
                 </table>
 
               </td><?php  }?>
 
-              <?php  if($_REQUEST['sh8'] == 1){?><td style="padding:0;font-size: 11px;"><strong><?php  echo number_format($totalTA+$moneyTC,2);?></strong></td><?php  }?>
+              <?php /* if($_REQUEST['sh8'] == 1){?><td style="padding:0;font-size: 11px;"><strong><?php  echo number_format($totalTA+$moneyTC,2);?></strong></td><?php  }*/?>
 
 			  <td>
 			 <?php 

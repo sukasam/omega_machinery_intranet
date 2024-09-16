@@ -2074,7 +2074,7 @@ function get_servreport_setup($conn, $ymd, $loc, $ctype)
         $condi .= " AND sr_ctype = '" . $ctype . "'";
     } else {
 
-        $serTypeList = array("45", "47", "36", "23", "31", "48", "89", "55", "24", "87", "88", "105", "108");
+        $serTypeList = array("45", "47", "36", "23", "31", "48", "89", "55", "24", "87", "88", "105", "108", "112", "113", "114", "115");
 
         $condi .= " AND (";
 
@@ -2107,14 +2107,34 @@ function get_servreport_setup($conn, $ymd, $loc, $ctype)
                 $jobOpen = "";
             }
 
+
+            
+
             if ($row_dea['sr_ctype'] == '31' || $row_dea['sr_ctype'] == '48') {
-                $scstatus = "<span style=\"color:#f911c5;\">" . $numR . "." . get_localsettingname($conn, $row_dea['cus_id']) . $jobOpen . "</span>";
+                if($row_dea['chkConfirm'] === '2'){
+                    $scstatus = "<span style=\"color:#f911c5;\"><mark>" . $numR . "." . get_localsettingname($conn, $row_dea['cus_id']) . $jobOpen . "</mark></span>";
+                }else{
+                    $scstatus = "<span style=\"color:#f911c5;\">" . $numR . "." . get_localsettingname($conn, $row_dea['cus_id']) . $jobOpen . "</span>";
+                }
+                
             } else if ($row_dea['sr_ctype'] == '24' || $row_dea['sr_ctype'] == '55' || $row_dea['sr_ctype'] == '89') {
-                $scstatus = "<span style=\"color:red;\">" . $numR . "." . get_localsettingname($conn, $row_dea['cus_id']) . $jobOpen . "</span>";
-            } else if ($row_dea['sr_ctype'] == '23' || $row_dea['sr_ctype'] == '36' || $row_dea['sr_ctype'] == '45' || $row_dea['sr_ctype'] == '47') {
-                $scstatus = "<span style=\"color:blue;\">" . $numR . "." . get_localsettingname($conn, $row_dea['cus_id']) . $jobOpen . "</span>";
+                if($row_dea['chkConfirm'] === '2'){
+                    $scstatus = "<span style=\"color:red;\"><mark>" . $numR . "." . get_localsettingname($conn, $row_dea['cus_id']) . $jobOpen . "</mark></span>";
+                }else{
+                    $scstatus = "<span style=\"color:red;\">" . $numR . "." . get_localsettingname($conn, $row_dea['cus_id']) . $jobOpen . "</span>";
+                }  
+            } else if ($row_dea['sr_ctype'] == '23' || $row_dea['sr_ctype'] == '36' || $row_dea['sr_ctype'] == '45' || $row_dea['sr_ctype'] == '47' || $row_dea['sr_ctype'] == '112' || $row_dea['sr_ctype'] == '113' || $row_dea['sr_ctype'] == '114' || $row_dea['sr_ctype'] == '115') {
+                if($row_dea['chkConfirm'] === '2'){
+                    $scstatus = "<span style=\"color:blue;\"><mark>" . $numR . "." . get_localsettingname($conn, $row_dea['cus_id']) . $jobOpen . "</mark></span>";
+                }else{
+                    $scstatus = "<span style=\"color:blue;\">" . $numR . "." . get_localsettingname($conn, $row_dea['cus_id']) . $jobOpen . "</span>";
+                }
             } else {
-                $scstatus = "<span style=\"color:green;\">" . $numR . "." . get_localsettingname($conn, $row_dea['cus_id']) . $jobOpen . "</span>";
+                if($row_dea['chkConfirm'] === '2'){
+                    $scstatus = "<span style=\"color:green;\"><mark>" . $numR . "." . get_localsettingname($conn, $row_dea['cus_id']) . $jobOpen . "</mark></span>";
+                }else{
+                    $scstatus = "<span style=\"color:green;\">" . $numR . "." . get_localsettingname($conn, $row_dea['cus_id']) . $jobOpen . "</span>";
+                }
             }
 
             $res .= "&nbsp;<a href=\"../../upload/service_report_open/" . $chaf . ".pdf\" target=\"_blank\"><strong>" . $scstatus . "</strong></a>\n<br>\n";
@@ -2137,7 +2157,7 @@ function get_servreport_setupclosed($conn, $ymd, $loc, $ctype)
         $condi .= " AND sr_ctype = '" . $ctype . "'";
     } else {
 
-        $serTypeList = array("45", "47", "36", "23", "31", "48", "89", "55", "24", "87", "88", "105", "108");
+        $serTypeList = array("45", "47", "36", "23", "31", "48", "89", "55", "24", "87", "88", "105", "108", "112", "113", "114", "115");
 
         $condi .= " AND (";
 
@@ -2169,13 +2189,29 @@ function get_servreport_setupclosed($conn, $ymd, $loc, $ctype)
             }
 
             if ($row_dea['sr_ctype'] == '31' || $row_dea['sr_ctype'] == '48') {
-                $scstatus = "<span style=\"color:#f911c5;\">" . $numR . "." . get_localsettingname($conn, $row_dea['cus_id']) . $jobOpen . "</span>";
+                if($row_dea['chkConfirm'] === '2'){
+                    $scstatus = "<span style=\"color:#f911c5;\"><mark>" . $numR . "." . get_localsettingname($conn, $row_dea['cus_id']) . $jobOpen . "</mark></span>";
+                }else{
+                    $scstatus = "<span style=\"color:#f911c5;\">" . $numR . "." . get_localsettingname($conn, $row_dea['cus_id']) . $jobOpen . "</span>";
+                }
             } else if ($row_dea['sr_ctype'] == '24' || $row_dea['sr_ctype'] == '55' || $row_dea['sr_ctype'] == '89') {
-                $scstatus = "<span style=\"color:red;\">" . $numR . "." . get_localsettingname($conn, $row_dea['cus_id']) . $jobOpen . "</span>";
-            } else if ($row_dea['sr_ctype'] == '23' || $row_dea['sr_ctype'] == '36' || $row_dea['sr_ctype'] == '45' || $row_dea['sr_ctype'] == '47') {
-                $scstatus = "<span style=\"color:blue;\">" . $numR . "." . get_localsettingname($conn, $row_dea['cus_id']) . $jobOpen . "</span>";
+                if($row_dea['chkConfirm'] === '2'){
+                    $scstatus = "<span style=\"color:red;\"><mark>" . $numR . "." . get_localsettingname($conn, $row_dea['cus_id']) . $jobOpen . "</mark></span>";
+                }else{
+                    $scstatus = "<span style=\"color:red;\">" . $numR . "." . get_localsettingname($conn, $row_dea['cus_id']) . $jobOpen . "</span>";
+                }
+            } else if ($row_dea['sr_ctype'] == '23' || $row_dea['sr_ctype'] == '36' || $row_dea['sr_ctype'] == '45' || $row_dea['sr_ctype'] == '47' || $row_dea['sr_ctype'] == '112' || $row_dea['sr_ctype'] == '113' || $row_dea['sr_ctype'] == '114' || $row_dea['sr_ctype'] == '115') {
+                if($row_dea['chkConfirm'] === '2'){
+                    $scstatus = "<span style=\"color:blue;\"><mark>" . $numR . "." . get_localsettingname($conn, $row_dea['cus_id']) . $jobOpen . "</mark></span>";
+                }else{
+                    $scstatus = "<span style=\"color:blue;\">" . $numR . "." . get_localsettingname($conn, $row_dea['cus_id']) . $jobOpen . "</span>";
+                }
             } else {
-                $scstatus = "<span style=\"color:green;\">" . $numR . "." . get_localsettingname($conn, $row_dea['cus_id']) . $jobOpen . "</span>";
+                if($row_dea['chkConfirm'] === '2'){
+                    $scstatus = "<span style=\"color:green;\"><mark>" . $numR . "." . get_localsettingname($conn, $row_dea['cus_id']) . $jobOpen . "</mark></span>";
+                }else{
+                    $scstatus = "<span style=\"color:green;\">" . $numR . "." . get_localsettingname($conn, $row_dea['cus_id']) . $jobOpen . "</span>";
+                }
             }
 
             $res .= "&nbsp;<a href=\"../../upload/service_report_close/" . $chaf . ".pdf\" target=\"_blank\"><strong>" . $scstatus . "</strong></a>\n<br>\n";
@@ -2491,6 +2527,7 @@ function get_lastservice_f($conn, $cusid, $sevid)
 function get_lastservice_s($conn, $cusid, $sevid)
 {
 
+    $ser_id[] = "";
     $qu_lastservice = @mysqli_query($conn, "SELECT * FROM s_service_report WHERE cus_id = '" . $cusid . "' ORDER BY sv_id DESC");
     $numlastservice = mysqli_num_rows($qu_lastservice);
     while ($row_lasservice = @mysqli_fetch_array($qu_lastservice)) {

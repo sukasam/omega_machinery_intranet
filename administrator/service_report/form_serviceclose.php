@@ -87,6 +87,15 @@
 		 $svImgArray[] = substr($sImg[$v],0,1);
 		 $svImgesArray[] = $sImg[$v];
 	 }
+	 
+	 $chkConfirms = '';
+	 if($_POST['chkConfirm'] === "1"){
+		$chkConfirms = '<strong>(รอคอนเฟิร์ม)</strong>';
+	 }else if($_POST['chkConfirm'] === "2"){
+		$chkConfirms = '<strong>(คอนเฟิร์มติดตั้งแล้ว)</strong>';
+	 }else{
+		$chkConfirms ='';
+	 }
 
 	$form = '<style>
 	.bgheader{
@@ -198,7 +207,7 @@
 				$garunT = '0';
 			}
 			
-           $form .=' วันที่เข้าบริการ :</strong> '.format_date($_POST['job_close']).'<br /><br /><strong>บริการครั้งก่อน : </strong>'.$_POST['job_last'].'&nbsp;&nbsp;<strong>บริการครั้งต่อไป  :</strong> '.format_date($_POST['sr_stime']).'</td>
+           $form .=' วันที่เข้าบริการ :</strong> '.format_date($_POST['job_close']).'&nbsp;&nbsp;'. $chkConfirms.'<br /><br /><strong>บริการครั้งก่อน : </strong>'.$_POST['job_last'].'&nbsp;&nbsp;<strong>บริการครั้งต่อไป  :</strong> '.format_date($_POST['sr_stime']).'</td>
           </tr>
     </table>
 	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tb2">
