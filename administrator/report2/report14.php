@@ -55,7 +55,7 @@ $condition = "";
 
 if ($cpro != "") {
 
-	$condition = "AND (sv2.lists = '" . $cpro . "')";
+	$condition = "AND (sv.sr_id = sv2.sr_id) AND (sv2.lists = '" . $cpro . "')";
 }
 
 
@@ -101,7 +101,7 @@ if ($loc_seal != "") {
 	<style type="text/css">
 		.tbreport {
 
-			font-size: 14px;
+			font-size: 13px;
 
 		}
 
@@ -148,7 +148,10 @@ if ($loc_seal != "") {
 					echo getcustom_type($conn, $_POST['ctype']);
 				} else {
 					echo "ทั้งหมด";
-				} ?></th>
+					
+				} ?>
+				<?php  if($cpro != ""){echo "(".get_sparpart_id($conn,$cpro).' | '.get_sparpart_name($conn,$cpro).")";}?>
+			</th>
 
 			<th colspan="4" style="text-align:right;"><?php echo $dateshow; ?></th>
 
@@ -229,8 +232,6 @@ if ($loc_seal != "") {
 
 		while ($row_fr = @mysqli_fetch_array($qu_fr)) {
 
-
-
 		?>
 
 			<tr>
@@ -272,32 +273,63 @@ if ($loc_seal != "") {
 
 								if (!empty($row['codes']) ||  !empty($row['lists'])) {
 
-									$total = $row['prices'] * $row['opens'];
+									if(empty($cpro)){
+
+										$total = $row['prices'] * $row['opens'];
 									
-									$totalUnit = get_sparpart_uniprice($conn, $row['lists']) * $row['opens'];
+										$totalUnit = get_sparpart_uniprice($conn, $row['lists']) * $row['opens'];
 
-									$totalamount += $row['opens'];
+										$totalamount += $row['opens'];
 
-							?>
+									?>
 
-									<tr>
+										<tr>
 
-										<?php if ($_REQUEST['sh4'] == 1) { ?><td style="border-bottom:none;width: 50%;"><?php echo get_sparpart_id($conn, $row['lists']) . ' | ' . get_sparpart_name($conn, $row['lists']); ?></td><?php  } ?>
+											<?php if ($_REQUEST['sh4'] == 1) { ?><td style="border-bottom:none;width: 50%;"><?php echo get_sparpart_id($conn, $row['lists']) . ' | ' . get_sparpart_name($conn, $row['lists']); ?></td><?php  } ?>
 
-										<?php if ($_REQUEST['sh5'] == 1) { ?><td align="center" style="border-bottom:none;width: 14%;"><?php echo $row['opens']; ?></td><?php  } ?>
+											<?php if ($_REQUEST['sh5'] == 1) { ?><td align="center" style="border-bottom:none;width: 14%;"><?php echo $row['opens']; ?></td><?php  } ?>
 
-										<?php if ($_REQUEST['sh10'] == 1) { ?><td align="right" style="border-bottom:none;width: 18%;padding-right: 20px;"><?php echo number_format($totalUnit, 2); ?></td><?php } ?>
+											<?php if ($_REQUEST['sh10'] == 1) { ?><td align="right" style="border-bottom:none;width: 18%;padding-right: 20px;"><?php echo number_format($totalUnit, 2); ?></td><?php } ?>
 
-										<?php if ($_REQUEST['sh6'] == 1) { ?><td align="right" style="border-bottom:none;width: 18%;padding-right: 20px;"><?php echo number_format($total, 2); ?></td><?php } ?>
+											<?php if ($_REQUEST['sh6'] == 1) { ?><td align="right" style="border-bottom:none;width: 18%;padding-right: 20px;"><?php echo number_format($total, 2); ?></td><?php } ?>
 
-									</tr>
+										</tr>
 
-							<?php
+									<?php
 
-									$sum += $total;
-									$sumUnit += $totalUnit;
+										$sum += $total;
+										$sumUnit += $totalUnit;
+										$spartpart += 1;
 
-									$spartpart += 1;
+									}else{
+
+										if($cpro === $row['lists']){
+											$total = $row['prices'] * $row['opens'];
+											$totalUnit = get_sparpart_uniprice($conn, $row['lists']) * $row['opens'];
+											$totalamount += $row['opens'];
+	
+										?>
+	
+											<tr>
+	
+												<?php if ($_REQUEST['sh4'] == 1) { ?><td style="border-bottom:none;width: 50%;"><?php echo get_sparpart_id($conn, $row['lists']) . ' | ' . get_sparpart_name($conn, $row['lists']); ?></td><?php  } ?>
+	
+												<?php if ($_REQUEST['sh5'] == 1) { ?><td align="center" style="border-bottom:none;width: 14%;"><?php echo $row['opens']; ?></td><?php  } ?>
+	
+												<?php if ($_REQUEST['sh10'] == 1) { ?><td align="right" style="border-bottom:none;width: 18%;padding-right: 20px;"><?php echo number_format($totalUnit, 2); ?></td><?php } ?>
+	
+												<?php if ($_REQUEST['sh6'] == 1) { ?><td align="right" style="border-bottom:none;width: 18%;padding-right: 20px;"><?php echo number_format($total, 2); ?></td><?php } ?>
+	
+											</tr>
+	
+										<?php
+	
+											$sum += $total;
+											$sumUnit += $totalUnit;
+	
+											$spartpart += 1;
+										}
+									}
 								}
 							}
 
