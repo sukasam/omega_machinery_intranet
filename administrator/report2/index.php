@@ -1722,7 +1722,7 @@ if ($_GET["action"] == "chksum") {
   
                                     <td><select name="cpro" id="cpro_ecip">
   
-                                        <option value="">กรุณาเลือก</option>
+                                        <option value="">กรุณาเลือกรหัส | เลือกทั้งหมด</option>
   
                                         <?php
   
@@ -3987,7 +3987,7 @@ if ($_GET["action"] == "chksum") {
 
                                   <td><select name="cpro" id="cpro_ecip">
 
-                                      <option value="">กรุณาเลือก</option>
+                                      <option value="">กรุณาเลือก / เลือกทั้งหมด</option>
 
                                       <?php
 

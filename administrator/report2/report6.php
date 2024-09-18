@@ -62,7 +62,7 @@
 
 	if($cpro != ""){
 
-		$condition = "AND (sv2.lists = '".$cpro."')";
+		$condition = "AND (sv.sr_id = sv2.sr_id) AND (sv2.lists = '".$cpro."')";
 
 	}
 
@@ -151,7 +151,7 @@
 
  .tbreport{
 
- 	font-size:14px;
+ 	font-size:13px;
 
  }
 
@@ -262,7 +262,7 @@
 			<tr>
 
               <?php  if($_REQUEST['sh16'] == 1){?><td style="text-wrap: nowrap;"><a href="../../upload/service_report_close/<?php echo $row_fr['srid'];?>.pdf" target="_blank"><?php  echo $row_fr['sv_id'];?></a> <?php echo $coDataFrom;?>
-				<!-- <br><a href="../../upload/service_report_close/<?php echo $row_fr['srid'];?>.pdf" target="_blank"><?php echo $row_fr['srid'];?></a> -->
+				<?php echo "<br>".$row_fr['srid'];?>
 			</td><?php  }?>
 
               <?php  if($_REQUEST['sh1'] == 1){?><td><?php  echo $row_fr['cd_name'];?><br />
