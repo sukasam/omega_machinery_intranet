@@ -27,7 +27,7 @@
 					
 			}
 
-		$displ = "|".$rowcus['cd_address']."|".$ctyp."|".$rowcus['cd_tel']."|".$rowcus['cd_fax']."|".$rowcus['c_contact']."|".$rowcus['c_tel'];
+		$displ = "|".$rowcus['cd_address']."|".$ctyp."|".$rowcus['cd_tel']."|".$rowcus['cd_fax']."|".$rowcus['c_contact']."|".$rowcus['c_tel']."|".$rowcus['cd_email']."|".$rowcus['loc_name'];
 		echo $displ;
 	}
 

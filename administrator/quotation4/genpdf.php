@@ -44,7 +44,7 @@ for ($pageNo = 1; $pageNo <= $pageCount; $pageNo++) {
         $pdf->Cell(0, 0, $txt, 0, 0, '');
         
         $pdf->SetXY(87, 73.8);
-        $txt = iconv('UTF-8', 'Windows-874', $_POST['cd_fax']);
+        $txt = iconv('UTF-8', 'Windows-874', $_POST['cd_email']);
         $pdf->Cell(0, 0, $txt, 0, 0, '');
         
         $pdf->SetXY(32, 82.2);

@@ -3683,3 +3683,51 @@ function checkBoxFO($conn,$cusID){
     }
     return $statusCheckBox;
 }
+
+function getTypeMCSize($id,$type)
+{
+    if($type == 3){
+        switch ($id) {
+            case "1":
+                return "ขนาดเล็ก Small Size";
+                break;
+            case "2":
+                return "ขนาดกลาง Medium Size";
+                break;
+            case "3":
+                return "ขนาดใหญ่ Large Size";
+                break;
+            default:
+                return "";
+        }
+    }else if($type == 4){
+        switch ($id) {
+            case "1":
+                return "ขนาดเล็ก";
+                break;
+            case "2":
+                return "ขนาดกลาง";
+                break;
+            case "3":
+                return "ขนาดใหญ่";
+                break;
+            default:
+                return "";
+        }
+    }else{
+        switch ($id) {
+            case "1":
+                return "ขนาดเล็ก Under Counter";
+                break;
+            case "2":
+                return "ขนาดกลาง Hoodtype";
+                break;
+            case "3":
+                return "ขนาดใหญ่ Conveyer";
+                break;
+            default:
+                return "";
+        }
+    }
+}
+                    

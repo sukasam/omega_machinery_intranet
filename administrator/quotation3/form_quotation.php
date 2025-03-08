@@ -40,18 +40,28 @@ if ($_POST["cpro8"] != "") {$cpro8 = "8";} else { $cpro8 = "&nbsp;";}
 if ($_POST["cpro9"] != "") {$cpro9 = "9";} else { $cpro9 = "&nbsp;";}
 if ($_POST["cpro10"] != "") {$cpro10 = "10";} else { $cpro10 = "&nbsp;";}
 
-if ($_POST["type_service"] == '2') {
-    $typeS = "เครื่องล้างแก้ว";
-} else if ($_POST["type_service"] == '3') {
-    $typeS = "เครื่องผลิตน้ำแข็ง";
-} else {
-    $typeS = "เครื่องล้างจาน";
+
+$sale_line = get_technician_tel($conn,$_POST["loc_contact"]);
+if(!empty($sale_line)){
+  $imgsaleLine =  '<div style="position: absolute;right: 65px;top: 195px;"><img src="https://omega-intranet.com/machinery/qrcode_gen/qrcode2.php?val=https://line.me/ti/p/~'.$sale_line.'" height="60" border="0" /></div>';
+}else{
+  $imgsaleLine = '';
+}
+
+if($pro_img1 != ""){
+  $pro_img1s = '<br><img src="../../upload/quotation/'.$pro_img1.'" height="150"  border="0" style="border-radius: 15px;"/>';
+}
+if($pro_img2 != ""){
+  $pro_img2s = '<br><img src="../../upload/quotation/'.$pro_img2.'" height="150" border="0" style="border-radius: 15px;"/>';
+}
+if($pro_img3 != ""){
+  $pro_img3s = '<br><img src="../../upload/quotation/'.$pro_img3.'" height="150"  border="0" style="border-radius: 15px;"/>';
 }
 
 // $userCreate = getCreatePaper($conn, $tbl_name, " AND `qu_id`= " . $_POST['qu_id']);
 $headerIMG = "../images/form/header-qar.png";
 
-$form = '
+$form = $imgsaleLine.'
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
     <td style="padding-bottom:5px;"><img src="'.$headerIMG.'" width="100%" border="0" /></td>
@@ -59,15 +69,19 @@ $form = '
 </table>
 <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border:1px solid #000;">
           <tr>
-            <td width="57%" valign="top" style="font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;"><strong>ชื่อลูกค้า :</strong> ' . $_POST["cd_name"] . '<strong><br />
+            <td width="57%" valign="top" style="font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;">
+            <strong>ชื่อลูกค้า :</strong> ' . $_POST["cd_name"] . '<br /><br />
+            <strong>ชื่อร้าน :</strong> ' . $_POST["loc_name"] . '<br />
               <br />
             ที่อยู่ :</strong> ' . $_POST["cd_address"] . '<br />
             <br />
-            <strong>โทรศัพท์ :</strong> ' . $_POST["cd_tel"] . '<strong>&nbsp;&nbsp;&nbsp; แฟกซ์ :</strong> ' . $_POST["cd_fax"] . '<br /><br />
+            <strong>โทรศัพท์ :</strong> ' . $_POST["cd_tel"] . '<strong>&nbsp;&nbsp;&nbsp; อีเมล์ :</strong> ' . $_POST["cd_email"] . '<br /><br />
             </td>
             <td width="43%" valign="top" style="font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;">
             <strong>วันที่ : </strong> ' . format_date($_POST["date_forder"]) . '<br /><br />
             <strong>เลขที่เสนอราคา : </strong>' . $_POST["fs_id"] . '<br /><br />
+            <strong>พนักงานขาย : </strong>'.get_technician_name($conn,$_POST['loc_contact']).'<br /><br />
+
 			<strong>ชื่อผู้ติดต่อ : </strong>' . $_POST["c_contact"] . '<strong>&nbsp;&nbsp;&nbsp;เบอร์โทร :</strong> ' . $_POST["c_tel"] . '
             <br /><br />
 			</td>
@@ -177,21 +191,18 @@ $form .= '<p style="font-size:12px;"><strong><u>เงื่อนไขกา�
 $form .= '
 <table width="100%" border="0" cellspacing="0" cellpadding="0" class="" >
   <tr>
-    <td style="border:0px solid #000;font-size:11px;font-family:Verdana, Geneva, sans-serif; line-height: 20px;">
+    <td style="border:0px solid #000;font-size:11px;font-family:Verdana, Geneva, sans-serif; line-height: 20px;width: 60%;">
       <div style="font-size:11px;">
       <p style="font-size:11px;">1. การชำระเงิน '.$_POST['paycon1'].'</p>
-      <p style="font-size:11px;">&nbsp;&nbsp;&nbsp;&nbsp;ช่องทางการชำระเงิน : ธนาคารกสิกรไทย ชื่อ บริษัทโอเมก้า แมชชีนเนอรี่ (1999) จำกัด</p>
-      <p style="font-size:11px;">&nbsp;&nbsp;&nbsp;&nbsp;สาขาสุขาภิบาล 5 เลขที่บัญชี 026-1-810689</p>
       <br>
-      <p style="font-size:11px;">2. กำหนดยืนราคา ' . $_POST['giveprice'] . ' วัน</p>
-      <p style="font-size:11px;"><strong>** รับประกันอะไหล่ ' . $_POST['guaran'] . ' เดือน **';
-      if(!empty($_POST['paycon2'])){
-        $form .= ' หรือ '.$_POST['paycon2'].'';
-      }
-      $form .= '</strong></p><br><br>
+      <p><strong>เงื่อนไขการขาย</strong></p><br>
+      <p style="font-size:11px;">1. ราคาดังกล่าวข้างต้น ' . $_POST['pay1'] . ' ภาษีมูลค่าเพิ่ม ' . $_POST['pay2'] . ' ตามที่สรรพากรกำหนดเรียบร้อยแล้ว</p><br>
+      <p style="font-size:11px;">2. กำหนดยืนราคา ' . $_POST['giveprice'] . ' วัน นับตั้งแต่วันที่อนุมัติใบเสนอราคา หรือ PO สั่งซื้อบริการดีงกล่าวข้างต้น</p><br>
+      <p style="font-size:11px;">3. ทางบริษัทฯ ขอสงวนสิทธ์ในกรณีที่ลูกค้าเช็นอนุมัติใบเสนอราคาแล้วนั้น หากมีการยกเลิกสัญญา หรือ การเปลี่ยนแปลงใดๆเกิดขึ้นระหว่างดำเนินการ ทางลูกค้าต้องเป็นผู้รับผิดชอบต่อความเสียหายและค่าใช้จ่ายที่เกิดขึ้น</p>
       </div>
     </td>
-    <td style="text-align: center;border:0px solid #000;font-size:11px;font-family:Verdana, Geneva, sans-serif;">
+    <td style="text-align: center;border:1px solid #000;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:10px;width: 40%;">
+    <p style="font-size:11px;"><u>บัญชีธนาคาร : สำหรับโอนเงินชำระค่าสินค้า</u></p><br>
     <span style="color: #018022;font-weight: bold;">
     ธนาคารกสิกร : สาขา สุขาภิบาล 5<br>
     บัญชีออมทรัพย์ : บจก.โอเมก้าแมชชีนเนอรี่ (1999)<br>
@@ -242,6 +253,23 @@ $form .= '
             </table>
         </td>
       </tr>
-    </table>
+    </table><br><br><br>
   ';
+
+  if($pro_img1s == ""){
+    $form .= '';
+  }else{
+    $form .= '<table width="100%" border="0" cellspacing="0" cellpadding="0" style="font-size:12px;">
+      <tr>
+          <th width="33%"><strong style="font-size:13px;">รูปภาพประกอบที่ 1</strong></th>
+          <th width="33%"><strong style="font-size:13px;">รูปภาพประกอบที่ 2</strong></th>
+          <th width="33%"><strong style="font-size:13px;">รูปภาพประกอบที่ 3</strong></th>
+      </tr>
+      <tr>
+        <th width="33%" style="text-align:center;padding:10px;">'.$pro_img1s.'</th>
+        <th width="33%" style="text-align:center;padding:10px">'.$pro_img2s.'</th>
+        <th width="33%" style="text-align:center;padding:10px">'.$pro_img3s.'</th>
+    </tr>
+     </table><br><br><br><br><br>';
+  }
 ?>

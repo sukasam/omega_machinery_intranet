@@ -605,6 +605,11 @@ function submitForm() {
             </span></strong></td>
 
           </tr>
+          <tr>
+            <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;"><strong>อีเมล :</strong>
+              <input type="text" name="cd_email" value="<?php echo $cd_email;?>" id="cd_email" class="inpfoder"></td>
+            <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;"><strong></strong>
+          </tr>
 
 </table>
 

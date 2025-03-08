@@ -590,9 +590,12 @@ function submitForm() {
           </tr>
           <tr>
             <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;"><strong>โทรศัพท์ :</strong> <input type="text" name="cd_tel" value="<?php  echo $cd_tel;?>" id="cd_tel" class="inpfoder" style="border: 0px;">
-              <strong>แฟกซ์ :</strong>
-              <input type="text" name="cd_fax" value="<?php  echo $cd_fax;?>" id="cd_fax" class="inpfoder" style="border: 0px;"></td>
-            <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;">
+              <strong>อีเมล์ :</strong>
+              <input type="text" name="cd_email" value="<?php  echo $cd_email;?>" id="cd_email" class="inpfoder" style="border: 0px;">
+              <input type="hidden" name="cd_fax" value="<?php  echo $cd_fax;?>" id="cd_fax" class="inpfoder" style="border: 0px;">
+            </td>
+              
+              <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:5px;">
             	<strong>ชื่อผู้ติดต่อ :</strong>
               <input type="text" name="c_contact" value="<?php  echo $c_contact;?>" id="c_contact" class="inpfoder" style="border: 0px;">
               <strong>เบอร์โทร :</strong>

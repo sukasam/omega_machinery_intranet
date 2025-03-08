@@ -27,7 +27,7 @@
 					
 			}
 
-		$displ = "|".$rowcus['cd_address']."|".$ctyp."|".$rowcus['cd_tel']."|".$rowcus['cd_fax']."|".$rowcus['c_contact']."|".$rowcus['c_tel'];
+		$displ = "|".$rowcus['cd_address']."|".$ctyp."|".$rowcus['cd_tel']."|".$rowcus['cd_fax']."|".$rowcus['c_contact']."|".$rowcus['c_tel']."|".$rowcus['cd_email']."|".$rowcus['loc_name'];
 		echo $displ;
 	}
 
@@ -47,6 +47,7 @@
 
 	if($_GET['action'] == 'getcus2'){
 			$cd_name =  iconv( 'UTF-8', 'TIS-620', $_REQUEST['pval']);
+			$consd = "";
 			if($cd_name != ""){
 				$consd = " AND (cd_name LIKE '%" . $cd_name . "%' OR loc_name LIKE '%" . $cd_name . "%')";
 			}
@@ -68,6 +69,7 @@
 	if($_GET['action'] == 'getcus'){
 		$cd_name =  iconv( 'UTF-8', 'TIS-620', $_REQUEST['pval']);
 		$keys = $_REQUEST['keys'];
+		$consd = "";
 		if($cd_name != ""){
 			$consd = "WHERE group_name LIKE '%".$cd_name."%'";
 		}
@@ -86,6 +88,7 @@
 	if($_GET['action'] == 'getpodkey'){
 		$cd_name =  iconv( 'UTF-8', 'TIS-620', $_REQUEST['pval']);
 		$keys = $_REQUEST['keys'];
+		$consd = "";
 		if($cd_name != ""){
 			$consd = "WHERE group_name LIKE '%".$cd_name."%'";
 		}

@@ -16,7 +16,7 @@ function GetXmlHttpObject(){
    return xmlHttp;
 }
 
-function checkfirstorder(pval,param1,param2,param3,param4,param5,param6){
+function checkfirstorder(pval,param1,param2,param3,param4,param5,param6,param7,param8){
 	var xmlHttp;
    xmlHttp=GetXmlHttpObject(); //Check Support Brownser
    URL = pathLocal+'ajax_return.php?action=getcusfirsh&pid='+pval;
@@ -28,12 +28,14 @@ function checkfirstorder(pval,param1,param2,param3,param4,param5,param6){
         if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete"){   
 			var ds = xmlHttp.responseText.split("|");
 			//console.log(ds[0]);
-            document.getElementById(param1).value=ds[1];
+         document.getElementById(param1).value=ds[1];
 			document.getElementById(param2).innerHTML=ds[2];
 			document.getElementById(param3).value=ds[3];
 			document.getElementById(param4).value=ds[4];
 			document.getElementById(param5).value=ds[5];
 			document.getElementById(param6).value=ds[6];
+			document.getElementById(param7).value=ds[7];
+			document.getElementById(param8).value=ds[8]; 
         } else{
           //document.getElementById(ElementId).innerHTML="<div class='loading'> Loading..</div>" ;
         }

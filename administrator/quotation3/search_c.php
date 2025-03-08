@@ -53,7 +53,7 @@ $param = get_param($a_param, $a_not_exists);
 
 			var sCustomerName = self.opener.document.getElementById("cd_name");
 			sCustomerName.value = cname;
-			self.opener.checkfirstorder(cid, 'cd_address', 'cd_province', 'cd_tel', 'cd_fax', 'c_contact', 'c_tel');
+			self.opener.checkfirstorder(cid, 'cd_address', 'cd_province', 'cd_tel', 'cd_fax', 'c_contact', 'c_tel','cd_email','loc_name');
 			self.opener.document.getElementById("rsnameid").innerHTML = "<input type=\"hidden\" name=\"cus_id\" value=\"" + cid + "\">";
 
 			window.close();
