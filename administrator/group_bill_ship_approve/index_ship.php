@@ -15,10 +15,11 @@
 	   
 	   Check_Permission($conn,$check_module,$_SESSION["login_id"],"update");
 
+		
 	   $appID = userSaleGroupID($conn,$_SESSION["login_id"]);
 
-		//echo $appID;
-		//exit();
+		// echo $appID;
+		// exit();
 	   
 	   if($appID == '') $appID = '0';
 	   $sql_status = "update $tbl_name set approve = '".$cc."', loc_contact3 = '".$appID."', loc_date3 = '".date("Y-m-d")."' where $PK_field = '".$ids."'";

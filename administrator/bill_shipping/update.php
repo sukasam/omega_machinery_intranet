@@ -643,7 +643,7 @@ function check(frm){
                 <td style="border-bottom:1px solid #000000;padding-bottom:10px;font-size:12px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>
                   <select name="cs_sell" id="cs_sell" style="width:50%;">
                     <?php   
-						$qu_custec = @mysqli_query($conn,"SELECT * FROM s_group_sale WHERE 1 AND (group_id = 34 OR group_id = 35)  ORDER BY group_name ASC");
+						$qu_custec = @mysqli_query($conn,"SELECT * FROM s_group_sale WHERE 1 ORDER BY group_name ASC");
 						while($row_custec = @mysqli_fetch_array($qu_custec)){
 							?>
                     <option value="<?php   echo $row_custec['group_id'];?>" <?php   if($row_custec['group_id'] == $cs_sell){echo 'selected';}?>><?php   echo $row_custec['group_name']. " (Tel : ".$row_custec['group_tel'].")";?></option>

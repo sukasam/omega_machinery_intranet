@@ -94,7 +94,6 @@
 				}
 						
 			}	
-			
 			include_once("../mpdf54/mpdf.php");
 			include_once("../bill_shipping/form_serviceopen.php");
 			$mpdf=new mPDF('UTF-8'); 

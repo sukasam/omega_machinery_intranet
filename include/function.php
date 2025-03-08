@@ -2932,7 +2932,6 @@ function userTecGroupID($conn, $user_id)
 
 function userSaleGroupID($conn, $user_id)
 {
-    //echo "SELECT * FROM  s_user WHERE user_id = '".$user_id."'";
     $row_user = @mysqli_fetch_array(@mysqli_query($conn, "SELECT * FROM s_user WHERE user_id = '" . $user_id . "'"));
     $row_user_group = @mysqli_fetch_array(@mysqli_query($conn, "SELECT * FROM s_group_sale WHERE user_account = '" . $row_user['user_id'] . "'"));
 

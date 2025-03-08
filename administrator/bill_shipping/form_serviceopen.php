@@ -41,6 +41,7 @@
 		$dataApprove = '';
 	}
 
+
 	$hSaleName = getsalename($conn,$_POST['loc_contact3']);
 	$hSaleSignature = '<img src="../../upload/user/signature/'.get_sale_signature($conn,$_POST['loc_contact3']).'" height="50" border="0" />';
 
