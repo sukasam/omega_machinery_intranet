@@ -58,13 +58,65 @@ if($pro_img3 != ""){
   $pro_img3s = '<br><img src="../../upload/quotation/'.$pro_img3.'" height="150"  border="0" style="border-radius: 15px;"/>';
 }
 
+if($_POST["type_service"] == '2'){
+	$typeS = "เครื่องล้างแก้ว";
+}else if($_POST["type_service"] == '3'){
+	$typeS = "เครื่องผลิตน้ำแข็ง";
+}else if($_POST["type_service"] == '4'){
+	$typeS = $_POST["type_service_dsc"];
+}
+else{
+	$typeS = "เครื่องล้างจาน";
+}
+
+if($_POST['quo_titles'] == '1'){
+  if($_POST['type_service'] == '3'){
+    $cssHead = 'right: 95px;top: 150px;font-size:12px;';
+  }else{
+    $cssHead = 'right: 105px;top: 150px;font-size:12px;';
+  }
+}else if($_POST['quo_titles'] == '2'){
+  if($_POST['type_service'] == '3'){
+    $cssHead = 'right: 95px;top: 150px;font-size:12px;';
+  }else{
+    $cssHead = 'right: 105px;top: 150px;font-size:12px;';
+  }
+}else if($_POST['quo_titles'] == '3'){
+  if($_POST['type_service'] == '3'){
+    $cssHead = 'right: 77px;top: 150px;font-size:12px;';
+  }else{
+    $cssHead = 'right: 87px;top: 150px;font-size:12px;';
+  }
+}else if($_POST['quo_titles'] == '4'){
+  $cssHead = 'right: 105px;top: 140px;font-size:12px;';
+}else if($_POST['quo_titles'] == '5'){
+  if($_POST['type_service'] == '3'){
+    $cssHead = 'right: 82px;top: 150px;font-size:12px;';
+  }else{
+    $cssHead = 'right: 90px;top: 150px;font-size:12px;';
+  }
+}else{
+  if($_POST['type_service'] == '3'){
+    $cssHead = 'right: 95px;top: 150px;font-size:12px;';
+  }else{
+    $cssHead = 'right: 105px;top: 150px;font-size:12px;';
+  }
+}
+
+$titleHead = '<div style="position: absolute;right: 110px;top: 95px;font-size:16px;font-weight: bold;">ใบเสนอราคา<br>Quotation</div>';
+$quo_titles = '<div style="position: absolute;'.$cssHead.'font-weight: bold;text-align: center;">'.getQuotationTitle($_POST['quo_titles'])."/<br>".$typeS.'</div>';
+
+
 // $userCreate = getCreatePaper($conn, $tbl_name, " AND `qu_id`= " . $_POST['qu_id']);
 $headerIMG = "../images/form/header-qar.png";
 
 $form = $imgsaleLine.'
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td style="padding-bottom:5px;"><img src="'.$headerIMG.'" width="100%" border="0" /></td>
+    <td style="padding-bottom:5px;">
+    <img src="'.$headerIMG.'" width="100%" border="0" />
+    '.$titleHead.$quo_titles.'
+    </td>
   </tr>
 </table>
 <table width="100%" border="0" cellspacing="0" cellpadding="0" style="border:1px solid #000;">

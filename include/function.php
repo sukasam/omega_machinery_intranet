@@ -3730,4 +3730,35 @@ function getTypeMCSize($id,$type)
         }
     }
 }
+
+function getQuotationTitle($id)
+{
+    switch ($id) {
+        case "1":
+            return "ซ่อม";  
+            break;
+        case "2":
+            return "ติดตั้ง";
+            break;
+        case "3":
+            return "ติดตั้ง-โปรเจค";
+            break; 
+        case "4":
+            return "เดินระบบน้ำ/ไฟฟ้า";
+            break;
+        case "5":
+            return "ขนส่งสินค้า";
+            break;
+        case "6":
+            return "อื่นๆ";
+            break;
+        default:
+            return "";
+    }
+}
+
+            
+            
+
+
                     

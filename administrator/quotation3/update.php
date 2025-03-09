@@ -725,7 +725,7 @@ function submitForm() {
     <td style="padding-bottom:5px;">
     <?php 
     //$userCreate = getCreatePaper($conn, $tbl_name, " AND `qu_id`= ".$qu_id);
-    $headerIMG = '../images/form/header-qar.png';
+    $headerIMG = '../images/form/header-qar2.png';
     ?>
     <img src="<?php echo $headerIMG;?>" width="100%" /></td>
   </tr>
