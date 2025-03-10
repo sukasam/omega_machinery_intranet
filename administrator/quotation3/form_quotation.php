@@ -69,6 +69,8 @@ else{
 	$typeS = "เครื่องล้างจาน";
 }
 
+$addBR = "";
+
 if($_POST['quo_titles'] == '1'){
   if($_POST['type_service'] == '3'){
     $cssHead = 'right: 95px;top: 150px;font-size:12px;';
@@ -89,6 +91,7 @@ if($_POST['quo_titles'] == '1'){
   }
 }else if($_POST['quo_titles'] == '4'){
   $cssHead = 'right: 105px;top: 140px;font-size:12px;';
+  $addBR = "<br>";
 }else if($_POST['quo_titles'] == '5'){
   if($_POST['type_service'] == '3'){
     $cssHead = 'right: 82px;top: 150px;font-size:12px;';
@@ -104,7 +107,7 @@ if($_POST['quo_titles'] == '1'){
 }
 
 $titleHead = '<div style="position: absolute;right: 110px;top: 95px;font-size:16px;font-weight: bold;">ใบเสนอราคา<br>Quotation</div>';
-$quo_titles = '<div style="position: absolute;'.$cssHead.'font-weight: bold;text-align: center;">'.getQuotationTitle($_POST['quo_titles'])."/<br>".$typeS.'</div>';
+$quo_titles = '<div style="position: absolute;'.$cssHead.'font-weight: bold;text-align: center;">'.getQuotationTitle($_POST['quo_titles'])."/".$addBR.$typeS.'</div>';
 
 
 // $userCreate = getCreatePaper($conn, $tbl_name, " AND `qu_id`= " . $_POST['qu_id']);
@@ -233,7 +236,9 @@ if(!empty($_POST["remark"])){
 </table><br><br><br><br><br><br><br><br><br><br><br><br>';
 $form .='<table width="100%" border="0" cellspacing="0" cellpadding="0">
   <tr>
-    <td style="padding-bottom:5px;"><img src="'.$headerIMG.'" width="100%" border="0" /></td>
+    <td style="padding-bottom:5px;"><img src="'.$headerIMG.'" width="100%" border="0" />
+    '.$titleHead.$quo_titles.'
+    </td>
   </tr>
   </table>';
 }
@@ -249,8 +254,8 @@ $form .= '
       <br>
       <p><strong>เงื่อนไขการขาย</strong></p><br>
       <p style="font-size:11px;">1. ราคาดังกล่าวข้างต้น ' . $_POST['pay1'] . ' ภาษีมูลค่าเพิ่ม ' . $_POST['pay2'] . ' ตามที่สรรพากรกำหนดเรียบร้อยแล้ว</p><br>
-      <p style="font-size:11px;">2. กำหนดยืนราคา ' . $_POST['giveprice'] . ' วัน นับตั้งแต่วันที่อนุมัติใบเสนอราคา หรือ PO สั่งซื้อบริการดีงกล่าวข้างต้น</p><br>
-      <p style="font-size:11px;">3. ทางบริษัทฯ ขอสงวนสิทธ์ในกรณีที่ลูกค้าเช็นอนุมัติใบเสนอราคาแล้วนั้น หากมีการยกเลิกสัญญา หรือ การเปลี่ยนแปลงใดๆเกิดขึ้นระหว่างดำเนินการ ทางลูกค้าต้องเป็นผู้รับผิดชอบต่อความเสียหายและค่าใช้จ่ายที่เกิดขึ้น</p>
+      <p style="font-size:11px;">2. กำหนดยืนราคา ' . $_POST['giveprice'] . ' วัน นับตั้งแต่วันที่อนุมัติใบเสนอราคา หรือ PO สั่งซื้อบริการดังกล่าวข้างต้น</p><br>
+      <p style="font-size:11px;">3. ทางบริษัทฯ ขอสงวนสิทธ์ในกรณีที่ลูกค้าเช็นต์อนุมัติใบเสนอราคาแล้วนั้น หากมีการยกเลิกสัญญา หรือ การเปลี่ยนแปลงใดๆเกิดขึ้นระหว่างดำเนินการ ทางลูกค้าต้องเป็นผู้รับผิดชอบต่อความเสียหายและค่าใช้จ่ายที่เกิดขึ้น</p>
       </div>
     </td>
     <td style="text-align: center;border:1px solid #000;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:10px;width: 40%;">

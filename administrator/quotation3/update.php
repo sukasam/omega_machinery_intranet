@@ -1281,8 +1281,8 @@ function submitForm() {
         	 1. <strong><u>การชำระเงิน</u></strong> <input type="text" name="paycon1" value="<?php  echo $paycon1;?>" id="paycon1" class="inpfoder" style="width: 350px;border: 1px solid;"><br/>
            <br><strong>เงื่อนไขการขาย</strong><br>
            <br>1. ราคาดังกล่าวข้างต้น <input type="text" name="pay1" value="<?php echo $pay1;?>" style="text-align: center;width: 100px;"> ภาษีมูลค่าเพิ่ม <input type="text" name="pay2" value="<?php echo $pay2;?>" style="text-align: center;width: 50px;"> ตามที่สรรพากรกำหนดเรียบร้อยแล้ว
-        	 <br>2. กำหนดยืนราคา <input type="text" name="giveprice" value="<?php echo $giveprice;?>" style="text-align: center;width: 50px;"> วัน นับตั้งแต่วันที่อนุมัติใบเสนอราคา หรือ PO สั่งซื้อบริการดีงกล่าวข้างต้น	
-           <br>3. ทางบริษัทฯ ขอสงวนสิทธ์ในกรณีที่ลูกค้าเช็นอนุมัติใบเสนอราคาแล้วนั้น หากมีการยกเลิกสัญญา หรือ การเปลี่ยนแปลงใดๆเกิดขึ้นระหว่างดำเนินการ ทางลูกค้าต้องเป็นผู้รับผิดชอบต่อความเสียหายและค่าใช้จ่ายที่เกิดขึ้น
+        	 <br>2. กำหนดยืนราคา <input type="text" name="giveprice" value="<?php echo $giveprice;?>" style="text-align: center;width: 50px;"> วัน นับตั้งแต่วันที่อนุมัติใบเสนอราคา หรือ PO สั่งซื้อบริการดังกล่าวข้างต้น	
+           <br>3. ทางบริษัทฯ ขอสงวนสิทธ์ในกรณีที่ลูกค้าเช็นต์อนุมัติใบเสนอราคาแล้วนั้น หากมีการยกเลิกสัญญา หรือ การเปลี่ยนแปลงใดๆเกิดขึ้นระหว่างดำเนินการ ทางลูกค้าต้องเป็นผู้รับผิดชอบต่อความเสียหายและค่าใช้จ่ายที่เกิดขึ้น
            <!-- <br><span>** รับประกันอะไหล่ <input type="text" name="guaran" value="<?php echo $guaran;?>" style="text-align: center;width: 50px;"> เดือน ** หรือ <input type="text" name="paycon2" value="<?php  echo $paycon2;?>" id="paycon2" class="inpfoder" style="width: 350px;border: 1px solid;"></span> -->
         </p>    
         </td>
