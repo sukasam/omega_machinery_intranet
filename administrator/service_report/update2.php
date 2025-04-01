@@ -2,7 +2,7 @@
 include("../../include/config.php");
 include("../../include/connect.php");
 include("../../include/function.php");
-include("config.php");
+include("config2.php");
 
 if ($_POST["mode"] <> "") {
 	$param = "";
