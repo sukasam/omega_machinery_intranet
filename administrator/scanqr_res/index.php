@@ -78,8 +78,8 @@ input, label {vertical-align:middle}
         <?php
 			$chafFO = str_replace("/","-",$getFO["fs_id"]);
 		?>
-        <a href="../../upload/first_order/<?php  echo $chafFO;?>.pdf" target="_blank"><img src="../images/menu/frish_order_qr.png" width="151" height="130" border="0" alt="" /></a>
-        
+        <!-- <a href="../../upload/first_order/<?php  echo $chafFO;?>.pdf" target="_blank"><img src="../images/menu/frish_order_qr.png" width="151" height="130" border="0" alt="" /></a> -->
+        <a href="../service_report/service.php?cus_id=<?php echo $getFO["fo_id"];?>"><img src="../images/menu/service-form_qr.png" width="151" height="130" border="0" alt="" /></a>
         </td>
         <td  width="25%">
         <?php
@@ -95,7 +95,7 @@ input, label {vertical-align:middle}
 				<?php
 			}*/
 		?>
-       <a href="../service_report/service.php?cus_id=<?php echo $getFO["fo_id"];?>"><img src="../images/menu/service-form_qr.png" width="151" height="130" border="0" alt="" /></a>
+       
         </td>
         <td  width="25%"></td>
         <td  width="25%"></td>

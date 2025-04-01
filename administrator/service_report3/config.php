@@ -2,7 +2,7 @@
 <?php  
 	$PK_field = "sr_id";
 	//$FR_field = "";
-	$check_module = "Service Report";
+	$check_module = "Service Report (ใบยืมอะไหล่)";
 	$page_name = "Service Report (ใบยืมอะไหล่)";
 	$tbl_name = "s_service_report3";
 	$field_confirm_showname= "cus_id";

@@ -42,11 +42,12 @@ if ($_POST["cpro10"] != "") {$cpro10 = "10";} else { $cpro10 = "&nbsp;";}
 
 
 $sale_line = get_technician_tel($conn,$_POST["loc_contact"]);
-if(!empty($sale_line)){
-  $imgsaleLine =  '<div style="position: absolute;right: 65px;top: 195px;"><img src="https://omega-intranet.com/machinery/qrcode_gen/qrcode2.php?val=https://line.me/ti/p/~'.$sale_line.'" height="60" border="0" /></div>';
-}else{
-  $imgsaleLine = '';
-}
+$imgsaleLine = '';
+// if(!empty($sale_line)){
+//   $imgsaleLine =  '<div style="position: absolute;right: 65px;top: 195px;"><img src="https://omega-intranet.com/machinery/qrcode_gen/qrcode2.php?val=https://line.me/ti/p/~'.$sale_line.'" height="60" border="0" /></div>';
+// }else{
+//   $imgsaleLine = '';
+// }
 
 if($pro_img1 != ""){
   $pro_img1s = '<br><img src="../../upload/quotation/'.$pro_img1.'" height="150"  border="0" style="border-radius: 15px;"/>';
