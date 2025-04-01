@@ -2,7 +2,7 @@
 <?php 
 	$PK_field = "sr_id";
 	//$FR_field = "";
-	$check_module = "ตารางการบริการ";
+	$check_module = "ตารางงานฝ่ายติดตั้ง";
 	$page_name = "ตารางงานฝ่ายติดตั้ง";
 	$tbl_name = "s_service_report";
 	$field_confirm_showname= "cus_id";
