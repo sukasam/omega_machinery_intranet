@@ -56,6 +56,16 @@
 	if(($_POST['camount4'] * $_POST['cprice4']) != 0){$suprice4 = number_format($_POST['camount4'] * $_POST['cprice4']);}else{$suprice4 = " ";}
 	if(($_POST['camount5'] * $_POST['cprice5']) != 0){$suprice5 = number_format($_POST['camount5'] * $_POST['cprice5']);}else{$suprice5 = " ";}
 
+	if($_POST['pack_size'] == '1'){
+		$pack_size = '20 ลิตร / ถัง';
+	}else if($_POST['pack_size'] == '2'){
+		$pack_size = '10 ลิตร / แกลลอน';
+	}else if($_POST['pack_size'] == '3'){
+		$pack_size = '3.8 ลิตร / แกลลอน';
+	}else{
+		$pack_size = '-';
+	}
+
 	
 	$totalprice = ($_POST['camount1'] * $_POST['cprice1']) + ($_POST['camount2'] * $_POST['cprice2']) + ($_POST['camount3'] * $_POST['cprice3']) + ($_POST['camount4'] * $_POST['cprice4']) + ($_POST['camount5'] * $_POST['cprice5']);
 	
@@ -229,17 +239,17 @@
 	      <br />
 	      <strong>ความเข้มข้น : </strong> '.$_POST['cl_03'].' <strong>%</strong><br />
 	      <br />
-	      <strong>สต๊อกน้ำยา C =</strong> '.$_POST['cl_04'].' <strong>ถัง R = </strong> '.$_POST['cl_05'].' <strong>ถัง A =</strong> '.$_POST['cl_06'].' <strong>ถัง</strong><br />
-	      <strong><br />
-	        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;WG = </span></strong> '.$_POST['cl_07'].' <strong>ถัง RG = </strong> '.$_POST['cl_08'].' <strong>ถัง</strong></td>
+	      <strong>จำนวนน้ำยาที่ส่ง : </strong> '.$pack_size.' 
+		  <br />
+		  <br><strong> C =</strong> '.$_POST['cl_04'].' <strong> R = </strong> '.$_POST['cl_05'].' <strong> A =</strong> '.$_POST['cl_06'].' <strong> WG = </span></strong> '.$_POST['cl_07'].' <strong> RG = </strong> '.$_POST['cl_08'].' <strong></strong></td>
       </tr>
     </table>
 	
 	<table width="100%" border="0">
 	  <tr>
 		<td width="52%" style="font-size:11px;"><strong>รายการตรวจเช็ค</strong></td>
-		<td width="23%" style="font-size:11px;"><strong>รายละเอียดการบริการและการแจ้งซ่อม</strong></td>
-		<td width="25%" style="font-size:11px;"><strong>รายละเอียดการให้บริการ</strong></td>
+		<td width="23%" style="font-size:11px;"><strong>การบริการและการแจ้งซ่อม</strong></td>
+		<td width="25%" style="font-size:11px;"><strong></strong></td>
 	  </tr>
 	</table>
 
@@ -277,14 +287,31 @@
     </table></td>
      <td width="25%"><table width="100%" border="0" cellspacing="0" cellpadding="0">
        <tr>
-         <td style="text-align:center;"><strong>รายละเอียดการให้บริการ / ข้อเสนอแนะ</strong></td>
+         <td style="text-align:center;"><strong>ผู้แจ้งซ่อม / เบอร์โทรศัพท์</strong></td>
        </tr>
+	   <tr>
+		 <td style="text-align:left;">'.$_POST['fix_name'].'</td>
+	   </tr>
+	   <tr>
+		 <td style="text-align:left;"><strong>ตำแหน่ง:</strong> '.$_POST['fix_position'].'</td>
+	   </tr>
+	   <tr>
+		 <td style="text-align:left;"><strong>เบอร์โทรศัพท์:</strong> '.$_POST['fix_tel'].'</td>
+	   </tr>
        <tr>
-         <td style="text-align:left;">'.$_POST['detail_recom2'].'</td>
+         <td style="text-align:left;"><strong>รายละเอียดเพิ่มเติม:</strong> <br />'.$_POST['detail_recom3'].'</td>
        </tr>
      </table></td>
   </tr>
 </table>
+    <p class="tby1">รายละเอียดการให้บริการ / ข้อเสนอแนะ</p>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tb3">
+	<tr>
+		<td>
+		'.$_POST['detail_recom2'].'
+		</td>
+	</tr>
+	</table>
     <p class="tby1">รายละเอียดการเปลี่ยนอะไหล่ / รายการใช้อุปกรณ์การติดตั้ง</p>
     <table width="100%" border="0" cellspacing="0" cellpadding="0" style="font-size:10px;text-align:center;">
     <tr>
@@ -318,6 +345,18 @@
       <td style="border:1px solid #000000;padding:5;vertical-align:middle;">'.number_format($totalprice,2).'</td>
     </tr>
   </table>
+  <table width="100%" border="0" cellspacing="0" cellpadding="0" class="tb3">
+	<tr>
+		<td style="text-align:center;">
+		<br><br>
+		<strong>สายด่วน...งานบริการ 086-319-3766, 081-910-1158</strong>	
+		<br><br>
+		</td>
+		<td style="text-align:left;">
+			<img src="0863193766.png" width="50">
+		</td>
+	</tr>
+	</table>
 	<table width="100%" border="0" cellspacing="0" cellpadding="0" style="text-align:center;margin-top:5px;">
       <tr>
         <td width="33%" style="border:1px solid #000000;font-size:10px;font-family:Verdana, Geneva, sans-serif;text-align:center;padding-top:10px;padding-bottom:10px;">
@@ -326,7 +365,9 @@
                 <td style="border-bottom:1px solid #000000;padding-bottom:10px;font-size:10px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong >'.$techniSignature.'</strong></td>
               </tr>
               <tr>
-                <td style="padding-top:10px;padding-bottom:10px;font-size:10px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>ช่างบริการ</strong></td>
+                <td style="padding-top:10px;padding-bottom:10px;font-size:10px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>'.$tecinfos['group_name'].'/ ช่างบริการ</strong>
+				<br> <strong> Tel: '.$tecinfos['group_tel'].'</strong>
+				</td>
               </tr>
               <tr>
                 <td style="font-size:10px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>วันที่ '.format_date_th(checkHCustomerDate($conn,$_POST['sr_id']),8).'
@@ -361,12 +402,6 @@
               </tr>
             </table>
         </td>
-      </tr>
-    </table>
-	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="ccontact">
-	  <tr>
-	    <td valign="bottom" style="text-align:left;">&nbsp;</td>
-	    <td valign="bottom" style="text-align:right;font-size:15px;"><strong>สายด่วน...งานบริการ 086-319-3766</strong></td>
       </tr>
     </table><br><br><br><br><br><br>
 	

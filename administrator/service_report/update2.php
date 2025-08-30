@@ -53,6 +53,7 @@ if ($_POST["mode"] <> "") {
 
 		$_POST['detail_recom'] = nl2br($_POST['detail_recom']);
 		$_POST['detail_recom2'] = nl2br($_POST['detail_recom2']);
+		$_POST['detail_recom3'] = nl2br($_POST['detail_recom3']);
 		$_POST['detail_calpr'] = nl2br($_POST['detail_calpr']);
 
 		$_POST['job_last'] = get_lastservice_f($conn, $_POST['cus_id'], $_POST['sv_id']);
@@ -638,7 +639,14 @@ $v = date("YmdHis");
 												<input type="text" name="cl_07" value="<?php echo $cl_07; ?>" id="cl_07" class="inpfoder" style="width:5%;">
 												<strong> ถัง RG = </strong>
 												<input type="text" name="cl_08" value="<?php echo $cl_08; ?>" id="cl_08" class="inpfoder" style="width:5%;">
-												<strong> ถัง </strong></td>
+												<strong> ถัง </strong>
+												<br><br><strong>ขนาดบรรจุ :   
+												<input type="radio" id="bj_00" name="pack_size" value="0" <?php if($pack_size === '0'){echo 'checked';}?>>ไม่ระบุ
+												<input type="radio" id="bj_01" name="pack_size" value="1" <?php if($pack_size === '1'){echo 'checked';}?>>20 ลิตร / ถัง
+												<input type="radio" id="bj_02" name="pack_size" value="2" <?php if($pack_size === '2'){echo 'checked';}?>>10 ลิตร / แกลลอน
+												<input type="radio" id="bj_03" name="pack_size" value="3" <?php if($pack_size === '3'){echo 'checked';}?>>3.8 ลิตร / แกลลอน
+												</strong><br />
+											</td>
 											<td style="width: 25%;"><strong>ช่างเข้าบริการ</strong><br /><br />
 												<?php
 												$tecList = array("", $tec_service1, $tec_service2, $tec_service3);
@@ -681,123 +689,19 @@ $v = date("YmdHis");
 											</td>
 										</tr>
 									</table>
-									<!--
-	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tb3">
-  <tr>
-    <td width="48%"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-      <tr>
-        <td colspan="2"><strong>รายการตรวจเช็ค</strong></td>
-      </tr>
-      <tr>
-        <td width="50%"><strong>ระบบไฟฟ้า</strong></td>
-        <td width="50%"><strong>ระบบประปา</strong></td>
-      </tr>
-      <tr>
-        <td ><input type="checkbox" name="ckl_list2[]" value="1" id="checkbox" <?php if (@in_array('1', $ckl_list)) {
-																					echo 'checked="checked"';
-																				} ?>>
-          ตรวจเช็คชุดควบคุม</td>
-        <td ><input type="checkbox" name="ckw_list2[]" value="1" id="checkbox6" <?php if (@in_array('1', $ckw_list)) {
-																					echo 'checked="checked"';
-																				} ?>>
-          ตรวจเช็คน้ำรั่ว/ซึมภายนอก</td>
-      </tr>
-      <tr>
-        <td ><input type="checkbox" name="ckl_list2[]" value="2" id="checkbox2" <?php if (@in_array('2', $ckl_list)) {
-																					echo 'checked="checked"';
-																				} ?>>
-          ตรวจเช็ค/ขัน Terminal</td>
-        <td ><input type="checkbox" name="ckw_list2[]" value="2" id="checkbox7" <?php if (@in_array('2', $ckw_list)) {
-																					echo 'checked="checked"';
-																				} ?>>
-          ถอดล้างตะแกรงกรองเศษอาหาร</td>
-      </tr>
-      <tr>
-        <td ><input type="checkbox" name="ckl_list2[]" value="3" id="checkbox3" <?php if (@in_array('3', $ckl_list)) {
-																					echo 'checked="checked"';
-																				} ?>>
-          วัดแรงดันไฟฟ้า และกระแสไฟฟ้า</td>
-        <td ><input type="checkbox" name="ckw_list2[]" value="3" id="checkbox8" <?php if (@in_array('3', $ckw_list)) {
-																					echo 'checked="checked"';
-																				} ?>>
-          ถอดล้างสแตนเนอร์ Solinoid Value</td>
-      </tr>
-      <tr>
-        <td ><input type="checkbox" name="ckl_list2[]" value="4" id="checkbox4" <?php if (@in_array('4', $ckl_list)) {
-																					echo 'checked="checked"';
-																				} ?>>
-          ตรวจเช็ค Heater</td>
-        <td ><input type="checkbox" name="ckw_list2[]" value="4" id="checkbox9" <?php if (@in_array('4', $ckw_list)) {
-																					echo 'checked="checked"';
-																				} ?>>
-          ถอดล้างแขนฉีด/หัวฉีดน้ำ</td>
-      </tr>
-      <tr>
-        <td ><input type="checkbox" name="ckl_list2[]" value="5" id="checkbox5" <?php if (@in_array('5', $ckl_list)) {
-																					echo 'checked="checked"';
-																				} ?>>
-          ตรวจเช็คมอเตอร์</td>
-        <td ><input type="checkbox" name="ckw_list2[]" value="5" id="checkbox10" <?php if (@in_array('5', $ckw_list)) {
-																						echo 'checked="checked"';
-																					} ?>>
-          ทำความสะอาดภายใน/ภายนอก</td>
-      </tr>
-    </table></td>
-    <td width="22%" style="vertical-align:top;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-      <tr>
-        <td><strong>รายละเอียดการบริการและการแจ้งซ่อม</strong></td>
-      </tr>
-      <tr>
-        <td><div class="setting" id="slapp">
-          <div class="sc_wrap">
-            <ul>
-              <?php
-				$qu_fix = @mysqli_query($conn, "SELECT * FROM s_group_fix ORDER BY group_name ASC");
-				$numfix = @mysqli_num_rows($qu_fix);
-				$nd = 1;
-				while ($row_fix = @mysqli_fetch_array($qu_fix)) {
-				?>
-              <li>
-                <input type="checkbox" name="ckf_list2[]" onClick="CountChecks('listone',5,this,<?php echo $numfix; ?>)" value="<?php echo $row_fix['group_id']; ?>" id="checkbox<?php echo $nd; ?>" <?php if (@in_array($row_fix['group_id'], $ckf_list)) {
-																																																			echo 'checked="checked"';
-																																																		} ?>>
-                <label for="checkbox<?php echo $nd; ?>" style="font-weight:normal;"><?php echo $row_fix['group_name']; ?></label>
-              </li>
-              <?php
-					$nd++;
-				}
-				?>
-            </ul>
-            <div class="clear"></div>
-          </div>
-        </div></td>
-      </tr>
-    </table></td>
-     <td width="30%" style="vertical-align:top;"><table width="100%" border="0" cellspacing="0" cellpadding="0">
-       <tr>
-         <td style="text-align:center;"><strong>รายละเอียดการให้บริการ / ข้อเสนอแนะ</strong></td>
-       </tr>
-       <tr>
-         <td style="text-align:left;"><span style="font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:5px;">
-           <textarea name="detail_recom2" class="inpfoder" id="detail_recom2" style="width:50%;height:180px;"><?php echo strip_tags($detail_recom2); ?></textarea>
-         </span></td>
-       </tr>
-     </table></td>
-  </tr>
-</table>
--->
+									
 
 									<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tb3 tblistChk">
 										<tr>
-											<td colspan="2">
+											<td colspan="3">
 												<p style="text-align: center;"><strong>รายการตรวจเช็ค</strong></p>
 											</td>
 										</tr>
 										<tr>
-											<td>
+											<td width="33%">
 												<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tblistChk">
 													<tr>
-														<td width="50%"><strong>ระบบไฟฟ้า</strong></td>
+														<td width="33%"><strong>ระบบไฟฟ้า</strong></td>
 													</tr>
 													<tr>
 														<td style="vertical-align:top;"><input type="checkbox" name="ckl_list2[]" value="1" id="checkbox" <?php if (@in_array('1', $ckl_list)) {
@@ -835,10 +739,10 @@ $v = date("YmdHis");
 													</tr>
 												</table>
 											</td>
-											<td>
+											<td width="33%">
 												<table>
 													<tr>
-														<td width="50%"><strong>ระบบประปา</strong></td>
+														<td><strong>ระบบประปา</strong></td>
 													</tr>
 
 													<tr>
@@ -877,9 +781,38 @@ $v = date("YmdHis");
 													</tr>
 												</table>
 											</td>
+											<td width="33%">
+												<table>
+													<tr>
+														<td><strong>ผู้แจ้งซ่อม / เบอร์โทรศัพท์</strong></td>
+													</tr>
+													<tr>
+														<td>
+															ชื่อผู้แจ้งซ่อม : <input type="text" name="fix_name" value="<?php echo $fix_name; ?>" id="fix_name" class="inpfoder" style="width:250px;">
+														</td>
+													</tr>
+													<tr>
+														<td>
+															ตำแหน่ง : <input type="text" name="fix_position" value="<?php echo $fix_position; ?>" id="fix_position" class="inpfoder" style="width:200px;">
+														</td>
+													</tr>
+													<tr>
+														<td>
+															เบอร์โทรศัพท์ : <input type="text" name="fix_tel" value="<?php echo $fix_tel; ?>" id="fix_tel" class="inpfoder" style="width:200px;">
+														</td>
+													</tr>
+													<tr>
+														<td style="vertical-align:top;">
+															รายละเอียดเพิ่มเติม : 
+															<br>
+															<textarea name="detail_recom3" class="inpfoder" id="detail_recom3" style="width:20%;height:100px;"><?php echo strip_tags($detail_recom3); ?></textarea>
+														</td>
+													</tr>
+												</table>
+											</td>
 										</tr>
 										<tr>
-											<td width="50%" style="vertical-align:top;">
+											<td width="33%" style="vertical-align:top;">
 												<table width="100%" border="0" cellspacing="0" cellpadding="0">
 													<tr>
 														<td><strong>รายละเอียดการบริการและการแจ้งซ่อม</strong></td>
@@ -936,7 +869,7 @@ $v = date("YmdHis");
 													</tr>
 												</table>
 											</td>
-											<td width="50%" style="vertical-align:top;">
+											<td width="33%" style="vertical-align:top;" colspan="2">
 												<table width="100%" border="0" cellspacing="0" cellpadding="0">
 													<tr>
 														<td style="text-align:center;"><strong>รายละเอียดการให้บริการ / ข้อเสนอแนะ</strong></td>
