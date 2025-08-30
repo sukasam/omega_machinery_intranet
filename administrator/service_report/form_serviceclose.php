@@ -353,7 +353,7 @@
 		<br><br>
 		</td>
 		<td style="text-align:left;">
-			<img src="0863193766.png" width="50">
+			<img src="0863193766.jpg" width="50">
 		</td>
 	</tr>
 	</table>
