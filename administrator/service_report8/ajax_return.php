@@ -57,6 +57,23 @@
 		}
 		//echo "SELECT cd_name FROM s_first_order ".$consd." ORDER BY cd_name ASC";
 	}
+
+	if($_GET['action'] == 'getcus2'){
+		$cd_name = $_REQUEST['pval'];
+		if($cd_name != ""){
+			$consd = "AND (sv.sv_id LIKE '%".$cd_name."%' OR fo.cd_name LIKE '%".$cd_name."%' OR fo.loc_name LIKE '%".$cd_name."%' OR fo.cusid LIKE '%".$cd_name."%')";
+		}
+		//echo "SELECT sv.sv_id,fo.fo_id,fo.cd_name,fo.loc_name FROM `s_first_order` as fo, `s_service_report` as sv  WHERE sv.cus_id = fo.fo_id ".$consd." AND (fo.status_use = '3' or fo.status_use = '0') GROUP BY sv.sv_id LIMIT 100 ORDER BY sv.sv_id DESC";
+		$qu_cus2 = mysqli_query($conn,"SELECT sv.sv_id,fo.fo_id,fo.cd_name,fo.loc_name FROM `s_first_order` as fo, `s_service_report` as sv  WHERE sv.cus_id = fo.fo_id ".$consd." AND (fo.status_use = '3' or fo.status_use = '0') AND sv.sv_id LIKE 'RP%' GROUP BY sv.sv_id ORDER BY sv.sv_id DESC LIMIT 100");
+		while($row_cusx = @mysqli_fetch_array($qu_cus2)){
+			?>
+			 <tr>
+				<td><A href="javascript:void(0);" onclick="get_customer('<?php echo $row_cusx['sv_id'];?>');"><?php echo $row_cusx['sv_id']." | ".$row_cusx['cd_name'];?> (<?php echo $row_cusx['loc_name']?>)</A></td>
+			</tr>
+			<?php    	
+		}
+		//echo "SELECT cd_name FROM s_first_order ".$consd." ORDER BY cd_name ASC";
+	}
 	
 	if($_GET['action'] == 'getsparpart'){
 		$cd_name = $_REQUEST['pval'];
@@ -67,7 +84,7 @@
 		while($row_cusx = @mysqli_fetch_array($qu_cus)){
 			?>
 			 <tr>
-				<td><A href="javascript:void(0);" onclick="get_sparactive('<?php     echo $row_cusx['group_id'];?>','codes<?php     echo $_REQUEST['resdata']?>','listss<?php     echo $_REQUEST['resdata']?>','units<?php     echo $_REQUEST['resdata']?>','prices<?php     echo $_REQUEST['resdata']?>','amounts<?php     echo $_REQUEST['resdata']?>','<?php     echo $_REQUEST['resdata']?>');"><?php     echo $row_cusx['group_spar_id'].'&nbsp;&nbsp;'.$row_cusx['group_name'];?></A></td>
+				<td><A href="javascript:void(0);" onclick="get_sparactive('<?php     echo $row_cusx['group_id'];?>','codes<?php     echo $_REQUEST['resdata']?>','listss<?php     echo $_REQUEST['resdata']?>','units<?php     echo $_REQUEST['resdata']?>','prices<?php echo $_REQUEST['resdata']?>','amounts<?php     echo $_REQUEST['resdata']?>','<?php echo $_REQUEST['resdata']?>','locations<?php echo $_REQUEST['resdata']?>');"><?php     echo $row_cusx['group_spar_id'].'&nbsp;&nbsp;'.$row_cusx['group_name'];?></A></td>
 			  </tr>
 			<?php    	
 		}
@@ -80,7 +97,7 @@
 		$qu_spare = @mysqli_query($conn,"SELECT * FROM s_group_sparpart  WHERE  group_id = '".$sparval."'");
 		$row_spare = @mysqli_fetch_array($qu_spare);
 		
-		$selclist = "<select name=\"lists[]\" id=\"lists".$ressdata."\" class=\"inputselect\" style=\"width:92%\" onchange=\"showspare(this.value,'codes".$ressdata."','units".$ressdata."','prices".$ressdata."','amounts".$ressdata."')\">";
+		$selclist = "<select name=\"lists[]\" id=\"lists".$ressdata."\" class=\"inputselect\" style=\"width:92%\" onchange=\"showspare(this.value,'codes".$ressdata."','units".$ressdata."','prices".$ressdata."','amounts".$ressdata."','".$ressdata."','locations".$ressdata."')\">";
                 	$qucgspare = @mysqli_query($conn,"SELECT * FROM s_group_sparpart WHERE typespar != '2' ORDER BY group_name ASC");
 					$selclist .= "<option value=\"\">กรุณาเลือกรายการอะไหล่</option>";
 
@@ -93,7 +110,7 @@
 		   
 		//   $selclist = 'mkung';
 		   
-		$res_spares = "".'|'.$row_spare['group_spar_id'].'|'.$selclist.'|'.$row_spare['group_namecall'].'|'.$row_spare['group_price'].'|'.$row_spare['group_stock'];
+		$res_spares = "".'|'.$row_spare['group_spar_id'].'|'.$selclist.'|'.$row_spare['group_namecall'].'|'.$row_spare['group_price'].'|'.$row_spare['group_stock'].'|'.$row_spare['group_location'];
 		echo $res_spares;
 	}
 	
@@ -101,7 +118,7 @@
 		$sparval = $_REQUEST['sval'];
 		$qu_spare = @mysqli_query($conn,"SELECT * FROM s_group_sparpart  WHERE  group_id = '".$sparval."'");
 		$row_spare = @mysqli_fetch_array($qu_spare);
-		$res_spare = " ".'|'.$row_spare['group_spar_id'].'|'.$row_spare['group_namecall'].'|'.$row_spare['group_price'].'|'.$row_spare['group_stock'];
+		$res_spare = " ".'|'.$row_spare['group_spar_id'].'|'.$row_spare['group_namecall'].'|'.$row_spare['group_price'].'|'.$row_spare['group_stock'].'|'.$row_spare['group_location'];
 		echo $res_spare;
 	}
 

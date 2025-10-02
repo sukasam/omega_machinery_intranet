@@ -2610,6 +2610,7 @@ function get_profirstorder($conn, $val)
     $row_pfirst['cpro6'];
     $row_pfirst['cpro7'];
 
+    $prolist = array();
     if ($row_pfirst['cpro1'] != "") {$prolist[] = $row_pfirst['cpro1'];}
     if ($row_pfirst['cpro2'] != "") {$prolist[] = $row_pfirst['cpro2'];}
     if ($row_pfirst['cpro3'] != "") {$prolist[] = $row_pfirst['cpro3'];}

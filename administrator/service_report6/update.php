@@ -590,6 +590,7 @@ function check(frm){
         <?php   
 		if($_GET['mode'] == "update"){
 		 $qu = @mysqli_query($conn,"SELECT * FROM s_service_report6sub WHERE sr_id = '".$sr_id."' ORDER BY r_id ASC");
+		 $numRows = @mysqli_num_rows($qu);
 		 while($row_sub = @mysqli_fetch_array($qu)){
 			 $brid[] = $row_sub['r_id'];
 			 $bcodes[] = $row_sub['codes'];
@@ -603,7 +604,10 @@ function check(frm){
 		}
 		$sumlist = 0;
 		$sumlistTotal = 0;
-		 for($i=1;$i<=10;$i++){
+		if($numRows == 0){
+			$numRows = 10;
+		}
+		 for($i=1;$i<=$numRows;$i++){
 		?>
         
 		<tr >

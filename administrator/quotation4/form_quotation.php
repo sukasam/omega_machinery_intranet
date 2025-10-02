@@ -197,7 +197,7 @@ $form .= '
    <p style="font-size:12px;">2. บัญชีสำหรับโอนเงิน ชำระสินค้า<br>
    <strong>&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: green;">ธนาคารกสิกรไทย : สาขาสุขาภิบาล 5</span> <br>
    &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: green;">บัญชีออมทรัพย์ : บจก.โอเมก้า แมชชีนเนอรี่ (1999) จำกัด</span> <br>
-   &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: green;">หมายเลขบัญชี : 026-1-8110689</span></strong>
+   &nbsp;&nbsp;&nbsp;&nbsp;<span style="color: green;">หมายเลขบัญชี : 026-1-810689</span></strong>
    </p>
   </p>
   <p style="font-size:12px;"><strong><u>เงื่อนไขการขาย</u></strong></p>';

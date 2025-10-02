@@ -999,7 +999,7 @@ function submitForm() {
         	 2. บัญชีสำหรับโอนเงิน ชำระสินค้า</br>
            <span style="padding-left: 14px;color: green;">ธนาคารกสิกรไทย : สาขาสุขาภิบาล 5</span></br>
            <span style="padding-left: 14px;color: green;">บัญชีออมทรัพย์ : บจก.โอเมก้า แมชชีนเนอรี่ (1999) จำกัด</span><br>
-           <span style="padding-left: 14px;color: green;">หมายเลขบัญชี : 026-1-8110689</span>
+           <span style="padding-left: 14px;color: green;">หมายเลขบัญชี : 026-1-810689</span>
         </p>  
         <p><strong>เงื่อนไขการขาย</strong></p>
         <p>

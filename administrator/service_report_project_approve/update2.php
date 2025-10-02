@@ -2,9 +2,7 @@
 	include ("../../include/config.php");
 	include ("../../include/connect.php");
 	include ("../../include/function.php");
-	include ("config.php");
-
-	$vowels = array(",");
+	include ("config2.php");
 
 	if ($_POST["mode"] <> "") { 
 		$param = "";
@@ -35,14 +33,6 @@
 		$a_sdate=explode("/",$_POST['ref_date']);
 		$_POST['ref_date']=$a_sdate[2]."-".$a_sdate[1]."-".$a_sdate[0];
 
-		$_POST["money1"] = str_replace($vowels,"",$_POST["money1"]);
-		$_POST["money2"] = str_replace($vowels,"",$_POST["money2"]);
-		$_POST["money3"] = str_replace($vowels,"",$_POST["money3"]);
-		$_POST["money4"] = str_replace($vowels,"",$_POST["money4"]);
-		$_POST["money5"] = str_replace($vowels,"",$_POST["money5"]);
-		$_POST["money6"] = str_replace($vowels,"",$_POST["money6"]);
-		
-		
 		if ($_POST["mode"] == "add") { 
 			
 			$_POST['approve'] = 0;
@@ -56,6 +46,7 @@
 			$_POST['detail_recom'] = nl2br($_POST['detail_recom']);
 			$_POST['detail_calpr'] = nl2br($_POST['detail_calpr']);
 			$_POST['detail_calpr'] = nl2br($_POST['detail_calpr']);
+			$_POST['detail_comment'] = nl2br($_POST['detail_comment']);
 			
 			$codes = $_POST['codes'];
 			$lists = $_POST['lists'];
@@ -82,26 +73,27 @@
 					if($opens[$a] == ""){
 						$opens[$a] = 0;
 					}
-					@mysqli_query($conn,"INSERT INTO `s_service_report6sub` (`r_id`, `sr_id`, `codes`, `lists`, `units`, `prices`, `amounts`, `opens`, `remains`) VALUES (NULL, '".$id."', '".$codes[$a]."', '".$lists[$a]."', '".$units[$a]."', '".$prices[$a]."', '".$amounts[$a]."', '".$opens[$a]."', '".($amounts[$a]-$opens[$a])."');");
+					@mysqli_query($conn,"INSERT INTO `s_service_report7sub` (`r_id`, `sr_id`, `codes`, `lists`, `units`, `prices`, `amounts`, `opens`, `remains`) VALUES (NULL, '".$id."', '".$codes[$a]."', '".$lists[$a]."', '".$units[$a]."', '".$prices[$a]."', '".$amounts[$a]."', '".$opens[$a]."', '".($amounts[$a]-$opens[$a])."');");
 					@mysqli_query($conn,"UPDATE `s_group_sparpart` SET `group_stock` = `group_stock` - '".$opens[$a]."' WHERE `group_id` = '".$lists[$a]."';");
 				}
 			}
 			
 				
 			include_once("../mpdf54/mpdf.php");
-			include_once("form_serviceopen.php");
+			include("../service_report7/form_serviceopen.php");
 			$mpdf=new mPDF('UTF-8'); 
 			$mpdf->SetAutoFont();
 			$mpdf->WriteHTML($form);
 			$chaf = preg_replace("/\//","-",$_POST['sv_id']); 
 			$mpdf->Output('../../upload/service_report_open/'.$chaf.'.pdf','F');
 			
-			header ("location:index.php?" . $param); 
+			header ("location:index2.php?" . $param); 
 		}
 		if ($_POST["mode"] == "update" ) {
 
 			$_POST['detail_recom'] = nl2br($_POST['detail_recom']);
 			$_POST['detail_calpr'] = nl2br($_POST['detail_calpr']);
+			$_POST['detail_comment'] = nl2br($_POST['detail_comment']);
 			
 			$_POST['job_last'] = get_lastservice_f($conn,$_POST['cus_id'],$_POST['sv_id']);
 			
@@ -115,13 +107,13 @@
 			$rid = $_POST['r_id'];
 			
 			
-			$sql2 = "select * from s_service_report6sub where sr_id = '".$_REQUEST[$PK_field]."'";
+			$sql2 = "select * from s_service_report7sub where sr_id = '".$_REQUEST[$PK_field]."'";
 			$quPro = @mysqli_query($conn,$sql2);
 			while($rowPro = mysqli_fetch_array($quPro)){
 				@mysqli_query($conn,"UPDATE `s_group_sparpart` SET `group_stock` = `group_stock`+'".$rowPro['opens']."' WHERE `group_id` = '".$rowPro['lists']."';");
 			}
 			
-			@mysqli_query($conn,"DELETE FROM `s_service_report6sub` WHERE `sr_id` = '".$_REQUEST[$PK_field]."'");
+			@mysqli_query($conn,"DELETE FROM `s_service_report7sub` WHERE `sr_id` = '".$_REQUEST[$PK_field]."'");
 			 
 			include ("../include/m_update.php");
 			
@@ -134,21 +126,21 @@
 					if($opens[$a] == ""){
 						$opens[$a] = 0;
 					}
-					@mysqli_query($conn,"INSERT INTO `s_service_report6sub` (`r_id`, `sr_id`, `codes`, `lists`, `units`, `prices`, `amounts`, `opens`, `remains`) VALUES (NULL, '".$id."', '".$codes[$a]."', '".$lists[$a]."', '".$units[$a]."', '".$prices[$a]."', '".$amounts[$a]."', '".$opens[$a]."', '".($amounts[$a]-$opens[$a])."');");
+					@mysqli_query($conn,"INSERT INTO `s_service_report7sub` (`r_id`, `sr_id`, `codes`, `lists`, `units`, `prices`, `amounts`, `opens`, `remains`) VALUES (NULL, '".$id."', '".$codes[$a]."', '".$lists[$a]."', '".$units[$a]."', '".$prices[$a]."', '".$amounts[$a]."', '".$opens[$a]."', '".($amounts[$a]-$opens[$a])."');");
 					@mysqli_query($conn,"UPDATE `s_group_sparpart` SET `group_stock` = `group_stock` - '".$opens[$a]."' WHERE `group_id` = '".$lists[$a]."';");
 				}
 						
 			}	
 			
 			include_once("../mpdf54/mpdf.php");
-			include_once("form_serviceopen.php");
+			include("../service_report7/form_serviceopen.php");
 			$mpdf=new mPDF('UTF-8'); 
 			$mpdf->SetAutoFont();
 			$mpdf->WriteHTML($form);
 			$chaf = preg_replace("/\//","-",$_POST['sv_id']); 
 			$mpdf->Output('../../upload/service_report_open/'.$chaf.'.pdf','F');
 			
-			header ("location:index.php?" . $param); 
+			header ("location:index2.php?" . $param); 
 		}
 		
 	}
@@ -193,8 +185,6 @@
 		$finfo = get_firstorder($conn,$cus_id);
 		
 		$ckf_list = explode(',',$ckf_list);
-		
-		$totalMoneyTec = $money1+$money2+$money3+$money4+$money5+$money6;
 		
 	}
 	
@@ -253,12 +243,6 @@ function check(frm){
 	  // alert('Sorry, only ' + maxchecked + ' may be checked.');
 	   }
 	}
-
-	function submitForm() {
-	document.getElementById("submitF").disabled = true;
-	document.getElementById("resetF").disabled = true;
-	document.form1.submit()
-}
 	
 </script>
 <SCRIPT language=Javascript>
@@ -269,10 +253,17 @@ function check(frm){
 
          return true;
       }
+
+	  function submitForm() {
+		document.getElementById("submitF").disabled = true;
+		document.getElementById("resetF").disabled = true;
+		document.form1.submit()
+	}
+
 </SCRIPT>
 </HEAD>
 <?php    include ("../../include/function_script.php"); ?>
-<BODY>
+<BODY onload="document.form1.submit()">
 <DIV id=body-wrapper>
 <?php    include("../left.php");?>
 <DIV id=main-content>
@@ -293,9 +284,10 @@ function check(frm){
 <DIV class=clear>
   
 </DIV></DIV><!-- End .content-box-header -->
-<DIV class=content-box-content>
+<div><center><img src="../images/waiting.gif" width="450"></center></div>
+<DIV class="content-box-content" style="display:none;">
 <DIV id=tab1 class="tab-content default-tab">
-  <form action="update.php" method="post" enctype="multipart/form-data" name="form1" id="form1"  onSubmit="return check(this)">
+  <form action="update2.php" method="post" enctype="multipart/form-data" name="form1" id="form1"  onSubmit="return check(this)">
     <div class="formArea">
       <fieldset>
       <legend><?php    echo $page_name; ?> </legend>
@@ -382,7 +374,7 @@ function check(frm){
 	  <tr>
 		<td style="text-align:right;font-size:12px;">
 			<div style="position:relative;text-align:center;">
-            	<img src="../images/form/header_service_report6.png" width="100%" border="0" style="max-width:1182px;"/>
+            	<img src="../images/form/header_service_report7.png" width="100%" border="0" style="max-width:1182px;"/>
             </div>
 		</td>
 	  </tr>
@@ -405,18 +397,7 @@ function check(frm){
                 <input name="cd_names" type="text" id="cd_names"  value="<?php    echo get_customername($conn,$cus_id);?>" style="width:50%;" readonly>
                 <span id="rsnameid"><input type="hidden" name="cus_id" value="<?php   echo $cus_id;?>"></span><a href="javascript:void(0);" onClick="windowOpener('400', '500', '', 'search.php');"><img src="../images/icon2/mark_f2.png" width="25" height="25" border="0" alt="" style="vertical-align:middle;padding-left:5px;"></a>
             </td>
-            <td><strong>ประเภทบริการลูกค้า :</strong> 
-            	<select name="sr_ctype" id="sr_ctype">
-                	<!--<option value="">กรุณาเลือก</option>-->
-                	<?php   
-						$qu_cusftype = @mysqli_query($conn,"SELECT * FROM s_group_service ORDER BY group_name ASC");
-						while($row_cusftype = @mysqli_fetch_array($qu_cusftype)){
-							?>
-							<option value="<?php   echo $row_cusftype['group_id'];?>" <?php   if($row_cusftype['group_id'] == $sr_ctype){echo 'selected';}?>><?php   echo $row_cusftype['group_name'];?></option>
-							<?php  
-						}
-					?>
-                </select>
+            <td>
 				<strong>ประเภทลูกค้า :</strong>
             	<select name="sr_ctype2" id="sr_ctype2">
             	  <!--<option value="">กรุณาเลือก</option>-->
@@ -431,15 +412,30 @@ function check(frm){
 						}
 					?>
           	  </select>
+				<strong>ประเภทบริการลูกค้า :</strong> 
+            	<select name="sr_ctype" id="sr_ctype">
+                	<!--<option value="">กรุณาเลือก</option>-->
+                	<?php   
+						$qu_cusftype = @mysqli_query($conn,"SELECT * FROM s_group_service ORDER BY group_name ASC");
+						while($row_cusftype = @mysqli_fetch_array($qu_cusftype)){
+							if($row_cusftype['group_id'] == 107 || $row_cusftype['group_id'] == 103){
+							?>
+							<option value="<?php   echo $row_cusftype['group_id'];?>" <?php   if($row_cusftype['group_id'] == $sr_ctype){echo 'selected';}?>><?php   echo $row_cusftype['group_name'];?></option>
+							<?php  
+							}
+						}
+					?>
+                </select>
             	</td>
           </tr>
           <tr>
             <td><strong>ที่อยู่ :</strong> <span id="cusadd"><?php   echo $finfo['cd_address'];?></span></td>
             <td><strong>เลขที่บริการ</strong> :
-<input type="text" name="sv_id" value="<?php   if($sv_id == ""){echo check_servicerepair($conn);}else{echo $sv_id;};?>" id="sv_id" class="inpfoder" style="border:0;">
-&nbsp;&nbsp;<strong>เลขที่ใบงาน</strong> : 
-<input type="text" name="srid" value="<?php   echo $srid;?>" id="srid" class="inpfoder">
-</td>
+			<input type="text" name="sv_id" value="<?php   if($sv_id == ""){echo check_serviceman($conn);}else{echo $sv_id;};?>" id="sv_id" class="inpfoder" style="border:0;">
+&nbsp;&nbsp;<strong>เลขที่ใบงาน</strong> : <!--<input type="text" name="sv_id" value="<?php   if($sv_id == ""){echo "SR";}else{echo $sv_id;};?>" id="sv_id" class="inpfoder" style="border:0;">&nbsp;&nbsp;เลขที่สัญญา  :</strong> <span id="contactid"><?php   echo $finfo['fs_id'];?></span>--><strong>
+			<input type="text" name="srid" value="<?php   echo $srid;?>" id="srid" class="inpfoder">
+			<!-- <a href="javascript:void(0);" onClick="windowOpener('400', '500', '', 'search_srid.php');"><img src="../images/icon2/mark_f2.png" width="25" height="25" border="0" alt="" style="vertical-align:middle;padding-left:5px;"></a> -->
+</strong></td>
           </tr>
           <tr>
             <td><strong>จังหวัด :</strong> <span id="cusprovince"><?php   echo province_name($conn,$finfo['cd_province']);?></span></td>
@@ -506,49 +502,36 @@ function check(frm){
 					?>
                 </select></td>
                 
-        <td width="50%">
-            <strong>สรุปค่าใช้จ่าย : แผนกช่าง</strong><br><br>
-        	<strong>ค่าแรง</strong> : 
-<input type="text" name="money1" value="<?php   echo $money1;?>" id="money1" style="width:20%;" class="inpfoder">
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<strong>ค่าเบี้ยเลี้ยง</strong> : 
-<input type="text" name="money4" value="<?php   echo $money4;?>" id="money4" style="width:20%;"  class="inpfoder">
- <br><br>
-<strong>ค่าน้ำมัน</strong> : 
-<input type="text" name="money2" value="<?php   echo $money2;?>" id="money2" style="width:20%;"  class="inpfoder">
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<strong>ค่าโอที</strong> : 
-<input type="text" name="money5" value="<?php   echo $money5;?>" id="money5" style="width:20%;"  class="inpfoder">
-<br><br>
-<strong>ค่าทางด่วน</strong> : 
-<input type="text" name="money3" value="<?php   echo $money3;?>" id="money3" style="width:20%;"  class="inpfoder">
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-<strong>ค่าใช้จ่ายอื่นๆ</strong> : 
-<input type="text" name="money6" value="<?php   echo $money6;?>" id="money6" style="width:20%;"  class="inpfoder"><br><br><br>
-<center style="font-size: 20px;">
-	<strong >รวมค่าใช้จ่าย</strong> : <?php echo number_format($totalMoneyTec,2);?>
-</center>
-        </td>
+        <td width="50%"><center><strong>รายละเอียดเพิ่มเติม</strong></center><br><br>
+        <textarea name="detail_recom" class="inpfoder" id="detail_recom" style="width:50%;height:100px;background:#FFFFFF;font-size:14px;font-family:Verdana, Geneva, sans-serif;"><?php   echo strip_tags($detail_recom);?></textarea></td>
       </tr>
     </table>
     
     <center>
       <br>
-      <span style="font-size:18px;font-weight:bold;">รายละเอียดการเปลี่ยนอะไหล่</span></center><br>
+      <span style="font-size:18px;font-weight:bold;">รายละเอียดการเบิกอะไหล่+อุปกรณ์</span></center><br>
+    <div style="text-align:right;margin-bottom:10px;">
+      <button type="button" onclick="addRow()" style="background-color:#4CAF50;color:white;padding:8px 16px;border:none;border-radius:4px;cursor:pointer;margin-right:5px;">+ เพิ่มรายการ</button>
+      <button type="button" onclick="removeRow()" style="background-color:#f44336;color:white;padding:8px 16px;border:none;border-radius:4px;cursor:pointer;">- ลบรายการ</button>
+    </div>
     <table width="100%" border="0" cellspacing="0" cellpadding="0" id="dataTable" style="text-align:center;margin-top:5px;">
-      <tr>
-        <td width="4%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;text-align:center;"><strong>ลำดับ</strong></td>
-        <td width="10%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;text-align:center;"><strong>Code</strong></td>
-        <td width="30%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;"><strong>รายการ</strong></td>
-        <td width="9%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;text-align:center;"><strong>หน่วยนับ</strong></td>
-		<td width="9%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;text-align:center;"><strong>คงเหลือ Stock</strong></td>
-        <td width="9%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;text-align:center;"><strong>ราคา/หน่วย</strong></td>
-        <td width="9%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;text-align:center;"><strong>จำนวนเบิก</strong></td>
-        <!--<td width="9%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;text-align:center;"><strong>จำนวนคงเหลือ</strong></td>-->
+      <thead>
+        <tr>
+          <td width="4%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;text-align:center;"><strong>ลำดับ</strong></td>
+          <td width="10%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;text-align:center;"><strong>Code</strong></td>
+          <td width="30%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;"><strong>รายการ</strong></td>
+          <td width="9%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;text-align:center;"><strong>สถานที่จัดเก็บ</strong></td>
+          <td width="9%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;text-align:center;"><strong>หน่วยนับ</strong></td>
+          <td width="9%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;text-align:center;"><strong>คงเหลือ Stock</strong></td>
+          <td width="9%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;text-align:center;"><strong>ราคา/หน่วย</strong></td>
+          <td width="9%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;text-align:center;"><strong>จำนวนเบิก</strong></td>
+          <!--<td width="9%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;text-align:center;"><strong>จำนวนคงเหลือ</strong></td>-->
         </tr>
+      </thead>
+      <tbody>
         <?php   
-		if($_GET['mode'] == "update"){
-		 $qu = @mysqli_query($conn,"SELECT * FROM s_service_report6sub WHERE sr_id = '".$sr_id."' ORDER BY r_id ASC");
+		 $qu = @mysqli_query($conn,"SELECT * FROM s_service_report7sub WHERE sr_id = '".$sr_id."' ORDER BY r_id ASC");
+		 $numRows = @mysqli_num_rows($qu);
 		 while($row_sub = @mysqli_fetch_array($qu)){
 			 $brid[] = $row_sub['r_id'];
 			 $bcodes[] = $row_sub['codes'];
@@ -559,17 +542,18 @@ function check(frm){
 			 $bopens[] = $row_sub['opens'];
 			 $bremains[] = $row_sub['remains'];
 	     }
-		}
-		$sumlist = 0;
-		$sumlistTotal = 0;
-		 for($i=1;$i<=10;$i++){
+		 if($numRows == 0){
+			$numRows = 10;
+		 }
+		 for($i=1;$i<=$numRows;$i++){
 		?>
         
 		<tr >
-        <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;text-align:center;"><?php   echo $i;?></td>
+        <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;text-align:center;">
+			<?php echo $i;?></td>
         <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;"><input type="text" name="codes[]" id="codes<?php   echo $i;?>" value="<?php   echo $bcodes[$i-1];?>" style="width:100%" readonly></td>
         <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;">
-        <span id="listss<?php echo $i;?>"><select name="lists[]" id="lists<?php   echo $i;?>" class="inputselect" style="width:92%" onchange="showspare(this.value,'<?php   echo "codes".$i;?>','<?php   echo "units".$i;?>','<?php   echo "prices".$i;?>','<?php   echo "amounts".$i;?>','<?php echo $i;?>')">
+        <span id="listss<?php echo $i;?>"><select name="lists[]" id="lists<?php   echo $i;?>" class="inputselect" style="width:92%" onchange="showspare(this.value,'<?php   echo "codes".$i;?>','<?php   echo "units".$i;?>','<?php   echo "prices".$i;?>','<?php   echo "amounts".$i;?>','<?php echo $i;?>','<?php echo "locations".$i;?>')">
         <option value="">กรุณาเลือกรายการอะไหล่</option>
                 <?php  
                 	$qucgspare = @mysqli_query($conn,"SELECT * FROM s_group_sparpart ORDER BY group_name ASC");
@@ -581,6 +565,7 @@ function check(frm){
 				?>
             </select></span><a href="javascript:void(0);" onClick="windowOpener('400', '500', '', 'search2.php?resdata=<?php   echo $i;?>');"><img src="../images/icon2/mark_f2.png" width="25" height="25" border="0" alt="" style="vertical-align:middle;padding-left:5px;"></a>
         </td>
+        <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;"><input type="text" name="locations[]" id="locations<?php echo $i;?>" value="<?php   echo get_nameStock($conn,$blists[$i-1]);?>" style="width:100%;text-align:center;" readonly></td>
         <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;"><input type="hidden" name="r_id[]" value="<?php   echo $brid[$i-1]?>"><input type="text" name="units[]" id="units<?php   echo $i;?>" value="<?php   echo $bunits[$i-1];?>" style="width:100%;text-align:center;" readonly></td>
 		<td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;"><input type="text" name="amounts[]" id="amounts<?php   echo $i;?>" value="<?php   
 		echo getStockSpar($conn,$blists[$i-1]);
@@ -588,36 +573,25 @@ function check(frm){
 		<td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;"><input type="text" name="prices[]" id="prices<?php   echo $i;?>" value="<?php   if($bprices[$i-1] != 0){echo $bprices[$i-1];}?>" style="width:100%;text-align:right;" readonly></td>
         <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;"><input type="text" name="opens[]" id="opens<?php   echo $i;?>" value="<?php   if($bopens[$i-1] != 0){echo $bopens[$i-1];}?>" style="width:100%;text-align:right;" onkeypress="return isNumberKey(event)"></td>
         <!--<td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;"><input type="text" name="remains[]" id="remains<?php   echo $i;?>" value="<?php   if($bremains[$i-1] != 0){echo $bremains[$i-1];}?>" style="width:100%;text-align:right;"></td>
-        </tr>-->
+        -->
+		</tr>
 				<?php  	
-			 
-			 if($blists[$i-1] != ""){
-				 $sumlist = $sumlist+1;
-				 $sumlistTotal += $bopens[$i-1] * $bprices[$i-1];
-			 }
-			 
 			}
 		?>
+      </tbody>
         <tr >
-          <td colspan="3" rowspan="4" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;text-align:center;">
-          	<center><strong>รายละเอียดการเปลี่ยนอะไหล่</strong></center><br><br>
-        <textarea name="detail_recom" class="inpfoder" id="detail_recom" style="width:50%;height:100px;background:#FFFFFF;"><?php   echo strip_tags($detail_recom);?></textarea>          	
-          </td>
-		  <td colspan="2" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;text-align:center;"><strong>รวมรายการอะไหล่</strong></td>
-		  <td colspan="3" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;text-align:right;"><strong><?php echo $sumlist;?> รายการ</strong></td>
-		</tr>
-        <tr>
-          <td colspan="2" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;text-align:center;"><strong>รวมยอดค่าอะไหล่</strong></td>
-          <td colspan="3" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;text-align:right;"><strong><?php echo number_format($sumlistTotal,2);?> บาท</strong></td>
+				  <td colspan="3" rowspan="3" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;text-align:left;vertical-align:top;">
+				  	<strong>หมายเหตุ</strong>
+					<textarea name="detail_comment" class="inpfoder" id="detail_comment" style="width:50%;height:100px;background:#FFFFFF;font-size:14px;font-family:Verdana, Geneva, sans-serif;"><?php   echo strip_tags($detail_comment);?></textarea>
+				  </td>
+				  <td colspan="3" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;text-align:center;"><strong>รวมจำนวนที่เบิก</strong></td>
+				  <td colspan="2" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;text-align:right;"><strong>รายการ</strong></td>
+				  </tr>
+        <tr >
+          <td colspan="3" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;text-align:center;"><strong>ใช้จ่ายรวม (รวมมูลค่าอะไหล่ที่เบิก)</strong></td>
+          <td colspan="2" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;text-align:right;"><strong>บาท</strong></td>
           </tr>
-          <tr>
-          <td colspan="2" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;text-align:center;"><strong>รวมยอด คชจ.ช่าง</strong></td>
-          <td colspan="3" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;text-align:right;"><strong><?php echo number_format($totalMoneyTec,2);?> บาท</strong></td>
-          </tr>
-          <tr>
-          <td colspan="2" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;text-align:center;"><strong>ค่าใช้จ่ายรวมทั้งสิ้น</strong></td>
-          <td colspan="3" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;text-align:right;"><strong><?php echo number_format($sumlistTotal+$totalMoneyTec,2);?> บาท</strong></td>
-          </tr>
+		  <tr>
     </table>
     
 	<table width="100%" border="0" cellspacing="0" cellpadding="0" style="text-align:center;margin-top:5px;">
@@ -652,9 +626,9 @@ function check(frm){
         	<table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
                 <td style="border-bottom:1px solid #000000;padding-bottom:10px;font-size:12px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>
-				<select name="cs_sell" id="cs_sell" class="inputselect" style="width:50%;">
+                  <select name="cs_sell" id="cs_sell" class="inputselect" style="width:50%;">
                     <?php   
-						$qu_custec = @mysqli_query($conn,"SELECT * FROM s_group_technician WHERE 1 AND (group_id = 12 OR group_id = 30 OR group_id = 28)  ORDER BY group_name ASC");
+						$qu_custec = @mysqli_query($conn,"SELECT * FROM s_group_technician WHERE 1 AND user_service='1' ORDER BY group_name ASC");
 						while($row_custec = @mysqli_fetch_array($qu_custec)){
 							?>
                     <option value="<?php   echo $row_custec['group_id'];?>" <?php   if($row_custec['group_id'] == $cs_sell){echo 'selected';}?>><?php   echo $row_custec['group_name']. " (Tel : ".$row_custec['group_tel'].")";?></option>
@@ -677,7 +651,7 @@ function check(frm){
         <td width="33%" style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;text-align:center;padding-top:10px;padding-bottom:10px;">
         	<table width="100%" border="0" cellspacing="0" cellpadding="0">
               <tr>
-			  <td style="border-bottom:1px solid #000000;padding-bottom:10px;font-size:12px;font-family:Verdana, Geneva, sans-serif;text-align:center;padding-top: 15px;"><strong >
+                <td style="border-bottom:1px solid #000000;padding-bottom:10px;font-size:12px;font-family:Verdana, Geneva, sans-serif;text-align:center;padding-top: 15px;"><strong >
 				  <?php 
 				  if($loc_contact3 != 0){
 					?>
@@ -703,7 +677,7 @@ function check(frm){
                 </strong></td>
               </tr>
               <tr>
-                <td style="padding-top:10px;padding-bottom:10px;font-size:12px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>ผู้อนุมัติ</strong></td>
+                <td style="padding-top:10px;padding-bottom:10px;font-size:12px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>ผู้อนุมัติ - หัวหน้าฝ่ายโปรเจ็ค</strong></td>
               </tr>
               <tr>
                 <td style="font-size:12px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>วันที่ :</strong>
@@ -748,5 +722,104 @@ function check(frm){
 <?php  if($msg_user==1){?>
 <script language=JavaScript>alert('Username ซ้ำ กรุณาเปลี่ยน Username ใหม่ !');</script>
 <?php  }?>
+
+<script type="text/javascript">
+var rowCount = <?php echo isset($numRows) ? $numRows : 10; ?>;
+
+function addRow() {
+    var table = document.getElementById('dataTable');
+    var tbody = table.getElementsByTagName('tbody')[0];
+    if (!tbody) {
+        tbody = document.createElement('tbody');
+        table.appendChild(tbody);
+    }
+    
+    rowCount++;
+    var newRow = tbody.insertRow(-1);
+    newRow.innerHTML = getRowHTML(rowCount);
+    
+    // Update row numbers
+    updateRowNumbers();
+}
+
+function removeRow() {
+    var table = document.getElementById('dataTable');
+    var tbody = table.getElementsByTagName('tbody')[0];
+    if (tbody && tbody.rows.length > 1) {
+        tbody.deleteRow(tbody.rows.length - 1);
+        rowCount--;
+        updateRowNumbers();
+    } else {
+        alert('ไม่สามารถลบรายการได้ ต้องมีอย่างน้อย 1 รายการ');
+    }
+}
+
+function getRowHTML(rowNum) {
+    var html = '<tr>' +
+        '<td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;text-align:center;">' +
+            rowNum +
+        '</td>' +
+        '<td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;">' +
+            '<input type="text" name="codes[]" id="codes' + rowNum + '" value="" style="width:100%" readonly>' +
+        '</td>' +
+        '<td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;">' +
+            '<span id="listss' + rowNum + '">' +
+                '<select name="lists[]" id="lists' + rowNum + '" class="inputselect" style="width:92%" onchange="showspare(this.value,\'codes' + rowNum + '\',\'units' + rowNum + '\',\'prices' + rowNum + '\',\'amounts' + rowNum + '\',\'' + rowNum + '\',\'locations' + rowNum + '\')">' +
+                    '<option value="">กรุณาเลือกรายการอะไหล่</option>' +
+                    getSparePartOptions() +
+                '</select>' +
+            '</span>' +
+            '<a href="javascript:void(0);" onClick="windowOpener(\'400\', \'500\', \'\', \'search2.php?resdata=' + rowNum + '\');">' +
+                '<img src="../images/icon2/mark_f2.png" width="25" height="25" border="0" alt="" style="vertical-align:middle;padding-left:5px;">' +
+            '</a>' +
+        '</td>' +
+        '<td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;">' +
+            '<input type="text" name="locations[]" id="locations' + rowNum + '" value="" style="width:100%;text-align:center;" readonly>' +
+        '</td>' +
+        '<td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;">' +
+            '<input type="hidden" name="r_id[]" value="">' +
+            '<input type="text" name="units[]" id="units' + rowNum + '" value="" style="width:100%;text-align:center;" readonly>' +
+        '</td>' +
+        '<td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;">' +
+            '<input type="text" name="amounts[]" id="amounts' + rowNum + '" value="" style="width:100%;text-align:right;" readonly>' +
+        '</td>' +
+        '<td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;">' +
+            '<input type="text" name="prices[]" id="prices' + rowNum + '" value="" style="width:100%;text-align:right;" readonly>' +
+        '</td>' +
+        '<td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;">' +
+            '<input type="text" name="opens[]" id="opens' + rowNum + '" value="" style="width:100%;text-align:right;" onkeypress="return isNumberKey(event)">' +
+        '</td>' +
+    '</tr>';
+    return html;
+}
+
+function getSparePartOptions() {
+    return '<?php  
+    $qucgspare = @mysqli_query($conn,"SELECT * FROM s_group_sparpart ORDER BY group_name ASC");
+    while($row_spare = @mysqli_fetch_array($qucgspare)){
+    ?><option value="<?php echo $row_spare['group_id'];?>"><?php echo $row_spare['group_name'];?></option><?php } ?>';
+}
+
+function updateRowNumbers() {
+    var table = document.getElementById('dataTable');
+    var tbody = table.getElementsByTagName('tbody')[0];
+    if (tbody) {
+        for (var i = 0; i < tbody.rows.length; i++) {
+            var firstCell = tbody.rows[i].cells[0];
+            firstCell.innerHTML = i + 1;
+        }
+    }
+}
+
+// Initialize row count on page load
+document.addEventListener('DOMContentLoaded', function() {
+    var table = document.getElementById('dataTable');
+    var tbody = table.getElementsByTagName('tbody')[0];
+    if (tbody) {
+        rowCount = tbody.rows.length;
+    }
+});
+</script>
+
 </BODY>
 </HTML>

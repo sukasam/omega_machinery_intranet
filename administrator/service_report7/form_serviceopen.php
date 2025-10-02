@@ -16,8 +16,6 @@
 		';	
 	}
 
-	$totalMoneyTec = $_POST['money1']+$_POST['money2']+$_POST['money3']+$_POST['money4']+$_POST['money5']+$_POST['money6'];
-
 	$hTechniSignature = '<img src="../../upload/user/signature/'.get_technician_signature($conn,$_POST['loc_contact3']).'" height="50" border="0" />';
 
 	$form = '<style>
@@ -105,7 +103,7 @@
 	<table width="100%" border="0" cellspacing="0" cellpadding="0">
 	  <tr>
 		<td style="text-align:right;font-size:12px;">
-			<img src="../images/form/header_service_report6.png" width="100%" border="0" />
+			<img src="../images/form/header_service_report7.png" width="100%" border="0" />
 			<div class="bgheader">'.$_POST['sv_id'].'</div>
 		</td>
 	  </tr>
@@ -120,11 +118,11 @@
             <strong>ชื่อผู้ติดต่อ :</strong> '.$finfos['c_contact'].' <strong>&nbsp;&nbsp;&nbsp;&nbsp;<br>
             <br>
             เบอร์โทร :</strong> '.$finfos['c_tel'].'</td>
-            <td width="43%"><strong>ประเภทบริการลูกค้า :</strong> '.get_servicename($conn,$_POST['sr_ctype']).' <strong><br>
+            <td width="43%"> <strong>ประเภทลูกค้า :</strong> '.custype_name($conn,$_POST['sr_ctype2']).' <strong><br>
             <br>
-            ประเภทลูกค้า :</strong> '.custype_name($conn,$_POST['sr_ctype2']).' <strong><br />
+			<strong>ประเภทบริการลูกค้า :</strong> '.get_servicename($conn,$_POST['sr_ctype']).' <br />
               <br />
-            </strong><strong>วันที่เบิกอะไหล่  :</strong> '.format_date($_POST['job_open']).' <strong>&nbsp;&nbsp;เลขที่ใบงาน  :</strong> '.$_POST['srid'].' <strong><br />
+            </strong><strong>วันที่เบิกอะไหล่  :</strong> '.format_date($_POST['job_open']).' <strong>&nbsp;&nbsp;เลขที่ใบงาน : </strong> '.$_POST['srid'].' <strong><br />
             <br />
             กำหนดคืนอะไหล่ :</strong> '.format_date($_POST['job_balance']).' &nbsp;<strong>วันที่คืนอะไหล่ :</strong> '.format_date($_POST['sr_stime']).'<br /><br />
             <strong>อ้างอิงใบยืม :</strong> '.$_POST['srid2'].'&nbsp;&nbsp;<strong>วันที่ :</strong> '.format_date($_POST['ref_date']).'</td>
@@ -138,29 +136,7 @@
             <strong>รุ่นเครื่อง : </strong> '.$_POST['loc_seal'].' <strong> S/N : </strong> '.$_POST['loc_sn'].'<br /><br />
             <strong>เครื่องป้อนน้ำยา : </strong> '.$_POST['loc_clean'].'<br /><br />
             <strong>ช่างบริการประจำ : </strong> '.$tecinfos['group_name'].'&nbsp;&nbsp;&nbsp;<strong> เบอร์โทร : </strong> '.$tecinfos['group_tel'].'</td>
-        <td width="47%" valign="top">
-		<table width="100%" border="0" cellspacing="0" cellpadding="0">
-			<tr>
-				<td style="border:0px;width:50%">
-					<strong>ค่าใช้จ่าย : แผนกช่าง </strong><br><br>
-					<strong>ค่าแรง : </strong> '.number_format($_POST['money1'],2).'<br /><br />
-					<strong>ค่าน้ำมัน : </strong> '.number_format($_POST['money2'],2).'<br /><br />
-					<strong>ค่าทางด่วน : </strong> '.number_format($_POST['money3'],2).'<br /><br />
-				</td>
-				<td style="border:0px;width:50%">
-					<br><br>
-					<strong>ค่าเบี้ยเลี้ยง : </strong> '.number_format($_POST['money4'],2).'<br /><br />
-					<strong>ค่าโอที : </strong> '.number_format($_POST['money5'],2).'<br /><br />
-					<strong>ค่าใช้จ่ายอื่นๆ : </strong> '.number_format($_POST['money6'],2).'<br /><br />
-				</td>
-			</tr>
-			<tr>
-				<td colspan="2" style="border:0px;font-size:12px;"><br>
-				<center><strong>รวมค่าใช้จ่าย : </strong> '.number_format($totalMoneyTec,2).'</center>
-				</td>
-			</tr>
-		</table>
-		</td>
+        <td width="47%" valign="top"><strong>รายละเอียดเพิ่มเติม</strong><br><br>'.$_POST['detail_recom'].'</td>
       </tr>
 </table>
 
@@ -169,7 +145,8 @@
       <tr>
         <td width="4%"><strong>ลำดับ</strong></td>
         <td width="8%"><strong>Code</strong></td>
-        <td width="44%"><strong>รายการ</strong></td>
+        <td width="35%"><strong>รายการ</strong></td>
+		<td width="9%"><strong>สถานที่จัดเก็บ</strong></td>
 		<td width="9%"><strong>หน่วยนับ</strong></td>
 		<td width="9%"><strong>คงเหลือ Stock</strong></td>
         <td width="9%"><strong>ราคา/หน่วย</strong></td>
@@ -193,6 +170,7 @@
 			<td><center>'.($a+1).'</center></td>
 			<td>'.$codes[$a].'</td>
 			<td>'.get_sparpart_name($conn,$lists[$a]).'</td>
+			<td align="center">'.get_nameStock($conn,$lists[$a]).'</td>
 			<td align="center">'.$units[$a].'</td>
 			<td align="right">'.getStockSpar($conn,$lists[$a]).'</td>
 			<td align="right">'.$prices[$a].'</td>			
@@ -202,29 +180,28 @@
 			if($codes[$a] != "" || $lists[$a] != ""){$total += $sumtotal;}
 		}
         $form .= '<tr >
-		    <td colspan="3" rowspan="4"><strong>หมายเหตุ : รายละเอียดการเปลี่ยนอะไหล่</strong><br>
-			'.$_POST['detail_recom'].'</td>
-			<td colspan="2"><center><strong>รวมรายการอะไหล่</strong></center></td>
-			<td colspan="2" align="right"><strong>'.$sumlist.'&nbsp;&nbsp;รายการ</strong></td>
+			<td colspan="5"><center><strong>รวมจำนวนที่เบิก</strong></center></td>
+			<td colspan="3" align="right"><strong>'.$sumlist.'&nbsp;&nbsp;รายการ</strong></td>
 		</tr>
 		
         <tr>
-          <td colspan="2"><center><strong>รวมยอดค่าอะไหล่</strong></center></td>
-          <td colspan="2" align="right"><strong>'.number_format($total,2).'&nbsp;&nbsp;บาท</strong></td>
+          <td colspan="5"><center><strong>ใช้จ่ายรวม (รวมมูลค่าอะไหล่ที่เบิก)</strong></center></td>
+          <td colspan="3" align="right"><strong>'.number_format($total,2).'&nbsp;&nbsp;บาท</strong></td>
           </tr>
-		  
-		  <tr>
-          <td colspan="2"><center><strong>รวมยอด คชจ.ช่าง</strong></center></td>
-          <td colspan="2" align="right"><strong>'.number_format($totalMoneyTec,2).'&nbsp;&nbsp;บาท</strong></td>
-          </tr>
-		  
-		  <tr>
-          <td colspan="2"><center><strong>ค่าใช้จ่ายรวมทั้งสิ้น</strong></center></td>
-          <td colspan="2" align="right"><strong>'.number_format($total+$totalMoneyTec,2).'&nbsp;&nbsp;บาท</strong></td>
-          </tr>
-    </table>
+    </table>';
+	
+	if($_POST['detail_comment'] != ""){
+		$form .= '<br>
+	<table width="100%" border="0" cellspacing="0" cellpadding="0" style="text-align:center;"  class="tb2">
+      <tr>
+	  <td style="border-bottom:1px solid #000000;font-size:10px;font-family:Verdana, Geneva, sans-serif;text-align:left;">
+		<strong>หมายเหตุ</strong>: '.$_POST['detail_comment'].'
+	  </td>
+	  </tr>
+	</table>';
+	}
 
-	<br>
+	$form .= '<br>
 	<table width="100%" border="0" cellspacing="0" cellpadding="0" style="text-align:center;"  class="tb4">
       <tr>
         
@@ -262,7 +239,7 @@
                 <td style="border-bottom:1px solid #000000;padding-bottom:10px;font-size:10px;font-family:Verdana, Geneva, sans-serif;text-align:center;">'.$hTechniSignature.'</td>
               </tr>
               <tr>
-                <td style="padding-top:10px;padding-bottom:10px;font-size:10px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>ผู้อนุมัติ</strong></td>
+                <td style="padding-top:10px;padding-bottom:10px;font-size:10px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>ผู้อนุมัติ - หัวหน้างานฝ่ายโปรเจ็ค</strong></td>
               </tr>
               <tr>
                 <td style="font-size:10px;font-family:Verdana, Geneva, sans-serif;text-align:center;"><strong>วันที่ : </strong>'.format_date($_POST['loc_date3']).'</td>

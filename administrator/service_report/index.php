@@ -116,6 +116,10 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 <?php  include('../top.php');?>
 <P id=page-intro><?php  echo $page_name; ?></P>
 
+<p>
+<button class="button" onclick="window.open('../service_report', '_self')" style="font-size: 15px !important;">ส่วนงานติดตั้ง</button> | <button class="button" onclick="window.open('../service_report7', '_self')" style="font-size: 15px !important;">ส่วนงานติดตั้ง-โปรเจ็ค</button>
+</p>
+
 <UL class=shortcut-buttons-set>
   <?php
     if(chkServerFormGen($conn) == 1){
