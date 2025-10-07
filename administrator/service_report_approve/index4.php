@@ -96,7 +96,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 
 <UL class=shortcut-buttons-set>
 	<LI><A class=shortcut-button href="../service_report/"><SPAN><IMG alt=icon src="../images/btn_back.gif"><BR><BR>
-	กลับ<BR><BR></SPAN></A></LI>
+	กลับ<BR></SPAN></A></LI>
  	<LI><A class=shortcut-button href="../service_report_approve/index.php"><SPAN><IMG  alt=icon src="../images/icons/icon-48-section.png"><BR>
     เปิด - ปิดใบงาน</SPAN></A></LI>
     <LI><A class=shortcut-button href="../service_report_approve/index2.php"><SPAN><IMG  alt=icon src="../images/icons/icon-48-section.png"><BR>
