@@ -96,7 +96,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 <P id=page-intro><?php     echo $page_name; ?></P>
 
 <p>
-<button class="button" onclick="window.open('../service_report', '_self')" style="font-size: 15px !important;">ส่วนงานติดตั้ง</button> | <button class="button" onclick="window.open('../service_report7', '_self')" style="font-size: 15px !important;">ส่วนงานติดตั้ง-โปรเจ็ค</button>
+<button class="button" onclick="window.open('../service_report', '_self')" style="font-size: 15px !important;background: #1fc700 !important; border: 1px solid #1fc700 !important;">ส่วนงานบริการ</button> | <button class="button" onclick="window.open('../service_report7', '_self')" style="font-size: 15px !important;background: #D47100 !important; border: 1px solid #D47100 !important;">ส่วนงานติดตั้ง - โปรเจ็ค</button>
 </p>
 
 <UL class=shortcut-buttons-set>
