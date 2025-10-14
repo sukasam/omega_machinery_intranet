@@ -103,15 +103,15 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
   <LI><A class=shortcut-button href="update.php?mode=add<?php  if ($param <> "") echo "&".$param; ?>"><SPAN><IMG  alt=icon src="../images/pencil_48.png"><BR>
     เพิ่ม<br>&nbsp;</SPAN></A></LI>
     <LI><A class=shortcut-button href="../service_report7/"><SPAN><IMG  alt=icon src="../images/icons/icon-48-section.png"><BR>
-    ใบเบิกอะไหล่<br>โปรเจ็ค</SPAN></A></LI>
+    ใบเบิกอะไหล่<br>ติดตั้ง / โปรเจ็ค</SPAN></A></LI>
     <LI><A class=shortcut-button href="../service_report8/"><SPAN><IMG  alt=icon src="../images/icons/icon-48-section.png"><BR>
-    ใบยืมอะไหล่<br>โปรเจ็ค</SPAN></A></LI>
+    ใบยืมอะไหล่<br>ติดตั้ง / โปรเจ็ค</SPAN></A></LI>
     <LI><A class=shortcut-button href="../service_report10/"><SPAN><IMG  alt=icon src="../images/icons/icon-48-section.png"><BR>
-    ใบคืนอะไหล่<br>โปรเจ็ค</SPAN></A></LI>
+    ใบคืนอะไหล่<br>ติดตั้ง / โปรเจ็ค</SPAN></A></LI>
     <LI><A class=shortcut-button href="../service_report9/"><SPAN><IMG  alt=icon src="../images/icons/icon-48-section.png"><BR>
-    ใบรายงานติดตั้ง<br>โปรเจ็ค</SPAN></A></LI>
+    ใบรายงานติดตั้ง<br>ติดตั้ง / โปรเจ็ค</SPAN></A></LI>
     <LI><A class=shortcut-button href="../service_report_project_approve/index2.php"><SPAN><IMG  alt=icon src="../images/icons/icon-48-user.png"><BR>
-    อนุมัติใบงาน<br>โปรเจ็ค</SPAN></A></LI>
+    อนุมัติใบงาน<br>ติดตั้ง / โปรเจ็ค</SPAN></A></LI>
     <?php  
 	if ($FR_module <> "") { 
 	$param2 = get_return_param();

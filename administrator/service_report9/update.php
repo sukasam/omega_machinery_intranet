@@ -932,28 +932,28 @@ function check(frm){
 			<td rowspan="3" colspan="3" style="border:1px solid #000000;font-size:14px;font-family:Verdana, Geneva, sans-serif;padding-top:10px;padding-bottom:10px;text-align:left;vertical-align:top;">
 				<strong>แยกส่วน คชจ.ติดตั้ง-โปรเจ็ค:</strong><br/>
 				1. ค่าอุปกรณ์ติดตั้ง-ระบบไฟฟ้า
-				<input type="text" name="w1" value="<?php   echo $w1;?>" id="w1" class="inpfoder" style="font-size:14px;">
+				<input type="text" name="w1" value="<?php   echo $w1;?>" id="w1" class="inpfoder" style="font-size:14px;width:80px;border: 1px solid #998d8d;">
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				5. ค่าขนส่งจ้างนอก: 
-				<input type="text" name="w5" value="<?php   echo $w5;?>" id="w5" class="inpfoder" style="font-size:14px;">
+				<input type="text" name="w5" value="<?php   echo $w5;?>" id="w5" class="inpfoder" style="font-size:14px;width:80px;border: 1px solid #998d8d;">
 				<br/>
 				2. ค่าอุปกรณ์ติดตั้ง-ระบบประปา: 
-				<input type="text" name="w2" value="<?php   echo $w2;?>" id="w2" class="inpfoder" style="font-size:14px;">
+				<input type="text" name="w2" value="<?php   echo $w2;?>" id="w2" class="inpfoder" style="font-size:14px;width:80px;border: 1px solid #998d8d;">
 				&nbsp;&nbsp;
 				6. ค่าที่พัก: 
-				<input type="text" name="w6" value="<?php   echo $w6;?>" id="w6" class="inpfoder" style="font-size:14px;">
+				<input type="text" name="w6" value="<?php   echo $w6;?>" id="w6" class="inpfoder" style="font-size:14px;width:80px;border: 1px solid #998d8d;">
 				<br/>
 				3. ค่าอุปกรณ์สิ้นเปลือง: 
-				<input type="text" name="w3" value="<?php   echo $w3;?>" id="w3" class="inpfoder" style="font-size:14px;">
+				<input type="text" name="w3" value="<?php   echo $w3;?>" id="w3" class="inpfoder" style="font-size:14px;width:80px;border: 1px solid #998d8d;">
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				7. ค่าโอที/เบี้ยเลี้ยง: 
-				<input type="text" name="w7" value="<?php   echo $w7;?>" id="w7" class="inpfoder" style="font-size:14px;">
+				<input type="text" name="w7" value="<?php   echo $w7;?>" id="w7" class="inpfoder" style="font-size:14px;width:80px;border: 1px solid #998d8d;">
 				<br/>
 				4. ค่าน้ำมัน+ทางด่วน: 
-				<input type="text" name="w4" value="<?php   echo $w4;?>" id="w4" class="inpfoder" style="font-size:14px;">
+				<input type="text" name="w4" value="<?php   echo $w4;?>" id="w4" class="inpfoder" style="font-size:14px;width:80px;border: 1px solid #998d8d;">
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				8. คชจ.อื่นๆ: 
-				<input type="text" name="w8" value="<?php   echo $w8;?>" id="w8" class="inpfoder" style="font-size:14px;">
+				<input type="text" name="w8" value="<?php   echo $w8;?>" id="w8" class="inpfoder" style="font-size:14px;width:80px;border: 1px solid #998d8d;">
 				<br/>
 				<strong>รวมยอด คชจ. 
 					<?php   $sum_w = $w1+$w2+$w3+$w4+$w5+$w6+$w7+$w8;

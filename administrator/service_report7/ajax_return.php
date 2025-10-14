@@ -163,11 +163,11 @@
 			}
 		} elseif($filter_type == 'project'){
 			// Project Order - s_project_order table
-			$qu_cus = mysqli_query($conn,"SELECT fo_id,cd_name,loc_name,cusid FROM s_project_order WHERE 1 ".$consd." AND (status_use = '3' OR status_use = '0') ORDER BY cd_name ASC");
+			$qu_cus = mysqli_query($conn,"SELECT fo_id,cd_name,loc_name,cusid FROM s_project_order WHERE 1 ".$consd." AND (status_use != '2') ORDER BY cd_name ASC");
 			while($row_cusx = @mysqli_fetch_array($qu_cus)){
 				?>
 				 <tr>
-					<td><A href="javascript:void(0);" onclick="get_customer('<?php echo $row_cusx['fo_id'];?>','<?php echo $row_cusx['cd_name'];?>');"><?php echo $row_cusx['cd_name'];?> (<?php echo $row_cusx['loc_name']?>)</A></td>
+					<td><A href="javascript:void(0);" onclick="get_customer('<?php echo $row_cusx['fo_id'];?>','<?php echo $row_cusx['cd_name'];?>');"><?php echo $row_cusx['fs_id'];?> | <?php echo $row_cusx['cd_name'];?> (<?php echo $row_cusx['loc_name']?>)</A></td>
 				  </tr>
 				<?php    	
 			}

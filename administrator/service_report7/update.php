@@ -417,7 +417,7 @@ function check(frm){
                 	<?php   
 						$qu_cusftype = @mysqli_query($conn,"SELECT * FROM s_group_service ORDER BY group_name ASC");
 						while($row_cusftype = @mysqli_fetch_array($qu_cusftype)){
-							if($row_cusftype['group_id'] == 107 || $row_cusftype['group_id'] == 103){
+							if($row_cusftype['group_id'] == 107 || $row_cusftype['group_id'] == 103 || $row_cusftype['group_id'] == 116 || $row_cusftype['group_id'] == 117){
 							?>
 							<option value="<?php   echo $row_cusftype['group_id'];?>" <?php   if($row_cusftype['group_id'] == $sr_ctype){echo 'selected';}?>><?php   echo $row_cusftype['group_name'];?></option>
 							<?php  
