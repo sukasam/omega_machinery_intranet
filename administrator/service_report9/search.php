@@ -42,13 +42,20 @@
 </style>
 
 <script type="text/javascript">
-	function get_customer(cid,cname){
+	function get_customer(cid,cname,srid){
 		/*alert(cid);
 		alert(cname);*/
 		var sCustomerName = self.opener.document.getElementById("cd_names");
 		sCustomerName.value = cname;
 		self.opener.checkfirstorder(cid,'cusadd','cusprovince','custel','cusfax','contactid','datef','datet','cscont','cstel','sloc_name','sevlast','prolist','sr_ctype2');
 		self.opener.document.getElementById("rsnameid").innerHTML="<input type=\"hidden\" name=\"cus_id\" value=\""+cid+"\">";
+		self.opener.document.getElementById("cus_change").innerHTML="<input type=\"hidden\" name=\"cus_id\" value=\"1\">";
+		self.opener.document.getElementById("srid_get7").innerHTML="<input type=\"hidden\" name=\"srid_get7\" value=\""+srid+"\">";
+		// Auto submit the form after selecting customer
+		if(self.opener.document.getElementById("form1")){
+			self.opener.document.getElementById("form1").submit();
+		}
+		
 		window.close();
 	}
 </script>
@@ -70,11 +77,12 @@
 </table>
 <table width="100%" border="0" cellpadding="0" cellspacing="0" class="tv_search" id="rscus">
 <?php   
-  	$qu_cus = mysqli_query($conn,"SELECT fo_id,cd_name,loc_name,cusid FROM s_first_order WHERE (status_use = '3' or status_use = '0')  ORDER BY cd_name ASC");
+  	$qu_cus = mysqli_query($conn,"SELECT * FROM s_service_report7 WHERE approve = '1' ORDER BY sv_id DESC");
 	while($row_cus = @mysqli_fetch_array($qu_cus)){
 		?>
 		 <tr>
-            <td><A href="javascript:void(0);" onclick="get_customer('<?php   echo $row_cus['fo_id'];?>','<?php   echo $row_cus['cd_name'];?>');"><?php   echo $row_cus['cd_name'];?> (<?php   echo $row_cus['loc_name']?>)</A></td>
+            <td><A href="javascript:void(0);" onclick="get_customer('<?php echo $row_cus['cus_id'];?>','<?php   echo get_customername($conn,$row_cus['cus_id']);?>','<?php echo $row_cus['sr_id'];?>');">
+			<?php echo $row_cus['sv_id'];?> | <?php echo get_customername($conn,$row_cus['cus_id']);?> (<?php   echo get_localsettingname($conn,$row_cus['cus_id']);?>)</A></td>
           </tr>
 		<?php  	
 	}

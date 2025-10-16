@@ -94,13 +94,10 @@
 			//sr_stime up to cs_setting
 			
 			@mysqli_query($conn,"UPDATE `s_first_order` SET `cs_ship` = '".$_POST['job_balance']."',`cs_setting` = '".$_POST['sr_stime']."'  WHERE `s_first_order`.`fo_id` = ".$_POST['cus_id'].";");
-			
+
 			
 			include "../include/m_add.php";
-			
-			
-			$id = mysqli_insert_id($conn);
-			
+
 			foreach($codes as $a => $b){
 				
 				if($lists[$a] != ""){
@@ -120,7 +117,29 @@
 			$chaf = preg_replace("/\//","-",$_POST['sv_id']); 
 			$mpdf->Output('../../upload/service_report_open/'.$chaf.'.pdf','F');
 			
-			header ("location:index.php?" . $param); 
+			$qu_sv7 = @mysqli_query($conn,"SELECT * FROM `s_service_report7` WHERE sr_id = '".$_POST['srid_get7']."'");
+			$row_sv7 = mysqli_fetch_array($qu_sv7);
+
+			@mysqli_query($conn,"UPDATE `s_service_report9` SET 
+			`sr_ctype` = '".$row_sv7['sr_ctype']."', 
+			`sr_ctype2` = '".$row_sv7['sr_ctype2']."',
+			`loc_pro` = '".$row_sv7['loc_pro']."',
+			`loc_seal` = '".$row_sv7['loc_seal']."',
+			`loc_sn` = '".$row_sv7['loc_sn']."',
+			`loc_clean` = '".$row_sv7['loc_clean']."',
+			`loc_contact` = '".$row_sv7['loc_contact']."',
+			`loc_contact2` = '".$row_sv7['loc_contact2']."',
+			`loc_contact3` = '".$row_sv7['loc_contact3']."',
+			`cs_sell` = '".$row_sv7['cs_sell']."'
+			 WHERE `sr_id` = '".$id."'");
+
+
+			 $qu_sv7sub = @mysqli_query($conn,"SELECT * FROM `s_service_report7sub` WHERE sr_id = '".$row_sv7['sr_id']."' ORDER BY `r_id` ASC");
+			 while($row_sv7sub = mysqli_fetch_array($qu_sv7sub)){
+				@mysqli_query($conn,"INSERT INTO `s_service_report9sub` (`r_id`, `sr_id`, `codes`, `lists`, `units`, `prices`, `amounts`, `opens`, `remains`) VALUES (NULL, '".$id."', '".$row_sv7sub['codes']."', '".$row_sv7sub['lists']."', '".$row_sv7sub['units']."', '".$row_sv7sub['prices']."', '".$row_sv7sub['amounts']."', '".$row_sv7sub['opens']."', '".$row_sv7sub['remains']."');");
+			 }
+
+			header ("location:update.php?mode=update&sr_id=" . $id); 
 		}
 		if ($_POST["mode"] == "update" ) {
 			
@@ -482,7 +501,7 @@ function check(frm){
 <?php  include('../top.php');?>
 <P id=page-intro><?php  if ($mode == "add") { ?>Enter new information<?php  } else { ?>แก้ไข	[<?php   echo $page_name; ?>]<?php  } ?>	</P>
 <UL class=shortcut-buttons-set>
-  <LI><A class=shortcut-button href="javascript:history.back()"><SPAN><IMG  alt=icon src="../images/btn_back.gif"><BR>
+  <LI><A class=shortcut-button href="index.php"><SPAN><IMG  alt=icon src="../images/btn_back.gif"><BR>
   กลับ</SPAN></A></LI>
 </UL>
 <!-- End .clear -->
@@ -588,7 +607,8 @@ function check(frm){
 		</td>
 	  </tr>
 	</table>
-	
+	<span id="cus_change" style="display:none;"><input type="hidden" name="cus_change" value="0"></span>
+	<span id="srid_get7" style="display:none;"><input type="hidden" name="srid_get7" value="0"></span>
 	<table width="100%" border="0" cellspacing="0" cellpadding="0" class="tb1">
           <tr>
             <td><strong>ชื่อลูกค้า :</strong> 
@@ -604,8 +624,8 @@ function check(frm){
 					?>
                 </select>-->
                 <input name="cd_names" type="text" id="cd_names"  value="<?php   echo get_customername($conn,$cus_id);?>" style="width:50%;" readonly>
-                <span id="rsnameid"><input type="hidden" name="cus_id" value="<?php   echo $cus_id;?>"></span><a href="javascript:void(0);" onClick="windowOpener('400', '500', '', 'search.php');"><img src="../images/icon2/mark_f2.png" width="25" height="25" border="0" alt="" style="vertical-align:middle;padding-left:5px;"></a>
-            </td>
+				<span id="rsnameid" style="display:none;"><input type="hidden" name="cus_id" value="<?php   echo $cus_id;?>"></span><a href="javascript:void(0);" onClick="windowOpener('400', '500', '', 'search.php');"><img src="../images/icon2/mark_f2.png" width="25" height="25" border="0" alt="" style="vertical-align:middle;padding-left:5px;"></a>
+			</td>
             <td><strong>ประเภทบริการลูกค้า :</strong> 
             	<select name="sr_ctype" id="sr_ctype">
                 	<!--<option value="">กรุณาเลือก</option>-->

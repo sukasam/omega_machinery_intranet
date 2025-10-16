@@ -45,17 +45,43 @@
 	if($_GET['action'] == 'getcus'){
 		$cd_name = $_REQUEST['pval'];
 		if($cd_name != ""){
-			$consd = "AND (cd_name LIKE '%".$cd_name."%' OR loc_name LIKE '%".$cd_name."%' OR cusid LIKE '%".$cd_name."%')";
+			// Get all customer IDs from s_service_report7 first
+			$qu_all_cus = mysqli_query($conn,"SELECT DISTINCT cus_id FROM s_service_report7 WHERE approve = '1' ORDER BY sv_id DESC");
+			$matching_cus_ids = array();
+			
+			while($row_all_cus = @mysqli_fetch_array($qu_all_cus)){
+				$cus_id = $row_all_cus['cus_id'];
+				$customer_name = get_customername($conn, $cus_id);
+				$local_name = get_localsettingname($conn, $cus_id);
+				
+				// Check if search term matches customer name, local name, or sv_id
+				if(stripos($customer_name, $cd_name) !== false || 
+				   stripos($local_name, $cd_name) !== false || 
+				   stripos($cus_id, $cd_name) !== false){
+					$matching_cus_ids[] = $cus_id;
+				}
+			}
+			
+			// Now get the service report data for matching customers
+			if(!empty($matching_cus_ids)){
+				$cus_ids_str = implode("','", $matching_cus_ids);
+				$qu_cus = mysqli_query($conn,"SELECT sv_id,cus_id FROM s_service_report7 WHERE approve = '1' AND cus_id IN ('".$cus_ids_str."') ORDER BY sv_id DESC");
+			} else {
+				$qu_cus = false; // No matches found
+			}
+		} else {
+			$qu_cus = mysqli_query($conn,"SELECT sv_id,cus_id FROM s_service_report7 WHERE approve = '1' ORDER BY sv_id DESC");
 		}
-		$qu_cus = mysqli_query($conn,"SELECT fo_id,cd_name,loc_name,cusid FROM s_first_order WHERE 1 ".$consd." AND (status_use = '3'  OR status_use = '0') ORDER BY cd_name ASC");
-		while($row_cusx = @mysqli_fetch_array($qu_cus)){
-			?>
-			 <tr>
-				<td><A href="javascript:void(0);" onclick="get_customer('<?php     echo $row_cusx['fo_id'];?>','<?php     echo $row_cusx['cd_name'];?>');"><?php     echo $row_cusx['cd_name'];?> (<?php     echo $row_cusx['loc_name']?>)</A></td>
-			  </tr>
-			<?php    	
+		
+		if($qu_cus){
+			while($row_cusx = @mysqli_fetch_array($qu_cus)){
+				?>
+				 <tr>
+					<td><A href="javascript:void(0);" onclick="get_customer('<?php     echo $row_cusx['cus_id'];?>','<?php     echo get_customername($conn,$row_cusx['cus_id']);?>','<?php     echo $row_cusx['sr_id'];?>');"><?php     echo $row_cusx['sv_id'];?> | <?php     echo get_customername($conn,$row_cusx['cus_id']);?> (<?php     echo get_localsettingname($conn,$row_cusx['cus_id']);?>)</A></td>
+				  </tr>
+				<?php    	
+			}
 		}
-		//echo "SELECT cd_name FROM s_first_order ".$consd." ORDER BY cd_name ASC";
 	}
 	
 	if($_GET['action'] == 'getsparpart'){

@@ -349,11 +349,11 @@
 	<tr>
 		<td style="text-align:center;">
 		<br><br>
-		<strong>สายด่วน...งานบริการ 086-319-3766, 081-910-1158</strong>	
+		<strong style="font-size:13px;">สายด่วน...งานบริการ 086-319-3766, 081-910-1158</strong>	
 		<br><br>
 		</td>
 		<td style="text-align:left;">
-			<img src="0863193766.jpg" width="50">
+			<img src="0863193766.jpg" width="60">
 		</td>
 	</tr>
 	</table>
