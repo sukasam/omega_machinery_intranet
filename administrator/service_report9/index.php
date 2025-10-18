@@ -100,17 +100,17 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 </p>
 
 <UL class=shortcut-buttons-set>
-  <LI><A class=shortcut-button href="update.php?mode=add<?php  if ($param <> "") echo "&".$param; ?>"><SPAN><IMG  alt=icon src="../images/pencil_48.png"><BR>
+  <LI><A class=shortcut-button style="background: url(../images/shortcut-button-bg2.png) no-repeat; background-size: cover;" href="update.php?mode=add<?php  if ($param <> "") echo "&".$param; ?>"><SPAN><IMG  alt=icon src="../images/pencil_48.png"><BR>
     เพิ่ม<br>&nbsp;</SPAN></A></LI>
-    <LI><A class=shortcut-button href="../service_report7/"><SPAN><IMG  alt=icon src="../images/icons/icon-48-section.png"><BR>
+    <LI><A class=shortcut-button style="background: url(../images/shortcut-button-bg2.png) no-repeat; background-size: cover;" href="../service_report7/"><SPAN><IMG  alt=icon src="../images/icons/icon-48-section.png"><BR>
     ใบเบิกอะไหล่<br>ติดตั้ง / โปรเจ็ค</SPAN></A></LI>
-    <LI><A class=shortcut-button href="../service_report8/"><SPAN><IMG  alt=icon src="../images/icons/icon-48-section.png"><BR>
+    <LI><A class=shortcut-button style="background: url(../images/shortcut-button-bg2.png) no-repeat; background-size: cover;" href="../service_report8/"><SPAN><IMG  alt=icon src="../images/icons/icon-48-section.png"><BR>
     ใบยืมอะไหล่<br>ติดตั้ง / โปรเจ็ค</SPAN></A></LI>
-    <LI><A class=shortcut-button href="../service_report10/"><SPAN><IMG  alt=icon src="../images/icons/icon-48-section.png"><BR>
+    <LI><A class=shortcut-button style="background: url(../images/shortcut-button-bg2.png) no-repeat; background-size: cover;" href="../service_report10/"><SPAN><IMG  alt=icon src="../images/icons/icon-48-section.png"><BR>
     ใบคืนอะไหล่<br>ติดตั้ง / โปรเจ็ค</SPAN></A></LI>
-    <LI><A class=shortcut-button href="../service_report9/"><SPAN><IMG  alt=icon src="../images/icons/icon-48-section.png"><BR>
+    <LI><A class=shortcut-button style="background: url(../images/shortcut-button-bg2.png) no-repeat; background-size: cover;" href="../service_report9/"><SPAN><IMG  alt=icon src="../images/icons/icon-48-section.png"><BR>
     ใบรายงานติดตั้ง<br>ติดตั้ง / โปรเจ็ค</SPAN></A></LI>
-    <LI><A class=shortcut-button href="../service_report_project_approve/index2.php"><SPAN><IMG  alt=icon src="../images/icons/icon-48-user.png"><BR>
+    <LI><A class=shortcut-button style="background: url(../images/shortcut-button-bg2.png) no-repeat; background-size: cover;" href="../service_report_project_approve/index2.php"><SPAN><IMG  alt=icon src="../images/icons/icon-48-user.png"><BR>
     อนุมัติใบงาน<br>ติดตั้ง / โปรเจ็ค</SPAN></A></LI>
     <?php  
 	if ($FR_module <> "") { 

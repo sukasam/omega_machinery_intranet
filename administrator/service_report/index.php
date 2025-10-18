@@ -124,24 +124,24 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
   <?php
     if(chkServerFormGen($conn) == 1){
       ?>
-        <LI><A class=shortcut-button href="update.php?mode=add<?php  if ($param <> "") echo "&".$param; ?>"><SPAN><IMG  alt=icon src="../images/pencil_48.png"><BR>
+        <LI><A class=shortcut-button style="background: url(../images/shortcut-button-bg3.png) no-repeat; background-size: cover;" href="update.php?mode=add<?php  if ($param <> "") echo "&".$param; ?>"><SPAN><IMG  alt=icon src="../images/pencil_48.png"><BR>
     เพิ่ม</SPAN></A></LI>
       <?php
     }
   ?>
-    <LI><A class=shortcut-button href="../service_report/"><SPAN><IMG  alt=icon src="../images/icons/icon-48-section.png"><BR>
+    <LI><A class=shortcut-button style="background: url(../images/shortcut-button-bg3.png) no-repeat; background-size: cover;" href="../service_report/"><SPAN><IMG  alt=icon src="../images/icons/icon-48-section.png"><BR>
     เปิด - ปิดใบงาน</SPAN></A></LI>
-    <LI><A class=shortcut-button href="../service_report2/"><SPAN><IMG  alt=icon src="../images/icons/icon-48-section.png"><BR>
+    <LI><A class=shortcut-button style="background: url(../images/shortcut-button-bg3.png) no-repeat; background-size: cover;" href="../service_report2/"><SPAN><IMG  alt=icon src="../images/icons/icon-48-section.png"><BR>
     ใบเบิกอะไหล่</SPAN></A></LI>
-    <LI><A class=shortcut-button href="../service_report3/"><SPAN><IMG  alt=icon src="../images/icons/icon-48-section.png"><BR>
+    <LI><A class=shortcut-button style="background: url(../images/shortcut-button-bg3.png) no-repeat; background-size: cover;" href="../service_report3/"><SPAN><IMG  alt=icon src="../images/icons/icon-48-section.png"><BR>
     ใบยืมอะไหล่</SPAN></A></LI>
-    <LI><A class=shortcut-button href="../service_report5/"><SPAN><IMG  alt=icon src="../images/icons/icon-48-section.png"><BR>
+    <LI><A class=shortcut-button style="background: url(../images/shortcut-button-bg3.png) no-repeat; background-size: cover;" href="../service_report5/"><SPAN><IMG  alt=icon src="../images/icons/icon-48-section.png"><BR>
     ใบคืนอะไหล่</SPAN></A></LI>
-    <LI><A class=shortcut-button href="../service_report6/"><SPAN><IMG  alt=icon src="../images/icons/icon-48-section.png"><BR>
+    <LI><A class=shortcut-button style="background: url(../images/shortcut-button-bg3.png) no-repeat; background-size: cover;" href="../service_report6/"><SPAN><IMG  alt=icon src="../images/icons/icon-48-section.png"><BR>
     ใบซ่อมเครื่องเก่า</SPAN></A></LI>
-    <LI><A class=shortcut-button href="../service_report4/"><SPAN><IMG  alt=icon src="../images/icons/icon-48-section.png"><BR>
+    <LI><A class=shortcut-button style="background: url(../images/shortcut-button-bg3.png) no-repeat; background-size: cover;" href="../service_report4/"><SPAN><IMG  alt=icon src="../images/icons/icon-48-section.png"><BR>
     ใบรายงานติดตั้ง</SPAN></A></LI>
-    <LI><A class=shortcut-button href="../service_report_approve/"><SPAN><IMG  alt=icon src="../images/icons/icon-48-user.png"><BR>
+    <LI><A class=shortcut-button style="background: url(../images/shortcut-button-bg3.png) no-repeat; background-size: cover;" href="../service_report_approve/"><SPAN><IMG  alt=icon src="../images/icons/icon-48-user.png"><BR>
     อนุมัติใบงาน</SPAN></A></LI>
     <?php  
 	if ($FR_module <> "") { 

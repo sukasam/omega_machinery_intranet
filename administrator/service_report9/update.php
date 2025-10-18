@@ -656,7 +656,7 @@ function check(frm){
           </tr>
           <tr>
             <td><strong>ที่อยู่ :</strong> <span id="cusadd"><?php   echo $finfo['cd_address'];?></span></td>
-            <td><strong>เลขที่บริการ : <input type="text" name="sv_id" value="<?php   if($sv_id == ""){echo check_servicereportinstall($conn);}else{echo $sv_id;};?>" id="sv_id" class="inpfoder" style="border:0;"><!--<input type="text" name="sv_id" value="<?php   if($sv_id == ""){echo "SR";}else{echo $sv_id;};?>" id="sv_id" class="inpfoder" style="border:0;">-->&nbsp;&nbsp;เลขที่สัญญา  :</strong> <span id="contactid"><?php   echo $finfo['fs_id'];?></span></td>
+            <td><strong>เลขที่บริการ : <input type="text" name="sv_id" value="<?php   if($sv_id == ""){echo check_servicereportproinstall($conn);}else{echo $sv_id;};?>" id="sv_id" class="inpfoder" style="border:0;"><!--<input type="text" name="sv_id" value="<?php   if($sv_id == ""){echo "SR";}else{echo $sv_id;};?>" id="sv_id" class="inpfoder" style="border:0;">-->&nbsp;&nbsp;เลขที่สัญญา  :</strong> <span id="contactid"><?php   echo $finfo['fs_id'];?></span></td>
           </tr>
           <tr>
             <td><strong>จังหวัด :</strong> <span id="cusprovince"><?php   echo province_name($conn,$finfo['cd_province']);?></span></td>

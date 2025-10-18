@@ -3758,6 +3758,62 @@ function getQuotationTitle($id)
     }
 }
 
+function check_serviceproman($conn)
+{
+
+    $thdate = substr(date("Y") + 543, 2);
+    $concheck = "IP " . $thdate . date("/m/");
+    //echo "SELECT * FROM s_service_report2 WHERE sv_id like '%".$concheck."%' ORDER BY sv_id DESC";
+    $qu_forder = @mysqli_query($conn, "SELECT * FROM s_service_report7 WHERE sv_id like '%" . $concheck . "%' ORDER BY sv_id DESC");
+    $num_oder = @mysqli_num_rows($qu_forder);
+    $row_forder = @mysqli_fetch_array($qu_forder);
+
+    if ($row_forder['sv_id'] == "") {
+        return "IP " . $thdate . date("/m/") . "001";
+    } else {
+        //$num_odersum = $num_oder+1;
+        $num_odersum = substr($row_forder['sv_id'], -3) + 1;
+        return "IP " . $thdate . date("/m/") . sprintf("%03d", $num_odersum);
+    }
+}
+
+function check_serviceproman2($conn)
+{
+
+    $thdate = substr(date("Y") + 543, 2);
+    $concheck = "IP " . $thdate . date("/m/");
+    //echo "SELECT * FROM s_service_report2 WHERE sv_id like '%".$concheck."%' ORDER BY sv_id DESC";
+    $qu_forder = @mysqli_query($conn, "SELECT * FROM s_service_report8 WHERE sv_id like '%" . $concheck . "%' ORDER BY sv_id DESC");
+    $num_oder = @mysqli_num_rows($qu_forder);
+    $row_forder = @mysqli_fetch_array($qu_forder);
+
+    if ($row_forder['sv_id'] == "") {
+        return "IP " . $thdate . date("/m/") . "001";
+    } else {
+        //$num_odersum = $num_oder+1;
+        $num_odersum = substr($row_forder['sv_id'], -3) + 1;
+        return "IP " . $thdate . date("/m/") . sprintf("%03d", $num_odersum);
+    }
+}
+
+function check_servicereportproinstall($conn)
+{
+
+    $thdate = substr(date("Y") + 543, 2);
+    $concheck = "IR " . $thdate . date("/m/");
+
+    $qu_forder = @mysqli_query($conn, "SELECT * FROM s_service_report9 WHERE sv_id like '%" . $concheck . "%' ORDER BY sv_id DESC");
+    $num_oder = @mysqli_num_rows($qu_forder);
+    $row_forder = @mysqli_fetch_array($qu_forder);
+
+    if ($row_forder['sv_id'] == "") {
+        return "IR " . $thdate . date("/m/") . "001";
+    } else {
+        //$num_odersum = $num_oder+1;
+        $num_odersum = substr($row_forder['sv_id'], -3) + 1;
+        return "IR " . $thdate . date("/m/") . sprintf("%03d", $num_odersum);
+    }
+}
             
             
 

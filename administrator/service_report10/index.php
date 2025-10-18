@@ -88,15 +88,15 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 <UL class=shortcut-buttons-set>
   <!--<LI><A class=shortcut-button href="update.php?mode=add<?php  if ($param <> "") echo "&".$param; ?>"><SPAN><IMG  alt=icon src="../images/pencil_48.png"><BR>
     เพิ่ม</SPAN></A></LI>-->
-    <LI><A class=shortcut-button href="../service_report7/"><SPAN><IMG  alt=icon src="../images/icons/icon-48-section.png"><BR>
+    <LI><A class=shortcut-button style="background: url(../images/shortcut-button-bg2.png) no-repeat; background-size: cover;" href="../service_report7/"><SPAN><IMG  alt=icon src="../images/icons/icon-48-section.png"><BR>
     ใบเบิกอะไหล่<br>ติดตั้ง / โปรเจ็ค</SPAN></A></LI>
-    <LI><A class=shortcut-button href="../service_report8/"><SPAN><IMG  alt=icon src="../images/icons/icon-48-section.png"><BR>
+    <LI><A class=shortcut-button style="background: url(../images/shortcut-button-bg2.png) no-repeat; background-size: cover;" href="../service_report8/"><SPAN><IMG  alt=icon src="../images/icons/icon-48-section.png"><BR>
     ใบยืมอะไหล่<br>ติดตั้ง / โปรเจ็ค</SPAN></A></LI>
-    <LI><A class=shortcut-button href="../service_report10/"><SPAN><IMG  alt=icon src="../images/icons/icon-48-section.png"><BR>
+    <LI><A class=shortcut-button style="background: url(../images/shortcut-button-bg2.png) no-repeat; background-size: cover;" href="../service_report10/"><SPAN><IMG  alt=icon src="../images/icons/icon-48-section.png"><BR>
     ใบคืนอะไหล่<br>ติดตั้ง / โปรเจ็ค</SPAN></A></LI>
-    <LI><A class=shortcut-button href="../service_report9/"><SPAN><IMG  alt=icon src="../images/icons/icon-48-section.png"><BR>
+    <LI><A class=shortcut-button style="background: url(../images/shortcut-button-bg2.png) no-repeat; background-size: cover;" href="../service_report9/"><SPAN><IMG  alt=icon src="../images/icons/icon-48-section.png"><BR>
     ใบรายงานติดตั้ง<br>ติดตั้ง / โปรเจ็ค</SPAN></A></LI>
-    <LI><A class=shortcut-button href="../service_report_project_approve/index2.php"><SPAN><IMG  alt=icon src="../images/icons/icon-48-user.png"><BR>
+    <LI><A class=shortcut-button style="background: url(../images/shortcut-button-bg2.png) no-repeat; background-size: cover;" href="../service_report_project_approve/index2.php"><SPAN><IMG  alt=icon src="../images/icons/icon-48-user.png"><BR>
     อนุมัติใบงาน<br>ติดตั้ง / โปรเจ็ค</SPAN></A></LI>
     <?php  
 	if ($FR_module <> "") { 
@@ -152,7 +152,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 	?>
             <?php   Show_Sort_new ("user_id", "ลำดับ.", $orderby, $sortby,$page,$param2);?>
             &nbsp;</TH>
-          <TH width="9%"><div align="center"><a>LP ID</a></div></TH>
+          <TH width="9%"><div align="center"><a>IS ID</a></div></TH>
           <TH width="22%"><a>ชื่อลูกค้า</a></TH>
           <TH width="25%"><a>สถานที่ติดตั้ง</a></TH>
           <TH width="16%"><div align="left"><a>ช่างเบิก</a></div></TH>

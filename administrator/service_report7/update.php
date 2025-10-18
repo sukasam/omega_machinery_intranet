@@ -429,8 +429,8 @@ function check(frm){
           </tr>
           <tr>
             <td><strong>ที่อยู่ :</strong> <span id="cusadd"><?php   echo $finfo['cd_address'];?></span></td>
-            <td><strong>เลขที่บริการ</strong> :
-			<input type="text" name="sv_id" value="<?php   if($sv_id == ""){echo check_serviceman($conn);}else{echo $sv_id;};?>" id="sv_id" class="inpfoder" style="border:0;">
+            <td><strong>เลขที่ใบเบิก</strong> :
+			<input type="text" name="sv_id" value="<?php   if($sv_id == ""){echo check_serviceproman($conn);}else{echo $sv_id;};?>" id="sv_id" class="inpfoder" style="border:0;">
 &nbsp;&nbsp;<strong>เลขที่ใบงาน</strong> : <!--<input type="text" name="sv_id" value="<?php   if($sv_id == ""){echo "SR";}else{echo $sv_id;};?>" id="sv_id" class="inpfoder" style="border:0;">&nbsp;&nbsp;เลขที่สัญญา  :</strong> <span id="contactid"><?php   echo $finfo['fs_id'];?></span>--><strong>
 			<input type="text" name="srid" value="<?php   echo $srid;?>" id="srid" class="inpfoder">
 			<!-- <a href="javascript:void(0);" onClick="windowOpener('400', '500', '', 'search_srid.php');"><img src="../images/icon2/mark_f2.png" width="25" height="25" border="0" alt="" style="vertical-align:middle;padding-left:5px;"></a> -->
