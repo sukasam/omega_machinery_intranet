@@ -35,7 +35,7 @@
 		 
 		 Check_Permission($conn,$check_module,$_SESSION["login_id"],"update");
 		 
-		 $appID = userTecGroupID($conn,$_SESSION["login_id"]);
+		 $appID = userTecGroupSinatureID($conn,$_SESSION["login_id"]);
 		 
 		 $sql_status = "update $tbl_name set approve = '".$cc."', loc_contact3 = '".$appID."' where $PK_field = '".$ids."'";
 		 @mysqli_query($conn,$sql_status);
