@@ -26,20 +26,34 @@ function checkfirstorder(pval,param1,param2,param3,param4,param5,param6,param7,p
    }
     xmlHttp.onreadystatechange=function (){
         if (xmlHttp.readyState==4 || xmlHttp.readyState=="complete"){   
-			var ds = xmlHttp.responseText.split("|");
-            document.getElementById(param1).innerHTML=ds[0];
-			document.getElementById(param2).innerHTML=ds[1];
-			document.getElementById(param3).innerHTML=ds[2];
-			document.getElementById(param4).innerHTML=ds[3];
-			document.getElementById(param5).innerHTML=ds[4];
-			//document.getElementById(param6).innerHTML=ds[5];
-			document.getElementById(param7).innerHTML=ds[6];
-			document.getElementById(param8).innerHTML=ds[7];
-			document.getElementById(param9).innerHTML=ds[8];
-			document.getElementById(param10).innerHTML=ds[9];
-			document.getElementById(param11).innerHTML=ds[10];
-			document.getElementById(param12).innerHTML=ds[11];
-			document.getElementById(param13).innerHTML=ds[12];
+			if (xmlHttp.status == 200) {
+				var ds = xmlHttp.responseText.split("|");
+				var elements = [
+					{id: param1, index: 0},
+					{id: param2, index: 1},
+					{id: param3, index: 2},
+					{id: param4, index: 3},
+					{id: param5, index: 4},
+					{id: param7, index: 6},
+					{id: param8, index: 7},
+					{id: param9, index: 8},
+					{id: param10, index: 9},
+					{id: param11, index: 10},
+					{id: param12, index: 11},
+					{id: param13, index: 12}
+				];
+				
+				for (var i = 0; i < elements.length; i++) {
+					if (elements[i].id && ds.length > elements[i].index) {
+						var elem = document.getElementById(elements[i].id);
+						if (elem) {
+							elem.innerHTML = ds[elements[i].index] || '';
+						}
+					}
+				}
+			} else {
+				console.error('AJAX request failed with status: ' + xmlHttp.status);
+			}
         } else{
           //document.getElementById(ElementId).innerHTML="<div class='loading'> Loading..</div>" ;
         }

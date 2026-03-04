@@ -89,13 +89,14 @@
 			alert("Browser does not support HTTP Request");
 			return;
 		}
-		xmlHttp.onreadystatechange = function() {
-			if (xmlHttp.readyState == 4 || xmlHttp.readyState == "complete") {
-				document.getElementById('rscus').innerHTML = xmlHttp.responseText;
-			} else {
-				//document.getElementById(ElementId).innerHTML="<div class='loading'> Loading..</div>" ;
-			}
-		};
+	xmlHttp.onreadystatechange = function() {
+		if (xmlHttp.readyState == 4 || xmlHttp.readyState == "complete") {
+			var elem = document.getElementById('rscus');
+			if (elem) elem.innerHTML = xmlHttp.responseText;
+		} else {
+			//document.getElementById(ElementId).innerHTML="<div class='loading'> Loading..</div>" ;
+		}
+	};
 		xmlHttp.open("GET", URL, true);
 		xmlHttp.send(null);
 	}

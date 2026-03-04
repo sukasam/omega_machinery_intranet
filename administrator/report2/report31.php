@@ -178,7 +178,7 @@ if ($loc_seal != "") {
 
 							<?php if ($_REQUEST['sh5'] == 1) { ?><td style="border-bottom:none;" align="center" width="25%"><strong>จำนวน</strong></td><?php  } ?>
 
-							<?php if ($_REQUEST['sh10'] == 1) { ?><td style="border-bottom:none;" align="<?php if($_REQUEST['sh6'] == 1 && $_REQUEST['sh10'] == 1){echo "center";}else{echo "right";}?>" width="25%"><strong>ราคาต้นทุน</strong></td><?php  } ?>
+							<?php if ($_REQUEST['sh10'] == 1) { ?><td style="border-bottom:none; color:blue;" align="<?php if($_REQUEST['sh6'] == 1 && $_REQUEST['sh10'] == 1){echo "center";}else{echo "right";}?>" width="25%"><strong>ราคาต้นทุน</strong></td><?php  } ?>
 
 							<?php if ($_REQUEST['sh6'] == 1) { ?><td style="border-bottom:none;text-wrap: nowrap;" align="<?php if($_REQUEST['sh6'] == 1 && $_REQUEST['sh10'] == 1){echo "center";}else{echo "right";}?>" width="25%"><strong>ราคาขาย</strong></td><?php  } ?>
 
@@ -208,7 +208,7 @@ if ($loc_seal != "") {
 
 		$sql = "SELECT fr.*,sv.*,sv2.r_id,sv2.codes,sv2.lists,sv2.units,sv2.prices,sv2.amounts,sv2.opens,sv2.remains FROM s_first_order as fr, " . $dbservice . " as sv, " . $dbservicesub . " as sv2 WHERE sv.cus_id = fr.fo_id " . $condition . " " . $daterriod . " GROUP by sv.sr_id ORDER BY sv.sr_id DESC";
 
-		//echo $sql = "SELECT fr.cd_name,fr.cd_address,fr.loc_name, sv.* FROM ".$tableDB." as fr, ".$dbservice." as sv, ".$dbservicesub." as sv2 WHERE sv.cus_id = fr.fo_id ".$condition." ".$daterriod." GROUP by sv.sr_id ORDER BY sv.sr_id DESC";
+		//echo $sql = "SELECT fr.*,sv.*,sv2.r_id,sv2.codes,sv2.lists,sv2.units,sv2.prices,sv2.amounts,sv2.opens,sv2.remains FROM s_first_order as fr, " . $dbservice . " as sv, " . $dbservicesub . " as sv2 WHERE sv.cus_id = fr.fo_id " . $condition . " " . $daterriod . " GROUP by sv.sr_id ORDER BY sv.sr_id DESC";
 
 		$qu_fr = @mysqli_query($conn, $sql);
 
@@ -230,7 +230,19 @@ if ($loc_seal != "") {
 
 		$totalsAllSumOther = 0;
 
+		$sumx = 0;
+		$sumy = 0;
+		$sumz = 0;
+		$sumw = 0;
+
+
 		while ($row_fr = @mysqli_fetch_array($qu_fr)) {
+
+			$sumx = $row_fr['x1']+$row_fr['x2']+$row_fr['x3']+$row_fr['x4']+$row_fr['x5']+$row_fr['x6'];
+			$sumy = $row_fr['y1']+$row_fr['y2']+$row_fr['y3']+$row_fr['y4']+$row_fr['y5']+$row_fr['y6'];
+			$sumz = $row_fr['z1']+$row_fr['z2']+$row_fr['z3']+$row_fr['z4']+$row_fr['z5']+$row_fr['z6'];
+			$sumw = $row_fr['w1']+$row_fr['w2']+$row_fr['w3']+$row_fr['w4']+$row_fr['w5']+$row_fr['w6']+$row_fr['w7']+$row_fr['w8'];
+			$price_quo = $row_fr['price_quo'];
 
 		?>
 
@@ -267,7 +279,7 @@ if ($loc_seal != "") {
 
 							$total = 0;
 							$totalUnit = 0;
-							
+							$totalPart = 0;
 
 							while ($row = @mysqli_fetch_array($qu_pfirst)) {
 
@@ -289,7 +301,7 @@ if ($loc_seal != "") {
 
 											<?php if ($_REQUEST['sh5'] == 1) { ?><td align="center" style="border-bottom:none;width: 14%;"><?php echo $row['opens']; ?></td><?php  } ?>
 
-											<?php if ($_REQUEST['sh10'] == 1) { ?><td align="right" style="border-bottom:none;width: 18%;padding-right: 20px;"><?php echo number_format($totalUnit, 2); ?></td><?php } ?>
+											<?php if ($_REQUEST['sh10'] == 1) { ?><td align="right" style="border-bottom:none;width: 18%;padding-right: 20px;color:blue;"><?php echo number_format($totalUnit, 2); ?></td><?php } ?>
 
 											<?php if ($_REQUEST['sh6'] == 1) { ?><td align="right" style="border-bottom:none;width: 18%;padding-right: 20px;"><?php echo number_format($total, 2); ?></td><?php } ?>
 
@@ -300,6 +312,7 @@ if ($loc_seal != "") {
 										$sum += $total;
 										$sumUnit += $totalUnit;
 										$spartpart += 1;
+										$totalPart += 1;
 
 									}else{
 
@@ -316,7 +329,7 @@ if ($loc_seal != "") {
 	
 												<?php if ($_REQUEST['sh5'] == 1) { ?><td align="center" style="border-bottom:none;width: 14%;"><?php echo $row['opens']; ?></td><?php  } ?>
 	
-												<?php if ($_REQUEST['sh10'] == 1) { ?><td align="right" style="border-bottom:none;width: 18%;padding-right: 20px;"><?php echo number_format($totalUnit, 2); ?></td><?php } ?>
+												<?php if ($_REQUEST['sh10'] == 1) { ?><td align="right" style="border-bottom:none;width: 18%;padding-right: 20px;color:blue;"><?php echo number_format($totalUnit, 2); ?></td><?php } ?>
 	
 												<?php if ($_REQUEST['sh6'] == 1) { ?><td align="right" style="border-bottom:none;width: 18%;padding-right: 20px;"><?php echo number_format($total, 2); ?></td><?php } ?>
 	
@@ -328,9 +341,11 @@ if ($loc_seal != "") {
 											$sumUnit += $totalUnit;
 	
 											$spartpart += 1;
+											$totalPart += 1;
 										}
 									}
 								}
+
 							}
 
 
@@ -347,9 +362,83 @@ if ($loc_seal != "") {
 
 								<td style="border-bottom:none;">&nbsp;</td>
 
-								<?php if ($_REQUEST['sh10'] == 1) { ?><td align="right" ; style="border-bottom:none;padding-right: 20px;"><strong><?php echo number_format($sumUnit, 2); ?></strong></td><?php } ?>
+								<?php if ($_REQUEST['sh10'] == 1) { ?><td align="right" ; style="border-bottom:none;padding-right: 20px;color:blue;"><strong><?php echo number_format($sumUnit, 2); ?></strong></td><?php } ?>
 
 								<?php if ($_REQUEST['sh6'] == 1) { ?><td align="right" ; style="border-bottom:none;padding-right: 20px;"><strong><?php echo number_format($sum, 2); ?></strong></td><?php } ?>
+
+							</tr>
+
+							<tr>
+
+								<td style="border-bottom:none;"><strong>รวมจำนวนที่เบิก</strong></td>
+
+								<td style="border-bottom:none;">&nbsp;</td>
+
+								<?php if ($_REQUEST['sh6'] == 1) { ?><td align="right" ; style="border-bottom:none;padding-right: 20px;" colspan="2"><strong><?php echo $totalPart; ?></strong> รายการ</td><?php } ?>
+
+							</tr>
+
+							<tr>
+
+								<td style="border-bottom:none;"><strong>ใช้จ่ายรวม (รวมมูลค่าอะไหล่ที่เบิก)</strong></td>
+
+								<td style="border-bottom:none;">&nbsp;</td>
+
+								<?php if ($_REQUEST['sh6'] == 1) { ?><td align="right" ; style="border-bottom:none;padding-right: 20px;" colspan="2"><strong><?php echo number_format($sum, 2); ?></strong> บาท</td><?php } ?>
+
+							</tr>
+
+							<tr>
+
+								<td style="border-bottom:none;"><strong>ใช้จ่ายรวม (ค่าอะไหล่และอื่นๆ (จากช่างค่าน้ำมัน, ค่าทางด่วน, ที่พัก))</strong></td>
+
+								<td style="border-bottom:none;">&nbsp;</td>
+
+								<?php if ($_REQUEST['sh6'] == 1) { ?><td align="right" ; style="border-bottom:none;padding-right: 20px;" colspan="2"><strong><?php echo number_format($sumx+$sumy+$sumz, 2); ?></strong> บาท</td><?php } ?>
+
+							</tr>
+
+							<tr>
+
+								<td style="border-bottom:none;"><strong>รวมค่าอะไหล่ + ค่าน้ำมัน + ค่าที่พัก + ค่าทางด่วน + อื่นๆ</strong></td>
+
+								<td style="border-bottom:none;">&nbsp;</td>
+
+								<?php if ($_REQUEST['sh6'] == 1) { ?><td align="right" ; style="border-bottom:none;padding-right: 20px;" colspan="2"><strong><?php echo number_format($sumw, 2); ?></strong> บาท</td><?php } ?>
+
+							</tr>
+
+							<tr>
+
+								<td style="border-bottom:none;"><strong>ใบเสนอราคาที่ได้รับ อนุมัติ</strong></td>
+
+								<td style="border-bottom:none;">&nbsp;</td>
+
+								<?php if ($_REQUEST['sh6'] == 1) { ?><td align="right" ; style="border-bottom:none;padding-right: 20px;" colspan="2"><strong><?php echo number_format($price_quo, 2); ?></strong> บาท</td><?php } ?>
+
+							</tr>
+
+							<tr>
+
+								<td style="border-bottom:none;"><strong>ส่วนต่าง คชจ.กับ ราคาค่าติดตั้ง</strong></td>
+
+								<td style="border-bottom:none;">&nbsp;</td>
+
+								<?php if ($_REQUEST['sh10'] == 1) { ?><td align="right" ; style="border-bottom:none;padding-right: 20px;"><strong><?php echo number_format((($price_quo-$sumw)*100)/$price_quo, 2); ?>%</strong></td><?php } ?>
+
+								<?php if ($_REQUEST['sh6'] == 1) { ?><td align="right" ; style="border-bottom:none;padding-right: 20px;"><strong><?php echo number_format($price_quo-$sumw, 2); ?></strong> บาท</td><?php } ?>
+
+							</tr>
+
+							<tr>
+
+								<td style="border-bottom:none;"><strong>รวมยอด ส่วนต่าง คชจ.กับ ราคาต้นทุน</strong></td>
+
+								<td style="border-bottom:none;">&nbsp;</td>
+
+								<?php if ($_REQUEST['sh10'] == 1) { ?><td align="right" ; style="border-bottom:none;padding-right: 20px;"><strong><?php echo number_format((($sumUnit+($price_quo-$sumw))*100)/$price_quo, 2); ?>%</strong></td><?php } ?>
+
+								<?php if ($_REQUEST['sh6'] == 1) { ?><td align="right" ; style="border-bottom:none;padding-right: 20px;"><strong><?php echo number_format($sumUnit+($price_quo-$sumw), 2); ?></strong> บาท</td><?php } ?>
 
 							</tr>
 
@@ -379,7 +468,7 @@ if ($loc_seal != "") {
 
 							?>
 
-							<tr>
+							<!-- <tr>
 
 								<td style="border-bottom:none;"><strong>รวมค่าใช้จ่ายอื่น (ค่าน้ำมัน, ที่พัก, ทางด่วน)</strong></td>
 
@@ -396,7 +485,7 @@ if ($loc_seal != "") {
 
 								<td align="right" ; style="border-bottom:none;padding-right: 20px;"><strong><?php echo number_format($sum+$totalOther, 2); ?></strong></td>
 
-							</tr>
+							</tr> -->
 
 						</table>
 

@@ -27,7 +27,7 @@
 			$consd = "WHERE (cd_name LIKE '%".$cd_name."%' OR loc_name LIKE '%".$cd_name."%')";
 		}
 		// echo "SELECT cd_name,loc_name FROM s_first_order ".$consd." ORDER BY cd_name ASC";
-		$qu_cus = @mysqli_query($conn,"SELECT cd_name,loc_name FROM s_first_order ".$consd." ORDER BY cd_name ASC");
+		$qu_cus = @mysqli_query($conn,"SELECT cd_name,loc_name,fo_id  FROM s_first_order ".$consd." ORDER BY cd_name ASC");
 		while($row_cus = @mysqli_fetch_array($qu_cus)){
 			?>
 			 <tr>

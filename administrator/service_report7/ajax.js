@@ -28,19 +28,20 @@ function checkfirstorder(pval, param1, param2, param3, param4, param5, param6, p
     xmlHttp.onreadystatechange = function() {
         if (xmlHttp.readyState == 4 || xmlHttp.readyState == "complete") {
             var ds = xmlHttp.responseText.split("|");
-            document.getElementById(param1).innerHTML = ds[0];
-            document.getElementById(param2).innerHTML = ds[1];
-            document.getElementById(param3).innerHTML = ds[2];
-            document.getElementById(param4).innerHTML = ds[3];
-            document.getElementById(param5).innerHTML = ds[4];
+            var elem;
+            if (param1 && (elem = document.getElementById(param1))) elem.innerHTML = ds[0];
+            if (param2 && (elem = document.getElementById(param2))) elem.innerHTML = ds[1];
+            if (param3 && (elem = document.getElementById(param3))) elem.innerHTML = ds[2];
+            if (param4 && (elem = document.getElementById(param4))) elem.innerHTML = ds[3];
+            if (param5 && (elem = document.getElementById(param5))) elem.innerHTML = ds[4];
             //document.getElementById(param6).innerHTML=ds[5];
-            document.getElementById(param7).innerHTML = ds[6];
-            document.getElementById(param8).innerHTML = ds[7];
-            document.getElementById(param9).innerHTML = ds[8];
-            document.getElementById(param10).innerHTML = ds[9];
-            document.getElementById(param11).innerHTML = ds[10];
-            document.getElementById(param12).innerHTML = ds[11];
-            document.getElementById(param13).innerHTML = ds[12];
+            if (param7 && (elem = document.getElementById(param7))) elem.innerHTML = ds[6];
+            if (param8 && (elem = document.getElementById(param8))) elem.innerHTML = ds[7];
+            if (param9 && (elem = document.getElementById(param9))) elem.innerHTML = ds[8];
+            if (param10 && (elem = document.getElementById(param10))) elem.innerHTML = ds[9];
+            if (param11 && (elem = document.getElementById(param11))) elem.innerHTML = ds[10];
+            if (param12 && (elem = document.getElementById(param12))) elem.innerHTML = ds[11];
+            if (param13 && (elem = document.getElementById(param13))) elem.innerHTML = ds[12];
         } else {
             //document.getElementById(ElementId).innerHTML="<div class='loading'> Loading..</div>" ;
         }
@@ -60,9 +61,10 @@ function get_podsn(pval, param1, param2, param3, fid) {
     xmlHttp.onreadystatechange = function() {
         if (xmlHttp.readyState == 4 || xmlHttp.readyState == "complete") {
             var ds = xmlHttp.responseText.split("|");
-            document.getElementById(param1).innerHTML = ds[0];
-            document.getElementById(param2).innerHTML = ds[1];
-            document.getElementById(param3).innerHTML = ds[2];
+            var elem;
+            if (param1 && (elem = document.getElementById(param1))) elem.innerHTML = ds[0];
+            if (param2 && (elem = document.getElementById(param2))) elem.innerHTML = ds[1];
+            if (param3 && (elem = document.getElementById(param3))) elem.innerHTML = ds[2];
         } else {
             //document.getElementById(ElementId).innerHTML="<div class='loading'> Loading..</div>" ;
         }
@@ -82,7 +84,8 @@ function get_cus(pval) {
     }
     xmlHttp.onreadystatechange = function() {
         if (xmlHttp.readyState == 4 || xmlHttp.readyState == "complete") {
-            document.getElementById('rscus').innerHTML = xmlHttp.responseText;
+            var elem = document.getElementById('rscus');
+            if (elem) elem.innerHTML = xmlHttp.responseText;
         } else {
             //document.getElementById(ElementId).innerHTML="<div class='loading'> Loading..</div>" ;
         }
@@ -101,10 +104,11 @@ function get_cus2(pval) {
         return;
     }
     xmlHttp.onreadystatechange = function() {
+        var elem = document.getElementById('rscus');
         if (xmlHttp.readyState == 4 || xmlHttp.readyState == "complete") {
-            document.getElementById('rscus').innerHTML = xmlHttp.responseText;
+            if (elem) elem.innerHTML = xmlHttp.responseText;
         } else {
-            document.getElementById('rscus').innerHTML = "<div class='loading'> Loading..</div>";
+            if (elem) elem.innerHTML = "<div class='loading'> Loading..</div>";
         }
     };
     xmlHttp.open("GET", URL, true);
@@ -122,7 +126,8 @@ function get_sparpart(pval, resdata) {
     }
     xmlHttp.onreadystatechange = function() {
         if (xmlHttp.readyState == 4 || xmlHttp.readyState == "complete") {
-            document.getElementById('rscus').innerHTML = xmlHttp.responseText;
+            var elem = document.getElementById('rscus');
+            if (elem) elem.innerHTML = xmlHttp.responseText;
         } else {
             //document.getElementById(ElementId).innerHTML="<div class='loading'> Loading..</div>" ;
         }
@@ -143,21 +148,22 @@ function showspare(sval, param1, param2, param3, param4, idList, param5) {
         if (xmlHttp.readyState == 4 || xmlHttp.readyState == "complete") {
             var ds = xmlHttp.responseText.split("|");
             //console.log(JSON.stringify(ds));
+            var elem;
             if (ds[4] <= 0) {
                 alert(ds[1] + ' : อะไหล่สินค้าตัวนี้ไม่เพียงพอสำหรับการเบิกอะไหล่');
-                document.getElementById('lists' + idList).value = '';
-                document.getElementById(param1).value = '';
-                document.getElementById(param2).value = '';
-                document.getElementById(param3).value = '';
-                document.getElementById(param4).value = '';
-                document.getElementById(param5).value = '';
-                document.getElementById('opens' + idList).value = '';
+                if ((elem = document.getElementById('lists' + idList))) elem.value = '';
+                if (param1 && (elem = document.getElementById(param1))) elem.value = '';
+                if (param2 && (elem = document.getElementById(param2))) elem.value = '';
+                if (param3 && (elem = document.getElementById(param3))) elem.value = '';
+                if (param4 && (elem = document.getElementById(param4))) elem.value = '';
+                if (param5 && (elem = document.getElementById(param5))) elem.value = '';
+                if ((elem = document.getElementById('opens' + idList))) elem.value = '';
             } else {
-                document.getElementById(param1).value = ds[1];
-                document.getElementById(param2).value = ds[2];
-                document.getElementById(param3).value = ds[3];
-                document.getElementById(param4).value = ds[4];
-                document.getElementById(param5).value = ds[5];
+                if (param1 && (elem = document.getElementById(param1))) elem.value = ds[1];
+                if (param2 && (elem = document.getElementById(param2))) elem.value = ds[2];
+                if (param3 && (elem = document.getElementById(param3))) elem.value = ds[3];
+                if (param4 && (elem = document.getElementById(param4))) elem.value = ds[4];
+                if (param5 && (elem = document.getElementById(param5))) elem.value = ds[5];
             }
         } else {
             //document.getElementById(ElementId).innerHTML="<div class='loading'> Loading..</div>" ;

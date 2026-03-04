@@ -112,6 +112,8 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
     ใบรายงานติดตั้ง<br>ติดตั้ง / โปรเจ็ค</SPAN></A></LI>
     <LI><A class=shortcut-button style="background: url(../images/shortcut-button-bg2.png) no-repeat; background-size: cover;" href="../service_report_project_approve/index2.php"><SPAN><IMG  alt=icon src="../images/icons/icon-48-user.png"><BR>
     อนุมัติใบงาน<br>ติดตั้ง / โปรเจ็ค</SPAN></A></LI>
+	<LI><A class=shortcut-button style="background: url(../images/shortcut-button-bg2.png) no-repeat; background-size: cover;" href="../service_report_project_approve2/index4.php"><SPAN><IMG  alt=icon src="../images/icons/icon-48-user.png"><BR>
+    อนุมัติใบงาน GM<br>ติดตั้ง / โปรเจ็ค</SPAN></A></LI>
     <?php     
 	if ($FR_module <> "") { 
 	$param2 = get_return_param();

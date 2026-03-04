@@ -20,33 +20,39 @@
 		$fpid = $_GET['pid'];
 		$rowcus  = @mysqli_fetch_array(@mysqli_query($conn,"SELECT * FROM s_first_order WHERE fo_id  = '".$fpid."'"));
 		
-		$prolist = get_profirstorder($conn,$fpid);
-		//$lispp = explode(",",$prolist);
-		$plid = "<select name=\"bbfpro\" id=\"bbfpro\" onchange=\"get_podsn(this.value,'lpa1','lpa2','lpa3','".$fpid."')\">
-						<option value=\"\"><<== Select ==>></option>       
-					 ";
-		for($i=0;$i<count($prolist);$i++){
-			$plid .= "<option value=".$i.">".get_proname($conn,$prolist[$i])."</option>";
-		}	
-		$plid .=	 "</select>";
-		
-		$qu_cusftype2 = @mysqli_query($conn,"SELECT * FROM s_group_custommer ORDER BY group_name ASC");
-			while($row_cusftype2 = @mysqli_fetch_array($qu_cusftype2)){
-					$ctyp .= "<option value=".$row_cusftype2['group_id']." ";
-					if($row_cusftype2['group_id'] == $rowcus['ctype']){$ctyp .= "selected=selected";}
-					$ctyp .= ">".$row_cusftype2['group_name']."</option>";
-					
-			}
-		
-		$displ = $rowcus['cd_address']."|".province_name($conn,$rowcus['cd_province'])."|".$rowcus['cd_tel']."|".$rowcus['cd_fax']."|".$rowcus['fs_id']."|".format_date($rowcus['date_quf'])."||".$rowcus['c_contact']."|".$rowcus['c_tel']."|".$rowcus['loc_name']."|".get_lastservice_s($conn,$fpid,"").'|'.$plid.'|'.$ctyp;
-		echo $displ;
+		if($rowcus){
+			$prolist = get_profirstorder($conn,$fpid);
+			//$lispp = explode(",",$prolist);
+			$plid = "<select name=\"bbfpro\" id=\"bbfpro\" onchange=\"get_podsn(this.value,'lpa1','lpa2','lpa3','".$fpid."')\">
+							<option value=\"\"><<== Select ==>></option>       
+						 ";
+			for($i=0;$i<count($prolist);$i++){
+				$plid .= "<option value=".$i.">".get_proname($conn,$prolist[$i])."</option>";
+			}	
+			$plid .=	 "</select>";
+			
+			$ctyp = ""; // Initialize $ctyp
+			$qu_cusftype2 = @mysqli_query($conn,"SELECT * FROM s_group_custommer ORDER BY group_name ASC");
+				while($row_cusftype2 = @mysqli_fetch_array($qu_cusftype2)){
+						$ctyp .= "<option value=".$row_cusftype2['group_id']." ";
+						if($row_cusftype2['group_id'] == $rowcus['ctype']){$ctyp .= "selected=selected";}
+						$ctyp .= ">".$row_cusftype2['group_name']."</option>";
+						
+				}
+			
+			$displ = $rowcus['cd_address']."|".province_name($conn,$rowcus['cd_province'])."|".$rowcus['cd_tel']."|".$rowcus['cd_fax']."|".$rowcus['fs_id']."|".format_date($rowcus['date_quf'])."||".$rowcus['c_contact']."|".$rowcus['c_tel']."|".$rowcus['loc_name']."|".get_lastservice_s($conn,$fpid,"").'|'.$plid.'|'.$ctyp;
+			echo $displ;
+		} else {
+			// Return empty response if no record found
+			echo "||||||||||||";
+		}
 	}
 	
 	if($_GET['action'] == 'getcus'){
 		$cd_name = $_REQUEST['pval'];
 		if($cd_name != ""){
 			// Get all customer IDs from s_service_report7 first
-			$qu_all_cus = mysqli_query($conn,"SELECT DISTINCT cus_id FROM s_service_report7 WHERE approve = '1' ORDER BY sv_id DESC");
+			$qu_all_cus = mysqli_query($conn,"SELECT cus_id FROM s_service_report7 WHERE approve = '1' ORDER BY sv_id DESC");
 			$matching_cus_ids = array();
 			
 			while($row_all_cus = @mysqli_fetch_array($qu_all_cus)){
@@ -62,15 +68,17 @@
 				}
 			}
 			
+			// print_r($matching_cus_ids);
+			// exit;
 			// Now get the service report data for matching customers
 			if(!empty($matching_cus_ids)){
 				$cus_ids_str = implode("','", $matching_cus_ids);
-				$qu_cus = mysqli_query($conn,"SELECT sv_id,cus_id FROM s_service_report7 WHERE approve = '1' AND cus_id IN ('".$cus_ids_str."') ORDER BY sv_id DESC");
+				$qu_cus = mysqli_query($conn,"SELECT sv_id,cus_id,sr_id FROM s_service_report7 WHERE approve = '1' AND cus_id IN ('".$cus_ids_str."') ORDER BY sv_id DESC");
 			} else {
 				$qu_cus = false; // No matches found
 			}
 		} else {
-			$qu_cus = mysqli_query($conn,"SELECT sv_id,cus_id FROM s_service_report7 WHERE approve = '1' ORDER BY sv_id DESC");
+			$qu_cus = mysqli_query($conn,"SELECT sv_id,cus_id,sr_id FROM s_service_report7 WHERE approve = '1' ORDER BY sv_id DESC");
 		}
 		
 		if($qu_cus){

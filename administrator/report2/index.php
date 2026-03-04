@@ -393,7 +393,7 @@ if ($_GET["action"] == "chksum") {
               
                   <LI><A class=shortcut-button href="../report2/?mid=16&act=28"><SPAN><IMG alt=icon src="../images/icons/icon-48-category.png"><BR>
 
-                    <strong>ตามใบเบิก<br>โปรเจ็ค
+                    <strong>ตามใบเบิก<br>ติดตั้ง/โปรเจ็ค
 
                     </strong>
 
@@ -415,7 +415,7 @@ if ($_GET["action"] == "chksum") {
 
                   <LI><A class=shortcut-button href="../report2/?mid=16&act=29"><SPAN><IMG alt=icon src="../images/icons/icon-48-category.png"><BR>
 
-                    <strong>ตามใบยืม<br>โปรเจ็ค
+                    <strong>ตามใบยืม<br>ติดตั้ง/โปรเจ็ค
 
                     </strong>
 
@@ -438,7 +438,7 @@ if ($_GET["action"] == "chksum") {
 
                   <LI><A class=shortcut-button href="../report2/?mid=16&act=30"><SPAN><IMG alt=icon src="../images/icons/icon-48-category.png"><BR>
 
-<strong>ตามใบคืน<br>โปรเจ็ค
+<strong>ตามใบคืน<br>ติดตั้ง/โปรเจ็ค
 
 </strong>
 
@@ -3675,7 +3675,7 @@ right: 5px;"><img src="../images/icons/keylock.png" style="width: 25px;"></div>
   
   
   
-                  <H3 align="left">เลือกตามใบยืม - โปรเจ็ค</H3>
+                  <H3 align="left">เลือกตามใบยืม - ติดตั้ง/โปรเจ็ค</H3>
   
                   <DIV class=clear>
   
@@ -4309,7 +4309,7 @@ right: 5px;"><img src="../images/icons/keylock.png" style="width: 25px;"></div>
   
   
   
-                  <H3 align="left">เลือกตามใบเบิก - โปรเจ็ค</H3>
+                  <H3 align="left">เลือกตามใบเบิก - ติดตั้ง/โปรเจ็ค</H3>
   
                   <DIV class=clear>
   
@@ -5578,7 +5578,7 @@ right: 5px;"><img src="../images/icons/keylock.png" style="width: 25px;"></div>
   
   
   
-                  <H3 align="left">เลือกตามใบคืน - โปรเจ็ค</H3>
+                  <H3 align="left">เลือกตามใบคืน - ติดตั้ง/โปรเจ็ค</H3>
   
                   <DIV class=clear>
   
