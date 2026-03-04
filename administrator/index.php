@@ -32,7 +32,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-        <title>OMEGA Intranet System</title>
+        <title>OSPO Intranet System</title>
         <link rel="stylesheet" href="css/reset.css" type="text/css" media="screen" />
         <link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
         <link rel="stylesheet" href="css/invalid.css" type="text/css" media="screen" /> 
@@ -87,7 +87,7 @@
         	<div class="fb">
             <ul>
             	<li class="blogo"><img src="images/template/footer_logo.png" width="106" height="42" border="0" alt="" /></li>
-                <li class="bfooter">OMEGA MACHINERY (1999) CO., LTD. 188/21 Soi Sukhaphiban 5 (46), Ao-Ngoen, Saimai, Bangkok, Thailand 10220<br />
+                <li class="bfooter">OSPO Kitchen Services Co., Ltd. 188/21 Soi Sukhaphiban 5 (46), Ao-Ngoen, Saimai, Bangkok, Thailand 10220<br />
 Tel : 02-1019286 / Fax : 02-1019287 / Mobile : 088-3776557, 098-2683020<br />
 E-mail : info@omegadishwasher.com ,sale@omegadishwasher.com</li>           
             </ul>

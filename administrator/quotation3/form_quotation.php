@@ -143,7 +143,7 @@ $form = $imgsaleLine.'
 			</td>
           </tr>
 </table>
-  <p style="font-size:12px;font-weight: normal;"><strong>ทางบริษัท โอเมก้า แมชชีนเนอรี่ (1999) จำกัด มีความยินดีขอเสนอราคา' . $_POST['c_title_detail'] . 'ให้พิจารณา ดังนี้</strong></p>
+  <p style="font-size:12px;font-weight: normal;"><strong>ทางบริษัท ออสโป คิทเช่น เซอร์วิสเซส จํากัด มีความยินดีขอเสนอราคา' . $_POST['c_title_detail'] . 'ให้พิจารณา ดังนี้</strong></p>
 <table width="100%" border="0" cellspacing="0" cellpadding="0" style="font-size:11px;text-align:center;">
     <tr>
       <td width="5%" style="border:1px solid #000;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;"><strong>ลำดับ</strong></td>
@@ -264,10 +264,10 @@ $form .= '
     <p style="font-size:11px;"><u>บัญชีธนาคาร : สำหรับโอนเงินชำระค่าสินค้า</u></p><br>
     <span style="color: #018022;font-weight: bold;">
     ธนาคารกสิกร : สาขา สุขาภิบาล 5<br>
-    บัญชีออมทรัพย์ : บจก.โอเมก้าแมชชีนเนอรี่ (1999)<br>
+    บัญชีออมทรัพย์ : บจก.ออสโป คิทเช่น เซอร์วิสเซส จํากัด<br>
     เลขที่บัญชี : 026-1-810689</span><br><br>
     <span style="color: #4b2b7e;font-weight: bold;">ธนาคารไทยพาณิชย์ : สาขา โชคชัย 4 5<br>
-    บัญชีออมทรัพย์ : บจก.โอเมก้าแมชชีนเนอรี่ (1999)<br>
+    บัญชีออมทรัพย์ : บจก.ออสโป คิทเช่น เซอร์วิสเซส จํากัด<br>
     เลขที่บัญชี : 127-2-27409-1
     </span>
     </td>

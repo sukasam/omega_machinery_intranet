@@ -168,7 +168,7 @@
 
 	  <tr>
 
-	    <th colspan="4" style="text-align:left;font-size:12px;">บริษัท โอเมก้า แมชชีนเนอรี่ (1999) จำกัด<br />
+	    <th colspan="4" style="text-align:left;font-size:12px;">บริษัท ออสโป คิทเช่น เซอร์วิสเซส จํากัด<br />
 
 รายงานใบคืน - โปรเจ็ค<br />
 

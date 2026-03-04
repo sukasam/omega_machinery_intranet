@@ -90,7 +90,7 @@
 <body>
 	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="tbreport">
 	  <tr>
-	    <th colspan="3" style="text-align:left;font-size:12px;">บริษัท โอเมก้า แมชชีนเนอรี่ (1999) จำกัด<br />
+	    <th colspan="3" style="text-align:left;font-size:12px;">บริษัท ออสโป คิทเช่น เซอร์วิสเซส จํากัด<br />
 รายงานใบเสนอราคางานซ่อม (<?php if($type_service === '1'){echo "เครื่องล้างจาน";}else if($type_service === '2'){echo "เครื่องล้างแก้ว";}else if($type_service === '3'){echo "เครื่องผลิตน้ำแข็ง";}else{echo "ทั้งหมด";}?>)</th>
 	    <th colspan="4" style="text-align:right;font-size:11px;"><?php  echo $dateshow;?></th>
       </tr>

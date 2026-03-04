@@ -186,7 +186,7 @@
 
 	  <tr>
 
-	    <th colspan="5" style="text-align:left;font-size:12px;">บริษัท โอเมก้า แมชชีนเนอรี่ (1999) จำกัด<br />
+	    <th colspan="5" style="text-align:left;font-size:12px;">บริษัท ออสโป คิทเช่น เซอร์วิสเซส จํากัด<br />
 
 รายงานลูกค้าแยกตามโซน/ภาค/เขต (<?php  if($service_zone){echo get_zone($conn,$service_zone);}else{echo "ทั้งหมด";}?>)<br />
 

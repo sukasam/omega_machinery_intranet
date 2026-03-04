@@ -138,7 +138,7 @@ if ($loc_seal != "") {
 
 		<tr>
 
-			<th colspan="3" style="text-align:left;">บริษัท โอเมก้า แมชชีนเนอรี่ (1999) จำกัด<br />
+			<th colspan="3" style="text-align:left;">บริษัท ออสโป คิทเช่น เซอร์วิสเซส จํากัด<br />
 
 				รายงาน Installation - โปรเจ็ค<br />
 

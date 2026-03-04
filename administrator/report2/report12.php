@@ -278,7 +278,7 @@
 <body>
 	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="tbreport">
 	  <tr>
-	    <th colspan="4" style="text-align:left;font-size:12px;">บริษัท โอเมก้า แมชชีนเนอรี่ (1999) จำกัด<br />
+	    <th colspan="4" style="text-align:left;font-size:12px;">บริษัท ออสโป คิทเช่น เซอร์วิสเซส จํากัด<br />
         รายงานคุมสัญญาบริการ (<?php  echo $bselect;?>)</th>
 	    <th colspan="5" style="text-align:right;font-size:11px;"><span style="text-align:right;font-size:12px;"><?php  echo $headtitle;?></span></th>
       </tr>

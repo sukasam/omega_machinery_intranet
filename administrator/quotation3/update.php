@@ -819,7 +819,7 @@ function submitForm() {
           </tr>
 </table>
 <br>
-<p>ทางบริษัท โอเมก้า แมชชีนเนอรี่ (1999) จำกัด มีความยินดีขอเสนอราคา <textarea name="c_title_detail" id="c_title_detail" style="height:25px;"><?php  echo $c_title_detail;?></textarea> <br>ให้พิจารณา ดังนี</p>
+<p>ทางบริษัท ออสโป คิทเช่น เซอร์วิสเซส จํากัด มีความยินดีขอเสนอราคา <textarea name="c_title_detail" id="c_title_detail" style="height:25px;"><?php  echo $c_title_detail;?></textarea> <br>ให้พิจารณา ดังนี</p>
   <br>
 <table width="100%" cellspacing="0" cellpadding="0" style="font-size:13pxtext-align:center;">
     <tr>
@@ -1292,10 +1292,10 @@ function submitForm() {
         <p style="    text-align: center;">
         <span style="color: #018022;font-weight: bold;">
     ธนาคารกสิกร : สาขา สุขาภิบาล 5<br>
-    บัญชีออมทรัพย์ : บจก.โอเมก้าแมชชีนเนอรี่ (1999)<br>
+    บัญชีออมทรัพย์ : บจก.ออสโป คิทเช่น เซอร์วิสเซส จํากัด<br>
     เลขที่บัญชี : 026-1-810689</span><br><br>
     <span style="color: #4b2b7e;font-weight: bold;">ธนาคารไทยพาณิชย์ : สาขา โชคชัย 4 5<br>
-    บัญชีออมทรัพย์ : บจก.โอเมก้าแมชชีนเนอรี่ (1999)<br>
+    บัญชีออมทรัพย์ : บจก.ออสโป คิทเช่น เซอร์วิสเซส จํากัด<br>
     เลขที่บัญชี : 127-2-27409-1
     </span>
         </p>

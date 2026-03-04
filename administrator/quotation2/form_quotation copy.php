@@ -116,7 +116,7 @@ $form = '
 			</td>
           </tr>
 </table>
-<p style="font-size:12px;"><strong>ทางบริษัท โอเมก้า แมชชีนเนอรี่ (1999) จำกัด ขอบคุณที่ท่านได้มอบความไว้วางใจ ให้นำเสนอราคาสินค้าและบริการเพื่อพิจารณาดังต่อไปนี้</strong></p>
+<p style="font-size:12px;"><strong>ทางบริษัท ออสโป คิทเช่น เซอร์วิสเซส จํากัด ขอบคุณที่ท่านได้มอบความไว้วางใจ ให้นำเสนอราคาสินค้าและบริการเพื่อพิจารณาดังต่อไปนี้</strong></p>
 <table width="100%" border="0" cellspacing="0" cellpadding="0" style="font-size:11px;text-align:center;">
     <tr>
       <td width="5%" style="border:1px solid #003399;border-right:0px solid #003399;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;"><strong>ลำดับ</strong></td>

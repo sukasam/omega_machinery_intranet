@@ -998,7 +998,7 @@ function submitForm() {
         	 1. <input type="text" name="pay1" value="<?php echo $pay1;?>" style="text-align: left;width: 500px;"><br>
         	 2. บัญชีสำหรับโอนเงิน ชำระสินค้า</br>
            <span style="padding-left: 14px;color: green;">ธนาคารกสิกรไทย : สาขาสุขาภิบาล 5</span></br>
-           <span style="padding-left: 14px;color: green;">บัญชีออมทรัพย์ : บจก.โอเมก้า แมชชีนเนอรี่ (1999) จำกัด</span><br>
+           <span style="padding-left: 14px;color: green;">บัญชีออมทรัพย์ : บจก.ออสโป คิทเช่น เซอร์วิสเซส จํากัด จำกัด</span><br>
            <span style="padding-left: 14px;color: green;">หมายเลขบัญชี : 026-1-810689</span>
         </p>  
         <p><strong>เงื่อนไขการขาย</strong></p>
@@ -1007,7 +1007,7 @@ function submitForm() {
            ภาษีมูลค่าเพิ่ม <input type="text" name="pay3" value="<?php echo $pay3;?>" style="text-align: center;width: 50px;">
            ตามที่สรรพากรกำหนดเรียบร้อยแล้ว<br>
         	 2. กำหนดส่งสัญญาภายใน <input type="text" name="giveprice" value="<?php echo $giveprice;?>" style="text-align: center;width: 50px;"> วัน นับตั้งแต่วันอนุมัติทำสัญญา<br>	
-        	 3. ภายใต้เงื่อนไขการทำสัญญาบริการ ทางบริษัทโอเมก้าฯ ขอสงวนลิขสิทธิ์ให้ลูกค้าใช้น้ำยาของทางบริษัทโอเมก้าฯเท่านั้น<br/>
+        	 3. ภายใต้เงื่อนไขการทำสัญญาบริการ ทางบริษัทออสโปฯ ขอสงวนลิขสิทธิ์ให้ลูกค้าใช้น้ำยาของทางบริษัทออสโปฯเท่านั้น<br/>
            4. กำหนดยี่นราคา <input type="text" name="pay4" value="<?php echo $pay4;?>" style="text-align: center;width: 50px;"> วัน<br/>
            5. ทางบริษัทฯ ขอสงวนสิทธิ์ในกรณีที่ลูกค้าเซ็นอนุมัติใบเสนอราคาแล้วนั้น หากมีการยกเลิกสัญญา หรือ การเปลี่ยนแปลงใดๆเกิดขึ้นระหว่างดำเนินการ 
            ทางลูกค้าต้องเป็นผู้รับผิดชอบต่อความเสียหายและค่าใช้จ่ายที่เกิดขึ้น<br/>

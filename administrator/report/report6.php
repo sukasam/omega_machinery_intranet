@@ -68,7 +68,7 @@
 <body>
 	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="tbreport">
 	  <tr>
-	    <th colspan="2" style="text-align:left;font-size:12px;">บริษัท โอเมก้า แมชชีนเนอรี่ (1999) จำกัด<br />
+	    <th colspan="2" style="text-align:left;font-size:12px;">บริษัท ออสโป คิทเช่น เซอร์วิสเซส จํากัด<br />
         รายงานตามประเภทลูกค้า ( <?php  echo custype_name($conn,$ctype);?> )</th>
 	    <th colspan="7" style="text-align:right;font-size:11px;"><?php  echo $dateshow;?></th>
       </tr>

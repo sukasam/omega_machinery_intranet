@@ -199,7 +199,7 @@
 
 	  <tr>
 
-	    <th colspan="5" style="text-align:left;">บริษัท โอเมก้า แมชชีนเนอรี่ (1999) จำกัด<br />
+	    <th colspan="5" style="text-align:left;">บริษัท ออสโป คิทเช่น เซอร์วิสเซส จํากัด<br />
 
 รายงานซ่อมเครื่องเก่า<br />
 ประเภทใบบริการ  : <?php if($type_service == 2){echo 'เครื่องล้างแก้ว';}else if($type_service == 3){echo 'เครื่องผลิตน้ำแข็ง';}else if($type_service == 1){echo 'เครื่องล้างจาน';}else{echo 'ทั้งหมด';}?></th>

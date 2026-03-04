@@ -114,7 +114,7 @@ function chkPrint(){
 <body>
 	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="tbreport">
 	  <tr>
-	    <th colspan="3" style="text-align:left;font-size:14px;">บริษัท โอเมก้า แมชชีนเนอรี่ (1999) จำกัด<br />
+	    <th colspan="3" style="text-align:left;font-size:14px;">บริษัท ออสโป คิทเช่น เซอร์วิสเซส จํากัด<br />
 รายงานสรุป (แยกตามรายชื่อช่าง) <br>
 <?php  if($loc_contact){echo get_technician_name($conn,$loc_contact);}else{echo "ตามรายชื่อช่างทั้งหมด";}?> <?php if($openclose == 2 || $openclose == 3){echo "(แยกตามที่".$txtopenclose."ใบงาน)";}else{echo "(แยกตามใบงานทั้งหมด)";}?><br />
 </th>

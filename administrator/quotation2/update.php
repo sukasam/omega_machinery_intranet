@@ -1232,7 +1232,7 @@ while ($row_saletype = @mysqli_fetch_array($qusaletype)) {
         1. ราคาดังกล่าวข้างต้น <input type="text" name="paycon2" value="<?php echo $paycon2;?>" style="text-align: center;width: 100px;"> ภาษีมูลค่าเพิ่ม <input type="text" name="paycon3" value="<?php echo $paycon3;?>" style="text-align: center;width: 50px;"> ตามที่สรรพากรกำหนดเรียบร้อยแล้ว<br>
         2. การรับประกันสินค้า ในกรณีเช่า : ทางบริษัทฯ รับประกันเครื่อง, อะไหล่และบริการหลังการขาย ฟรีตลอดอายุสัญญาเช่า<br>
         3. ระยะเวลาเช่า <input type="text" name="paycon4" value="<?php echo $paycon4;?>" style="text-align: center;width: 50px;"> เดือน โดยสัญญาเช่าจะเริ่มต้นเมื่อทางบริษัทฯ ทำการส่งมอบสินค้าเรียบร้อยแล้ว<br>
-        4. บริษัทฯ ขอสงวนสิทธ์ในการกำหนดให้ลูกค้าใช้น้ำยาสำหรับเครื่องทุกชนิดของบริษัท โอเมก้า แมชชีนเนอรี่ (1999) จำกัด เท่านั้น ตลอดอายุสัญญาเช่า<br>
+        4. บริษัทฯ ขอสงวนสิทธ์ในการกำหนดให้ลูกค้าใช้น้ำยาสำหรับเครื่องทุกชนิดของบริษัท ออสโป คิทเช่น เซอร์วิสเซส จํากัด เท่านั้น ตลอดอายุสัญญาเช่า<br>
         5. จัดส่งสินค้าภายใน <input type="text" name="guaran2" value="<?php echo $guaran2;?>" style="text-align: center;width: 50px;"> วัน หลังจากลูกค้าชำระเงินประกันสินค้า/ค่าเช่าล่วงหน้าและค่าบริการขนส่ง/ติดตั้ง<br>
         6. ลูกค้าเป็นผู้ตรียมระบบไฟฟ้า <select name="type_electric" id="type_electric" class="inputselect">
       <option value="no" <?php  if($type_electric == "no"){echo 'selected';}?>>ไม่เลือก</option>

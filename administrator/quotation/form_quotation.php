@@ -139,7 +139,7 @@ $form = $imgsaleLine.'
 			</td>
           </tr>
 </table>
-<p style="font-size:12px;"><strong>ทางบริษัท โอเมก้า แมชชีนเนอรี่ (1999) จำกัด ขอบคุณที่ท่านได้มอบความไว้วางใจ ให้นำเสนอราคาสินค้าและบริการเพื่อพิจารณาดังต่อไปนี้</strong></p>
+<p style="font-size:12px;"><strong>ทางบริษัท ออสโป คิทเช่น เซอร์วิสเซส จํากัด ขอบคุณที่ท่านได้มอบความไว้วางใจ ให้นำเสนอราคาสินค้าและบริการเพื่อพิจารณาดังต่อไปนี้</strong></p>
 <table width="100%" border="0" cellspacing="0" cellpadding="0" style="font-size:11px;text-align:center;">
     <tr>
       <td width="5%" style="border-top:1px solid #000;border-top:1px solid #000;border-left:1px solid #000;font-size:11px;font-family:Verdana, Geneva, sans-serif;padding:9px 5px;text-align:center;"><strong>ลำดับ</strong></td>
@@ -294,7 +294,7 @@ $form .= '<table width="100%" border="0" cellspacing="0" cellpadding="0">
   <p style="font-size:12px;">1. '.$_POST['paycon1'].'</p>
   <p style="font-size:12px;">2. บัญชีสำหรับโอนเงิน ชำระค่าสินค้า <br>
   &nbsp;&nbsp;&nbsp;&nbsp;ธนาคารกสิกรไทย : สาขาสุขาภิบาล 5<br>
-  &nbsp;&nbsp;&nbsp;&nbsp;บัญชีออมทรัพย์ : บจก.โอเมก้า แมชชีนเนอรี่ (1999)<br>
+  &nbsp;&nbsp;&nbsp;&nbsp;บัญชีออมทรัพย์ : บจก.ออสโป คิทเช่น เซอร์วิสเซส จํากัด<br>
   &nbsp;&nbsp;&nbsp;&nbsp;เลขที่บัญชี : 026-1-810689</p>
   <p style="font-size:12px;"><strong><u>เงื่อนไขการรับประกันและการส่งสินค้า</u></strong></p>
 

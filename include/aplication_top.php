@@ -8,7 +8,7 @@ include_once("function.php");
 include_once("ps_pagination.php");
 include_once("filename.php");
 
-define("S_TITLE","Omega Intranet");
+define("S_TITLE","OSPO Intranet");
 define("S_DOMAIN","http://192.168.1.122/");
 define("S_PATHS","omega_internet/");
 define("S_IMAGES","images/");

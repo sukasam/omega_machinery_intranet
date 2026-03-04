@@ -1130,7 +1130,7 @@ while ($rowTec = @mysqli_fetch_array($qusTec)) {
         1. <input type="text" name="paycon1" value="<?php echo $paycon1;?>" style="text-align: left;width: 60%;"><br>
         2. บัญชีสำหรับโอนเงิน ชำระค่าสินค้า<br>
         &nbsp;&nbsp;&nbsp;<strong style="color: #077d0c;"> ธนาคารกสิกรไทย : สาขาสุขาภิบาล 5 <br>
-        &nbsp;&nbsp;&nbsp;&nbsp;บัญชีออมทรัพย์ : บจก.โอเมก้า แมชชีนเนอรี่ (1999)<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;บัญชีออมทรัพย์ : บจก.ออสโป คิทเช่น เซอร์วิสเซส จํากัด<br>
         &nbsp;&nbsp;&nbsp;&nbsp;เลขที่บัญชี : 026-1-810689<br></strong>
           
          <input type="text" name="paysad" value="<?php echo $paysad;?>" style="text-align: center;width: 100px;display:none;">
@@ -1143,10 +1143,10 @@ while ($rowTec = @mysqli_fetch_array($qusTec)) {
         2. การรับประกันสินค้า : <input type="text" name="paycon4" value="<?php echo $paycon4;?>" style="text-align: left;width: 70%;"> <br>
     
         <!-- <input type="text" name="paycon5" value="<?php //echo $paycon5;?>" style="text-align: center;width: 50px;">
-        3. ตลอดระยะเวลาการรับประกัน : บริษัทฯ กำหนดให้ลูกค้าต้องใช้น้ำยาของบริษัท โอเมก้า แมชชีนเนอรี่ (1999) จำกัด เท่านั้น<br> -->
+        3. ตลอดระยะเวลาการรับประกัน : บริษัทฯ กำหนดให้ลูกค้าต้องใช้น้ำยาของบริษัท ออสโป คิทเช่น เซอร์วิสเซส จํากัด เท่านั้น<br> -->
         <!-- 2. การรับประกันสินค้า ในกรณีเช่า : ทางบริษัทฯ รับประกันเครื่อง, อะไหล่และบริการหลังการขาย ฟรีตลอดอายุสัญญาเช่า<br>
         3. ระยะเวลาเช่า <input type="text" name="paycon4" value="<?php echo $paycon4;?>" style="text-align: center;width: 50px;"> เดือน โดยสัญญาเช่าจะเริ่มต้อนเมื่อทางบริษัทฯ ทำการส่งมอบสินค้าเรียบร้อยแล้ว<br> -->
-        <!-- 3. บริษัทฯ ขอสงวนสิทธ์ในการกำหนดให้ลูกค้าใช้น้ำยาสำหรับเครื่องทุกชนิดของบริษัท โอเมก้า แมชชีนเนอรี่ (1999) จำกัด เท่านั้น ตลอดอายุสัญญาเช่า<br> -->
+        <!-- 3. บริษัทฯ ขอสงวนสิทธ์ในการกำหนดให้ลูกค้าใช้น้ำยาสำหรับเครื่องทุกชนิดของบริษัท ออสโป คิทเช่น เซอร์วิสเซส จํากัด เท่านั้น ตลอดอายุสัญญาเช่า<br> -->
         3. จัดส่งสินค้าภายใน <input type="text" name="guaran2" value="<?php echo $guaran2;?>" style="text-align: center;width: 50px;"> วัน <input type="text" name="paycon5" value="<?php echo $paycon5;?>" style="text-align: left;width: 70%;"> <br>
         4. ลูกค้าเป็นผู้ตรียมระบบไฟฟ้า <select name="type_electric" id="type_electric" class="inputselect">
       <option value="no" <?php  if($type_electric == "no"){echo 'selected';}?>>ไม่เลือก</option>

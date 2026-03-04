@@ -72,7 +72,7 @@
 <body>
 	<table width="100%" border="0" cellpadding="0" cellspacing="0" class="tbreport">
 	  <tr>
-	    <th colspan="5" style="text-align:left;font-size:12px;">บริษัท โอเมก้า แมชชีนเนอรี่ (1999) จำกัด<br />
+	    <th colspan="5" style="text-align:left;font-size:12px;">บริษัท ออสโป คิทเช่น เซอร์วิสเซส จํากัด<br />
         รายงานตามการใช้อะไหล่ ( <?php  if($cpro != ""){echo get_sparpart_name($conn,$cpro);}else{echo "ทั้งหมด";}?> )<br />
         ประเภทลูกค้า  :
         <?php  if($_POST['ctype2'] != ""){echo getcustom_type($conn,$_POST['ctype2']);}else{echo "ทั้งหมด";}?>
