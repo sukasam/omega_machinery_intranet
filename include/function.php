@@ -3671,13 +3671,7 @@ function getDesc($value,$n) {
 }
 
 function checkBoxFO($conn,$cusID){
-    $qu = @mysqli_query($conn, "SELECT sr . * , fd.cd_name FROM s_service_report4 AS sr, s_first_order AS fd WHERE sr.cus_id = fd.fo_id AND sr.cus_id ='".$cusID."' order by sr.sr_id");
-    // $qu = @mysqli_query($conn, "
-    //     (SELECT sr.*, fd.cd_name FROM s_service_report4 AS sr, s_first_order AS fd WHERE sr.cus_id = fd.fo_id AND sr.cus_id = '".$cusID."')
-    //     UNION ALL
-    //     (SELECT sr.*, fd.cd_name FROM s_service_report9 AS sr, s_first_order AS fd WHERE sr.cus_id = fd.fo_id AND sr.cus_id = '".$cusID."')
-    //     ORDER BY sr_id
-    // ");
+    $qu = @mysqli_query($conn, "SELECT sr . * , fd.cd_name FROM s_service_report9 AS sr, s_first_order AS fd WHERE sr.cus_id = fd.fo_id AND sr.cus_id ='".$cusID."' order by sr.sr_id");
     $numSV = mysqli_num_rows($result);
     $statusCheckBox = 0;
     

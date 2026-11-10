@@ -202,24 +202,27 @@ function check_select(frm){
           $counter++;
 
           $GMApprove = '';
+          $boxSV = '';
           if($rec['approve2'] == '1' || $rec['approve2'] == 1){
             if($rec["status_use"] != 2){
               $GMApprove = 'color: #0018ff;';
+              $boxSV = '-blue';
             }else{
               $GMApprove = 'color: #f00;';
+              $boxSV = '-red';
             }
           }else{
             $GMApprove = '';
           }
-          $numSVcheck = checkBoxFO($conn,$rec["fo_id"]);
-          $boxSV = '';
-          if($numSVcheck == 1){
-            $boxSV = '-blue';
-          }else if($numSVcheck == 2){
-            $boxSV = '-red';
-          }else{
-            $boxSV = '';
-          }
+          // $numSVcheck = checkBoxFO($conn,$rec["fo_id"]);
+          // $boxSV = '';
+          // if($numSVcheck == 1){
+          //   $boxSV = '-blue';
+          // }else if($numSVcheck == 2){
+          //   $boxSV = '-red';
+          // }else{
+          //   $boxSV = '';
+          // }
 
 				   ?>
         <TR>
@@ -248,7 +251,8 @@ function check_select(frm){
              <a href="../first_order/?ff=<?php  echo $rec[$PK_field]; ?>&gg=3&page=<?php  echo $_GET["page"]; ?>&<?php  echo $FK_field; ?>=<?php  echo $_REQUEST["$FK_field"];?>"><img src="../icons/favorites_service.png" width="15" height="15"></a>
             </div>
           </div></TD>
-          <TD nowrap style="vertical-align:middle"><!--<div align="center">
+          <TD nowrap style="vertical-align:middle">
+            <!--<div align="center">
             <?php  if($rec["status"]==0) {?>
             <a href="../first_order/?bb=<?php  echo $rec[$PK_field]; ?>&ss=<?php  echo $rec["status"]; ?>&page=<?php  echo $_GET["page"]; ?>&<?php  echo $FK_field; ?>=<?php  echo $_REQUEST["$FK_field"];?>&foid=<?php  echo $rec["fo_id"]; ?>"><img src="../icons/status_on.gif" width="10" height="10"></a>
             <?php  } else{?>

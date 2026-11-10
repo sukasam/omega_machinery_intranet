@@ -142,7 +142,7 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 					if($orderby=="") $orderby = "sr.".$PK_field;
 					if ($sortby =="") $sortby ="DESC";
 					
-				   	$sql = "SELECT sr . * , fd.cd_name FROM $tbl_name AS sr, s_first_order AS fd WHERE sr.cus_id = fd.fo_id AND sr.cus_id ='".$_GET['fo_id']."'";
+				  $sql = "SELECT sr . * , fd.cd_name FROM $tbl_name AS sr, s_first_order AS fd WHERE sr.cus_id = fd.fo_id AND sr.cus_id ='".$_GET['fo_id']."'";
 					if ($_GET[$PK_field] <> "") $sql .= " and ($PK_field  = '" . $_GET[$PK_field] . " ' ) ";					
 					if ($_GET[$FR_field] <> "") $sql .= " and ($FR_field  = '" . $_GET[$FR_field] . " ' ) ";					
  					if ($_GET["keyword"] <> "") { 
@@ -198,6 +198,39 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
           </div></TD>
           <TD style="vertical-align:middle;"><div align="center"><a href="../../upload/service_report_open/<?php  echo $chaf;?>.pdf" target="_blank"><img src="../images/icon2/backup.png" alt="" width="25" height="25" style="margin-left:10px;" title="ดาวน์โหลดรายงานช่างซ่ิอม"></a></div></TD>
           </TR>  
+
+      <?php 
+			$SVF = @mysqli_fetch_array(@mysqli_query($conn,"SELECT sr . * , fd.cd_name FROM s_service_report9 AS sr, s_first_order AS fd WHERE sr.cus_id = fd.fo_id AND sr.cus_id ='".$_GET['fo_id']."'"));
+			if(!empty($SVF)){
+				?>
+		<TR>
+          <!-- <TD style="vertical-align:middle;"><span class="text"><?php  echo sprintf("%04d",$counter); ?></span></TD> -->
+          <TD style="vertical-align:middle;"><?php  $chaf = preg_replace("/\//","-",$SVF["sv_id"]); ?><div align="center"><span class="text"><a href="../../upload/service_report_close/<?php  echo $chaf;?>.pdf" target="_blank"><?php  echo $SVF["sv_id"] ; ?></a></span></div></TD>
+          <TD style="vertical-align:middle;"><span class="text"><?php  echo get_customername($conn,$SVF["cus_id"]); ?></span></TD>
+          <TD style="vertical-align:middle;"><span class="text"><?php  echo get_localsettingname($conn,$SVF["cus_id"]); ?></span></TD>
+          <TD style="vertical-align:middle;"><?php  echo get_technician_name($conn,$SVF["loc_contact"]);?></TD>
+          <TD style="vertical-align:middle"><?php  if($SVF["approve"] == 1){?>
+            <IMG src="../images/icons/yes_approve.png" height="28" title="อนุมัติ">
+            <?php  }else if($SVF["approve"] == 2){?>
+            <IMG src="../images/icons/no_approve.png" height="28" title="ไม่อนุมัติ">
+            <?php  }else{?>
+            <IMG src="../images/icons/wait_approve.png" height="28" title="รออนุมัติ">
+            <?php  }?></TD>
+          <TD style="vertical-align:middle"><div align="center">
+            <?php  if($SVF["st_setting"]==0) {?>
+           <img src="../icons/status_on.gif" width="10" height="10">
+            <?php  } else{?>
+            <img src="../icons/status_off.gif" width="10" height="10">
+            <?php  }?>
+          </div></TD>
+          <TD style="vertical-align:middle;"><div align="center"><a href="../../upload/service_report_close/<?php  echo $chaf;?>.pdf" target="_blank"><img src="../images/icon2/backup.png" alt="" width="25" height="25" style="margin-left:10px;" title="ดาวน์โหลดรายงานช่างซ่ิอม"></a></div></TD>
+          </TR> 
+				<?php
+			}
+			// var_dump($SVF);
+			// exit();
+		  ?>
+
 		  <?php 
 			$SVF = @mysqli_fetch_array(@mysqli_query($conn,"select * from s_service_report WHERE `sv_id` = '".$rec['srid']."'"));
 			if(!empty($SVF)){
