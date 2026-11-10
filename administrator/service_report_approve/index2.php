@@ -38,6 +38,7 @@
 		 $appID = userTecGroupID($conn,$_SESSION["login_id"]);
 
 		 $sql_status = "update $tbl_name set approve = '".$cc."', loc_contact3 = '".$appID."' where $PK_field = '".$ids."'";
+		 
 		 @mysqli_query($conn,$sql_status);
 
 	     header("Location:update2.php?mode=update&sr_id=".$ids);

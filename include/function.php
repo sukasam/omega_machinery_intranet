@@ -2926,7 +2926,7 @@ function userGroup($conn, $user_id)
 function userTecGroupID($conn, $user_id)
 {
     $row_user = @mysqli_fetch_array(@mysqli_query($conn, "SELECT * FROM  s_user_group WHERE user_id = '" . $user_id . "'"));
-    $row_user_group = @mysqli_fetch_array(@mysqli_query($conn, "SELECT * FROM s_group_technician WHERE user_account = '" . $row_user['group_id'] . "'"));
+    $row_user_group = @mysqli_fetch_array(@mysqli_query($conn, "SELECT * FROM s_group_technician WHERE user_account = '" . $row_user['user_id'] . "'"));
 
     return $row_user_group['group_id'];
 }
@@ -3284,8 +3284,19 @@ function getShipSetupPro($conn, $fo_id, $typeSV)
     } else {
         return format_date_th($rowSV['sr_stime'], 7);
     }
-
 }
+
+function getShipSetupProV2($conn, $fo_id, $typeSV)
+{
+    $quSV = @mysqli_query($conn, "SELECT * FROM s_service_report9 WHERE cus_id = '" . $fo_id . "' ORDER BY sr_id DESC");
+    $rowSV = mysqli_fetch_array($quSV);
+    if ($typeSV == 2) {
+        return format_date_th($rowSV['job_balance'], 7);
+    } else {
+        return format_date_th($rowSV['sr_stime'], 7);
+    }
+}
+
 
 function getTrackJObs($conn, $tab, $fo_id)
 {
