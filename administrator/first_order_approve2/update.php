@@ -1383,10 +1383,10 @@ Vat 7%</strong></td>
 
     <tr>
 
-      <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:10px;"><strong>วันที่ส่งสินค้า : </strong> <?php echo getShipSetupProV2($conn,$fo_id,1);?>
+      <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:10px;"><strong>วันที่ส่งสินค้า : </strong> <?php echo getShipSetupProFO($conn,$fo_id);?>
       <!-- <input type="text" name="cs_ship" readonly value="<?php  /*if($cs_ship==""){echo date("d/m/Y");}else{ echo $cs_ship;}*/?>" class="inpfoder"/><script language="JavaScript">new tcal ({'formname': 'form1','controlname': 'cs_ship'});</script></td> -->
 
-      <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:10px;"><strong>วันที่ติดตั้งเครื่อง : </strong> <?php echo getShipSetupProV2($conn,$fo_id,2);?>
+      <td style="border:1px solid #000000;font-size:12px;font-family:Verdana, Geneva, sans-serif;padding:10px;"><strong>วันที่ติดตั้งเครื่อง : </strong> <?php echo getShipSetupProFO($conn,$fo_id);?>
       <!-- <input type="text" name="cs_setting" readonly value="<?php  /*if($cs_setting==""){echo date("d/m/Y");}else{ echo $cs_setting;}*/?>" class="inpfoder"/><script language="JavaScript">new tcal ({'formname': 'form1','controlname': 'cs_setting'});</script></td> -->
 
     </tr>

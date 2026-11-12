@@ -202,27 +202,24 @@ function check_select(frm){
           $counter++;
 
           $GMApprove = '';
-          $boxSV = '';
           if($rec['approve2'] == '1' || $rec['approve2'] == 1){
             if($rec["status_use"] != 2){
               $GMApprove = 'color: #0018ff;';
-              $boxSV = '-blue';
             }else{
               $GMApprove = 'color: #f00;';
-              $boxSV = '-red';
             }
           }else{
             $GMApprove = '';
           }
-          // $numSVcheck = checkBoxFO($conn,$rec["fo_id"]);
-          // $boxSV = '';
-          // if($numSVcheck == 1){
-          //   $boxSV = '-blue';
-          // }else if($numSVcheck == 2){
-          //   $boxSV = '-red';
-          // }else{
-          //   $boxSV = '';
-          // }
+          $numSVcheck = checkBoxFO($conn,$rec["fo_id"]);
+          $boxSV = '';
+          if($numSVcheck == 1){
+            $boxSV = '-blue';
+          }else if($numSVcheck == 2){
+            $boxSV = '-red';
+          }else{
+            $boxSV = '';
+          }
 
 				   ?>
         <TR>

@@ -198,8 +198,11 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
           </div></TD>
           <TD style="vertical-align:middle;"><div align="center"><a href="../../upload/service_report_open/<?php  echo $chaf;?>.pdf" target="_blank"><img src="../images/icon2/backup.png" alt="" width="25" height="25" style="margin-left:10px;" title="ดาวน์โหลดรายงานช่างซ่ิอม"></a></div></TD>
           </TR>  
-
+        <?php 
+        }
+        ?>
       <?php 
+      //echo "SELECT sr . * , fd.cd_name FROM s_service_report4 AS sr, s_first_order AS fd WHERE sr.cus_id = fd.fo_id AND sr.cus_id ='".$_GET['fo_id']."'";
 			$SVF = @mysqli_fetch_array(@mysqli_query($conn,"SELECT sr . * , fd.cd_name FROM s_service_report9 AS sr, s_first_order AS fd WHERE sr.cus_id = fd.fo_id AND sr.cus_id ='".$_GET['fo_id']."'"));
 			if(!empty($SVF)){
 				?>
@@ -229,10 +232,12 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 			}
 			// var_dump($SVF);
 			// exit();
+
 		  ?>
 
 		  <?php 
-			$SVF = @mysqli_fetch_array(@mysqli_query($conn,"select * from s_service_report WHERE `sv_id` = '".$rec['srid']."'"));
+      /*echo "select * from s_service_report WHERE `cus_id` = '".$rec['srid']."' and (sr_ctype = '23' OR sr_ctype = '36' OR sr_ctype = '45' OR sr_ctype = '47' OR sr_ctype = '112' OR sr_ctype = '113' OR sr_ctype = '116' OR sr_ctype = '117') order by sr_id DESC";
+			$SVF = @mysqli_fetch_array(@mysqli_query($conn,"select * from s_service_report WHERE `sv_id` = '".$rec['srid']."' and (sr_ctype = '23' OR sr_ctype = '36' OR sr_ctype = '45' OR sr_ctype = '47' OR sr_ctype = '112' OR sr_ctype = '113' OR sr_ctype = '116' OR sr_ctype = '117') order by sr_id DESC"));
 			if(!empty($SVF)){
 				?>
 		<TR>
@@ -260,11 +265,13 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 				<?php
 			}
 			// var_dump($SVF);
-			// exit();
+			// exit();      
+*/
 		  ?>
-		<?php  }
-    $SVF2 = @mysqli_fetch_array(@mysqli_query($conn,"select * from s_service_report WHERE cus_id ='".$_GET['fo_id']."' and (sr_ctype = '24' OR sr_ctype = '55' OR sr_ctype = '89') order by sr_id DESC"));
-    if(!empty($SVF2)){
+		<?php  
+       $SVF2 = @mysqli_fetch_array(@mysqli_query($conn,"select * from s_service_report WHERE cus_id ='".$_GET['fo_id']."' and (sr_ctype = '24' OR sr_ctype = '55' OR sr_ctype = '89' 
+       OR sr_ctype = '23' OR sr_ctype = '36' OR sr_ctype = '45' OR sr_ctype = '47' OR sr_ctype = '112' OR sr_ctype = '113' OR sr_ctype = '116' OR sr_ctype = '117') order by sr_id DESC"));
+        if(!empty($SVF2)){
     ?>
         <TR>
           <!-- <TD style="vertical-align:middle;"><span class="text"><?php  echo sprintf("%04d",$counter); ?></span></TD> -->
@@ -288,7 +295,9 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
           </div></TD>
           <TD style="vertical-align:middle;"><div align="center"><a href="../../upload/service_report_close/<?php  echo $chaf;?>.pdf" target="_blank"><img src="../images/icon2/backup.png" alt="" width="25" height="25" style="margin-left:10px;" title="ดาวน์โหลดรายงานช่างซ่ิอม"></a></div></TD>
           </TR> 
-          <?php }?>
+          <?php 
+              }
+          ?>
       </TBODY>
     </TABLE>
     <br><br>

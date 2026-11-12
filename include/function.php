@@ -3286,15 +3286,11 @@ function getShipSetupPro($conn, $fo_id, $typeSV)
     }
 }
 
-function getShipSetupProV2($conn, $fo_id, $typeSV)
+function getShipSetupProFO($conn, $fo_id)
 {
-    $quSV = @mysqli_query($conn, "SELECT * FROM s_service_report9 WHERE cus_id = '" . $fo_id . "' ORDER BY sr_id DESC");
+    $quSV = @mysqli_query($conn, "SELECT * FROM s_service_report WHERE cus_id = '" . $fo_id . "' and sv_id LIKE '%IT%' ORDER BY sr_id DESC Limit 1");
     $rowSV = mysqli_fetch_array($quSV);
-    if ($typeSV == 2) {
-        return format_date_th($rowSV['job_balance'], 7);
-    } else {
-        return format_date_th($rowSV['sr_stime'], 7);
-    }
+    return format_date_th($rowSV['job_close'], 7);
 }
 
 
@@ -3671,16 +3667,31 @@ function getDesc($value,$n) {
 }
 
 function checkBoxFO($conn,$cusID){
-    $qu = @mysqli_query($conn, "SELECT sr . * , fd.cd_name FROM s_service_report9 AS sr, s_first_order AS fd WHERE sr.cus_id = fd.fo_id AND sr.cus_id ='".$cusID."' order by sr.sr_id");
-    $numSV = mysqli_num_rows($result);
-    $statusCheckBox = 0;
+    // echo "SELECT sr . * , fd.cd_name FROM s_service_report9 AS sr, s_first_order AS fd WHERE sr.cus_id = fd.fo_id AND sr.cus_id ='".$cusID."' order by sr.sr_id DESC";
+    // $qu = @mysqli_query($conn, "SELECT sr . * , fd.cd_name FROM s_service_report9 AS sr, s_first_order AS fd WHERE sr.cus_id = fd.fo_id AND sr.cus_id ='".$cusID."' order by sr.sr_id DESC");
+    // $numSV = mysqli_num_rows($result);
+    // $statusCheckBox = 0;
     
+    // while ($row = @mysqli_fetch_array($qu)) {
+    //     if($row["st_setting"] != 0){
+    //         if($row["sr_ctype"] == 23 || $row["sr_ctype"] == 36 || $row["sr_ctype"] == 45 || $row["sr_ctype"] == 47 || $row["sr_ctype"] == 112 || $row["sr_ctype"] == 113 || $row["sr_ctype"] == 116 || $row["sr_ctype"] == 117 ){
+    //             $statusCheckBox = 1;
+    //         }else if($row["sr_ctype"] == 24 || $row["sr_ctype"] == 55 || $row["sr_ctype"] == 89){
+    //             $statusCheckBox = 2;
+    //         }else{
+    //             $statusCheckBox = 0;
+    //         }
+            
+    //     }
+    // }
+
+    $statusCheckBox = 0;
+
+    $qu = @mysqli_query($conn, "SELECT * FROM s_service_report WHERE cus_id ='".$cusID."' AND sv_id Like 'IT%' order by sr_id DESC");
     while ($row = @mysqli_fetch_array($qu)) {
         if($row["st_setting"] != 0){
-            if($row["sr_ctype"] == 23 || $row["sr_ctype"] == 36 || $row["sr_ctype"] == 45 || $row["sr_ctype"] == 47){
+            if($row["sr_ctype"] == 23 || $row["sr_ctype"] == 36 || $row["sr_ctype"] == 45 || $row["sr_ctype"] == 47 || $row["sr_ctype"] == 112 || $row["sr_ctype"] == 113 || $row["sr_ctype"] == 116 || $row["sr_ctype"] == 117 ){
                 $statusCheckBox = 1;
-            }else if($row["sr_ctype"] == 24 || $row["sr_ctype"] == 55 || $row["sr_ctype"] == 89){
-                $statusCheckBox = 2;
             }else{
                 $statusCheckBox = 0;
             }
@@ -3688,7 +3699,7 @@ function checkBoxFO($conn,$cusID){
         }
     }
 
-    $qu2 = @mysqli_query($conn, "SELECT * FROM s_service_report WHERE cus_id ='".$cusID."' and (sr_ctype = '24' OR sr_ctype = '55' OR sr_ctype = '89') order by sr_id DESC");
+    $qu2 = @mysqli_query($conn, "SELECT * FROM s_service_report WHERE cus_id ='".$cusID."' AND sv_id Like 'IT%' AND (sr_ctype = '24' OR sr_ctype = '55' OR sr_ctype = '89') order by sr_id DESC");
     while ($row = @mysqli_fetch_array($qu2)) {
         if($row["st_setting"] != 0){
             $statusCheckBox = 2;
