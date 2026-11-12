@@ -3288,7 +3288,8 @@ function getShipSetupPro($conn, $fo_id, $typeSV)
 
 function getShipSetupProFO($conn, $fo_id)
 {
-    $quSV = @mysqli_query($conn, "SELECT * FROM s_service_report WHERE cus_id = '" . $fo_id . "' and sv_id LIKE '%IT%' ORDER BY sr_id DESC Limit 1");
+    $quSV = @mysqli_query($conn, "SELECT * FROM s_service_report WHERE cus_id = '" . $fo_id . "' and (sr_ctype = '24' OR sr_ctype = '55' OR sr_ctype = '89' 
+       OR sr_ctype = '23' OR sr_ctype = '36' OR sr_ctype = '45' OR sr_ctype = '47' OR sr_ctype = '112' OR sr_ctype = '113' OR sr_ctype = '116' OR sr_ctype = '117') and sv_id LIKE '%IT%' ORDER BY sr_id DESC Limit 1");
     $rowSV = mysqli_fetch_array($quSV);
     return format_date_th($rowSV['job_close'], 7);
 }
@@ -3687,15 +3688,15 @@ function checkBoxFO($conn,$cusID){
 
     $statusCheckBox = 0;
 
+    //echo "SELECT * FROM s_service_report WHERE cus_id ='".$cusID."' AND sv_id Like 'IT%' order by sr_id DESC";
+
     $qu = @mysqli_query($conn, "SELECT * FROM s_service_report WHERE cus_id ='".$cusID."' AND sv_id Like 'IT%' order by sr_id DESC");
     while ($row = @mysqli_fetch_array($qu)) {
+        //echo $row["st_setting"]." ".$row["sr_ctype"]."<br>";
         if($row["st_setting"] != 0){
             if($row["sr_ctype"] == 23 || $row["sr_ctype"] == 36 || $row["sr_ctype"] == 45 || $row["sr_ctype"] == 47 || $row["sr_ctype"] == 112 || $row["sr_ctype"] == 113 || $row["sr_ctype"] == 116 || $row["sr_ctype"] == 117 ){
                 $statusCheckBox = 1;
-            }else{
-                $statusCheckBox = 0;
-            }
-            
+            }            
         }
     }
 

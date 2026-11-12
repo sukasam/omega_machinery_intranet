@@ -269,6 +269,9 @@ function MM_jumpMenu(targ,selObj,restore){ //v3.0
 */
 		  ?>
 		<?php  
+      /*echo "select * from s_service_report WHERE cus_id ='".$_GET['fo_id']."' and (sr_ctype = '24' OR sr_ctype = '55' OR sr_ctype = '89' 
+       OR sr_ctype = '23' OR sr_ctype = '36' OR sr_ctype = '45' OR sr_ctype = '47' OR sr_ctype = '112' OR sr_ctype = '113' OR sr_ctype = '116' OR sr_ctype = '117') order by sr_id DESC";*/
+       
        $SVF2 = @mysqli_fetch_array(@mysqli_query($conn,"select * from s_service_report WHERE cus_id ='".$_GET['fo_id']."' and (sr_ctype = '24' OR sr_ctype = '55' OR sr_ctype = '89' 
        OR sr_ctype = '23' OR sr_ctype = '36' OR sr_ctype = '45' OR sr_ctype = '47' OR sr_ctype = '112' OR sr_ctype = '113' OR sr_ctype = '116' OR sr_ctype = '117') order by sr_id DESC"));
         if(!empty($SVF2)){
